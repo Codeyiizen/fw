@@ -795,5 +795,17 @@ class Favoritewish extends CI_Controller {
             }
         }
     } 
+	public function getUserProfile(){
+	    $data = array();
+        $data['metaDescription'] = 'Home Page Meta Description';
+        $data['metaKeywords'] = 'Home Page Meta Title';
+        $data['title'] = "Home";
+        $data['breadcrumbs'] = array('Home' => '#');
+		$this->load->view('front/header_main', $data);
+		//$this->load->view('bannerSection',$arr);
+		$this->load->view('user/profile');
+		$this->load->view('front/template/template_footer');
+		$this->load->view('front/footer_main');
+	}
 
 }
