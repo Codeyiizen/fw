@@ -72,6 +72,7 @@ $route['export_cf_data'] = 'favoritewish/export_cf_inquiry';
 $route['about-us'] = 'favoritewish/aboutus';
 $route['contact-us'] = 'favoritewish/contactus';
 $route['terms-and-conditions'] = 'favoritewish/termsandconditions';
+$route['user/profile'] = 'favoritewish/getUserProfile';
 $route['user/friends'] = 'favoritewish/getUserFriends';
 
 
