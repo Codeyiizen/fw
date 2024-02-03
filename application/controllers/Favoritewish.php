@@ -350,7 +350,8 @@ class Favoritewish extends CI_Controller {
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
         if ($this->form_validation->run() == FALSE) {
             //Field validation failed.  User redirected to login page
-            $this->login;
+            //$this->login;
+			redirect('sign-in');
         } else {
             $sessArray = array();
             //Field validation succeeded.  Validate against database
