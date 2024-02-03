@@ -92,6 +92,8 @@ class Favoritewish_Model extends CI_Model {
 	private $_airportIdentifier;
 	private $_alertPeriodFrom;
 	private $_alertPeriodTo;
+	
+	private $_token;
 
 	//Declaration of a methods
     public function setUserID($userID) {
@@ -177,6 +179,10 @@ class Favoritewish_Model extends CI_Model {
 	public function setAlertPeriodTo($alertPeriodTo) {
         $this->_alertPeriodTo = $alertPeriodTo;
     }
+	
+	 public function setToken($token) {
+        $this->_token = $token;
+    }
 
 	//create new user
     public function createUser() 
@@ -199,7 +205,8 @@ class Favoritewish_Model extends CI_Model {
             'created_date' => $this->_timeStamp,
             'modified_date' => $this->_timeStamp,
             'status' => $this->_status,
-            'terms_accepted' => $this->_termsAccepted
+            'terms_accepted' => $this->_termsAccepted,
+			'token' => $this->_token
         );
 		//print_r($this->db->insert('users', $data));
 		//die();

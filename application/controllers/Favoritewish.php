@@ -29,6 +29,7 @@ class Favoritewish extends CI_Controller {
 		$this->load->library('session');
 		$this->load->library('upload');
 		$this->load->library('encryption');
+		$this->load->helper('custom');
 	}
 
 	public function index()
@@ -262,7 +263,8 @@ class Favoritewish extends CI_Controller {
 			$verificationCode = uniqid();
 			$verificationLink = base_url() . 'sign-in?usid=' . urlencode(base64_encode($verificationCode));
 			$userName = $this->mail->generateUnique('users', trim($firstName . $lastName), 'user_name', NULL, NULL);
-			
+			$varToken = random_strings(8);
+			 
 			$this->Favoritewish_Model->setUserName($userName);
 			$this->Favoritewish_Model->setFirstname(trim($firstName));
 			$this->Favoritewish_Model->setLastName(trim($lastName));			            
@@ -279,6 +281,7 @@ class Favoritewish extends CI_Controller {
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
 			$this->Favoritewish_Model->setStatus($status);
 			$this->Favoritewish_Model->setTermsAccepted($termsAccepted);
+			$this->Favoritewish_Model->setToken($varToken);
 			$chk = $this->Favoritewish_Model->createUser();
 			//print_r($chk);
 			//exit();
