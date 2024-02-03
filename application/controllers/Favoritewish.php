@@ -796,16 +796,52 @@ class Favoritewish extends CI_Controller {
         }
     } 
 	public function getUserProfile(){
-	    $data = array();
-        $data['metaDescription'] = 'Home Page Meta Description';
-        $data['metaKeywords'] = 'Home Page Meta Title';
-        $data['title'] = "Home";
-        $data['breadcrumbs'] = array('Home' => '#');
-		$this->load->view('front/header_main', $data);
-		//$this->load->view('bannerSection',$arr);
-		$this->load->view('user/profile');
-		$this->load->view('front/template/template_footer');
-		$this->load->view('front/footer_main');
+	    if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+            redirect('sign-in'); // the user is not logged in, redirect them!
+        } else {
+			$arr['data']=$this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
+            $data = array();
+            $data['metaDescription'] = 'User Profile';
+            $data['metaKeywords'] = 'User Profile';
+            $data['title'] = "User Profile";
+            $data['breadcrumbs'] = array('User Profile' => '#');
+            $sessionArray = $this->session->userdata('ci_seesion_key');
+            $this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+            $data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+
+			$data['categories'] = $this->Favoritewish_Model->getCategories();
+			
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents' , 'user/profile');
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+			
+        }
+	}
+	public function getUserFriends(){
+	    if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+            redirect('sign-in'); // the user is not logged in, redirect them!
+        } else {
+			$arr['data']=$this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
+            $data = array();
+            $data['metaDescription'] = 'User Friends';
+            $data['metaKeywords'] = 'User Friends';
+            $data['title'] = "User Friends";
+            $data['breadcrumbs'] = array('User Friends' => '#');
+            $sessionArray = $this->session->userdata('ci_seesion_key');
+            $this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+            $data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+
+			$data['categories'] = $this->Favoritewish_Model->getCategories();
+			
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents' , 'user/friends');
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+			
+        }
 	}
 
 }

@@ -64,6 +64,7 @@ $route['sign-in'] = 'favoritewish/login';
 $route['user-dashboard'] = 'favoritewish/user_dashboard';
 $route['user-profile'] = 'favoritewish/user_profile';
 $route['user/profile'] = 'favoritewish/getUserProfile';
+$route['user/friends'] = 'favoritewish/getUserFriends';
 $route['setting'] = 'favoritewish/changepwd';
 $route['user-profile/edit'] = 'favoritewish/edit';
 $route['forgot-password'] = 'favoritewish/forgotpassword';
