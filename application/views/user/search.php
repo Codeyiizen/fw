@@ -8,7 +8,8 @@
                 <div class="col-md-6">
                     <div class="profile-picture">
                         <!--<img src="assets/images/site-image/avatar.png" alt="" class="img-thumbnail img-fluid">-->
-                        <object type="image/svg+xml" data="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"></object>
+                        <object type="image/svg+xml"
+                            data="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"></object>
                         <div class="profile-name">
                             <h3><?php print $userInfo['full_name']; ?></h3>
                             <h5><?php print $userInfo['company']; ?></h5>
@@ -47,9 +48,10 @@
                     <div class="form-group searchbar">
                         <div class="input-group">
                             <div class="form-outline">
-                                <input type="search" name="q" id="form1" class="form-control" placeholder="Search..." value="<?php echo (!empty($get['q'])) ? $get['q'] : ''; ?>" />
+                                <input type="search" name="q" id="form1" class="form-control rounded-pill py-2 pl-4" placeholder="Search..."
+                                    value="<?php echo (!empty($get['q'])) ? $get['q'] : ''; ?>" />
                             </div>
-                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                            <button type="submit" class="btn btn-primary rounded-pill rounded-left-0 px-3" data-mdb-ripple-init>
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
@@ -61,11 +63,16 @@
                             <?php if (!empty($userData)) {
                                 foreach ($userData as $data) {
                             ?>
-                                    <div class="col-lg-6 col-sm-12">
-                                        <div class="wishes-items">
-                                            <h3><?php echo $data->first_name; ?></h3>
-                                        </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card mb-4">
+                                    <img class="card-image" src="<?php echo base_url(); ?>assets/images/site-image/signup-bg-Image.jpg" alt="">
+                                    <div class="card-body p-4">
+                                        <h5 class="card-title"><?php echo $data->first_name; ?></h5>
+                                        <button type="button" class="theme-btn yellow-bg px-4 mr-0">Accept</button>
+                                        <button type="button" class="theme-btn red-btn px-4 bg-danger">Delete</button>
                                     </div>
+                                </div>
+                            </div>
                             <?php  }
                             } ?>
                         </div>
