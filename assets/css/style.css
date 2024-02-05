@@ -601,7 +601,7 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 }
 .yellow-bg {
     background-color: #FFC629;
-    color: #000;
+    color: #fff;
 }
 .yellow-bg:hover, .yellow-bg:focus {
     background-color: #000;
@@ -1560,4 +1560,16 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 }
 .searchbar .form-control{
     height: auto;
+}
+
+/*
+* Custom css
+*/
+.card-image{
+    max-height:220px;
+}
+
+.rounded-left-0{
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;    
 }
