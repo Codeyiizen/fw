@@ -74,7 +74,8 @@ $route['contact-us'] = 'favoritewish/contactus';
 $route['terms-and-conditions'] = 'favoritewish/termsandconditions';
 $route['user/profile'] = 'favoritewish/getUserProfile';
 $route['user/friends'] = 'favoritewish/getUserFriends';
-
+$route['user/friends/requests'] = 'favoritewish/getUserFriends';
+$route['user/friends/search'] = 'favoritewish/getUserFriendsSearch';
 
 /*
 

@@ -1555,3 +1555,9 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 .titleAreaContent.policy-content h1, .titleAreaContent.policy-content h2, .titleAreaContent.policy-content h3 {
     font-size: 20px;
 }
+.searchbar{
+    margin-bottom: 20px;
+}
+.searchbar .form-control{
+    height: auto;
+}

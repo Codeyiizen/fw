@@ -92,8 +92,6 @@ class Favoritewish_Model extends CI_Model {
 	private $_airportIdentifier;
 	private $_alertPeriodFrom;
 	private $_alertPeriodTo;
-	
-	private $_token;
 
 	//Declaration of a methods
     public function setUserID($userID) {
@@ -179,10 +177,6 @@ class Favoritewish_Model extends CI_Model {
 	public function setAlertPeriodTo($alertPeriodTo) {
         $this->_alertPeriodTo = $alertPeriodTo;
     }
-	
-	 public function setToken($token) {
-        $this->_token = $token;
-    }
 
 	//create new user
     public function createUser() 
@@ -205,8 +199,7 @@ class Favoritewish_Model extends CI_Model {
             'created_date' => $this->_timeStamp,
             'modified_date' => $this->_timeStamp,
             'status' => $this->_status,
-            'terms_accepted' => $this->_termsAccepted,
-			'token' => $this->_token
+            'terms_accepted' => $this->_termsAccepted
         );
 		//print_r($this->db->insert('users', $data));
 		//die();
@@ -393,6 +386,20 @@ class Favoritewish_Model extends CI_Model {
         $this->db->from('administrator');
         $this->db->where($condition);
         $this->db->limit(1);
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 1) {
+        	return $query->result();
+        } else {
+        	return false;
+        }
+    }
+    public function getUsersList($params){
+        $search = (!empty($params['q']))?$params['q']:'';
+        $condition = "CONCAT(first_name,last_name,user_name,email)" . "LIKE '%" . $search . "%'";
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where($condition);
         $query = $this->db->get();
 
         if ($query->num_rows() == 1) {

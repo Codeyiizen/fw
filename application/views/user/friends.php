@@ -41,26 +41,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-3">
-				<div class="profile-sidebar left">
-					<div class="sidebar-about sidebar-widget sidebar-bg">
-						<h3>Friends</h3>
-						<div class="friends-list">
-							<div class="media align-items-center">
-								<div class="media-body">
-									<h5><a href="#">All Friends</a></h5>
-								</div>
-							</div>
-							<div class="media align-items-center">
-								<div class="media-body">
-									<h5><a href="#">Friend Request</a></h5>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</div>
+			<?php $this->load->view('user/Common/userSider'); ?> 
 			<div class="col-lg-9">
 				<div class="profile-content-inner">
 					<div class="added-wishes">
