@@ -58,11 +58,15 @@
                 <div class="profile-content-inner">
                     <div class="added-wishes">
                         <div class="row">
+                            <?php if(!empty($userData)){
+                                foreach($userData as $data){
+                                ?>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="wishes-items">
                                     <h3>Polo</h3>
                                 </div>
                             </div>
+                           <?php  }} ?>
                         </div>
                     </div>
                 </div>
