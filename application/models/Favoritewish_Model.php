@@ -401,13 +401,15 @@ class Favoritewish_Model extends CI_Model {
     }
     public function getUsersList($params){
         $search = (!empty($params['q']))?$params['q']:'';
-        $condition = "CONCAT(first_name,last_name,user_name,email)" . "LIKE '%" . $search . "%'";
+        
         $this->db->select('*');
         $this->db->from('users');
-        $this->db->where($condition);
+        if(!empty($search)){
+            $condition = "CONCAT(first_name,last_name,user_name,email)" . "LIKE '%" . $search . "%'";
+            $this->db->where($condition);
+        }
         $query = $this->db->get();
-
-        if ($query->num_rows() == 1) {
+        if ($query->num_rows() > 0) {
         	return $query->result();
         } else {
         	return false;
