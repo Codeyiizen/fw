@@ -28,18 +28,7 @@
 </section>
 <section class="section-padding profile-content">
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="profile-header-tabs">
-					<ul>
-						<li class="active"><a href="<?php echo base_url(); ?>user/profile">Profile</a></li>
-						<li><a href="<?php echo base_url(); ?>user/friends">Friends</a></li>
-						<li><a href="#">Registry</a></li>
-						<li><a href="#">Message</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<?php $this->load->view('user/Common/mainHeader') ?>
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="profile-sidebar left">
