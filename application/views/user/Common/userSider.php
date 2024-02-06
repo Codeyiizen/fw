@@ -5,17 +5,17 @@
             <div class="friends-list">
                 <div class="media align-items-center">
                     <div class="media-body">
-                        <h5><a href="#">All Friends</a></h5>
+                        <h5><a class="<?php echo checkMenuActive('user/friends'); ?>" href="<?php echo base_url('user/friends') ?>">All Friends</a></h5>
                     </div>
                 </div>
                 <div class="media align-items-center">
                     <div class="media-body">
-                        <h5><a href="#">Friend Request</a></h5>
+                        <h5><a class="<?php echo checkMenuActive('user/friends/requests'); ?>"  href="<?php echo base_url('user/friends/requests') ?>">Friend Request</a></h5>
                     </div>
                 </div>
                 <div class="media align-items-center">
                     <div class="media-body">
-                        <h5><a href="<?php echo base_url('user/friends/search') ?>">Search Friends</a></h5>
+                        <h5><a class="<?php echo checkMenuActive('user/friends/search'); ?>" href="<?php echo base_url('user/friends/search') ?>">Search Friends</a></h5>
                     </div>
                 </div>
             </div>

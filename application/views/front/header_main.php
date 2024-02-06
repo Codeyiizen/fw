@@ -30,6 +30,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/responsive.css" rel="stylesheet">
+<script> var BASE_URL = "<?php echo base_url() ?>"</script>
 
 </head>
 <!-- page wrapper -->

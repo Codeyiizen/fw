@@ -1,20 +1,20 @@
-(function($) {
-	
+(function ($) {
+
 	"use strict";
-	
+
 	//Hide Loading Box (Preloader)
 	function handlePreloader() {
-		if($('.loader-wrap').length){
+		if ($('.loader-wrap').length) {
 			$('.loader-wrap').delay(1000).fadeOut(500);
 		}
 	}
 
 	if ($(".preloader-close").length) {
-        $(".preloader-close").on("click", function(){
-            $('.loader-wrap').delay(200).fadeOut(500);
-        })
-    }
-	
+		$(".preloader-close").on("click", function () {
+			$('.loader-wrap').delay(200).fadeOut(500);
+		})
+	}
+
 	//Update Header Style and Scroll to Top
 	function headerStyle() {
 		/*if($('.main-header').length){
@@ -30,48 +30,48 @@
 			}
 		}*/
 	}
-	
+
 	headerStyle();
 
 	//Contact Form Validation
-	
-	$("#signup").click(function() {
-		$("#first").fadeOut("fast", function() {
+
+	$("#signup").click(function () {
+		$("#first").fadeOut("fast", function () {
 			$("#second").fadeIn("fast");
 		});
 	});
 
-	$("#signin").click(function() {
-		$("#second").fadeOut("fast", function() {
+	$("#signin").click(function () {
+		$("#second").fadeOut("fast", function () {
 			$("#first").fadeIn("fast");
 		});
 	});
 
 
-    $(function() {
-        $("form[name='login']").validate({
-            rules: {
+	$(function () {
+		$("form[name='login']").validate({
+			rules: {
 				email: {
 					required: true,
 					email: true
 				},
 				password: {
-					required: true,                 
+					required: true,
 				}
-            },
-            messages: {
+			},
+			messages: {
 				email: "Please enter a valid email address",
 				password: {
 					required: "Please enter password",
 				}
-            },
-            submitHandler: function(form) {
+			},
+			submitHandler: function (form) {
 				form.submit();
-            }
-        });
-    });
-         
-	$(function() {
+			}
+		});
+	});
+
+	$(function () {
 		$("form[name='registration']").validate({
 			rules: {
 				firstname: "required",
@@ -94,37 +94,111 @@
 				},
 				email: "Please enter a valid email address"
 			},
-			submitHandler: function(form) {
+			submitHandler: function (form) {
 				form.submit();
 			}
 		});
 	});
-	
-
 	//Fact Counter + Text Count
-	
-	$('.fs-toggle-menu').click (function(){
+	$('.fs-toggle-menu').click(function () {
 		$(this).toggleClass('active');
 		$('#fs-menu').toggleClass('open');
 	});
-	
-
-
+	$("body").on("click", ".sendFriendRequest", function () {
+		var tokenObj = $(this).data('token');
+		var params = { "token": tokenObj };
+		$.ajax({
+			url: BASE_URL + "/user/friends/request",
+			type: "post",
+			data: JSON.stringify(params),
+			contentType: "application/json; charset=utf-8",
+			success: function (response) {
+				var res = JSON.parse(response);
+				if (res?.code == 200) {
+					window.location.reload();
+				}
+			}
+		});
+	})
+	$("body").on("click", ".acceptFriendRequest", function () {
+		var tokenObj = $(this).data('token');
+		var params = { "token": tokenObj };
+		$.ajax({
+			url: BASE_URL + "/user/friends/accept",
+			type: "post",
+			data: JSON.stringify(params),
+			contentType: "application/json; charset=utf-8",
+			success: function (response) {
+				var res = JSON.parse(response);
+				if (res?.code == 200) {
+					window.location.reload();
+				}
+			}
+		});
+	})
+	$("body").on("click", ".removeFriend", function () {
+		var tokenObj = $(this).data('token');
+		var params = { "token": tokenObj,type:'remove' };
+		$.ajax({
+			url: BASE_URL + "/user/friends/remove",
+			type: "post",
+			data: JSON.stringify(params),
+			contentType: "application/json; charset=utf-8",
+			success: function (response) {
+				var res = JSON.parse(response);
+				if (res?.code == 200) {
+					//window.location.reload();
+				}
+			}
+		});
+	})
+	$("body").on("click", ".declineFriend", function () {
+		var tokenObj = $(this).data('token');
+		var params = { "token": tokenObj,type:'decline' };
+		$.ajax({
+			url: BASE_URL + "/user/friends/remove",
+			type: "post",
+			data: JSON.stringify(params),
+			contentType: "application/json; charset=utf-8",
+			success: function (response) {
+				var res = JSON.parse(response);
+				if (res?.code == 200) {
+					//window.location.reload();
+				}
+			}
+		});
+	})
+	$("body").on("click", ".cancelFriend", function () {
+		var tokenObj = $(this).data('token');
+		var params = { "token": tokenObj,type:'cancel' };
+		$.ajax({
+			url: BASE_URL + "/user/friends/remove",
+			type: "post",
+			data: JSON.stringify(params),
+			contentType: "application/json; charset=utf-8",
+			success: function (response) {
+				var res = JSON.parse(response);
+				if (res?.code == 200) {
+					//window.location.reload();
+				}
+			}
+		});
+	})
 	// Progress Bar
-	
 
 
-	
+
+
 
 	//Tabs Box
-	
+
 
 
 
 	//Accordion Box
-	
 
-	
+
+
 
 
 
@@ -134,42 +208,41 @@
 	/* ==========================================================================
    When document is Scrollig, do
    ========================================================================== */
-	
-	$(window).on('scroll', function() {
+
+	$(window).on('scroll', function () {
 		headerStyle();
 		if ($(window).scrollTop() > 200) {
-                $('.scroll-top-inner').addClass('visible');
-            } else {
-                $('.scroll-top-inner').removeClass('visible');
-            }
+			$('.scroll-top-inner').addClass('visible');
+		} else {
+			$('.scroll-top-inner').removeClass('visible');
+		}
 	});
-	
-	
-	/* =============================
-    Show background image as data-background 
-    ========================== */
 
-    jQuery(document).ready(function(e) {
-        background();
-    });
-    function background()
-    {
-        var img=$('.background-image');
-        img.css('background-image', function () {
-        var bg = ('url(' + $(this).data('background') + ')');
-        return bg;
-        });
-    }
-	
-	
+
+	/* =============================
+	Show background image as data-background 
+	========================== */
+
+	jQuery(document).ready(function (e) {
+		background();
+	});
+	function background() {
+		var img = $('.background-image');
+		img.css('background-image', function () {
+			var bg = ('url(' + $(this).data('background') + ')');
+			return bg;
+		});
+	}
+
+
 	/* ==========================================================================
    When document is loaded, do
    ========================================================================== */
-	
-	$(window).on('load', function() {
+
+	$(window).on('load', function () {
 		handlePreloader();
 	});
 
-	
+
 
 })(window.jQuery);

@@ -362,6 +362,7 @@ class Favoritewish_Model extends CI_Model {
 
 
 
+
 	
 	
 	
@@ -402,12 +403,69 @@ class Favoritewish_Model extends CI_Model {
     public function getUsersList($params){
         $search = (!empty($params['q']))?$params['q']:'';
         
-        $this->db->select('*');
+        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
         $this->db->from('users');
+        $this->db->join('friends', 'friends.from_friend = users.id OR friends.to_friend = users.id', 'left');
         if(!empty($search)){
             $condition = "CONCAT(first_name,last_name,user_name,email)" . "LIKE '%" . $search . "%'";
             $this->db->where($condition);
         }
+        $this->db->where("users.id!=".$this->_userID);
+        $this->db->group_by('users.id'); 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+        	return $query->result();
+        } else {
+        	return false;
+        }
+    }
+
+    public function getUserByToken($token) {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('users.token', $token);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return FALSE;
+        }
+    }
+    public function getUserFriendsList($params){
+        $search = (!empty($params['q']))?$params['q']:'';
+        
+        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
+        $this->db->from('friends');
+        $this->db->join('users', '(friends.from_friend = users.id OR friends.to_friend = users.id) AND friends.status=1');
+        if(!empty($search)){
+            $condition = "CONCAT(users.first_name,users.last_name,users.user_name,users.email)" . "LIKE '%" . $search . "%'";
+            $this->db->where($condition);
+        }
+        $this->db->where("(friends.from_friend=".$this->_userID." OR friends.to_friend=".$this->_userID.")");
+        $this->db->where("friends.status",1);
+        $this->db->where("users.id!=".$this->_userID);
+        $this->db->group_by('users.id'); 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+        	return $query->result();
+        } else {
+        	return false;
+        }
+    }
+    public function getUserPendingFriendsList($params){
+        $search = (!empty($params['q']))?$params['q']:'';
+        
+        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
+        $this->db->from('friends');
+        $this->db->join('users', '(friends.from_friend = users.id) AND friends.status=0');
+        if(!empty($search)){
+            $condition = "CONCAT(users.first_name,users.last_name,users.user_name,users.email)" . "LIKE '%" . $search . "%'";
+            $this->db->where($condition);
+        }
+        $this->db->where("friends.to_friend=".$this->_userID." ");
+        $this->db->where("friends.status",0);
+        $this->db->where("users.id!=".$this->_userID);
+        $this->db->group_by('users.id'); 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
         	return $query->result();

@@ -1573,3 +1573,20 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;    
 }
+.box-shadow{
+    -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.box-shadow2{
+    box-shadow: 0 3px 6px -4px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    -webkit-box-shadow: 0 3px 6px -4px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    -moz-box-shadow: 0 3px 6px -4px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.box-shadow3{
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(209,209,209,1);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(209,209,209,1);
+    box-shadow: 0px 0px 8px 0px rgba(209,209,209,1);
+}
