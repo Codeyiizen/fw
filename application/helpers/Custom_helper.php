@@ -82,3 +82,16 @@ if (!function_exists('checkMenuActive')) {
 		}
 	}
 }
+if (!function_exists('checkMainMenuActive')) {
+	// This function will return a random
+	// string of specified length
+	function checkMainMenuActive($check="")
+	{
+		$currentURL = uri_string();
+		if(strpos($currentURL,$check)!==false){
+			return 'active';
+		} else {
+			return '';
+		}
+	}
+}
