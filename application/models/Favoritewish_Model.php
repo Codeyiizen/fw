@@ -315,7 +315,8 @@ class Favoritewish_Model extends CI_Model {
             return FALSE;
         }
     }
-
+    
+ 
 	// get Email Address
     public function activate() {
         $data = array(        
@@ -400,7 +401,7 @@ class Favoritewish_Model extends CI_Model {
         	return false;
         }
     }
-    public function getUsersList($params){
+    public function getUsersList($params){ 
         $search = (!empty($params['q']))?$params['q']:'';
         
         $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
@@ -419,6 +420,7 @@ class Favoritewish_Model extends CI_Model {
         	return false;
         }
     }
+
 
     public function getUserByToken($token) {
         $this->db->select('*');
@@ -445,6 +447,29 @@ class Favoritewish_Model extends CI_Model {
         $this->db->where("friends.status",1);
         $this->db->where("users.id!=".$this->_userID);
         $this->db->group_by('users.id'); 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+        	return $query->result();
+        } else {
+        	return false;
+        }
+    }
+
+    public function getFriendDatails($params){  
+        $search = (!empty($params['q']))?$params['q']:'';
+        
+        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
+        $this->db->from('friends');
+        $this->db->join('users', '(friends.from_friend = users.id OR friends.to_friend = users.id) AND friends.status=1');
+        if(!empty($search)){
+            $condition = "CONCAT(users.first_name,users.last_name,users.user_name,users.email)" . "LIKE '%" . $search . "%'";
+            $this->db->where($condition);
+        }
+        $this->db->where("(friends.from_friend=".$this->_userID." OR friends.to_friend=".$this->_userID.")");
+        $this->db->where("friends.status",1);
+        $this->db->where("users.id!=".$this->_userID);
+        $this->db->group_by('users.id'); 
+        $this->db->limit(3); 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
         	return $query->result();

@@ -387,7 +387,7 @@ class Favoritewish extends CI_Controller
 
 	// user profile
 	public function user_dashboard()
-	{
+	{  
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -400,7 +400,10 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-
+			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
+          //  $data['allFrienddetails'] = $this->Favoritewish_Model->getUserFriendsList(""); 
+			
+		  //  $data['frienddetails'] = $this->Favoritewish_Model->getUserFriendsList($get);
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 
 			$this->load->view('front/header_inner', $data);
@@ -816,7 +819,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 	public function getUserFriends()
-	{
+	{   
 		checkMenuActive(true);
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
@@ -969,5 +972,28 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/template/template_footer');
 			$this->load->view('front/footer_main');
 		}
+	}
+
+	public function addYourWish(){  
+		$this->form_validation->set_rules('category', 'category', 'required');
+
+        $this->form_validation->set_rules('type', 'type', 'required');
+
+        $this->form_validation->set_rules('brand', 'brand', 'required');
+
+        $this->form_validation->set_rules('color', 'color', 'required');
+		$this->form_validation->set_rules('size', 'size', 'required');
+		$this->form_validation->set_rules('style', 'style', 'required');
+   
+
+        if ($this->form_validation->run() == FALSE){
+
+            $this->load->view('user-dashbord'); 
+
+        }else{
+
+           echo json_encode(['success'=>'Record added successfully.']);
+
+        }
 	}
 }
