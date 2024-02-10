@@ -79,10 +79,10 @@
 
 									<!-- Modal body -->
 									<div class="modal-body">
-										<form class="wishlist-form" method="post">
+										<form class="wishlist-form" method="post" action="user/add/wish">
 											<div class="form-group form-inline mb-4">
 												<label for="email" class="mr-sm-2">Categories</label>
-												<select class="form-control" id="sel1">
+												<select class="form-control" id="sel1" name="category">
 													<option value="">Select Category</option>
 													<?php foreach ($categories as $category): ?>
 														<option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
@@ -91,7 +91,7 @@
 											</div>
 											<div class="form-group form-inline mb-4">
 												<label for="email" class="mr-sm-2">Type</label>
-												<select class="form-control" id="sel1">
+												<select class="form-control" id="sel1" name="type">
 													<option>Choose Type</option>
 													<option>1</option>
 													<option>2</option>
@@ -101,18 +101,34 @@
 											</div>
 											<div class="form-group form-inline mb-4">
 												<label for="email" class="mr-sm-2">Brand</label>
-												<input type="text" class="form-control" id="email">
+												<select class="form-control" id="sel1" name="brand">
+												<option>Choose Brand</option>
+													<option>Nike</option>
+													<option>Adddis</option>
+													<option>pumo</option>
+													<option>Polo</option>
+												</select>
 											</div>
 											<div class="form-group form-inline mb-4">
 												<label for="email" class="mr-sm-2">Color</label>
-												<input type="text" class="form-control" id="email">
+												<select class="form-control" id="sel1" name="color">
+													<option>Choose Color</option>
+													<option>White</option>
+													<option>Blue</option>
+													<option>Yellow</option>
+													<option>Red</option>
+												</select>
 											</div>
 											<div class="form-group form-inline mb-4">
-												<label for="email" class="mr-sm-2">Style & Size</label>
-												<input type="text" class="form-control" id="email">
+												<label for="email" class="mr-sm-2">Size</label>
+												<input type="text" class="form-control" id="email" name="size">
+											</div>
+											<div class="form-group form-inline mb-4">
+												<label for="email" class="mr-sm-2">Style</label>
+												<input type="text" class="form-control" id="email" name="style">
 											</div>
 											<div class="form-group text-center">
-												<input type="submit" name="submit" class="theme-btn yellow-bg" value="Create List">
+											<button class="btn btn-success btn-submit">Submit</button>
 											</div>
 										</form>
 									</div>
@@ -153,35 +169,27 @@
 					</div>
 				</div>
 			</div>
+			
+			  
 			<div class="col-lg-3">
 				<div class="profile-sidebar right">
 					<div class="sidebar-about sidebar-widget sidebar-bg">
 						<h3>Friends</h3>
 						<div class="friends-list mb-4">
-							<div class="media align-items-center">
+						<?php   
+							foreach ($frienddetails as $friend) { ?>  
+								<div class="media align-items-center">
 								<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
 								<div class="media-body">
-									<h5><a href="#">Kathy Parry</a></h5>
+									<h5><a href="#"><?php  echo $friend->first_name; ?></a></h5>
 									<p>NYC, USA</p>
 								</div>
-							</div>
-							<div class="media align-items-center">
-								<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
-								<div class="media-body">
-									<h5><a href="#">Miley Cyrus</a></h5>
-									<p>NYC, USA</p>
-								</div>
-							</div>
-							<div class="media align-items-center">
-								<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
-								<div class="media-body">
-									<h5><a href="#">Rajeev Singh</a></h5>
-									<p>India</p>
-								</div>
-							</div>
+							</div> 
+							<?php }  ?> 
+						
 						</div>
 						<div class="text-center common-link">
-							<a href="#">See All</a>
+							<a href="<?php echo base_url(); ?>user/friends">See All</a>
 						</div>
 					</div>
 				</div>
@@ -189,3 +197,14 @@
 		</div>
 	</div>
 </section>
+
+<script>
+ 
+ $(document).ready(function() {   alert('ok'); 
+
+
+
+
+});
+
+</script>
