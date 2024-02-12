@@ -357,8 +357,39 @@ class Favoritewish_Model extends CI_Model {
 
     // Function to get all categories
     public function getCategories() {
-        $query = $this->db->get('categories');
-        return $query->result();
+
+        $this->db->select('*');
+        $this->db->from('categories');
+        $this->db->where('parent_id', NULL);
+
+        $parent = $this->db->get();
+        
+        $categories = $parent->result();
+        $i=0;
+        foreach($categories as $p_cat){
+
+            $categories[$i]->sub = $this->sub_categories($p_cat->id);
+            $i++;
+        }
+        return $categories;
+
+    }
+    public function sub_categories($id){
+
+        $this->db->select('*');
+        $this->db->from('categories');
+        $this->db->where('parent_id', $id);
+
+        $child = $this->db->get();
+        $categories = $child->result();
+        $i=0;
+        foreach($categories as $p_cat){
+
+            $categories[$i]->sub = $this->sub_categories($p_cat->id);
+            $i++;
+        }
+      //  print_r($categories);
+        return $categories;       
     }
 
 
