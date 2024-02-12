@@ -14,12 +14,13 @@
     <script src="<?php echo base_url(); ?>assets/js/data-animation.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/lax.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/particles.js"></script>
-	<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- main-js -->
     <script src="<?php echo base_url(); ?>assets/js/script.js"></script>
 	
 	<script src="<?php echo base_url(); ?>resources/tinymce/tinymce.min.js"></script>
-	
+
+
 	<!-- Script -->
 	<script>
 		tinymce.init({ 
@@ -32,27 +33,87 @@
 <script type="text/javascript">
 
 
-$(document).ready(function() {
-    $(".btn-submit").click(function(e){  
-        e.preventDefault();
-        var first_name = $("input[name='first_name']").val();
-        var last_name = $("input[name='last_name']").val();
-        var email = $("input[name='email']").val();
-        var address = $("textarea[name='address']").val();
+$(document).ready(function() {  
+    $('#contact_form').on('submit', function(event){  
+        event.preventDefault();
+        var category = $("#category").val();  // alert(category);
+        var type = $("#type").val();          //  alert(type);
+        var brand = $("#brand").val();        // alert(brand);
+        var color = $("#color").val();        //  alert(color);
+        var size =  $("#size").val();         // alert(size);
+        var style =  $("#style").val();       // alert(style);
 
         $.ajax({
-            url: "/itemForm",
-            type:'POST',
+            url: "<?php echo base_url(); ?>user/add/wish",
+            type:"POST",
             dataType: "json",
-            data: {first_name:first_name, last_name:last_name, email:email, address:address},
-            success: function(data) {
-                if($.isEmptyObject(data.error)){
-                    $(".print-error-msg").css('display','none');
-                    alert(data.success);
-                }else{
-                    $(".print-error-msg").css('display','block');
-                    $(".print-error-msg").html(data.error);
+            data: {category:category, type:type, brand:brand, color:color, size:size,style:style},
+            beforeSend:function(){
+                $('#contact').attr('disabled', 'disabled');
+            },
+            success:function(data)
+            {
+                if(data.error)
+                {
+                if(data.category != '')
+                {
+                $('#categorys').html(data.category);
                 }
+                else
+                {
+                $('#categorys').html('');
+                }
+                if(data.type != '')
+                {
+                $('#types').html(data.type);
+                }
+                else
+                {
+                $('#types').html('');
+                }
+                if(data.brand != '')
+                {
+                $('#brands').html(data.brand);
+                }
+                else
+                {
+                $('#brands').html('');
+                }
+                if(data.color != '')
+                {
+                $('#colors').html(data.color);
+                }
+                else
+                {
+                $('#colors').html('');
+                }
+                if(data.size != '')
+                {
+                $('#sizes').html(data.size);
+                }
+                else
+                {
+                $('#sizes').html('');
+                }
+                if(data.style != '')
+                {
+                $('#styles').html(data.style);
+                }
+                else
+                {
+                $('#styles').html('');
+                }
+                }
+                if(data.success)
+                {
+                $('#success_message').html(data.success);
+                $('#categorys').html('');
+                $('#type').html('');
+                $('#brand').html('');
+                $('#color').html('');
+                $('#contact_form')[0].reset();
+                }
+                $('#contact').attr('disabled', false);
             }
         });
     }); 

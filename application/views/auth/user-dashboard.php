@@ -1,3 +1,4 @@
+
 <section class="fav-profile-section">
 	<div class="profile-banner">
 		<img src="<?php echo base_url(); ?>assets/images/site-image/profile-banner-1.png" alt="" class="img-fluid">
@@ -59,7 +60,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> 
 			<div class="col-lg-6">
 				<div class="profile-content-inner">
 					<div class="create-wish mb-4">
@@ -79,56 +80,66 @@
 
 									<!-- Modal body -->
 									<div class="modal-body">
-										<form class="wishlist-form" method="post" action="user/add/wish">
-											<div class="form-group form-inline mb-4">
-												<label for="email" class="mr-sm-2">Categories</label>
-												<select class="form-control" id="sel1" name="category">
+									<span id="success_message"></span>
+										<form class="wishlist-form" method="post" id="contact_form">
+											<div class="form-group form-inline">
+												<label for="email" class="mr-sm-2">Categories</label>	
+												<select class="select-category form-control" id="category">
 													<option value="">Select Category</option>
 													<?php foreach ($categories as $category): ?>
-														<option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+														<optgroup label="<?php echo $category->name; ?>">
+														<?php foreach ($category->sub as $sub): ?> 
+														   <option value="<?php echo $sub->parent_id; ?>"><?php echo $sub->name; ?></option>
+														<?php endforeach; ?>
+														</optgroup>
 													<?php endforeach; ?>
-												</select>
+												 </select>
 											</div>
-											<div class="form-group form-inline mb-4">
+											<span id="categorys" class="text-danger text-center"></span>
+											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Type</label>
-												<select class="form-control" id="sel1" name="type">
-													<option>Choose Type</option>
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
+												<select class="form-control" id="type" name="type">
+													<option value="">Choose Type</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
 												</select>
 											</div>
-											<div class="form-group form-inline mb-4">
+											<span id="types" class="text-danger text-center"></span>
+											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Brand</label>
-												<select class="form-control" id="sel1" name="brand">
-												<option>Choose Brand</option>
-													<option>Nike</option>
-													<option>Adddis</option>
-													<option>pumo</option>
-													<option>Polo</option>
+												<select class="form-control" id="brand" name="brand">
+												<option value="">Choose Brand</option>
+													<option value="Nike">Nike</option>
+													<option value="pumo">pumo</option>
+													<option value="polo">Polo</option>
 												</select>
 											</div>
-											<div class="form-group form-inline mb-4">
+											<span id="brands" class="text-danger text-center"></span>
+											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Color</label>
-												<select class="form-control" id="sel1" name="color">
-													<option>Choose Color</option>
-													<option>White</option>
-													<option>Blue</option>
-													<option>Yellow</option>
-													<option>Red</option>
+												<select class="form-control" id="color" name="color">
+													<option value="">Choose Color</option>
+													<option value="White">White</option>
+													<option value="Blue">Blue</option>
+													<option value="Yellow">Yellow</option>
+													<option value="Red">Red</option>
 												</select>
 											</div>
-											<div class="form-group form-inline mb-4">
+											<span id="colors" class="text-danger text-center"></span>
+											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Size</label>
-												<input type="text" class="form-control" id="email" name="size">
+												<input type="text" class="form-control" id="size" value="" name="size">
 											</div>
-											<div class="form-group form-inline mb-4">
+											<span id="sizes" class="text-danger text-center"></span>
+											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Style</label>
-												<input type="text" class="form-control" id="email" name="style">
+												<input type="text" class="form-control" id="style" value="" name="style">
 											</div>
+											<span id="styles" class="text-danger text-center"></span>
 											<div class="form-group text-center">
-											<button class="btn btn-success btn-submit">Submit</button>
+											<input type="submit" name="contact" id="contact" class="theme-btn yellow-bg" value="Submit">
 											</div>
 										</form>
 									</div>
@@ -197,14 +208,3 @@
 		</div>
 	</div>
 </section>
-
-<script>
- 
- $(document).ready(function() {   alert('ok'); 
-
-
-
-
-});
-
-</script>

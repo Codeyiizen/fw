@@ -401,11 +401,8 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
-          //  $data['allFrienddetails'] = $this->Favoritewish_Model->getUserFriendsList(""); 
-			
-		  //  $data['frienddetails'] = $this->Favoritewish_Model->getUserFriendsList($get);
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
-
+		   //	echo "<pre>";var_dump($data['categories']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/user-dashboard');
@@ -465,17 +462,17 @@ class Favoritewish extends CI_Controller
 
 	// action update user 
 	public function editUser()
-	{
+	{ 
 
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|regex_match[/^[0-9]{10}$/]');
-		$this->form_validation->set_rules('user_type', 'User Type', 'required');
-		$this->form_validation->set_rules('company', 'Company', 'required');
-		$this->form_validation->set_rules('address', 'Address', 'required');
-		$this->form_validation->set_rules('city', 'City', 'required');
-		$this->form_validation->set_rules('state', 'State', 'required');
-		$this->form_validation->set_rules('zip', 'Zip', 'required');
+	//	$this->form_validation->set_rules('user_type', 'User Type', 'required');
+	//	$this->form_validation->set_rules('company', 'Company', 'required');
+	//	$this->form_validation->set_rules('address', 'Address', 'required');
+	//	$this->form_validation->set_rules('city', 'City', 'required');
+	//	$this->form_validation->set_rules('state', 'State', 'required');
+	//	$this->form_validation->set_rules('zip', 'Zip', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->edit();
@@ -974,26 +971,43 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function addYourWish(){  
-		$this->form_validation->set_rules('category', 'category', 'required');
+	public function addYourWish(){ 
 
-        $this->form_validation->set_rules('type', 'type', 'required');
-
-        $this->form_validation->set_rules('brand', 'brand', 'required');
-
-        $this->form_validation->set_rules('color', 'color', 'required');
-		$this->form_validation->set_rules('size', 'size', 'required');
-		$this->form_validation->set_rules('style', 'style', 'required');
-   
-
-        if ($this->form_validation->run() == FALSE){
-
-            $this->load->view('user-dashbord'); 
-
-        }else{
-
-           echo json_encode(['success'=>'Record added successfully.']);
-
-        }
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('category','category','required');
+			$this->form_validation->set_rules('type', 'type', 'required');
+			$this->form_validation->set_rules('brand', 'brand', 'required');
+			$this->form_validation->set_rules('color', 'color', 'required');
+			$this->form_validation->set_rules('size', 'size', 'required');
+			$this->form_validation->set_rules('style', 'style', 'required');
+			if($this->form_validation->run())
+			{
+			$array = array(
+				'categories_id'     => $this->input->post('category'),  
+				'type'  => $this->input->post('type'),  
+				'brand'   => $this->input->post('brand'),  
+				'color' => $this->input->post('color'), 
+				'size' => $this->input->post('size'), 
+				'style' => $this->input->post('style'),  
+			);
+			$this->db->insert(' user_wish',$array);  
+			$array = array(
+			'success' => '<div class="alert alert-success">Wish Added Successfully</div>'
+			);
+			}
+			else
+			{
+			$array = array(
+				'error'   => true,
+				'category' => form_error('category'),
+				'type' => form_error('type'),
+				'brand' => form_error('brand'),
+				'color' => form_error('color'),
+				'size' => form_error('size'),
+				'style' => form_error('style')
+				
+			);
+			}
+			echo json_encode($array);
 	}
 }
