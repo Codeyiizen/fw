@@ -434,7 +434,32 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
-
+  
+	public function getUserFriendsDetails($id){
+		// die($id);
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); // the user is not logged in, redirect them!
+		} else {
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
+			$data = array();
+			$data['metaDescription'] = 'User Profile';
+			$data['metaKeywords'] = 'UUser Profile';
+			$data['title'] = "User Profile";
+			$data['breadcrumbs'] = array('User Profile' => '#');
+			$sessionArray = $this->session->userdata('ci_seesion_key');
+			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+		 //	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			if(!empty($id)){
+			  $data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
+			 // echo"<pre>"; var_dump($data['userInfo']);exit;
+			}
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents', 'auth/friend-details');
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+		}
+	}
 	// edit method
 	public function edit()
 	{
@@ -451,7 +476,7 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-
+           // echo "<pre>";var_dump($data['userInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/edit');
@@ -486,6 +511,10 @@ class Favoritewish extends CI_Controller
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
 			$zip = $this->input->post('zip');
+			$favorite_country = $this->input->post('favorite_country');
+			$favorite_public_outfit_wear = $this->input->post('favorite_p_wear');
+			$favorite_s_team = $this->input->post('favorite_s_team');
+			$favorite_music = $this->input->post('favorite_music');
 			$timeStamp = time();
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
@@ -498,6 +527,10 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setCity($city);
 			$this->Favoritewish_Model->setState($state);
 			$this->Favoritewish_Model->setZip($zip);
+			$this->Favoritewish_Model->setfavorite_country($favorite_country);
+			$this->Favoritewish_Model->setfavoripublic_outfit_wear($favorite_public_outfit_wear);
+			$this->Favoritewish_Model->setfavorite_sports_teams($favorite_s_team);
+			$this->Favoritewish_Model->setfavorite_music($favorite_music);
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
 			$status = $this->Favoritewish_Model->update();
 			if ($status == TRUE) {
@@ -816,7 +849,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 	public function getUserFriends()
-	{   
+	{   //  die('ok');
 		checkMenuActive(true);
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
@@ -843,6 +876,9 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
+    
+	
+
 	public function getUserFriendsSearch()
 	{
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {

@@ -147,7 +147,22 @@ class Favoritewish_Model extends CI_Model {
     public function setZip($zip) {
         $this->_zip = $zip;
     }
- 
+    
+    public function setfavorite_country($favorite_country) {     
+        $this->_favorite_country = $favorite_country;  
+    }
+
+    public function setfavoripublic_outfit_wear($favorite_public_outfit_wear) {     
+        $this->_favoripublic_outfit_wear = $favorite_public_outfit_wear;  
+    }
+
+    public function setfavorite_sports_teams($favorite_s_team) {     
+        $this->_favorite_s_team = $favorite_s_team;  
+    }
+
+    public function setfavorite_music($favorite_music) {     
+        $this->_favorite_music = $favorite_music;  
+    }
     public function setVerificationCode($verificationCode) {
         $this->_verificationCode = $verificationCode;
     }
@@ -261,6 +276,10 @@ class Favoritewish_Model extends CI_Model {
             'city' => $this->_city,
 			'state' => $this->_state,
 			'zip' => $this->_zip,
+            'favorite_country' => $this->_favorite_country, 
+            'Favoripublic_outfit_wear' => $this->_favoripublic_outfit_wear,
+            'favorite_sports_teams' => $this->_favorite_s_team,
+            'favorite_music' => $this->_favorite_music,
             'modified_date' => $this->_timeStamp,
         );
         $this->db->where('id', $this->_userID);
@@ -305,7 +324,7 @@ class Favoritewish_Model extends CI_Model {
 	
 	// get User Detail
     public function getUserDetails() {
-        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip'));
+        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music'));
         $this->db->from('users as m');
         $this->db->where('m.id', $this->_userID);
         $query = $this->db->get();
@@ -316,6 +335,17 @@ class Favoritewish_Model extends CI_Model {
         }
     }
     
+    public function getFriendDetails($id){ 
+        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music'));
+        $this->db->from('users as m');
+        $this->db->where('m.id',$id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return FALSE;
+        }
+    }
  
 	// get Email Address
     public function activate() {

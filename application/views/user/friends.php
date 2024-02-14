@@ -25,7 +25,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section>  
 <section class="section-padding profile-content">
 	<div class="container">
 		<?php $this->load->view('user/Common/mainHeader') ?>
@@ -53,6 +53,7 @@
 									<div class="col-md-6 col-lg-4">
 										<div class="card mb-4">
 											<img class="card-image box-shadow3" src="<?php echo base_url(); ?>assets/images/site-image/banner-bg.png" alt="">
+										<a href="<?php echo base_url(); ?>user/friends/details/<?php echo $data->id;?>"> 
 											<div class="card-body p-4">
 												<h5 class="card-title"><?php echo $data->first_name . " " . $data->last_name; ?></h5>
 												<?php if ($data->from_friend == $userInfo['user_id']) {
@@ -81,6 +82,7 @@
 													<button type="button" class="theme-btn yellow-bg px-4 mr-0 sendFriendRequest" data-token="<?php echo $data->token; ?>">Add Friend</button>
 												<?php } ?>
 											</div>
+										</a>	
 										</div>
 									</div>
 							<?php  }
