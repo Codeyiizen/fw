@@ -134,6 +134,38 @@
 									</div>
 								</div>
 							</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="Company">Favorite Country</label>
+									<div class="input-group">
+										<input type="text" name="favorite_country" class="form-control" id="favorite_country" value="<?php print $userInfo['favorite_country']; ?>">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="Company">Favorite public outfit to wear</label>
+									<div class="input-group">
+										<input type="text" name="favorite_p_wear" class="form-control" id="favorite_p_wear" value="<?php print $userInfo['favoripublic_outfit_wear']; ?>">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="Company">Favorite Sports Teams</label>
+									<div class="input-group">
+										<input type="text" name="favorite_s_team" class="form-control" id="favorite_s_team" value="<?php print $userInfo['favorite_sports_teams']; ?>">
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label for="Company">Favorite Music</label>
+									<div class="input-group">
+										<input type="text" name="favorite_music" class="form-control" id="favorite_music" value="<?php print $userInfo['favorite_music']; ?>">
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="row"> 
 							<div class="col-lg-12">
