@@ -139,7 +139,7 @@
 											</div>
 											<span id="styles" class="text-danger text-center"></span>
 											<div class="form-group text-center">
-											<input type="submit" name="contact" id="contact" class="theme-btn yellow-bg" value="Submit">
+											<input type="submit" name="contact" id="contact_form" class="theme-btn yellow-bg" value="Submit">
 											</div>
 										</form>
 									</div>

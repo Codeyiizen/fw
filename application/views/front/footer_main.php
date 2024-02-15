@@ -108,9 +108,11 @@ $(document).ready(function() {
                 {
                 $('#success_message').html(data.success);
                 $('#categorys').html('');
-                $('#type').html('');
-                $('#brand').html('');
-                $('#color').html('');
+                $('#types').html('');
+                $('#brands').html('');
+                $('#colors').html('');
+                $('#sizes').html('');
+                $('#styles').html('');
                 $('#contact_form')[0].reset();
                 }
                 $('#contact').attr('disabled', false);
