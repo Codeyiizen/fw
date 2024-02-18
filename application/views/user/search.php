@@ -52,7 +52,9 @@
                             ?>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="card mb-4">
+                                         <a href="<?php echo base_url(); ?>user/friends/details/<?php echo $data->id;?>"> 
                                             <img class="card-image box-shadow3" src="<?php echo base_url(); ?>assets/images/site-image/banner-bg.png" alt="">
+                                        </a>  
                                             <div class="card-body p-4">
                                                 <h5 class="card-title"><?php echo $data->first_name . " " . $data->last_name; ?></h5>
                                                 <?php if ($data->from_friend == $userInfo['user_id']) {

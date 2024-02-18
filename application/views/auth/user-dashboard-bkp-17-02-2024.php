@@ -31,7 +31,7 @@
 	<div class="container">
 		<?php $this->load->view('user/Common/mainHeader') ?>
 		<div class="row">
-			<!-- <div class="col-lg-3">
+			<div class="col-lg-3">
 				<div class="profile-sidebar left">
 					<div class="sidebar-about sidebar-widget sidebar-bg">
 						<h3>Family Members</h3>
@@ -60,12 +60,13 @@
 						</div>
 					</div>
 				</div>
-			</div>  -->
-			<div class="col-lg-9">
+			</div> 
+			<div class="col-lg-6">
 				<div class="profile-content-inner">
 					<div class="create-wish mb-4">
 						<h3>Have a wish in a mind?</h3>
 						<a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#createWish"><i class="fas fa-plus-circle"></i> Let's Create</a>
+						
 						<!-- The Modal -->
 						<div class="modal" id="createWish">
 							<div class="modal-dialog">
@@ -88,7 +89,7 @@
 													<?php foreach ($categories as $category): ?>
 														<optgroup label="<?php echo $category->name; ?>">
 														<?php foreach ($category->sub as $sub): ?> 
-														   <option value="<?php echo $sub->name; ?>"><?php echo $sub->name; ?></option>
+														   <option value="<?php echo $sub->parent_id; ?>"><?php echo $sub->name; ?></option>
 														<?php endforeach; ?>
 														</optgroup>
 													<?php endforeach; ?>
@@ -151,52 +152,35 @@
 								</div>
 							</div>
 						</div>
+						
 					</div>
-					
 					<div class="added-wishes">
-						<?php foreach ($wishInfo as $wishInfos): ?>
-						 <div class="row">
-							<div class="col-lg-2">
-							    <span><b>Categories</b></span>	
+						<div class="row">
+							<div class="col-lg-6 col-sm-12">
 								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->categories_id); ?></h3>
+									<h3>Polo</h3>
 								</div>
 							</div>
-							<div class="col-lg-2">
-							<span><b>Type</b></span>	
+							<div class="col-lg-6 col-sm-12">
 								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->type); ?></h3>
+									<h3>Shoes</h3>
 								</div>
 							</div>
-							<div class="col-lg-2">
-							<span><b>Brand</b></span>	
+							<div class="col-lg-6 col-sm-12">
 								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->brand); ?></h3>
+									<h3>Peter England</h3>
 								</div>
 							</div>
-							<div class="col-lg-2">
-							<span><b>Color</b></span>	
+							<div class="col-lg-6 col-sm-12">
 								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->color); ?></h3>
+									<h3>T-Shirt</h3>
 								</div>
 							</div>
-							<div class="col-lg-2">
-							<span><b>Size</b></span>	
-								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->size); ?></h3>
-								</div>
-							</div>
-							<div class="col-lg-2">
-							<span><b>Style</b></span>	
-								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->style); ?></h3>
-								</div>
-							</div>
-						</div>	
-					    <?php  endforeach;  ?>	
+						</div>
 					</div>
 				</div>
 			</div>
+			
 			  
 			<div class="col-lg-3">
 				<div class="profile-sidebar right">
@@ -208,7 +192,7 @@
 								<div class="media align-items-center">
 								<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
 								<div class="media-body">
-									<h5><a href="<?php echo base_url(); ?>user/friends"><?php  echo $friend->first_name; ?></a></h5>
+									<h5><a href="#"><?php  echo $friend->first_name; ?></a></h5>
 									<p>NYC, USA</p>
 								</div>
 							</div> 
