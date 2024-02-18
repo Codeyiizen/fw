@@ -17,19 +17,27 @@
 				</div>
 				<div class="col-md-6">
 					<div class="update-profile text-right">
-						<!--<a href="#" class="theme-btn yellow-bg">Edit Profile</a>-->
-						<!-- <a href="<?php echo base_url(); ?>user-dashboard" class="theme-btn yellow-bg">Back to Dashboard</a> -->
-						<!-- <a href="<?php echo base_url(); ?>favoritewish/logout" class="theme-btn dark-btn">Logout</a> -->
-                        <a href="#" class="theme-btn yellow-bg">Add Friend</a>
+						<?php if (empty($is_friend)) { ?>
+							<button type="button" class="theme-btn yellow-bg sendFriendRequest" data-token="<?php echo $userInfo['token'] ?>">Add Friend</button>
+							<?php } else if (!empty($is_friend) && $is_friend['status'] == 0) {
+							if ($is_friend['to_friend'] == $userLoginInfo['user_id']) {
+							?>
+								<button type="button" class="theme-btn yellow-bg acceptFriendRequest bg-success" data-token="<?php echo $userInfo['token'] ?>">Accept</button>
+							<?php } else { ?>
+								<button type="button" class="theme-btn yellow-bg removeFriend bg-danger" data-token="<?php echo $userInfo['token'] ?>">Cancel</button>
+							<?php }
+						} else if (!empty($is_friend) && $is_friend['status'] == 1) { ?>
+							<button type="button" class="theme-btn red-btn px-4 mr-0 bg-danger removeFriend" data-token="<?php echo $userInfo['token'] ?>">Unfriend</button>
+						<?php }  ?>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>				
+	</div>
 </section>
 <section class="section-padding profile-content">
 	<div class="container">
-	<?php $this->load->view('user/Common/mainHeaderFriends') ?>
+		<?php $this->load->view('user/Common/mainHeaderFriends', array('data' => $user_profile_id, 'is_friend' => $is_friend)) ?>
 		<div class="row">
 			<!-- <div class="col-lg-3">
 				<?php $this->load->view('front/template/template_profile_sidebar'); ?>
@@ -40,15 +48,15 @@
 						<h2>Profile Overview</h2>
 						<?php print $userInfo['user_bio']; ?>
 						<hr>
-						<?php if(!empty($userInfo['first_name'])){ ?> <p>Full Name: <?php print $userInfo['first_name']; ?> <?php print $userInfo['last_name']; ?></p> <?php } ?>
-						<?php if(!empty($userInfo['birthday'])){ ?> <p>Birthday:</p> <?php } ?>
-						<?php if(!empty($userInfo['gender'])){ ?><p>Gender :</p><?php  } ?>
-						<?php if(!empty($userInfo['favorite_country'])){ ?> <p>Favorite Country: <?php print $userInfo['favorite_country']; ?></p> <?php } ?>
-						<?php if(!empty($userInfo['favoripublic_outfit_wear'])) { ?><p>Favorite public outfit to wear:<?php print $userInfo['favoripublic_outfit_wear']; ?></p> <?php } ?>
-                        <?php if(!empty($userInfo['favorite_sports_teams'])) { ?><p>Favorite Sports Teams:<?php print $userInfo['favorite_sports_teams']; ?></p> <?php } ?>
-                        <?php if(!empty($userInfo['favorite_music'])) { ?><<p>Favorite Music:<?php print $userInfo['favorite_music']; ?></p> <?php } ?>
-					</div>					
-				</div>		
+						<?php if (!empty($userInfo['first_name'])) { ?> <p>Full Name: <?php print $userInfo['first_name']; ?> <?php print $userInfo['last_name']; ?></p> <?php } ?>
+						<?php if (!empty($userInfo['birthday']) && !empty($is_friend)) { ?> <p>Birthday: <?php print $userInfo['birthday']; ?></p> <?php } ?>
+						<?php if (!empty($userInfo['gender']) && !empty($is_friend)) { ?><p>Gender : <?php print $userInfo['gender']; ?></p><?php  } ?>
+						<?php if (!empty($userInfo['favorite_country']) && !empty($is_friend)) { ?> <p>Favorite Country: <?php print $userInfo['favorite_country']; ?></p> <?php } ?>
+						<?php if (!empty($userInfo['favoripublic_outfit_wear']) && !empty($is_friend)) { ?><p>Favorite public outfit to wear:<?php print $userInfo['favoripublic_outfit_wear']; ?></p> <?php } ?>
+						<?php if (!empty($userInfo['favorite_sports_teams'])) { ?><p>Favorite Sports Teams:<?php print $userInfo['favorite_sports_teams']; ?></p> <?php } ?>
+						<?php if (!empty($userInfo['favorite_music']) && !empty($is_friend)) { ?><<p>Favorite Music:<?php print $userInfo['favorite_music']; ?></p> <?php } ?>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

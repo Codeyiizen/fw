@@ -441,14 +441,19 @@ class Favoritewish extends CI_Controller
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
+			
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
 			$data['metaDescription'] = 'User Profile';
 			$data['metaKeywords'] = 'UUser Profile';
 			$data['title'] = "User Profile";
 			$data['breadcrumbs'] = array('User Profile' => '#');
+			$data['user_profile_id'] = $id;
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id,$sessionArray['user_id']);
+			$data['is_friend'] = $isFriend;
+			$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
 		 //	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			if(!empty($id)){
 			  $data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
@@ -462,7 +467,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function getwishlist(){ 
+	public function getwishlist($id){ 
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -472,13 +477,18 @@ class Favoritewish extends CI_Controller
 			$data['metaKeywords'] = 'UUser Profile';
 			$data['title'] = "User Profile";
 			$data['breadcrumbs'] = array('User Profile' => '#');
+			$data['user_profile_id'] = $id;
 			$sessionArray = $this->session->userdata('ci_seesion_key');
-			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+			$this->Favoritewish_Model->setUserID($id);
+			$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
+			$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
+			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id,$sessionArray['user_id']);
+			$data['is_friend'] = $isFriend;
 		 //	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-		//	if(!empty($id)){
+			if(!empty($id)){
 			  $data['wishInfo'] = $this->Favoritewish_Model->getWhishList();
 			 // echo"<pre>"; var_dump($data['userInfo']);exit;
-		//	}
+			}
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/whish-list');
@@ -518,12 +528,6 @@ class Favoritewish extends CI_Controller
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|regex_match[/^[0-9]{10}$/]');
-	//	$this->form_validation->set_rules('user_type', 'User Type', 'required');
-	//	$this->form_validation->set_rules('company', 'Company', 'required');
-	//	$this->form_validation->set_rules('address', 'Address', 'required');
-	//	$this->form_validation->set_rules('city', 'City', 'required');
-	//	$this->form_validation->set_rules('state', 'State', 'required');
-	//	$this->form_validation->set_rules('zip', 'Zip', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->edit();
@@ -1034,6 +1038,7 @@ class Favoritewish extends CI_Controller
 	}
 
 	public function addYourWish(){ 
+		$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('category','category','required');
 			$this->form_validation->set_rules('type', 'type', 'required');
@@ -1050,6 +1055,7 @@ class Favoritewish extends CI_Controller
 				'color' => $this->input->post('color'), 
 				'size' => $this->input->post('size'), 
 				'style' => $this->input->post('style'),  
+				'user_id' => $sessionArray['user_id']
 			);
 		 //	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert(' user_wish',$array);  

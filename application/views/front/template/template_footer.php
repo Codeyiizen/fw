@@ -9,8 +9,8 @@
 							<ul class="d-flex justify-content-center">
 								<li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/x-social-media-round-icon.png" alt=""></a></li>
 								<li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/ig-instagram-icon.png" alt=""></a></li>
-								<li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/clubhouse-icon-1.png" alt=""></a></li>
-								<li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/threads-app-icon.png" alt=""></a></li>
+								<li><a href="https://www.threads.net/@favoritewishltd" class=""><img src="<?php echo base_url(); ?>assets/images/clubhouse-icon-1.png" alt=""></a></li>
+								<li><a href="https://www.threads.net/@favoritewishltd" class=""><img src="<?php echo base_url(); ?>assets/images/threads-app-icon.png" alt=""></a></li>
 							</ul>
 						</div>
 						<p>All rights reserved to Favorite Wish 2023</p>

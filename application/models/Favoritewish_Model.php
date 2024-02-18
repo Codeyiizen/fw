@@ -336,7 +336,7 @@ class Favoritewish_Model extends CI_Model {
     }
     
     public function getFriendDetails($id){ 
-        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music'));
+        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.token'));
         $this->db->from('users as m');
         $this->db->where('m.id',$id);
         $query = $this->db->get();
@@ -386,6 +386,7 @@ class Favoritewish_Model extends CI_Model {
     public function getWishInfo(){
         $this->db->select('*');
         $this->db->from('user_wish');
+        $this->db->where('user_id',$this->_userID);
         $query = $this->db->get();
        return $query->result();
     }
@@ -430,6 +431,7 @@ class Favoritewish_Model extends CI_Model {
    public function getWhishList(){
     $this->db->select('*');
     $this->db->from('user_wish');
+    $this->db->where('user_id',$this->_userID);
     $query = $this->db->get();
    return $query->result();
    }
@@ -567,6 +569,18 @@ class Favoritewish_Model extends CI_Model {
         	return $query->result();
         } else {
         	return false;
+        }
+    }
+    public function checkIfUserIsFriend($id,$userId) {
+        $this->db->select('*');
+        $this->db->from('friends');
+        $this->db->where('to_friend = '.$id." and from_friend=".$userId);
+        $this->db->or_where('(to_friend = '.$id." and from_friend=".$userId.")");
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return FALSE;
         }
     }
 }

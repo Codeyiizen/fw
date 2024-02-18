@@ -1,4 +1,3 @@
-
 <section class="fav-profile-section">
 	<div class="profile-banner">
 		<img src="<?php echo base_url(); ?>assets/images/site-image/profile-banner-1.png" alt="" class="img-fluid">
@@ -25,7 +24,7 @@
 				</div>
 			</div>
 		</div>
-	</div>				
+	</div>
 </section>
 <section class="section-padding profile-content">
 	<div class="container">
@@ -79,52 +78,35 @@
 
 									<!-- Modal body -->
 									<div class="modal-body">
-									<span id="success_message"></span>
+										<span id="success_message"></span>
 										<form class="wishlist-form" method="post" id="contact_form">
 											<div class="form-group form-inline">
-												<label for="email" class="mr-sm-2">Categories</label>	
+												<label for="email" class="mr-sm-2">Categories</label>
 												<select class="select-category form-control" id="category">
 													<option value="">Select Category</option>
-													<?php foreach ($categories as $category): ?>
+													<?php foreach ($categories as $category) : ?>
 														<optgroup label="<?php echo $category->name; ?>">
-														<?php foreach ($category->sub as $sub): ?> 
-														   <option value="<?php echo $sub->name; ?>"><?php echo $sub->name; ?></option>
-														<?php endforeach; ?>
+															<?php foreach ($category->sub as $sub) : ?>
+																<option value="<?php echo $sub->id; ?>"><?php echo $sub->name; ?></option>
+															<?php endforeach; ?>
 														</optgroup>
 													<?php endforeach; ?>
-												 </select>
+												</select>
 											</div>
 											<span id="categorys" class="text-danger text-center"></span>
 											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Type</label>
-												<select class="form-control" id="type" name="type">
-													<option value="">Choose Type</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-												</select>
+												<input type="text" class="form-control" id="type" value="" name="type" placeholder="Type">
 											</div>
 											<span id="types" class="text-danger text-center"></span>
 											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Brand</label>
-												<select class="form-control" id="brand" name="brand">
-												<option value="">Choose Brand</option>
-													<option value="Nike">Nike</option>
-													<option value="pumo">pumo</option>
-													<option value="polo">Polo</option>
-												</select>
+												<input type="text" class="form-control" id="brand" value="" name="brand" placeholder="Brand">
 											</div>
 											<span id="brands" class="text-danger text-center"></span>
 											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Color</label>
-												<select class="form-control" id="color" name="color">
-													<option value="">Choose Color</option>
-													<option value="White">White</option>
-													<option value="Blue">Blue</option>
-													<option value="Yellow">Yellow</option>
-													<option value="Red">Red</option>
-												</select>
+												<input type="text" class="form-control" id="color" value="" name="color" placeholder="color">
 											</div>
 											<span id="colors" class="text-danger text-center"></span>
 											<div class="form-group form-inline">
@@ -138,7 +120,7 @@
 											</div>
 											<span id="styles" class="text-danger text-center"></span>
 											<div class="form-group text-center">
-											<input type="submit" name="contact" id="contact_form" class="theme-btn yellow-bg" value="Submit">
+												<input type="submit" name="contact" id="contact_form" class="theme-btn yellow-bg" value="Submit">
 											</div>
 										</form>
 									</div>
@@ -152,68 +134,39 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="added-wishes">
-						<?php foreach ($wishInfo as $wishInfos): ?>
-						 <div class="row">
-							<div class="col-lg-2">
-							    <span><b>Categories</b></span>	
-								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->categories_id); ?></h3>
+						<div class="row">
+							<?php foreach ($wishInfo as $wishInfos) : ?>
+								<div class="col-lg-3">
+									<div class="wishes-items">
+										<h3><?php print_r($wishInfos->type); ?></h3>
+									</div>
 								</div>
-							</div>
-							<div class="col-lg-2">
-							<span><b>Type</b></span>	
-								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->type); ?></h3>
-								</div>
-							</div>
-							<div class="col-lg-2">
-							<span><b>Brand</b></span>	
-								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->brand); ?></h3>
-								</div>
-							</div>
-							<div class="col-lg-2">
-							<span><b>Color</b></span>	
-								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->color); ?></h3>
-								</div>
-							</div>
-							<div class="col-lg-2">
-							<span><b>Size</b></span>	
-								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->size); ?></h3>
-								</div>
-							</div>
-							<div class="col-lg-2">
-							<span><b>Style</b></span>	
-								<div class="wishes-items">
-									<h3><?php print_r($wishInfos->style); ?></h3>
-								</div>
-							</div>
-						</div>	
-					    <?php  endforeach;  ?>	
+							<?php endforeach;  ?>
+						</div>
 					</div>
 				</div>
 			</div>
-			  
+
 			<div class="col-lg-3">
 				<div class="profile-sidebar right">
 					<div class="sidebar-about sidebar-widget sidebar-bg">
 						<h3>Friends</h3>
 						<div class="friends-list mb-4">
-						<?php   
-							foreach ($frienddetails as $friend) { ?>  
-								<div class="media align-items-center">
-								<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
-								<div class="media-body">
-									<h5><a href="<?php echo base_url(); ?>user/friends"><?php  echo $friend->first_name; ?></a></h5>
-									<p>NYC, USA</p>
-								</div>
-							</div> 
-							<?php }  ?> 
-						
+							<?php
+							if (!empty($frienddetails)) {
+								foreach ($frienddetails as $friend) { ?>
+									<div class="media align-items-center">
+										<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
+										<div class="media-body">
+											<h5><a href="<?php echo base_url(); ?>user/friends"><?php echo $friend->first_name; ?></a></h5>
+											<p>NYC, USA</p>
+										</div>
+									</div>
+							<?php }
+							}  ?>
+
 						</div>
 						<div class="text-center common-link">
 							<a href="<?php echo base_url(); ?>user/friends">See All</a>
