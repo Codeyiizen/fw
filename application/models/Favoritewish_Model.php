@@ -383,7 +383,12 @@ class Favoritewish_Model extends CI_Model {
         $this->db->update('users', array('terms_accepted' => $accepted));
     }
 
-
+    public function getWishInfo(){
+        $this->db->select('*');
+        $this->db->from('user_wish');
+        $query = $this->db->get();
+       return $query->result();
+    }
 
     // Function to get all categories
     public function getCategories() {
@@ -422,7 +427,12 @@ class Favoritewish_Model extends CI_Model {
         return $categories;       
     }
 
-
+   public function getWhishList(){
+    $this->db->select('*');
+    $this->db->from('user_wish');
+    $query = $this->db->get();
+   return $query->result();
+   }
 
 
 	

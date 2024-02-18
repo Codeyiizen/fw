@@ -29,6 +29,7 @@
 </section>
 <section class="section-padding profile-content">
 	<div class="container">
+	<?php $this->load->view('user/Common/mainHeaderFriends') ?>
 		<div class="row">
 			<!-- <div class="col-lg-3">
 				<?php $this->load->view('front/template/template_profile_sidebar'); ?>
@@ -39,13 +40,13 @@
 						<h2>Profile Overview</h2>
 						<?php print $userInfo['user_bio']; ?>
 						<hr>
-						<p>Full Name: <?php print $userInfo['first_name']; ?> <?php print $userInfo['last_name']; ?></p>
-						<p>Birthday:</p>
-						<p>Gender :</p>
-						<p>Favorite Country: <?php print $userInfo['favorite_country']; ?></p>
-						<p>Favorite public outfit to wear:<?php print $userInfo['favoripublic_outfit_wear']; ?></p>
-                        <p>Favorite Sports Teams:<?php print $userInfo['favorite_sports_teams']; ?></p>
-                        <p>Favorite Music:<?php print $userInfo['favorite_music']; ?></p>
+						<?php if(!empty($userInfo['first_name'])){ ?> <p>Full Name: <?php print $userInfo['first_name']; ?> <?php print $userInfo['last_name']; ?></p> <?php } ?>
+						<?php if(!empty($userInfo['birthday'])){ ?> <p>Birthday:</p> <?php } ?>
+						<?php if(!empty($userInfo['gender'])){ ?><p>Gender :</p><?php  } ?>
+						<?php if(!empty($userInfo['favorite_country'])){ ?> <p>Favorite Country: <?php print $userInfo['favorite_country']; ?></p> <?php } ?>
+						<?php if(!empty($userInfo['favoripublic_outfit_wear'])) { ?><p>Favorite public outfit to wear:<?php print $userInfo['favoripublic_outfit_wear']; ?></p> <?php } ?>
+                        <?php if(!empty($userInfo['favorite_sports_teams'])) { ?><p>Favorite Sports Teams:<?php print $userInfo['favorite_sports_teams']; ?></p> <?php } ?>
+                        <?php if(!empty($userInfo['favorite_music'])) { ?><<p>Favorite Music:<?php print $userInfo['favorite_music']; ?></p> <?php } ?>
 					</div>					
 				</div>		
 			</div>
