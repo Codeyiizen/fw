@@ -995,6 +995,8 @@ class Favoritewish extends CI_Controller
 						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
 					} else if(!empty($objPost['type']) && $objPost['type'] == 'decline') {
 						$arrCheck = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id']);
+					}else if(!empty($objPost['type']) && $objPost['type'] == 'remove') {
+						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
 					}
 					$this->db->where($arrCheck);
 					if ($this->db->delete('friends')) {
