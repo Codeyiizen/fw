@@ -991,10 +991,10 @@ class Favoritewish extends CI_Controller
 			if (!empty($objPost['token'])) {
 				$objUser = $this->Favoritewish_Model->getUserByToken($objPost['token']);
 				if (!empty($objUser)) {
-					if (!empty($stream['type']) && $stream['type'] == 'cancel') {
-						$arrCheck = array('from_friends' => $user['user_id'], 'to_friend' => $objUser['id']);
-					} else if(!empty($stream['type']) && $stream['type'] == 'decline') {
-						$arrCheck = array('to_friends' => $user['user_id'], 'from_friend' => $objUser['id']);
+					if (!empty($objPost['type']) && $objPost['type'] == 'cancel') {
+						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
+					} else if(!empty($objPost['type']) && $objPost['type'] == 'decline') {
+						$arrCheck = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id']);
 					}
 					$this->db->where($arrCheck);
 					if ($this->db->delete('friends')) {
