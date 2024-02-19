@@ -206,7 +206,7 @@ your family and friends capture the most recent and accurate size data.</p>
 because” a memorable one. Say goodbye to returned gifts, and hello to heartfelt kept
 surprises!</p>
 					<div class="gift-btn-box">
-						<a href="javascript:void();" class="theme-btn yellow-bg">Learn more</a>
+						<a href="<?php echo base_url('about-us') ?>" class="theme-btn yellow-bg">Learn more</a>
 					</div>
 				</div>
 			</div>
@@ -221,7 +221,7 @@ surprises!</p>
 					<h2 class="entry-title">Create your Wishlist Here and Now!</h2>
 					<p>Let’s bring back the art of surprise gifting together</p>
 					<div class="gift-btn-box">
-						<a href="javascript:void();" class="theme-btn yellow-bg">Join us</a>
+						<a href="<?php echo base_url('sign-in') ?>" class="theme-btn yellow-bg">Join us</a>
 					</div>
 				</div>
 			</div>

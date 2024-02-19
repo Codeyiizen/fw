@@ -81,7 +81,8 @@ $route['user/friends/accept'] = 'favoritewish/acceptFriendsRequest';
 $route['user/friends/remove'] = 'favoritewish/removeFriendsRequest';
 $route['user/add/wish'] = "favoritewish/addYourWish";
 $route['user/friends/details/(:num)'] = 'favoritewish/getUserFriendsDetails/$1';
-$route['user/friends/detail/(:num)/wish'] = 'favoritewish/getwishlist/$1';    
+$route['user/friends/detail/(:num)/wish'] = 'favoritewish/getwishlist/$1'; 
+$route['getSubCat'] = 'favoritewish/getSubCat';    
 /*
 
 

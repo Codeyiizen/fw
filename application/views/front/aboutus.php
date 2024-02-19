@@ -25,7 +25,7 @@
                     <p>Favorite Wish is a gift preference platform for any user that would like to receive or give/donate
 to a special person or cause. The service brings back the element of surprise gifting, and
 emphasizes the joy in giving gifts that people desire and gifts that fit. This service will minimize
-the hassle of a possible gift return and the guilt of regifting. However, our platform offers
+the hassle of a possible gift return and the guilt of regifting. Also, our platform offers
 referral capabilities for clothing retailers to access new customers, and the opportunity to earn
 more repeat business from existing customers.</p>
                     <div class="visionStatement">

@@ -101,26 +101,26 @@
             </div>
             <div class="offset-md-1 col-md-4 col-sm-12">
                 <div class="contactDetails">
-                    <div class="contact-item">
+                    <!-- <div class="contact-item">
                         <h5>Address</h5>
                         <p>1461 Irving Place, Arlington, Texas, 76011, United States</p>
-                    </div>
+                    </div> -->
                     <div class="contact-item">
                         <h5>Email Us</h5>
-                        <p>info@favoritewish.com</p>
+                        <p>operations@favoritewish.com</p>
                     </div>
-                    <div class="contact-item">
+                    <!-- <div class="contact-item">
                         <h5>Phone Number</h5>
                         <p>214-288-1335</p>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="social-media mb-5">
-                    <ul class="d-flex">
+                    <!-- <ul class="d-flex">
                         <li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/x-social-media-round-icon.png" alt=""></a></li>
                         <li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/ig-instagram-icon.png" alt=""></a></li>
                         <li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/clubhouse-icon-1.png" alt=""></a></li>
                         <li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/threads-app-icon.png" alt=""></a></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

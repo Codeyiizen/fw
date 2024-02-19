@@ -81,22 +81,20 @@
 										<span id="success_message"></span>
 										<form class="wishlist-form" method="post" id="contact_form">
 											<div class="form-group form-inline">
-												<label for="email" class="mr-sm-2">Categories</label>
-												<select class="select-category form-control" id="category">
+												<label for="email" class="mr-sm-2">Category</label>
+												<select class="select-category form-control" id="category" name="category">
 													<option value="">Select Category</option>
 													<?php foreach ($categories as $category) : ?>
-														<optgroup label="<?php echo $category->name; ?>">
-															<?php foreach ($category->sub as $sub) : ?>
-																<option value="<?php echo $sub->id; ?>"><?php echo $sub->name; ?></option>
-															<?php endforeach; ?>
-														</optgroup>
+														<option value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
 													<?php endforeach; ?>
 												</select>
 											</div>
-											<span id="categorys" class="text-danger text-center"></span>
+											<span id="category" class="text-danger text-center"></span>
 											<div class="form-group form-inline">
 												<label for="email" class="mr-sm-2">Type</label>
-												<input type="text" class="form-control" id="type" value="" name="type" placeholder="Type">
+												<select class="select-type form-control" id="type" name="type">
+													<option value="">Select Type</option>
+												</select>
 											</div>
 											<span id="types" class="text-danger text-center"></span>
 											<div class="form-group form-inline">

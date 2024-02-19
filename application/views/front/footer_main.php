@@ -34,7 +34,7 @@
         $('#contact_form').on('submit', function(event) {
             event.preventDefault();
             var category = $("#category").val(); // alert(category);
-            var type = $("#type").val(); //  alert(type);
+            var type = $("#type").val();
             var brand = $("#brand").val(); // alert(brand);
             var color = $("#color").val(); //  alert(color);
             var size = $("#size").val(); // alert(size);

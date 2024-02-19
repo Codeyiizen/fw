@@ -184,6 +184,23 @@
 			}
 		});
 	})
+	$("body").on("change",".select-category",function(){
+		var params = { "id": $(this).val()};
+		$.ajax({
+			url: BASE_URL + "/getSubCat",
+			type: "post",
+			data: JSON.stringify(params),
+			contentType: "application/json; charset=utf-8",
+			success: function (response) {
+				var res = JSON.parse(response);
+				if (res?.code == 200) {
+					console.log(res);
+					$(".select-type").html(res?.html);
+					//window.location.reload();
+				}
+			}
+		});
+	});
 	// Progress Bar
 
 

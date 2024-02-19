@@ -215,16 +215,20 @@ class Favoritewish extends CI_Controller
 
 	public function register()
 	{
-		$arr['data'] = $this->Favoritewish_Model->bannerSection('register'); // Calling model function defined in Favoritewish_Model.php
-		$data = array();
-		$data['metaDescription'] = 'New User Registration';
-		$data['metaKeywords'] = 'New User Registration';
-		$data['title'] = "Registration";
-		$data['breadcrumbs'] = array('Registration' => '#');
-		$this->load->view('front/header_inner', $data);
-		//$this->load->view('front/bannerSection',$arr);
-		$this->template->load('default_layout', 'contents', 'auth/sign-up');
-		$this->load->view('front/footer_main');
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('register'); // Calling model function defined in Favoritewish_Model.php
+			$data = array();
+			$data['metaDescription'] = 'New User Registration';
+			$data['metaKeywords'] = 'New User Registration';
+			$data['title'] = "Registration";
+			$data['breadcrumbs'] = array('Registration' => '#');
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents', 'auth/sign-up');
+			$this->load->view('front/footer_main');
+		} else {
+			redirect('user-dashboard');
+		}
 	}
 
 	public function registerSubmit()
@@ -324,21 +328,25 @@ class Favoritewish extends CI_Controller
 
 	public function login() // Login Controller for users
 	{
-		if (!empty($this->input->get('usid'))) {
-			$verificationCode = urldecode(base64_decode($this->input->get('usid')));
-			$this->Favoritewish_Model->setVerificationCode($verificationCode);
-			$this->Favoritewish_Model->activate();
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			if (!empty($this->input->get('usid'))) {
+				$verificationCode = urldecode(base64_decode($this->input->get('usid')));
+				$this->Favoritewish_Model->setVerificationCode($verificationCode);
+				$this->Favoritewish_Model->activate();
+			}
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('login'); // Calling model function defined in Favoritewish_Model.php
+			$data = array();
+			$data['metaDescription'] = 'New User Login';
+			$data['metaKeywords'] = 'New User Login';
+			$data['title'] = "Login";
+			$data['breadcrumbs'] = array('Login' => '#');
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents', 'auth/sign-in');
+			$this->load->view('front/footer_main');
+		} else {
+			redirect('user-dashboard');
 		}
-		$arr['data'] = $this->Favoritewish_Model->bannerSection('login'); // Calling model function defined in Favoritewish_Model.php
-		$data = array();
-		$data['metaDescription'] = 'New User Login';
-		$data['metaKeywords'] = 'New User Login';
-		$data['title'] = "Login";
-		$data['breadcrumbs'] = array('Login' => '#');
-		$this->load->view('front/header_inner', $data);
-		//$this->load->view('front/bannerSection',$arr);
-		$this->template->load('default_layout', 'contents', 'auth/sign-in');
-		$this->load->view('front/footer_main');
 	}
 
 	// action login method
@@ -387,7 +395,7 @@ class Favoritewish extends CI_Controller
 
 	// user profile
 	public function user_dashboard()
-	{     
+	{
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -403,7 +411,7 @@ class Favoritewish extends CI_Controller
 			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo();
-		  // 	echo "<pre>";var_dump($data['wishInfo']); exit;
+			// 	echo "<pre>";var_dump($data['wishInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/user-dashboard');
@@ -435,13 +443,14 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
-  
-	public function getUserFriendsDetails($id){
+
+	public function getUserFriendsDetails($id)
+	{
 		// die($id);
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
-			
+
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
 			$data['metaDescription'] = 'User Profile';
@@ -451,13 +460,13 @@ class Favoritewish extends CI_Controller
 			$data['user_profile_id'] = $id;
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
-			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id,$sessionArray['user_id']);
+			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id, $sessionArray['user_id']);
 			$data['is_friend'] = $isFriend;
 			$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
-		 //	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			if(!empty($id)){
-			  $data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
-			 // echo"<pre>"; var_dump($data['userInfo']);exit;
+			//	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			if (!empty($id)) {
+				$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
+				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
@@ -467,7 +476,8 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function getwishlist($id){ 
+	public function getwishlist($id)
+	{
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -482,18 +492,40 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setUserID($id);
 			$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
 			$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
-			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id,$sessionArray['user_id']);
+			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id, $sessionArray['user_id']);
 			$data['is_friend'] = $isFriend;
-		 //	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			if(!empty($id)){
-			  $data['wishInfo'] = $this->Favoritewish_Model->getWhishList();
-			 // echo"<pre>"; var_dump($data['userInfo']);exit;
+			//	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			if (!empty($id)) {
+				$data['wishInfo'] = $this->Favoritewish_Model->getWhishList();
+				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/whish-list');
 			$this->load->view('front/template/template_footer');
 			$this->load->view('front/footer_main');
+		}
+	}
+	public function getSubCat()
+	{
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); // the user is not logged in, redirect them!
+		} else {
+			$data = array();
+			$stream = $this->security->xss_clean($this->input->raw_input_stream);
+			if (!empty($stream)) {
+				$objPost = json_decode(trim($stream), true);
+				$typeData = $this->Favoritewish_Model->getSubCat($objPost['id']);
+				$arrayHtml = "<option value=''>Select Type</option>";
+				if (!empty($typeData)) {
+					foreach ($typeData as $type) {
+						$arrayHtml .= "<option value=" . $type['id'] . ">" . $type['name'] . "</option>";
+					}
+				}
+				$data['code'] = 200;
+				$data['html'] = $arrayHtml;
+				echo json_encode($data);
+			}
 		}
 	}
 	// edit method
@@ -512,7 +544,7 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-           // echo "<pre>";var_dump($data['userInfo']); exit;
+			// echo "<pre>";var_dump($data['userInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/edit');
@@ -523,7 +555,7 @@ class Favoritewish extends CI_Controller
 
 	// action update user 
 	public function editUser()
-	{ 
+	{
 
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
@@ -906,8 +938,8 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
-    
-	
+
+
 
 	public function getUserFriendsSearch()
 	{
@@ -993,9 +1025,9 @@ class Favoritewish extends CI_Controller
 				if (!empty($objUser)) {
 					if (!empty($objPost['type']) && $objPost['type'] == 'cancel') {
 						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
-					} else if(!empty($objPost['type']) && $objPost['type'] == 'decline') {
+					} else if (!empty($objPost['type']) && $objPost['type'] == 'decline') {
 						$arrCheck = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id']);
-					}else if(!empty($objPost['type']) && $objPost['type'] == 'remove') {
+					} else if (!empty($objPost['type']) && $objPost['type'] == 'remove') {
 						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
 					}
 					$this->db->where($arrCheck);
@@ -1039,34 +1071,32 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function addYourWish(){ 
+	public function addYourWish()
+	{
 		$sessionArray = $this->session->userdata('ci_seesion_key');
-			$this->load->library('form_validation');
-			$this->form_validation->set_rules('category','category','required');
-			$this->form_validation->set_rules('type', 'type', 'required');
-			$this->form_validation->set_rules('brand', 'brand', 'required');
-			$this->form_validation->set_rules('color', 'color', 'required');
-			$this->form_validation->set_rules('size', 'size', 'required');
-			$this->form_validation->set_rules('style', 'style', 'required');
-			if($this->form_validation->run())
-			{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('category', 'category', 'required');
+		$this->form_validation->set_rules('type', 'type', 'required');
+		$this->form_validation->set_rules('brand', 'brand', 'required');
+		$this->form_validation->set_rules('color', 'color', 'required');
+		$this->form_validation->set_rules('size', 'size', 'required');
+		$this->form_validation->set_rules('style', 'style', 'required');
+		if ($this->form_validation->run()) {
 			$array = array(
-				'categories_id'     => $this->input->post('category'),  
-				'type'  => $this->input->post('type'),  
-				'brand'   => $this->input->post('brand'),  
-				'color' => $this->input->post('color'), 
-				'size' => $this->input->post('size'), 
-				'style' => $this->input->post('style'),  
+				'categories_id'     => $this->input->post('category'),
+				'type'  => $this->input->post('type'),
+				'brand'   => $this->input->post('brand'),
+				'color' => $this->input->post('color'),
+				'size' => $this->input->post('size'),
+				'style' => $this->input->post('style'),
 				'user_id' => $sessionArray['user_id']
 			);
-		 //	echo"<pre>"; var_dump($array); exit;
-			$this->db->insert(' user_wish',$array);  
+			//	echo"<pre>"; var_dump($array); exit;
+			$this->db->insert(' user_wish', $array);
 			$array = array(
-			'success' => '<div class="alert alert-success">Wish Added Successfully</div>'
+				'success' => '<div class="alert alert-success">Wish Added Successfully</div>'
 			);
-			}
-			else
-			{
+		} else {
 			$array = array(
 				'error'   => true,
 				'category' => form_error('category'),
@@ -1075,9 +1105,9 @@ class Favoritewish extends CI_Controller
 				'color' => form_error('color'),
 				'size' => form_error('size'),
 				'style' => form_error('style')
-				
+
 			);
-			}
-			echo json_encode($array);
+		}
+		echo json_encode($array);
 	}
 }
