@@ -147,7 +147,7 @@
 			success: function (response) {
 				var res = JSON.parse(response);
 				if (res?.code == 200) {
-					//window.location.reload();
+					window.location.reload();
 				}
 			}
 		});
@@ -163,7 +163,7 @@
 			success: function (response) {
 				var res = JSON.parse(response);
 				if (res?.code == 200) {
-					//window.location.reload();
+					window.location.reload();
 				}
 			}
 		});
@@ -179,7 +179,7 @@
 			success: function (response) {
 				var res = JSON.parse(response);
 				if (res?.code == 200) {
-					//window.location.reload();
+					window.location.reload();
 				}
 			}
 		});
