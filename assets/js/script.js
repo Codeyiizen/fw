@@ -112,10 +112,14 @@
 			type: "post",
 			data: JSON.stringify(params),
 			contentType: "application/json; charset=utf-8",
-			success: function (response) {
-				var res = JSON.parse(response);
+			success: function (response) {    
+				var res = JSON.parse(response); 
 				if (res?.code == 200) {
-					window.location.reload();
+				  $('#success_message').html(res.success);
+				  setTimeout(function () {
+					window.location.reload(1);
+				}, 1000); 
+
 				}
 			}
 		});
@@ -147,7 +151,10 @@
 			success: function (response) {
 				var res = JSON.parse(response);
 				if (res?.code == 200) {
-					window.location.reload();
+					$('#success_message').html(res.unfriend);
+					setTimeout(function () {
+					  window.location.reload(1);
+				  }, 1000); 
 				}
 			}
 		});
