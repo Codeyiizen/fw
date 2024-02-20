@@ -38,11 +38,15 @@
 						<h2>Overview</h2>
 						<?php print $userInfo['user_bio']; ?>
 						<hr>
-						<p>Email Address: <?php print $userInfo['email']; ?></p>
-						<p>Phone: <?php print $userInfo['contact_no']; ?></p>
-						<p>User Type: <?php print $userInfo['user_type']; ?></p>
-						<p>Designation: <?php print $userInfo['company']; ?></p>
-						<p>Address: <?php print $userInfo['address']; ?>, <?php print $userInfo['city']; ?>, <?php print $userInfo['state']; ?>, <?php print $userInfo['zip']; ?></p>
+						<?php if(!empty($userInfo['email'])){ ?><p>Email Address: <?php print $userInfo['email']; ?></p> <?php } ?>
+						<?php if(!empty($userInfo['contact_no'])) { ?><p>Phone: <?php print $userInfo['contact_no']; ?></p> <?php } ?>
+						<?php  if(!empty($userInfo['user_type'])) { ?> <p>User Type: <?php print $userInfo['user_type']; ?></p> <?php } ?> 
+						<?php if(!empty($userInfo['company'])) { ?> <p>Designation: <?php print $userInfo['company']; ?></p> <?php } ?>
+						<?php if(!empty($userInfo['address'] && $userInfo['city'] &&  $userInfo['state'])){ ?><p>Address: <?php print $userInfo['address']; ?>, <?php print $userInfo['city']; ?>, <?php print $userInfo['state']; ?>, <?php print $userInfo['zip']; ?></p> <?php } ?>
+						<?php if(!empty($userInfo['favorite_country'])) { ?> <p>Favorite Country: <?php print $userInfo['favorite_country']; ?></p> <?php } ?>
+						<?php if(!empty($userInfo['favoripublic_outfit_wear'])){ ?> <p>Favoripublic Outfit Wear: <?php print $userInfo['favoripublic_outfit_wear']; ?></p> <?php } ?>
+						<?php if(!empty($userInfo['favorite_sports_teams'])) {  ?> <p>Favorite Sports Teams: <?php print $userInfo['favorite_sports_teams']; ?></p> <?php  } ?>
+						<?php if(!empty($userInfo['favorite_music'])) {  ?> <p>Favorite Music: <?php print $userInfo['favorite_music']; ?></p><?php  } ?>
 					</div>					
 				</div>		
 			</div>
