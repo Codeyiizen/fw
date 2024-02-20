@@ -50,7 +50,7 @@ size.</p>
 						<img src="<?php echo base_url(); ?>assets/images/right_size_time_resized.jpg" alt="" class="img-fluid">
 					</div>
 					<div class="gift-content">
-						<h3>Right Size</h3>
+						<h3>Right Size/Time</h3>
 						<p>When we talk about the concept of "right size," we are usually referring to finding the appropriate or ideal size..[+]</p>
 						<div class="gift-btn-box">
 							<a href="javascript:void();" data-toggle="modal" data-target="#rightSize" class="theme-btn yellow-bg">Learn more</a>
