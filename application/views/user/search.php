@@ -44,6 +44,7 @@
                         </div>
                     </div>
                 </form>
+                <span id="success_message"></span>
                 <div class="profile-content-inner">
                     <div class="added-wishes">
                         <div class="row">

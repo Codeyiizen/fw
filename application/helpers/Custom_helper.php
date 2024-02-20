@@ -36,7 +36,7 @@ if (!function_exists('returnSuccessResponse')) {
 	function returnSuccessResponse($data=array())
 	{
 
-		return json_encode(array('code'=>200,"data"=>$data));
+		return json_encode(array('code'=>200,"data"=>$data,'success' => '<div class="alert alert-warning">Friend Request Send Successfully</div>','unfriend' => '<div class="alert alert-warning">UnFriend Request Send Successfully</div>'));
 	}
 }
 

@@ -980,7 +980,8 @@ class Favoritewish extends CI_Controller
 				if (!empty($objUser)) {
 					$arrInsert = array('to_friend' => $objUser['id'], 'from_friend' => $user['user_id'], 'status' => 0);
 					$this->db->insert('friends', $arrInsert);
-					if (!empty($this->db->insert_id()) && $this->db->insert_id() > 0) {
+					
+					if(!empty($this->db->insert_id()) && $this->db->insert_id() > 0) {
 						echo returnSuccessResponse($arrInsert);
 					} else {
 						echo returnSuccessResponse($arrInsert, "Something went wrong please try after some time");
@@ -1094,7 +1095,7 @@ class Favoritewish extends CI_Controller
 			//	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert(' user_wish', $array);
 			$array = array(
-				'success' => '<div class="alert alert-success">Wish Added Successfully</div>'
+				'success' => '<div class="alert alert-warning">Wish Added Successfully</div>'
 			);
 		} else {
 			$array = array(
