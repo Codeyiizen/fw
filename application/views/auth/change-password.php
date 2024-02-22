@@ -34,8 +34,8 @@
 			</div>
 			<div class="col-lg-9">
 				<div class="myaccountForm-inner"> 
-					<div class="card p-4">
-						<h2>Updated New Password</h2>
+					<div class="card bg-light border-0 p-4">
+						<h2>Update New Password</h2>
 						<?php if (validation_errors()) { ?>
 							<div class="alert alert-danger">
 								<?php echo validation_errors(); ?>
@@ -49,7 +49,7 @@
 
 						<?php echo form_open('favoritewish/actionChangePwd'); ?>
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-lg-6">
 								<div class="form-group">
 									<label for="First Name">Password</label>
 									<div class="input-group">
@@ -57,7 +57,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-12">
+							<div class="col-lg-6">
 								<div class="form-group">
 									<label for="Last Name">Confirm Password</label>
 									<div class="input-group">
