@@ -576,7 +576,7 @@ class Favoritewish_Model extends CI_Model {
         $this->db->select('*');
         $this->db->from('friends');
         $this->db->where('to_friend = '.$id." and from_friend=".$userId);
-        $this->db->or_where('(to_friend = '.$id." and from_friend=".$userId.")");
+        $this->db->or_where('(from_friend = '.$id." and to_friend=".$userId.")");
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->row_array();
