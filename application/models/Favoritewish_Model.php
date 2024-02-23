@@ -163,6 +163,9 @@ class Favoritewish_Model extends CI_Model {
     public function setfavorite_music($favorite_music) {     
         $this->_favorite_music = $favorite_music;  
     }
+    public function setprofile_photo($profile_photo) { // echo"<pre>"; var_dump($profile_photo);  exit;
+        $this->_profile_photo = $profile_photo;  
+    }
     public function setVerificationCode($verificationCode) {
         $this->_verificationCode = $verificationCode;
     }
@@ -280,8 +283,11 @@ class Favoritewish_Model extends CI_Model {
             'Favoripublic_outfit_wear' => $this->_favoripublic_outfit_wear,
             'favorite_sports_teams' => $this->_favorite_s_team,
             'favorite_music' => $this->_favorite_music,
+            'profile_photo' => $this->_profile_photo,
             'modified_date' => $this->_timeStamp,
         );
+
+        echo"<pre>";var_dump($data); exit;
         $this->db->where('id', $this->_userID);
         $msg = $this->db->update('users', $data);
         if ($msg == 1) {
@@ -384,9 +390,9 @@ class Favoritewish_Model extends CI_Model {
     }
 
     public function getWishInfo(){
-        $this->db->select('user_wish.*,categories.name as type');
+        $this->db->select('user_wish.*,categories.name as cat_name');
         $this->db->from('user_wish');
-        $this->db->join('categories','categories.id=user_wish.categories_id');
+        $this->db->join('categories','categories.id=user_wish.categories_id','left');
         $this->db->where('user_id',$this->_userID);
         $query = $this->db->get();
        return $query->result();
@@ -428,6 +434,29 @@ class Favoritewish_Model extends CI_Model {
       //  print_r($categories);
         return $categories;       
     }
+
+    // public function showCategory(){
+    //     $this->db->select('*')->from('user_wish');
+    //     $this->db->join('categories','categories.id=user_wish.categories_id');
+    //     $this->db->where('categories.parent_id',NULL);
+    //     $query = $this->db->get();
+    //     if ($query->num_rows() == 1) {
+    //     	return $query->result();
+    //     } else {
+    //     	return false;
+    //     }
+    // }
+    // public function showSubCategory(){
+    //     $this->db->select('*')->from('user_wish');
+    //     $this->db->join('categories','categories.id=user_wish.type');
+    //     $this->db->where('categories.parent_id','categories.id');
+    //     $query = $this->db->get();
+    //     if ($query->num_rows() == 1) {
+    //     	return $query->result();
+    //     } else {
+    //     	return false;
+    //     }  
+    // }
 
    public function getWhishList(){
     $this->db->select('*');
@@ -591,6 +620,17 @@ class Favoritewish_Model extends CI_Model {
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
+        } else {
+            return FALSE;
+        }
+    }
+    public function getCategoryById($id) {
+        $this->db->select('*');
+        $this->db->from('categories');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
         } else {
             return FALSE;
         }

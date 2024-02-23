@@ -7,9 +7,9 @@
 					<div class="footer-inner text-center">
 						<div class="social-media mb-5">
 							<ul class="d-flex justify-content-center">
-								<li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/x-social-media-round-icon.png" alt=""></a></li>
-								<li><a href="#" class=""><img src="<?php echo base_url(); ?>assets/images/ig-instagram-icon.png" alt=""></a></li>
-								<li><a href="https://www.threads.net/@favoritewishltd" class=""><img src="<?php echo base_url(); ?>assets/images/clubhouse-icon-1.png" alt=""></a></li>
+								<li><a href="https://twitter.com/favoritewishltd" class=""><img src="<?php echo base_url(); ?>assets/images/x-social-media-round-icon.png" alt=""></a></li>
+								<li><a href="https://www.instagram.com/favoritewishltd?igsh=ZW5ocmRxcHY2bnRk&utm_source=qrClubhouse:" class=""><img src="<?php echo base_url(); ?>assets/images/ig-instagram-icon.png" alt=""></a></li>
+								<li><a href="https://www.clubhouse.com/@favoritewish?utm_medium=ch_profile&utm_campaign=Dyi26k477x_bI9VN65Qdbg-1123563" class=""><img src="<?php echo base_url(); ?>assets/images/clubhouse-icon-1.png" alt=""></a></li>
 								<li><a href="https://www.threads.net/@favoritewishltd" class=""><img src="<?php echo base_url(); ?>assets/images/threads-app-icon.png" alt=""></a></li>
 							</ul>
 						</div>

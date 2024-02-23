@@ -143,61 +143,30 @@
 
                     <div class="added-wishes">
                         <div class="row">
-                            <?php foreach ($wishInfo as $wishInfos) : ?>
+                            <?php 
+                            $i=0;
+                            foreach ($wishInfo as $wishInfos) { 
+                                $i=$i+1;
+                                $CI =& get_instance();
+                                $CI->load->model('Favoritewish_Model');
+                                $getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type);
+                                $subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
+                                ?>
                             <div class="col-lg-4">
-                                <div class="card bg-gradient-1 text-center border-0 mb-4">
+                                <div class="card bg-gradient-<?php echo $i;?> text-center border-0 mb-4">
                                     <div class="card-body">
-                                        <h5 class="mb-2"><strong><?php print_r($wishInfos->type); ?></strong> - Polo
-                                            Shirt</h5>
+                                        <h5 class="mb-2"><strong><?php print_r($wishInfos->cat_name); ?> </strong> 
+                                        - <?php echo $subCatName;?></h5>     
                                         <ul class="list-unstyled mb-0">
-                                            <li>Brand - Levi's</li>
-                                            <li>Color - Green</li>
-                                            <li>Size - XL</li>
-                                            <li>Style - Modern</li>
+                                            <li><?php print_r($wishInfos->brand); ?></li>
+                                            <li><?php print_r($wishInfos->color); ?></li>
+                                            <li><?php print_r($wishInfos->size); ?></li>
+                                            <li><?php print_r($wishInfos->style); ?></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="card bg-gradient-2 text-center border-0 mb-4">
-                                    <div class="card-body">
-                                        <h5 class="mb-2"><strong>Shoes</strong> - Running shoes</h5>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>Brand - Bata</li>
-                                            <li>Color - Kadam Colors</li>
-                                            <li>Size - Large </li>
-                                            <li>Style - Skinny jeans</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card bg-gradient-3 text-center border-0 mb-4">
-                                    <div class="card-body">
-                                        <h5 class="mb-2"><strong>Jeans</strong> - Denim Life</h5>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>Brand - Wrangler</li>
-                                            <li>Color - Green</li>
-                                            <li>Size - XL</li>
-                                            <li>Style - Modern</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card bg-gradient-4 text-center border-0 mb-4">
-                                    <div class="card-body">
-                                        <h5 class="mb-2"><strong>Bag</strong> - Backpack</h5>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>Brand - Caprese</li>
-                                            <li>Color - light blue</li>
-                                            <li>Size - Small</li>
-                                            <li>Style - Silhouettes</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endforeach;  ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
