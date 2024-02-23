@@ -192,7 +192,7 @@
 		});
 	})
 	$("body").on("change",".select-category",function(){
-		var params = { "id": $(this).val()};
+		var params = { "id": $(this).val()}; 
 		$.ajax({
 			url: BASE_URL + "/getSubCat",
 			type: "post",

@@ -35,6 +35,13 @@
                 <?php $this->load->view('front/template/template_profile_sidebar'); ?>
             </div>
             <div class="col-lg-9">
+                <?php  
+                if(!empty($_SESSION['error_msg'])){
+                    ?>
+                    <div class="alert alert-danger">
+                     <?php echo ($_SESSION['error_msg']['error']); ?>
+                 </div>
+                <?php  } ?>
                 <div class="myaccountForm-inner">
                     <div class="card bg-light border-0 p-4">
                         <h2>Update Your Profile</h2>
@@ -44,7 +51,7 @@
                         </div>
                         <?php } ?>
 
-                        <?php echo form_open('favoritewish/editUser'); ?>
+                        <?php echo form_open_multipart('favoritewish/editUser'); ?>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -188,7 +195,7 @@
                                 <div class="form-group">
                                     <label for="Company">Update profile photo</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="profilePhoto">
+                                        <input type="file" class="custom-file-input" id="profilePhoto" name="profile_photo">
                                         <label class="custom-file-label" for="profilePhoto">Choose file</label>
                                     </div>
                                     <div class="preview profile-photo mt-3">

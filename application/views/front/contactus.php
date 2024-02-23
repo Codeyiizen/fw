@@ -19,7 +19,9 @@
                     <!--<span class="transparent-text numbers">05</span>-->
                     <span class="sub-title">Contact Us</span>
                     <h2 class="entry-title">Leave a Message</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt <br>ut labore et dolore magna aliqua. Quis ipsum suspendisse gravida..</p>
+                    <p>We do not respond to direct messages on social media, however if you’d
+kindly leave us a message below, our operations team will respond back to you within 5-7
+business days. Thank you for understanding, and happy wish listing.</p>
                 </div>
             </div>
         </div>
