@@ -197,33 +197,6 @@
                                     </div>
                                 </div>
                             </div>
-							<div class="col-lg-4">
-                                <div class="card bg-gradient-1 text-center border-0 mb-4">
-                                    <div class="card-body">
-                                        <h5 class="mb-2"><strong><?php print_r($wishInfos->type); ?></strong> - Polo
-                                            Shirt</h5>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>Brand - Levi's</li>
-                                            <li>Color - Green</li>
-                                            <li>Size - XL</li>
-                                            <li>Style - Modern</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card bg-gradient-2 text-center border-0 mb-4">
-                                    <div class="card-body">
-                                        <h5 class="mb-2"><strong>Shoes</strong> - Running shoes</h5>
-                                        <ul class="list-unstyled mb-0">
-                                            <li>Brand - Bata</li>
-                                            <li>Color - Kadam Colors</li>
-                                            <li>Size - Large </li>
-                                            <li>Style - Skinny jeans</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                             <?php endforeach;  ?>
                         </div>
                     </div>
