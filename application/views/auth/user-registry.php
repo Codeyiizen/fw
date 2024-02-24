@@ -144,6 +144,7 @@
 													<li>Type - <?php echo $subCatName; ?></li>
 												<?php } ?>
 												<li>Brand - <?php print_r($wishInfos->brand); ?></li>
+												<li>Occasion - <?php print_r($wishInfos->occasion); ?></li>
 												<li>Color - <?php print_r($wishInfos->color); ?></li>
 												<li>Size - <?php print_r($wishInfos->size); ?></li>
 												<li>Style - <?php print_r($wishInfos->style); ?></li>
