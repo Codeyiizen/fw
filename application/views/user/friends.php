@@ -30,7 +30,7 @@
 										<div class="card mb-4">
 											<a href="<?php echo base_url(); ?>user/friends/details/<?php echo $data->id; ?>">
 												<?php
-												echo $coverImage = $data->cover_photo;
+												$coverImage = $data->cover_photo;
 												if (file_exists(FCPATH . 'assets/uploads/cover_photo/' . $data->cover_photo) && !empty($data->cover_photo)) {  ?>
 													<img class="user-banner" src="<?php echo base_url() . 'assets/uploads/cover_photo/' . $coverImage; ?>" alt="" class="img-fluid">
 												<?php } else {  ?>

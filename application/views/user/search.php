@@ -1,5 +1,5 @@
 <section class="fav-profile-section">
-<?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
+    <?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
 </section>
 <section class="section-padding profile-content">
     <div class="container">
@@ -28,9 +28,15 @@
                             ?>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="card mb-4">
-                                         <a href="<?php echo base_url(); ?>user/friends/details/<?php echo $data->id;?>"> 
-                                            <img class="card-image box-shadow3" src="<?php echo base_url(); ?>assets/images/site-image/banner-bg.png" alt="">
-                                        </a>  
+                                            <a href="<?php echo base_url(); ?>user/friends/details/<?php echo $data->id; ?>">
+                                                <?php
+                                                $coverImage = $data->cover_photo;
+                                                if (file_exists(FCPATH . 'assets/uploads/cover_photo/' . $data->cover_photo) && !empty($data->cover_photo)) {  ?>
+                                                    <img class="user-banner" src="<?php echo base_url() . 'assets/uploads/cover_photo/' . $coverImage; ?>" alt="" class="img-fluid">
+                                                <?php } else {  ?>
+                                                    <img class="user-banner" src="<?php echo base_url(); ?>assets/images/site-image/banner-bg.png" alt="" class="img-fluid">
+                                                <?php  } ?>
+                                            </a>
                                             <div class="card-body p-4">
                                                 <h5 class="card-title"><?php echo $data->first_name . " " . $data->last_name; ?></h5>
                                                 <?php if ($data->from_friend == $userInfo['user_id']) {
@@ -48,8 +54,8 @@
 
                                                     ?>
                                                         <div class="btn-group w-100">
-                                                        <button type="button" class="theme-btn yellow-bg px-3 mr-0 acceptFriendRequest bg-success w-50" data-token="<?php echo $data->token; ?>">Confirm</button>
-                                                        <button type="button" class="theme-btn yellow-bg px-3 mr-0 declineFriend bg-danger w-50" data-token="<?php echo $data->token; ?>">Delete</button>
+                                                            <button type="button" class="theme-btn yellow-bg px-3 mr-0 acceptFriendRequest bg-success w-50" data-token="<?php echo $data->token; ?>">Confirm</button>
+                                                            <button type="button" class="theme-btn yellow-bg px-3 mr-0 declineFriend bg-danger w-50" data-token="<?php echo $data->token; ?>">Delete</button>
                                                         </div>
                                                     <?php }
                                                     if ($data->friends_status == 1) { ?>
