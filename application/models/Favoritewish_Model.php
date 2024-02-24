@@ -393,11 +393,14 @@ class Favoritewish_Model extends CI_Model {
         $this->db->update('users', array('terms_accepted' => $accepted));
     }
 
-    public function getWishInfo(){
+    public function getWishInfo($get){
         $this->db->select('user_wish.*,categories.name as cat_name');
         $this->db->from('user_wish');
         $this->db->join('categories','categories.id=user_wish.categories_id','left');
         $this->db->where('user_id',$this->_userID);
+        if(!empty($get['cat'])){
+            $this->db->where('user_wish.categories_id',$get['cat']);
+        }
         $query = $this->db->get();
        return $query->result();
     }

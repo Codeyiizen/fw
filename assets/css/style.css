@@ -1611,22 +1611,23 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 }
 
 .bg-gradient-1 {
-    background-color: #FBAB7E;
-    background-image: linear-gradient(0deg, #FBAB7E 0%, #F7CE68 100%);
+    background-color: #AAFFFF;
+    background-image: linear-gradient(180deg, #AAFFFF 5.73%, #F9F9AD 100%);
 }
 
 .bg-gradient-2 {
-    background-color: #85FFBD;
-    background-image: linear-gradient(18deg, #85FFBD 0%, #FFFB7D 100%);
+    background-color: #AAFFFF;
+    background-image: linear-gradient(180deg, #AAFFFF 5.73%, #F9F9AD 100%);
 }
 
 .bg-gradient-3{
-    background-color: #fad0c4;
-    background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+    background-color: #AAFFFF;
+    background-image: linear-gradient(180deg, #AAFFFF 5.73%, #F9F9AD 100%);
 }
 
 .bg-gradient-4{
-    background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+    background-color: #AAFFFF;
+    background-image: linear-gradient(180deg, #AAFFFF 5.73%, #F9F9AD 100%);
 }
 .profile-picture .user-thumb{
     width: 217px;

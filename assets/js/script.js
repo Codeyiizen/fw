@@ -208,6 +208,14 @@
 			}
 		});
 	});
+	$("body").on("change",".filter_by_cat",function(){
+		if($(this).val()!==""){
+			window.location.replace(BASE_URL+'/user-dashboard?cat='+$(this).val())
+		} else {
+			window.location.replace(BASE_URL+'/user-dashboard')
+		}
+		
+	})
 	// Progress Bar
 
 

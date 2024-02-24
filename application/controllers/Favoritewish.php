@@ -317,6 +317,7 @@ class Favoritewish extends CI_Controller
 				$chkStatus = $this->email->send();
 
 				if ($chkStatus === TRUE) {
+					$this->session->set_flashdata('message', 'Your form was successfully submitted!');
 					redirect('sign-in');
 				} else {
 					echo 'Error';
@@ -399,6 +400,7 @@ class Favoritewish extends CI_Controller
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
+			$get = $this->input->get();
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
 			$data['metaDescription'] = 'User Dashboard';
@@ -411,7 +413,8 @@ class Favoritewish extends CI_Controller
 		//	echo"<pre>"; var_dump($data['userInfo']); exit;
 			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
-			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo();
+			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo($get);
+			$data['get'] = $get;
 	    //	echo"<pre>"; var_dump($data['wishInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
