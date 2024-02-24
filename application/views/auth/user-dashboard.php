@@ -16,7 +16,7 @@
 									<div class="media align-items-center">
 										<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
 										<div class="media-body">
-											<h5><a href="<?php echo base_url(); ?>user/friends"><?php echo $friend->first_name; ?></a>
+											<h5><a href="<?php echo base_url(); ?>user/friends/details/<?php echo $friend->id; ?>"><?php echo $friend->first_name; ?></a>
 											</h5>
 											<p>NYC, USA</p>
 										</div>
@@ -163,7 +163,7 @@
 									<div class="media align-items-center">
 										<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
 										<div class="media-body">
-											<h5><a href="<?php echo base_url(); ?>user/friends"><?php echo $friend->first_name; ?></a>
+											<h5><a href="<?php echo base_url(); ?>user/friends/details/<?php echo $friend->id; ?>"><?php echo $friend->first_name; ?></a>
 											</h5>
 											<p>NYC, USA</p>
 										</div>

@@ -112,7 +112,7 @@
 					<div class="row">
 						<div class="col-7"></div>
 						<div class="col-5">
-							<select class="form-control form-select form-select-lg mb-3 filter_by_cat" aria-label="Default select example">
+							<select class="form-control form-select form-select-lg mb-3 filter_by_cat_registry" aria-label="Default select example">
 								<option value="">Filter By Category</option>
 								<?php if (!empty($categories)) {
 									foreach ($categories as $cat) {

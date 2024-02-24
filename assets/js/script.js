@@ -216,6 +216,14 @@
 		}
 		
 	})
+	$("body").on("change",".filter_by_cat_registry",function(){
+		if($(this).val()!==""){
+			window.location.replace(BASE_URL+'/user/registry?cat='+$(this).val())
+		} else {
+			window.location.replace(BASE_URL+'/user/registry')
+		}
+		
+	})
 	// Progress Bar
 
 
@@ -354,7 +362,6 @@ $(document).ready(function() {
 					$('#colors').html('');
 					$('#sizes').html('');
 					$('#styles').html('');
-					$('#contact_form')[0].reset();
 					window.location.reload();
 				}
 				$('#registry_contact').attr('disabled', false);
