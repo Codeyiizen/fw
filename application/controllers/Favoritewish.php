@@ -578,13 +578,10 @@ class Favoritewish extends CI_Controller
 			$favorite_public_outfit_wear = $this->input->post('favorite_p_wear');
 			$favorite_s_team = $this->input->post('favorite_s_team');
 			$favorite_music = $this->input->post('favorite_music');
-			$favorite_music = $this->input->post('favorite_music');
-			//$profile_photo =  $this->input->post('profile_photo');      //  echo "<pre>";var_dump($profile_photo);exit;
-		//	$cover_photo =  $this->input->post('cover_photo');   // echo "<pre>";var_dump($cover_photo);exit;
 			// Upload profile photo in folder
 			    $config['upload_path']          = './assets/uploads/profile_photo/';
                 $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                $config['max_size']             = 1024;
+                $config['max_size']             = 2048;
                 $config['max_width']            = 2000;
                 $config['max_height']           = 1950;
 				$this->load->library('upload', $config);
@@ -602,7 +599,7 @@ class Favoritewish extends CI_Controller
 			// Upload cover photo in folder
 			$config['upload_path']          = './assets/uploads/cover_photo/';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg';
-			$config['max_size']             = 1024;
+			$config['max_size']             = 2048;
 			$config['max_width']            = 2000;
 			$config['max_height']           = 1950;
 			$this->load->library('upload', $config);
