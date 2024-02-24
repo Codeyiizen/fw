@@ -8,7 +8,7 @@
 */
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+#[\AllowDynamicProperties]
 class Favoritewish_Model extends CI_Model {
 
 	public function bannerSection($type)

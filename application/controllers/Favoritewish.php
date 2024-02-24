@@ -582,8 +582,6 @@ class Favoritewish extends CI_Controller
 			    $config['upload_path']          = './assets/uploads/profile_photo/';
                 $config['allowed_types']        = 'gif|jpg|png|jpeg';
                 $config['max_size']             = 2048;
-                $config['max_width']            = 2000;
-                $config['max_height']           = 1950;
 				$this->load->library('upload', $config);
 				$this->upload->initialize($config);
 				 if ( ! $this->upload->do_upload('profile_photo'))
@@ -600,8 +598,6 @@ class Favoritewish extends CI_Controller
 			$config['upload_path']          = './assets/uploads/cover_photo/';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 			$config['max_size']             = 2048;
-			$config['max_width']            = 2000;
-			$config['max_height']           = 1950;
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			 if ( ! $this->upload->do_upload('profile_photo'))

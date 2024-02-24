@@ -862,7 +862,7 @@ form .error {
 
 section.fav-profile-section .profile-banner img {
     width: 100%;
-    height: auto;
+    height: 224px;
 }
 
 .profile-picture {
@@ -1627,4 +1627,13 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 
 .bg-gradient-4{
     background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+}
+.profile-picture .user-thumb{
+    width: 217px;
+    height: 217px;
+    border-radius: 50%;
+}
+.profile-banner .user-banner{
+    width: 100%;
+    height: 224px;
 }
