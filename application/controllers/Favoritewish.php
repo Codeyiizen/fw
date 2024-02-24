@@ -600,7 +600,7 @@ class Favoritewish extends CI_Controller
 			$config['max_size']             = 2048;
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
-			 if ( ! $this->upload->do_upload('profile_photo'))
+			 if ( ! $this->upload->do_upload('cover_photo'))
 			 {
 					 $error = array('error' => $this->upload->display_errors());
 					redirect('user-profile/edit',$this->session->set_flashdata("error_msg", $error));
