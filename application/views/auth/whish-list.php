@@ -25,9 +25,9 @@
 							<?php } else if (!empty($is_friend) && $is_friend['status'] == 0) {
 							if ($is_friend['to_friend'] == $userLoginInfo['user_id']) {
 							?>
-								<button type="button" class="theme-btn yellow-bg acceptFriendRequest bg-success"  data-token="<?php echo $userInfo['token'] ?>">Accept</button>
+								<button type="button" class="theme-btn yellow-bg acceptFriendRequest bg-success" data-token="<?php echo $userInfo['token'] ?>">Accept</button>
 							<?php } else { ?>
-								<button type="button" class="theme-btn yellow-bg removeFriend bg-danger"  data-token="<?php echo $userInfo['token'] ?>">Cancel</button>
+								<button type="button" class="theme-btn yellow-bg removeFriend bg-danger" data-token="<?php echo $userInfo['token'] ?>">Cancel</button>
 							<?php }
 						} else if (!empty($is_friend) && $is_friend['status'] == 1) { ?>
 							<button type="button" class="theme-btn red-btn px-4 mr-0 bg-danger removeFriend" data-token="<?php echo $userInfo['token'] ?>">Unfriend</button>
@@ -44,13 +44,33 @@
 		<div class="profile-content-inner">
 			<div class="added-wishes">
 				<div class="row">
-					<?php foreach ($wishInfo as $wishInfos) : ?>
-						<div class="col-lg-3">
-							<div class="wishes-items">
-								<h3><?php print_r($wishInfos->type); ?></h3>
+					<?php
+					$i = 0;
+					foreach ($wishInfo as $wishInfos) {
+						$i = $i + 1;
+						$CI = &get_instance();
+						$CI->load->model('Favoritewish_Model');
+						$getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type);
+						$subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
+					?>
+						<div class="col-lg-4">
+							<div class="card bg-gradient-<?php echo $i; ?> text-center border-0 mb-4">
+								<div class="card-body">
+									<h5 class="mb-2"><strong>Wish - </strong>
+										<?php print_r($wishInfos->cat_name); ?></h5>
+									<ul class="list-unstyled mb-0">
+										<?php if (!empty($subCatName)) { ?>
+											<li>Type - <?php echo $subCatName; ?></li>
+										<?php } ?>
+										<li>Brand - <?php print_r($wishInfos->brand); ?></li>
+										<li>Color - <?php print_r($wishInfos->color); ?></li>
+										<li>Size - <?php print_r($wishInfos->size); ?></li>
+										<li>Style - <?php print_r($wishInfos->style); ?></li>
+									</ul>
+								</div>
 							</div>
 						</div>
-					<?php endforeach;  ?>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

@@ -476,8 +476,9 @@ class Favoritewish_Model extends CI_Model {
     // }
 
    public function getWhishList(){
-    $this->db->select('*');
+    $this->db->select('*,categories.name as cat_name');
     $this->db->from('user_wish');
+    $this->db->join('categories','categories.id=user_wish.categories_id','left');
     $this->db->where('user_id',$this->_userID);
     $query = $this->db->get();
    return $query->result();
