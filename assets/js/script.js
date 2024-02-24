@@ -278,3 +278,87 @@
 
 
 })(window.jQuery);
+
+
+$(document).ready(function() {
+	$('#registry_form').on('submit', function(event){    
+		event.preventDefault();
+		var category = $("#category").val(); // alert(category);
+		var type = $("#type").val();       // alert(type); 
+		var brand = $("#brand").val();    // alert(brand);
+		var occasion = $("#occasion").val();  //  alert(occasion);
+		var color = $("#color").val();   //  alert(color);
+		var size = $("#size").val();  // alert(size);
+		var style = $("#style").val();  // alert(style);
+
+		$.ajax({
+			url: BASE_URL + "user/add/registry",
+			type: "POST",
+			dataType: "json",
+			data: {
+				category: category,
+				type: type,
+				brand: brand,
+				occasion: occasion,
+				color: color,
+				size: size,
+				style: style
+			},
+			beforeSend: function() {
+				$('#registry_contact').attr('disabled', 'disabled');
+			},
+			success: function(data) {  // alert(data.error);
+				if (data.error) {
+					if (data.category != '') {
+						$('#categorys').html(data.category);
+					} else {
+						$('#categorys').html('');
+					}
+					if (data.type != '') {
+						$('#types').html(data.type);
+					} else {
+						$('#types').html('');
+					}
+					if (data.occasion != '') {
+						$('#occasions').html(data.occasion);
+					} else {
+						$('#occasions').html('');
+					}
+					if (data.brand != '') {
+						$('#brands').html(data.brand);
+					} else {
+						$('#brands').html('');
+					}
+					if (data.color != '') {
+						$('#colors').html(data.color);
+					} else {
+						$('#colors').html('');
+					}
+					if (data.size != '') {
+						$('#sizes').html(data.size);
+					} else {
+						$('#sizes').html('');
+					}
+					if (data.style != '') {
+						$('#styles').html(data.style);
+					} else {
+						$('#styles').html('');
+					}
+				}
+				if (data.success) {
+					$('#success_message').html(data.success);
+					$('#categorys').html('');
+					$('#types').html('');
+					$('#occasions').html('');
+					$('#brands').html('');
+					$('#colors').html('');
+					$('#sizes').html('');
+					$('#styles').html('');
+					$('#contact_form')[0].reset();
+					window.location.reload();
+				}
+				$('#registry_contact').attr('disabled', false);
+			}
+		});
+	});
+});

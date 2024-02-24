@@ -423,6 +423,32 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
+	public function user_registry()
+	{ 
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); // the user is not logged in, redirect them!
+		} else {
+			 $get = $this->input->get();
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
+			$data = array();
+			$data['metaDescription'] = 'User Registry';
+			$data['metaKeywords'] = 'User Dashboard';
+			$data['title'] = "User Registry";
+			$data['breadcrumbs'] = array('User Dashboard' => '#');
+			$sessionArray = $this->session->userdata('ci_seesion_key');
+			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
+		//	echo"<pre>"; var_dump($data['frienddetails']); exit;
+			$data['categories'] = $this->Favoritewish_Model->getCategories();
+			$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfo($get);
+			$data['get'] = $get;
+			$this->load->view('front/header_inner', $data);
+			$this->template->load('default_layout', 'contents', 'auth/user-registry');
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+		}
+	}
 
 	// user profile
 	public function user_profile()
@@ -1146,6 +1172,49 @@ class Favoritewish extends CI_Controller
 				'style' => form_error('style')
 
 			);
+		}
+		echo json_encode($array);
+	}
+
+	public function addRegistry()
+	{   
+		$sessionArray = $this->session->userdata('ci_seesion_key');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('category', 'category', 'required');
+		$this->form_validation->set_rules('type', 'type', 'required');
+		$this->form_validation->set_rules('occasion', 'occasion', 'required');
+		$this->form_validation->set_rules('brand', 'brand', 'required');
+		$this->form_validation->set_rules('color', 'color', 'required');
+		$this->form_validation->set_rules('size', 'size', 'required');
+		$this->form_validation->set_rules('style', 'style', 'required');
+		if ($this->form_validation->run()) {  
+			$array = array(
+				'cat_id'     => $this->input->post('category'),
+				'type'  => $this->input->post('type'),
+				'occasion'   => $this->input->post('occasion'),
+				'brand'   => $this->input->post('brand'),
+				'color' => $this->input->post('color'),
+				'size' => $this->input->post('size'),
+				'style' => $this->input->post('style'),
+				'user_id' => $sessionArray['user_id']
+			);
+			//	echo"<pre>"; var_dump($array); exit;
+			$this->db->insert('user_registry', $array);
+			$array = array(
+				'success' => '<div class="alert alert-warning">Registry Added Successfully</div>'
+			);
+		} else {
+			$array = array(
+				'error'   => true,
+				'category' => form_error('category'),
+				'type' => form_error('type'),
+				'occasion' => form_error('occasion'),
+				'brand' => form_error('brand'),
+				'color' => form_error('color'),
+				'size' => form_error('size'),
+				'style' => form_error('style')
+			);
+		//	echo"<pre>"; var_dump($array);exit;
 		}
 		echo json_encode($array);
 	}
