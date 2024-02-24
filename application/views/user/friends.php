@@ -29,9 +29,13 @@
 									<div class="col-md-6 col-lg-4">
 										<div class="card mb-4">
 											<a href="<?php echo base_url(); ?>user/friends/details/<?php echo $data->id; ?>">
-												<img class="card-image box-shadow3" src="<?php echo base_url(); ?>assets/images/site-image/banner-bg.png" alt="">
-
-
+												<?php
+												echo $coverImage = $data->cover_photo;
+												if (file_exists(FCPATH . 'assets/uploads/cover_photo/' . $data->cover_photo) && !empty($data->cover_photo)) {  ?>
+													<img class="user-banner" src="<?php echo base_url() . 'assets/uploads/cover_photo/' . $coverImage; ?>" alt="" class="img-fluid">
+												<?php } else {  ?>
+													<img class="user-banner" src="<?php echo base_url(); ?>assets/images/site-image/banner-bg.png" alt="" class="img-fluid">
+												<?php  } ?>
 											</a>
 											<div class="card-body p-4">
 												<h5 class="card-title"><?php echo $data->first_name . " " . $data->last_name; ?></h5>

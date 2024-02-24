@@ -19,7 +19,7 @@
                     if (file_exists(FCPATH . 'assets/uploads/profile_photo/' . $userInfo['profile_photo']) && !empty($userInfo['profile_photo'])) {  ?>
                         <object class="user-thumb" type="image/svg+xml" data="<?php echo base_url() . 'assets/uploads/profile_photo/' . $profileImage; ?>"></object>
                     <?php } else {  ?>
-                        <object type="user-thumb" data="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"></object>
+                        <object type="image/svg+xml" type="user-thumb" data="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"></object>
                     <?php  } ?>
                     <div class="profile-name">
                         <h3><?php print $userInfo['full_name']; ?></h3>
