@@ -166,6 +166,9 @@ class Favoritewish_Model extends CI_Model {
     public function setprofile_photo($profile_photo) { // echo"<pre>"; var_dump($profile_photo);  exit;
         $this->_profile_photo = $profile_photo;  
     }
+    public function setcover_photo($cover_photo) { // echo"<pre>"; var_dump($profile_photo);  exit;
+        $this->_cover_photo = $cover_photo;  
+    }
     public function setVerificationCode($verificationCode) {
         $this->_verificationCode = $verificationCode;
     }
@@ -284,10 +287,11 @@ class Favoritewish_Model extends CI_Model {
             'favorite_sports_teams' => $this->_favorite_s_team,
             'favorite_music' => $this->_favorite_music,
             'profile_photo' => $this->_profile_photo,
+            'cover_photo' => $this->_cover_photo,
             'modified_date' => $this->_timeStamp,
         );
 
-        echo"<pre>";var_dump($data); exit;
+      //  echo"<pre>";var_dump($data); exit;
         $this->db->where('id', $this->_userID);
         $msg = $this->db->update('users', $data);
         if ($msg == 1) {
@@ -330,7 +334,7 @@ class Favoritewish_Model extends CI_Model {
 	
 	// get User Detail
     public function getUserDetails() {
-        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music'));
+        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.profile_photo','m.cover_photo'));
         $this->db->from('users as m');
         $this->db->where('m.id', $this->_userID);
         $query = $this->db->get();

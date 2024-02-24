@@ -1,6 +1,13 @@
 <section class="fav-profile-section">
     <div class="profile-banner">
-        <img src="<?php echo base_url(); ?>assets/images/site-image/profile-banner-1.png" alt="" class="img-fluid">
+    <?php 
+        $coverImage = $userInfo['cover_photo']; 
+        if(file_exists(FCPATH.'assets/uploads/cover_photo/'.$userInfo['cover_photo']) && !empty($userInfo['cover_photo'])){  ?>
+            <img src="<?php echo base_url().'assets/uploads/cover_photo/'.$coverImage;?>" alt="" class="img-fluid">
+            <?php }else{  ?>
+                <img src="<?php echo base_url(); ?>assets/images/site-image/profile-banner-1.png" alt="" class="img-fluid">
+        <?php  } ?>
+        
     </div>
     <div class="hero-title-banner">
         <div class="container">
@@ -8,8 +15,13 @@
                 <div class="col-md-6">
                     <div class="profile-picture">
                         <!--<img src="assets/images/site-image/avatar.png" alt="" class="img-thumbnail img-fluid">-->
-                        <object type="image/svg+xml"
-                            data="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"></object>
+                        <?php 
+                        $profileImage = $userInfo['profile_photo']; 
+                        if(file_exists(FCPATH.'assets/uploads/profile_photo/'.$userInfo['profile_photo']) && !empty($userInfo['profile_photo'])){  ?>
+                            <object type="image/svg+xml" data="<?php echo base_url().'assets/uploads/profile_photo/'.$profileImage;?>"></object>
+                         <?php }else{  ?>
+                             <object type="image/svg+xml" data="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"></object>
+                       <?php  } ?>
                         <div class="profile-name">
                             <h3><?php print $userInfo['full_name']; ?></h3>
                             <h5><?php print $userInfo['company']; ?></h5>

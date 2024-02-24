@@ -408,6 +408,7 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+		//	echo"<pre>"; var_dump($data['userInfo']); exit;
 			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo();
@@ -578,7 +579,9 @@ class Favoritewish extends CI_Controller
 			$favorite_s_team = $this->input->post('favorite_s_team');
 			$favorite_music = $this->input->post('favorite_music');
 			$favorite_music = $this->input->post('favorite_music');
-			$profile_photo = $this->input->post('profile_photo');       // echo "<pre>";var_dump($profile_photo);exit;
+			//$profile_photo =  $this->input->post('profile_photo');      //  echo "<pre>";var_dump($profile_photo);exit;
+		//	$cover_photo =  $this->input->post('cover_photo');   // echo "<pre>";var_dump($cover_photo);exit;
+			// Upload profile photo in folder
 			    $config['upload_path']          = './assets/uploads/profile_photo/';
                 $config['allowed_types']        = 'gif|jpg|png|jpeg';
                 $config['max_size']             = 1024;
@@ -589,19 +592,31 @@ class Favoritewish extends CI_Controller
 				 if ( ! $this->upload->do_upload('profile_photo'))
 				 {
 						 $error = array('error' => $this->upload->display_errors());
-						//  print_r($error);
-						//  echo "aaaaaa";exit;
-						
 						redirect('user-profile/edit',$this->session->set_flashdata("error_msg", $error));
 				 }
 				 else
 				 {
 					$profileImageData = array('upload_data' => $this->upload->data());
-				//	echo "<pre>";var_dump($data);exit;
-				 //  $this->load->view('edit', $data);
-				 }
-		
-           // die($profile_photo);  
+				 } 
+				 $profile_photo = $profileImageData['upload_data']['file_name'];
+			// Upload cover photo in folder
+			$config['upload_path']          = './assets/uploads/cover_photo/';
+			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['max_size']             = 1024;
+			$config['max_width']            = 2000;
+			$config['max_height']           = 1950;
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+			 if ( ! $this->upload->do_upload('profile_photo'))
+			 {
+					 $error = array('error' => $this->upload->display_errors());
+					redirect('user-profile/edit',$this->session->set_flashdata("error_msg", $error));
+			 }
+			 else
+			 {
+				$coverImageData = array('upload_data' => $this->upload->data());
+			 } 
+			 $cover_photo = $coverImageData['upload_data']['file_name'];
 			$timeStamp = time();
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
@@ -619,6 +634,7 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setfavorite_sports_teams($favorite_s_team);
 			$this->Favoritewish_Model->setfavorite_music($favorite_music);
 			$this->Favoritewish_Model->setprofile_photo($profile_photo);
+			$this->Favoritewish_Model->setcover_photo($cover_photo);
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
 			$status = $this->Favoritewish_Model->update();
 			if ($status == TRUE) {
