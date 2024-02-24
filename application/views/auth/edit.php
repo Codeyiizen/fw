@@ -208,7 +208,7 @@
                                 <div class="form-group">
                                     <label for="Company">Update cover photo</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="coverPhoto">
+                                        <input type="file" class="custom-file-input" id="coverPhoto" name="cover_photo">
                                         <label class="custom-file-label" for="coverPhoto">Choose file</label>
                                     </div>
                                     <div class="preview cover-photo mt-3">
