@@ -6,6 +6,9 @@
                 <?php if(!empty($is_friend)){ ?>
                 <li class="<?php echo checkMainMenuActive('user/friends/detail/'.$data.'/wish'); ?>"><a href="<?php echo base_url(); ?>user/friends/detail/<?php echo $data ?>/wish">Whish</a></li>
                 <?php } ?>
+                <?php if(!empty($is_friend)){ ?>
+                <li class="<?php echo checkMainMenuActive('user/friends/detail/'.$data.'/registry'); ?>"><a href="<?php echo base_url(); ?>user/friends/detail/<?php echo $data ?>/registry">Registry</a></li>
+                <?php } ?>
                 <!-- <li><a href="#">Registry</a></li>
                 <li><a href="#">Message</a></li> -->
             </ul>

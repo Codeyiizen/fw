@@ -653,4 +653,15 @@ class Favoritewish_Model extends CI_Model {
             return FALSE;
         }
     }
+    public function getRegistryInfoBtUser($id){
+        $this->db->select('user_registry.*,categories.name as cat_name');
+        $this->db->from('user_registry');
+        $this->db->join('categories','categories.id=user_registry.cat_id','left');
+        $this->db->where('user_id',$id);
+        if(!empty($get['cat'])){
+            $this->db->where('user_registry.cat_id',$get['cat']);
+        }
+        $query = $this->db->get();
+       return $query->result();
+    }
 }
