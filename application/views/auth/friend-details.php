@@ -19,51 +19,44 @@
 									<th>Full Name</th>
 									<td>Rahul Up</td>
 								</tr>
+								<?php if (!empty($userInfo['birthday']) && !empty($is_friend)) { ?> 
 								<tr>
 									<th>Birthday</th>
-									<td>10 June 2001</td>
+									<td><?php print $userInfo['birthday']; ?></td>
 								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['gender']) && !empty($is_friend)) { ?>
 								<tr>
 									<th>Gender</th>
-									<td>Male</td>
+									<td><?php print $userInfo['gender']; ?></td>
 								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['favorite_country']) && !empty($is_friend)) { ?> 
 								<tr>
 									<th>Favorite Country</th>
-									<td>Londan</td>
+									<td><?php print $userInfo['favorite_country']; ?></td>
 								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['favoripublic_outfit_wear']) && !empty($is_friend)) { ?>
 								<tr>
 									<th>Favorite public outfit to wear</th>
-									<td>Formal t-shirt</td>
+									<td><?php print $userInfo['favoripublic_outfit_wear']; ?></td>
 								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['favorite_sports_teams'])) { ?>
 								<tr>
 									<th>Favorite Sports Teams</th>
-									<td>CSK</td>
+									<td><?php print $userInfo['favorite_sports_teams']; ?></td>
 								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['favorite_music']) && !empty($is_friend)) { ?>
 								<tr>
 									<th>Favorite Music</th>
-									<td>Pop Song</td>
+									<td><?php print $userInfo['favorite_music']; ?></td>
 								</tr>
+								<?php } ?>
 							</table>
 						</table>
-						<!-- <?php //if (!empty($userInfo['first_name'])) { 
-								?> <p>Full Name: -->
-						<?php //print $userInfo['first_name']; 
-						?> <?php //print $userInfo['last_name']; 
-																	?></p>
-						<?php //} 
-						?>
-						<?php if (!empty($userInfo['birthday']) && !empty($is_friend)) { ?> <p>Birthday:
-								<?php print $userInfo['birthday']; ?></p> <?php } ?>
-						<?php if (!empty($userInfo['gender']) && !empty($is_friend)) { ?><p>Gender :
-								<?php print $userInfo['gender']; ?></p><?php  } ?>
-						<?php if (!empty($userInfo['favorite_country']) && !empty($is_friend)) { ?> <p>Favorite Country:
-								<?php print $userInfo['favorite_country']; ?></p> <?php } ?>
-						<?php if (!empty($userInfo['favoripublic_outfit_wear']) && !empty($is_friend)) { ?><p>Favorite
-								public outfit to wear:<?php print $userInfo['favoripublic_outfit_wear']; ?></p> <?php } ?>
-						<?php if (!empty($userInfo['favorite_sports_teams'])) { ?><p>Favorite Sports
-								Teams:<?php print $userInfo['favorite_sports_teams']; ?></p> <?php } ?>
-						<?php if (!empty($userInfo['favorite_music']) && !empty($is_friend)) { ?><<p>Favorite
-								Music:<?php print $userInfo['favorite_music']; ?></p> <?php } ?>
 					</div>
 				</div>
 			</div>
