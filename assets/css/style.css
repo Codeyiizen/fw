@@ -1638,3 +1638,15 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
     width: 100%;
     height: 224px;
 }
+
+.profile-picture.user-thumbs{
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+}
+
+.profile-banner .user-banners{
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+}

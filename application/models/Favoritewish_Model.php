@@ -475,11 +475,14 @@ class Favoritewish_Model extends CI_Model {
     //     }  
     // }
 
-   public function getWhishList(){
+   public function getWhishList($get){
     $this->db->select('*,categories.name as cat_name');
     $this->db->from('user_wish');
     $this->db->join('categories','categories.id=user_wish.categories_id','left');
     $this->db->where('user_id',$this->_userID);
+    if(!empty($get['cat'])){
+        $this->db->where('user_wish.categories_id',$get['cat']);
+    }
     $query = $this->db->get();
    return $query->result();
    }
@@ -653,7 +656,7 @@ class Favoritewish_Model extends CI_Model {
             return FALSE;
         }
     }
-    public function getRegistryInfoBtUser($id){
+    public function getRegistryInfoBtUser($id,$get){
         $this->db->select('user_registry.*,categories.name as cat_name');
         $this->db->from('user_registry');
         $this->db->join('categories','categories.id=user_registry.cat_id','left');

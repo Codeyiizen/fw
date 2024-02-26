@@ -168,12 +168,17 @@
                                 <div class="form-group">
                                     <label for="Company">Update profile photo</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="profilePhoto" name="profile_photo">
+                                        <input type="file" class="custom-file-input" id="profilePhoto" name="profile_photo" onchange="profilephoto(event,'profilePhotos');">
                                         <label class="custom-file-label" for="profilePhoto">Choose file</label>
                                     </div>
-                                    <div class="preview profile-photo mt-3">
-                                        <img class="img-fluid img-thumbnail"
-                                            src="<?php echo base_url(); ?>assets/images/site-image/avatar.png" alt="Preview">
+                                    <div class="profile-banner">
+                                        <?php
+                                        $profileImage = $userInfo['profile_photo'];
+                                        if (file_exists(FCPATH . 'assets/uploads/profile_photo/' . $userInfo['profile_photo']) && !empty($userInfo['profile_photo'])) {  ?>
+                                            <img class="user-banners" id="profilePhotos" src="<?php echo base_url() . 'assets/uploads/profile_photo/' . $profileImage; ?>" alt="Preview">
+                                        <?php } else {  ?>
+                                            <img class="user-banners" id="profilePhotos" src="<?php echo base_url(); ?>assets/images/site-image/avatar.png" alt="Preview">
+                                        <?php  } ?>
                                     </div>
                                 </div>
                             </div>
@@ -181,12 +186,18 @@
                                 <div class="form-group">
                                     <label for="Company">Update cover photo</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="coverPhoto" name="cover_photo">
+                                        <input type="file" class="custom-file-input" id="coverPhoto" name="cover_photo" onchange="profilephoto(event,'coverphotoview');">
                                         <label class="custom-file-label" for="coverPhoto">Choose file</label>
                                     </div>
-                                    <div class="preview cover-photo mt-3">
-                                        <img class="img-fluid img-thumbnail" src="<?php echo base_url(); ?>assets/images/site-image/avatar.png" alt="Preview">
-                                    </div>
+                                    <div class="profile-banner">
+                                        <?php 
+                                            $coverImage = $userInfo['cover_photo']; 
+                                            if(file_exists(FCPATH.'assets/uploads/cover_photo/'.$userInfo['cover_photo']) && !empty($userInfo['cover_photo'])){  ?>
+                                                <img class="user-banners" id="coverphotoview" src="<?php echo base_url().'assets/uploads/cover_photo/'.$coverImage;?>" alt="" class="img-fluid" >
+                                                <?php }else{  ?>
+                                                    <img class="user-banners" id="coverphotoview" src="<?php echo base_url(); ?>assets/images/site-image/avatar.png" alt="Preview">
+                                            <?php  } ?>
+                                        </div>
                                 </div>
                             </div>
                         </div>
