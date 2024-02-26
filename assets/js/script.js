@@ -224,6 +224,25 @@
 		}
 		
 	})
+	$("body").on("change",".filter_by_cat_wish",function(){ 
+		var dataId = $(this).attr('data-id');
+		if($(this).val()!==""){
+			window.location.replace(BASE_URL+'/user/friends/detail/'+dataId+'/wish/?cat='+$(this).val())
+		} else {
+			window.location.replace(BASE_URL+'/user/friends/detail'+dataId+'/wish')
+		}
+		
+	})
+
+	$("body").on("change",".filter_by_cat_registry",function(){ 
+		var dataId = $(this).attr('data-id'); 
+		if($(this).val()!==""){
+			window.location.replace(BASE_URL+'/user/friends/detail/'+dataId+'/registry/?cat='+$(this).val())
+		} else {
+			window.location.replace(BASE_URL+'/user/friends/detail'+dataId+'/registry')
+		}
+		
+	})
 	// Progress Bar
 
 
@@ -369,3 +388,41 @@ $(document).ready(function() {
 		});
 	});
 });
+
+// function previewFile(input,varId){   alert('ok1');
+// 	var file = $("input[type=file]").get(0).files[0]; 
+// 	 console.log(file); 
+// 	if(file){
+// 		var reader = new FileReader();
+// 		reader.onload = function(){
+// 			$("#"+varId).attr("src", reader.result);
+// 		}
+// 		reader.readAsDataURL(file);
+// 	}
+// }
+
+function Coverphoto(input){ 
+	var file = $(".profilePhoto").get(0).files[0];
+    
+	if(file){
+		var reader = new FileReader();
+
+		reader.onload = function(){
+			$("#Coverphotoview").attr("src", reader.result);
+		}
+
+		reader.readAsDataURL(file);
+	}
+}
+function profilephoto(event,varId){
+	var file = event.target.files[0];
+    if(file){
+		var reader = new FileReader();
+
+		reader.onload = function(){
+			$("#"+varId).attr("src", reader.result);
+		}
+
+		reader.readAsDataURL(file);
+	}
+}

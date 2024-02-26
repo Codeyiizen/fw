@@ -42,6 +42,17 @@
 	<div class="container">
 		<?php $this->load->view('user/Common/mainHeaderFriends', array('data' => $user_profile_id, 'is_friend' => $is_friend)) ?>
 		<div class="profile-content-inner">
+		<div class="col-5">
+				<select class="form-control form-select form-select-lg mb-3 filter_by_cat_registry" data-id="<?php echo $user_profile_id;  ?>" aria-label="Default select example">
+					<option value="">Filter By Category</option>
+					<?php if (!empty($categories)) {
+						foreach ($categories as $cat) {
+					?>
+							<option  <?php echo (!empty($get['cat']) && $get['cat']==$cat->id)?"selected":'' ?> value="<?php echo $cat->id ?>" ><?php echo $cat->name ?></option>
+					<?php }
+					} ?>
+				</select>
+			</div>
 			<div class="added-wishes">
 				<div class="row">
 					<?php

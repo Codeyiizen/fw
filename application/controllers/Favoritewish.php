@@ -507,11 +507,12 @@ class Favoritewish extends CI_Controller
 	}
 
 	public function getwishlist($id)
-	{
+	{  
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
+			$get = $this->input->get();
 			$data = array();
 			$data['metaDescription'] = 'User Profile';
 			$data['metaKeywords'] = 'UUser Profile';
@@ -526,9 +527,10 @@ class Favoritewish extends CI_Controller
 			$data['is_friend'] = $isFriend;
 			//	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			if (!empty($id)) {
-				$data['wishInfo'] = $this->Favoritewish_Model->getWhishList();
+				$data['wishInfo'] = $this->Favoritewish_Model->getWhishList($get);
 				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
+			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/whish-list');
@@ -1219,12 +1221,13 @@ class Favoritewish extends CI_Controller
 		echo json_encode($array);
 	}
 	public function getregistrylist($id)
-	{
+	{  
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
+			$get = $this->input->get();
 			$data['metaDescription'] = 'User Profile';
 			$data['metaKeywords'] = 'UUser Profile';
 			$data['title'] = "User Profile";
@@ -1238,9 +1241,10 @@ class Favoritewish extends CI_Controller
 			$data['is_friend'] = $isFriend;
 			//	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			if (!empty($id)) {
-				$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfoBtUser($id);
+				$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfoBtUser($id,$get);
 				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
+			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/registry-list');
