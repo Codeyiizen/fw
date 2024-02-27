@@ -129,7 +129,7 @@
 								$getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type);
 								$subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
 							?>
-								<div class="col-lg-4">
+								<div class="col-lg-6">
 									<div class="card bg-gradient-<?php echo $i; ?> text-center border-0 mb-4">
 										<div class="card-body">
 											<h5 class="mb-2"><strong>Wish - </strong>
