@@ -43,7 +43,7 @@
 		<?php $this->load->view('user/Common/mainHeaderFriends', array('data' => $user_profile_id, 'is_friend' => $is_friend)) ?>
 		<div class="profile-content-inner">
 		<div class="form-group p-0 col-5">
-				<select class="form-control form-select form-select-lg mb-3 filter_by_cat_registry" data-id="<?php echo $user_profile_id;  ?>" aria-label="Default select example">
+				<select class="form-control form-select form-select-lg mb-3 filter_by_cat_registry_list" data-id="<?php echo $user_profile_id;  ?>" aria-label="Default select example">
 					<option value="">Filter By Category</option>
 					<?php if (!empty($categories)) {
 						foreach ($categories as $cat) {

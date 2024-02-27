@@ -234,7 +234,7 @@
 		
 	})
 
-	$("body").on("change",".filter_by_cat_registry",function(){ 
+	$("body").on("change",".filter_by_cat_registry_list",function(){ 
 		var dataId = $(this).attr('data-id'); 
 		if($(this).val()!==""){
 			window.location.replace(BASE_URL+'/user/friends/detail/'+dataId+'/registry/?cat='+$(this).val())
