@@ -86,6 +86,7 @@ $route['user/friends/detail/(:num)/registry'] = 'favoritewish/getregistrylist/$1
 $route['getSubCat'] = 'favoritewish/getSubCat'; 
 $route['user/registry'] = 'favoritewish/user_registry'; 
 $route['user/add/registry'] = "favoritewish/addRegistry";  
+$route['user/friends/(:num)/massages'] = 'favoritewish/getMessagelist/$1'; 
 /*
 
 
