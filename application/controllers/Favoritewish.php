@@ -588,7 +588,11 @@ class Favoritewish extends CI_Controller
 	// action update user 
 	public function editUser()
 	{
-        
+     
+	    $sessionArray = $this->session->userdata('ci_seesion_key');
+		$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+		$userInfo = $this->Favoritewish_Model->getUserDetails(); 
+      //  echo"<pre>"; var_dump($userInfo['profile_photo']); exit; 
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|regex_match[/^[0-9]{10}$/]');
@@ -610,7 +614,8 @@ class Favoritewish extends CI_Controller
 			$favorite_s_team = $this->input->post('favorite_s_team');
 			$favorite_music = $this->input->post('favorite_music');
 			// Upload profile photo in folder
-			    $config['upload_path']          = './assets/uploads/profile_photo/';
+			if(!empty($_FILES['profile_photo']['name'])){
+				$config['upload_path']          = './assets/uploads/profile_photo/';
                 $config['allowed_types']        = 'gif|jpg|png|jpeg';
                 $config['max_size']             = 2048;
 				$this->load->library('upload', $config);
@@ -625,22 +630,31 @@ class Favoritewish extends CI_Controller
 					$profileImageData = array('upload_data' => $this->upload->data());
 				 } 
 				 $profile_photo = $profileImageData['upload_data']['file_name'];
+			}else{
+				$profile_photo = $userInfo['profile_photo'];
+			}
+			  
 			// Upload cover photo in folder
-			$config['upload_path']          = './assets/uploads/cover_photo/';
-			$config['allowed_types']        = 'gif|jpg|png|jpeg';
-			$config['max_size']             = 2048;
-			$this->load->library('upload', $config);
-			$this->upload->initialize($config);
-			 if ( ! $this->upload->do_upload('cover_photo'))
-			 {
-					 $error = array('error' => $this->upload->display_errors());
-					redirect('user-profile/edit',$this->session->set_flashdata("error_msg", $error));
-			 }
-			 else
-			 {
-				$coverImageData = array('upload_data' => $this->upload->data());
-			 } 
-			 $cover_photo = $coverImageData['upload_data']['file_name'];
+			if(!empty($_FILES['cover_photo']['name'])){
+				$config['upload_path']          = './assets/uploads/cover_photo/';
+				$config['allowed_types']        = 'gif|jpg|png|jpeg';
+				$config['max_size']             = 2048;
+				$this->load->library('upload', $config);
+				$this->upload->initialize($config);
+				 if ( ! $this->upload->do_upload('cover_photo'))
+				 {
+						 $error = array('error' => $this->upload->display_errors());
+						redirect('user-profile/edit',$this->session->set_flashdata("error_msg", $error));
+				 }
+				 else
+				 {
+					$coverImageData = array('upload_data' => $this->upload->data());
+				 } 
+				 $cover_photo = $coverImageData['upload_data']['file_name'];
+			}else{
+				$cover_photo = $userInfo['cover_photo'];
+			}
+			
 			$timeStamp = time();
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
@@ -1248,6 +1262,38 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/registry-list');
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+		}
+	}
+
+	public function getMessagelist($id){
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); // the user is not logged in, redirect them!
+		} else {
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
+			$data = array();
+			$get = $this->input->get();
+			$data['metaDescription'] = 'User Profile';
+			$data['metaKeywords'] = 'UUser Profile';
+			$data['title'] = "User Profile";
+			$data['breadcrumbs'] = array('User Profile' => '#');
+			$data['user_profile_id'] = $id;
+			$sessionArray = $this->session->userdata('ci_seesion_key');
+			$this->Favoritewish_Model->setUserID($id);
+			$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
+			$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
+			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id, $sessionArray['user_id']);
+			$data['is_friend'] = $isFriend;
+			//	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			if (!empty($id)) {
+				$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfoBtUser($id,$get);
+				// echo"<pre>"; var_dump($data['userInfo']);exit;
+			}
+			$data['categories'] = $this->Favoritewish_Model->getCategories();
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents', 'auth/message-list');
 			$this->load->view('front/template/template_footer');
 			$this->load->view('front/footer_main');
 		}

@@ -272,6 +272,7 @@ class Favoritewish_Model extends CI_Model {
 	//update user
     public function update() 
 	{
+      //  echo"<pre>";var_dump($this->_cover_photo); exit;
         $data = array(
             'first_name' => $this->_firstName,
             'last_name' => $this->_lastName,
@@ -291,7 +292,7 @@ class Favoritewish_Model extends CI_Model {
             'modified_date' => $this->_timeStamp,
         );
 
-      //  echo"<pre>";var_dump($data); exit;
+       // echo"<pre>";var_dump($data); exit;
         $this->db->where('id', $this->_userID);
         $msg = $this->db->update('users', $data);
         if ($msg == 1) {
