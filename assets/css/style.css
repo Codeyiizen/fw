@@ -278,6 +278,9 @@ h1, h2, h3, h4, h5, h6 {
   float: right;
 }
 
+.font-weight-semibold{
+  font-weight: 600;
+}
 
 figure{
   margin: 0px;
@@ -1650,3 +1653,4 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
     height: 100px;
     margin-top: 10px;
 }
+

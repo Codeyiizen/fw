@@ -42,7 +42,7 @@
 	<div class="container">
 		<?php $this->load->view('user/Common/mainHeaderFriends', array('data' => $user_profile_id, 'is_friend' => $is_friend)) ?>
 		<div class="profile-content-inner">
-			<div class="col-5">
+			<div class="form-group p-0 col-5">
 				<select class="form-control form-select form-select-lg mb-3 filter_by_cat_wish" data-id="<?php echo $user_profile_id;  ?>" aria-label="Default select example">
 					<option value="">Filter By Category</option>
 					<?php if (!empty($categories)) {
@@ -64,12 +64,13 @@
 						$getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type);
 						$subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
 					?>
-						<div class="col-lg-4">
-							<div class="card bg-gradient-<?php echo $i; ?> text-center border-0 mb-4">
+						<div class="col-lg-3 col-md-4">
+							<div class="card bg-gradient-<?php echo $i; ?> border-0 mb-4">
 								<div class="card-body">
-									<h5 class="mb-2"><strong>Wish - </strong>
+									<h5 class="mb-1"><strong>Wish - </strong>
 										<?php print_r($wishInfos->cat_name); ?></h5>
-									<ul class="list-unstyled mb-0">
+										<p class="mb-1 font-weight-semibold font-italic">Details - </p>
+										<ul class="list-unstyled font-italic text-capitalize mb-0">
 										<?php if (!empty($subCatName)) { ?>
 											<li>Type - <?php echo $subCatName; ?></li>
 										<?php } ?>
