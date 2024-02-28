@@ -69,7 +69,25 @@ class Favoritewish_Model extends CI_Model {
         $this->db->insert('contact', $data);
         return $this->db->insert_id();
     }
-
+   public function messageFrmSubmit($data){
+    $this->db->insert('messages', $data);
+   } 
+   
+   public function getMessage($id){
+        $this->db->select("*");
+        $this->db->from("messages");
+        $this->db->where('to_user',$id);
+        $query = $this->db->get();
+       return $query->result();
+   }
+   public function getUserMessage($userId){
+    $this->db->select("*");
+    $this->db->from("messages");
+    $this->db->where('from_user',$userId);
+    $query = $this->db->get();
+   return $query->result();
+   }
+    
 	// Declaration of a variables
     private $_userID;
 	private $_userName;
@@ -345,7 +363,6 @@ class Favoritewish_Model extends CI_Model {
             return FALSE;
         }
     }
-    
     public function getFriendDetails($id){ 
         $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.token','m.cover_photo','m.profile_photo'));
         $this->db->from('users as m');

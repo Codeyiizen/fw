@@ -1291,6 +1291,12 @@ class Favoritewish extends CI_Controller
 				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
+			$data['friend_id'] = $id;
+			if($id){
+			  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id);
+			}
+			$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
+			 // echo"<pre>"; var_dump($data['user_massage']);exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/message-list');
@@ -1298,4 +1304,28 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
+
+	public function messageFormSubmission(){
+        $id = $this->input->post('friend_id');
+        $sessionArray = $this->session->userdata('ci_seesion_key');
+		$this->form_validation->set_rules('message', 'message', 'trim|required');
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('errors', validation_errors());
+			header("Location: {$_SERVER['HTTP_REFERER']}");
+			//exit();
+
+		} else {
+
+			$data = array(
+				'from_user'	        =>	$sessionArray['user_id'],
+				'to_user'	        =>	$this->input->post('friend_id'),
+				'message'	        =>	$this->input->post('message'),
+				'seen'	            =>	'0',
+				'status'	        =>	'0',
+				'created_on'	    =>	date("Y-m-d H:i:s")
+			);
+		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
+		  redirect('user/friends/'.$id.'/massages');
+	}
+ }
 }
