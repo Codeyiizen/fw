@@ -97,7 +97,7 @@
             <div class="card chat-room">
                 <div class="row g-0">
                     <div class="col-12">
-                        <div class="py-2 px-4 border-bottom d-none d-lg-block">
+                        <div class="py-2 px-4 border-bottom d-none">
                             <div class="d-flex align-items-center py-1">
                                 <div class="position-relative">
                                     <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
@@ -132,7 +132,6 @@
 
                         <div class="position-relative">
                             <div class="chat-messages p-4">
-
                                 <div class="chat-message-right pb-4">
                                     <div>
                                         <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
@@ -141,7 +140,10 @@
                                     </div>
                                     <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
                                         <div class="font-weight-bold mb-1">You</div>
-                                        Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
+                                        <?php  
+                                           foreach ($form_massage as $object) {  ?>
+                                            <span><?php echo $object->message   ?></span> <br>
+                                       <?php } ?>
                                     </div>
                                 </div>
 
@@ -156,142 +158,17 @@
                                         Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
                                     </div>
                                 </div>
-
-                                <div class="chat-message-right mb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:35 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                        <div class="font-weight-bold mb-1">You</div>
-                                        Cum ea graeci tractatos.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-left pb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:36 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                        <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                        Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae
-                                        commodo lectus mauris et velit.
-                                        Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-left pb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:37 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                        <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                        Cras pulvinar, sapien id vehicula aliquet, diam velit elementum orci.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-right mb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:38 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                        <div class="font-weight-bold mb-1">You</div>
-                                        Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-left pb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:39 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                        <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                        Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-right mb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:40 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                        <div class="font-weight-bold mb-1">You</div>
-                                        Cum ea graeci tractatos.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-right mb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:41 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                        <div class="font-weight-bold mb-1">You</div>
-                                        Morbi finibus, lorem id placerat ullamcorper, nunc enim ultrices massa, id
-                                        dignissim metus urna eget purus.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-left pb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:42 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                        <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                        Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae
-                                        commodo lectus mauris et velit.
-                                        Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-right mb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:43 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                        <div class="font-weight-bold mb-1">You</div>
-                                        Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                    </div>
-                                </div>
-
-                                <div class="chat-message-left pb-4">
-                                    <div>
-                                        <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
-                                            class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-                                        <div class="text-muted small text-nowrap mt-2">2:44 am</div>
-                                    </div>
-                                    <div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-                                        <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                        Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
-
                         <div class="flex-grow-0 py-3 px-4 border-top">
+                        <?php echo form_open('favoritewish/messageFormSubmission'); ?>
                             <div class="input-group">
-                                <input type="text" class="form-control rounded-pill" placeholder="Type your message">
-                                <button type="button" class="theme-btn yellow-bg ml-3">Send</button>
+                                <input type="hidden" name="friend_id" value="<?php echo $friend_id;  ?>">
+                                <input type="text" class="form-control rounded-pill" name="message" placeholder="Type your message">
+                                <button type="submit" class="theme-btn yellow-bg ml-3">Send</button>
                             </div>
                         </div>
-
+                       <?php echo form_close(); ?>
                     </div>
                 </div>
             </div>
