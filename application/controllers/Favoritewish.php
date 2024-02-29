@@ -1293,7 +1293,9 @@ class Favoritewish extends CI_Controller
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['friend_id'] = $id;
 			if($id){
-			  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id);
+			  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id,$sessionArray['user_id']);
+			//   echo "<pre>";
+			//   var_dump($data['form_massage']);exit;
 			}
 			$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
 			 // echo"<pre>"; var_dump($data['user_massage']);exit;

@@ -73,10 +73,13 @@ class Favoritewish_Model extends CI_Model {
     $this->db->insert('messages', $data);
    } 
    
-   public function getMessage($id){
-        $this->db->select("*");
+   public function getMessage($id,$userId){
+        $this->db->select("messages.*,CONCAT(from.first_name,' ',from.last_name) as from_name,CONCAT(to.first_name,' ',to.last_name) as to_name,from.profile_photo as from_photo,to.profile_photo as to_photo");
         $this->db->from("messages");
-        $this->db->where('to_user',$id);
+        $this->db->join('users as from','from.id=messages.from_user','left');
+        $this->db->join('users as to','to.id=messages.to_user','left');
+        $this->db->where('(to_user='.$id." and from_user=".$userId.')');
+        $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
         $query = $this->db->get();
        return $query->result();
    }
