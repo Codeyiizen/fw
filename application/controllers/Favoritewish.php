@@ -1330,4 +1330,9 @@ class Favoritewish extends CI_Controller
 		  redirect('user/friends/'.$id.'/massages');
 	}
  }
+ 
+ public function test(){
+    $this->template->load('default_layout', 'contents', 'email/contact_form_template');
+ }
+
 }

@@ -95,3 +95,16 @@ if (!function_exists('checkMainMenuActive')) {
 		}
 	}
 }
+
+if (!function_exists('getUserProfilePhoto')) {
+	// This function will return a random
+	// string of specified length
+	function getUserProfilePhoto($photo="")
+	{
+		if(!empty($photo) && file_exists(FCPATH . 'assets/uploads/profile_photo/' . $photo) && !empty($photo)){
+			return base_url() . 'assets/uploads/profile_photo/' . $photo;
+		} else {
+			return base_url() . 'assets/images/site-image/user-icon.svg';
+		}
+	}
+}
