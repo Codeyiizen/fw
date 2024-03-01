@@ -83,23 +83,23 @@ a[x-apple-data-detectors] {
                       <td align="left" style="padding: 0; margin: 0">
                       <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: separate;border-spacing: 0px;border-radius: 0;padding: 0;">
                       <tbody><tr>
-                      <td align="left" style="padding: 0; margin: 0; padding-top: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; border-bottom: 1px solid #ccc"><strong>Name:</strong> <?php echo $name; ?></p></td>
+                      <td align="left" style="padding: 0; margin: 0; padding-top: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; border-bottom: 1px solid #ccc"><strong>Name:</strong> <?php echo"Mahendra"; ?></p></td>
                       </tr>
                       <tr>
-                      <td align="left" style="padding: 0; margin: 0; padding-bottom: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; border-bottom: 1px solid #ccc"><strong>Email:</strong> <?php echo $email; ?></p></td>
+                      <td align="left" style="padding: 0; margin: 0; padding-bottom: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; border-bottom: 1px solid #ccc"><strong>Email:</strong> <?php echo"mahendrakumar19u@gmail.com"; ?></p></td>
                       </tr>
                                   <tr>
-                      <td align="left" style="padding: 0; margin: 0; padding-bottom: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; border-bottom: 1px solid #ccc"><strong>Phone:</strong> <?php echo $phone; ?></p></td>
+                      <td align="left" style="padding: 0; margin: 0; padding-bottom: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; border-bottom: 1px solid #ccc"><strong>Phone:</strong> <?php echo"9559901210" ?></p></td>
                       </tr>                      
                       <tr>
-                      <td align="left" style="padding: 0; margin: 0; padding-bottom: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; border-bottom: 1px solid #ccc"><strong>Subject:</strong> <?php echo $subject; ?></p></td>
+                      <td align="left" style="padding: 0; margin: 0; padding-bottom: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; border-bottom: 1px solid #ccc"><strong>Subject:</strong> <?php echo"test"; ?></p></td>
                       </tr>
-                      <?php
-                      if($message) { ?>
+                      <!-- <?php
+                      if($message) { ?> -->
                       <tr>
-                      <td align="left" style="padding: 0; margin: 0; padding-bottom: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px"><strong>Message:</strong> <?php echo $message; ?></p></td>
+                      <td align="left" style="padding: 0; margin: 0; padding-bottom: 0px"><p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px"><strong>Message:</strong> <?php echo"test"; ?></p></td>
                       </tr>
-                      <?php } ?>
+                      <!-- <?php } ?> -->
                       </tbody></table></td>
                       </tr>
                    </tbody></table></td>
@@ -122,13 +122,13 @@ a[x-apple-data-detectors] {
            </tbody></table></td>
          </tr>
        </tbody></table>
-       <table cellpadding="0" cellspacing="0" class="es-footer" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
+       <table cellpadding="0" cellspacing="0" class="es-content" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
          <tbody><tr>
           <td align="center" style="padding:0;Margin:0">
            <table class="es-footer-body" align="center" cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width: 600px;">
              <tbody><tr>
               <td align="left" bgcolor="#c11e1a" style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px;background-color:#c11e1a">
-               <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+               <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px !important;width:100%" >
                  <tbody><tr>
                   <td align="left" style="padding:0;Margin:0;width:600px">
                    <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
