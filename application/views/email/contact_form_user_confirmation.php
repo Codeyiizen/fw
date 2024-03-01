@@ -5,7 +5,7 @@
     <meta name="x-apple-disable-message-reformatting">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="telephone=no" name="format-detection">
-    <title>Contact Form Submission ddddddd</title><!--[if (mso 16)]>
+    <title>Contact Form Submission</title><!--[if (mso 16)]>
       <style type="text/css">
       a {text-decoration: none;}
       </style>
@@ -100,9 +100,9 @@
          <table cellpadding="0" cellspacing="0" class="es-footer" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
          <tbody><tr>
           <td align="center" style="padding:0;Margin:0">
-           <table class="es-footer-body" align="center" cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent; width:100%">
+           <table class="es-footer-body" align="center" cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;">
              <tbody><tr>
-              <td align="left" bgcolor="#c11e1a" style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px;background-color:#c11e1a">
+              <td align="left" bgcolor="#c11e1a" style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:22px;background-color:#c11e1a">
                <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                  <tbody><tr>
                   <td align="left" style="padding:0;Margin:0;width:600px">

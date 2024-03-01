@@ -1331,8 +1331,5 @@ class Favoritewish extends CI_Controller
 	}
  }
  
- public function test(){
-    $this->template->load('default_layout', 'contents', 'email/contact_form_template');
- }
 
 }
