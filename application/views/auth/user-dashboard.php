@@ -143,7 +143,7 @@
 												<li>Color - <?php print_r($wishInfos->color); ?></li>
 												<li>Size - <?php print_r($wishInfos->size); ?></li>
 												<li>Style - <?php print_r($wishInfos->style); ?></li>
-												<li>Created on - <?php print_r(date("D m M Y",strtotime($wishInfos->created_on))); ?></li>
+												<li>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></li>
 											</ul>
 										</div>
 									</div>

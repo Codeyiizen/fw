@@ -334,7 +334,7 @@ class Favoritewish extends CI_Controller
 				$verificationCode = urldecode(base64_decode($this->input->get('usid')));
 				$this->Favoritewish_Model->setVerificationCode($verificationCode);
 				$this->Favoritewish_Model->activate();
-				$this->session->set_flashdata('success', 'Thanks for signing up. Please verify your email which we already sent to your mail');
+				$this->session->set_flashdata('success', 'Your email verified successfully!');
 				redirect('sign-in');
 			}
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('login'); // Calling model function defined in Favoritewish_Model.php
