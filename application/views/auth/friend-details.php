@@ -17,7 +17,7 @@
 							<table class="table table-sm">
 								<tr>
 									<th>Full Name</th>
-									<td>Rahul Up</td>
+									<td><?php print $userInfo['full_name']; ?></td>
 								</tr>
 								<?php if (!empty($userInfo['birthday']) && !empty($is_friend)) { ?> 
 								<tr>

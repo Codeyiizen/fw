@@ -67,7 +67,7 @@
                         <div class="col-lg-3 col-md-4">
                             <div class="card bg-gradient-<?php echo $i; ?> border-0 mb-4">
                                 <div class="card-body">
-                                    <h5 class="mb-1"><strong>Registry - </strong>
+                                    <h5 class="mb-1"><strong><?php print_r($wishInfos->occasion); ?> - </strong>
                                         <?php print_r($wishInfos->cat_name); ?></h5>
 										<p class="mb-1 font-weight-semibold font-italic">Details - </p>
 										<ul class="list-unstyled font-italic text-capitalize mb-0">

@@ -30,7 +30,12 @@
             <div class="col-md-6">
                 <div class="update-profile text-right">
                     <!--<a href="#" class="theme-btn yellow-bg">Edit Profile</a>-->
-                    <a href="<?php echo base_url(); ?>user-profile" class="theme-btn outline-btn">View Profile</a>
+                    <?php $uri = uri_string(); $arrCheck = ['user-profile','user-profile/edit','setting']; ?>
+                    <?php if(in_array($uri,$arrCheck)){ ?>
+                        <a href="<?php echo base_url(); ?>user-dashboard" class="theme-btn outline-btn">Dashboard</a>
+                    <?php } else { ?>
+                        <a href="<?php echo base_url(); ?>user-profile" class="theme-btn outline-btn">View Profile</a>
+                    <?php } ?>
                     <a href="<?php echo base_url(); ?>favoritewish/logout" class="theme-btn dark-btn">Logout</a>
                 </div>
             </div>

@@ -24,7 +24,11 @@
 									<?php echo validation_errors(); ?>
 								</div>
 							<?php } ?>
-							
+							<?php if (!empty($this->session->flashdata('success'))) { ?>
+								<div class="alert alert-success">
+									<?php echo $this->session->flashdata('success') ?>
+								</div>
+							<?php } ?>
 							<?php if (!empty($this->input->get('msg')) && $this->input->get('msg') == 1) { ?>
 								<div class="alert alert-danger">
 									Please Enter Your Valid Information.

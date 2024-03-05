@@ -14,7 +14,7 @@
                             <h2>Overview</h2>
                             <?php print $userInfo['user_bio']; ?>
 							<ul class="list-unstyled">
-								<?php if(!empty($userInfo['email'])){ ?>
+								<!-- <?php if(!empty($userInfo['email'])){ ?>
 									<li><span>Email Address</span> <?php print $userInfo['email']; ?></li> 
 								<?php } ?>
 								<?php if(!empty($userInfo['contact_no'])) { ?>
@@ -25,7 +25,13 @@
 								<?php } ?>
 								<?php if(!empty($userInfo['company'])) { ?> 
 									<li><span>Designation</span> <?php print $userInfo['company']; ?></li> 
-								<?php } ?>
+								<?php } ?> -->
+								<?php if(!empty($userInfo['full_name'])) { ?> 
+									<li><span>Full Name</span> <?php print $userInfo['full_name']; ?></li> 
+								<?php } ?> 
+								<?php if(!empty($userInfo['birthday'])) { ?> 
+									<li><span>Date of Birth</span> <?php print $userInfo['birthday']; ?></li> 
+								<?php } ?> 
 								<?php if(!empty($userInfo['address'] && $userInfo['city'] &&  $userInfo['state'])){ ?>
 									<li><span>Address</span> <?php print $userInfo['address']; ?>, <?php print $userInfo['city']; ?>,
 									<?php print $userInfo['state']; ?>, <?php print $userInfo['zip']; ?></li> 
@@ -34,7 +40,7 @@
 									<li><span>Favorite Country</span><?php print $userInfo['favorite_country']; ?></li> 
 								<?php } ?>
 								<?php if(!empty($userInfo['favoripublic_outfit_wear'])){ ?> 
-									<li><span>Favoripublic Outfit Wear</span><?php print $userInfo['favoripublic_outfit_wear']; ?></li> 
+									<li><span>Favorite Public Outfit Wear</span><?php print $userInfo['favoripublic_outfit_wear']; ?></li> 
 								<?php } ?>
 								<?php if(!empty($userInfo['favorite_sports_teams'])) {  ?> 
 									<li><span>Favorite Sports Teams</span> <?php print $userInfo['favorite_sports_teams']; ?></li> 

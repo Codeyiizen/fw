@@ -87,9 +87,10 @@
             </div>
         </div>
         <div class="profile-content-inner">
-            <div class="card chat-room">
+            <div class="">
                 <div class="row g-0">
-                    <div class="col-12">
+                    <div class="col-2 "></div>
+                    <div class="col-8 card chat-room">
                         <div class="py-2 px-4 border-bottom d-none">
                             <div class="d-flex align-items-center py-1">
                                 <div class="position-relative">
@@ -155,6 +156,7 @@
                         </div>
                         <?php echo form_close(); ?>
                     </div>
+                    <div class="col-2 "></div>
                 </div>
             </div>
         </div>

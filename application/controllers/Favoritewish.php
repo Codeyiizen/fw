@@ -235,7 +235,7 @@ class Favoritewish extends CI_Controller
 	{
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]',array('is_unique'=>'This email has been already used!'));
 		$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|regex_match[/^[0-9]{10}$/]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
 		$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
@@ -317,7 +317,7 @@ class Favoritewish extends CI_Controller
 				$chkStatus = $this->email->send();
 
 				if ($chkStatus === TRUE) {
-					$this->session->set_flashdata('message', 'Your form was successfully submitted!');
+					$this->session->set_flashdata('success', 'Thanks for signing up. Please verify your email which we already sent to your mail');
 					redirect('sign-in');
 				} else {
 					echo 'Error';
@@ -334,6 +334,8 @@ class Favoritewish extends CI_Controller
 				$verificationCode = urldecode(base64_decode($this->input->get('usid')));
 				$this->Favoritewish_Model->setVerificationCode($verificationCode);
 				$this->Favoritewish_Model->activate();
+				$this->session->set_flashdata('success', 'Thanks for signing up. Please verify your email which we already sent to your mail');
+				redirect('sign-in');
 			}
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('login'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
@@ -676,7 +678,8 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
 			$status = $this->Favoritewish_Model->update();
 			if ($status == TRUE) {
-				redirect('user-dashboard');
+				$this->session->set_flashdata('success', 'Your profile updated successfully!');
+				redirect('user-profile/edit');
 			}
 		}
 	}

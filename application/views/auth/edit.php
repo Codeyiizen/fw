@@ -15,6 +15,11 @@
                      <?php echo ($_SESSION['error_msg']['error']); ?>
                  </div>
                 <?php  } ?>
+                <?php if (!empty($this->session->flashdata('success'))) { ?>
+								<div class="alert alert-success">
+									<?php echo $this->session->flashdata('success') ?>
+								</div>
+							<?php } ?>
                 <div class="myaccountForm-inner">
                     <div class="card bg-light border-0 p-4">
                         <h2>Update Your Profile</h2>

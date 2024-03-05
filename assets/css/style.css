@@ -444,6 +444,9 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
         max-width: 1366px;
     }
 }
+.cancelFriend:hover ,.removeFriend:hover{
+    color: #fff!important;
+}
 
 
 
