@@ -123,14 +123,14 @@
 							<?php
 							$i = 0;
 							foreach ($wishInfo as $wishInfos) {
-								$i = $i + 1;
+							//	$i = $i + 1;
 								$CI = &get_instance();
 								$CI->load->model('Favoritewish_Model');
 								$getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type);
 								$subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
 							?>
 								<div class="col-lg-6">
-									<div class="card bg-gradient-<?php echo $i; ?> border-0 mb-4">
+									<div class="card bg-gradient-1 border-0 mb-4">
 										<div class="card-body">
 											<h5 class="mb-1"><strong>Wish - </strong>
 												<?php print_r($wishInfos->cat_name); ?></h5>
