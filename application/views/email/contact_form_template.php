@@ -17,7 +17,7 @@
     </o:OfficeDocumentSettings>
 </xml>
 <![endif]-->
-  <style type="text/css">
+  <style type="text/css">  
 #outlook a {
     padding:0;
 }
@@ -69,12 +69,10 @@ a[x-apple-data-detectors] {
                    <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tbody>
                       <tr>
-                      <!-- <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px"><img src="https://srnehd.stripocdn.email/content/guids/CABINET_a3419dfdb9d147012c63c5a8bf4c8ee027a6190caca3b13a7d7ac145ba6db69a/images/logo.png" alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="180"></td> -->
-                      <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px"><img src="https://srnehd.stripocdn.email/content/guids/CABINET_f3fc38cf551f5b08f70308b6252772b8/images/96671618383886503.png" alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="100"></td>
+                      <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px"><img src="https://srnehd.stripocdn.email/content/guids/CABINET_a3419dfdb9d147012c63c5a8bf4c8ee027a6190caca3b13a7d7ac145ba6db69a/images/logo.png" alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="180"></td>
                      </tr>
                      <tr>
-                      <!-- <td align="center" class="es-m-txt-c" style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 30px;"><h1 style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47;">New contact form submission!</h1></td> -->
-                      <td align="center" class="es-m-txt-c" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px"><h1 style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:36px;font-style:normal;font-weight:800;color:#C11E1A;">New contact form submission!</h1></td>
+                      <td align="center" class="es-m-txt-c" style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 30px;"><h1 style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47;">New contact form submission!</h1></td>
                      </tr>
                      <tr>
                       <td align="left" style="padding:0;Margin:0;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size:16px;margin-bottom: 20px;">Hello Team! <br><br>You've a new inquiry. Please find the details below</p></td>
@@ -122,39 +120,41 @@ a[x-apple-data-detectors] {
            </tbody></table></td>
          </tr>
        </tbody></table>
-       <table cellpadding="0" cellspacing="0" class="es-footer" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top !important;width:100%">
+       <table cellpadding="0" cellspacing="0" class="es-footer" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
          <tbody><tr>
           <td align="center" style="padding:0;Margin:0">
-           <table class="es-footer-body" align="center" cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width: 640px;">
+           <table class="es-footer-body" align="center" cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:640px">
              <tbody><tr>
-              <td align="left" bgcolor="#c11e1a" style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px;background-color:#c11e1a">
-               <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px !important;width:100%" >
+              <td align="left" bgcolor="#c11e1a" style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px;background-color: #062E47;">
+               <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                  <tbody><tr>
                   <td align="left" style="padding:0;Margin:0;width:600px">
-                   <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                   <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tbody><tr>
-                      <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px;font-size:0px">
-                       <table cellpadding="0" cellspacing="0" class="es-table-not-adapt es-social" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                      <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-bottom: 1.5rem;font-size:0px;">
+                       <table cellpadding="0" cellspacing="0" class="es-table-not-adapt es-social" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                          <tbody><tr>
-                         <!-- <td align="center" valign="top" style="padding:0;Margin:0;padding-right:40px"><img title="IG,X,Threads" src="http://localhost/fw/assets/images/x-social-media-round-icon.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td> -->
-                         <td align="center" valign="top" style="padding:0;Margin:0;padding-right:40px"><a href="https://twitter.com/favoritewishltd"><img title="IG,X,Threads" src="<?php echo base_url(); ?>assets/images/x-social-media-round-icon.png" alt="" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
-                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:40px"><a href="https://twitter.com/i/flow/login"><img title="Twitter" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/logo-black/twitter-logo-black.png" alt="Tw" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
-                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:40px"><a href="https://www.instagram.com/"><img title="Instagram" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/logo-black/instagram-logo-black.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a> </td>
-                          <!-- <td align="center" valign="top" style="padding:0;Margin:0"><a href="https://www.threads.net/@favoritewishltd"><img title="Threads" src="http://localhost/fw/assets/images/threads-app-icon.png" alt="Yt" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a> </td> -->
-                          <td align="center" valign="top" style="padding:0;Margin:0"><a href="https://www.threads.net/@favoritewishltd"><img title="Threads" src="<?php echo base_url(); ?>assets/images/threads-app-icon.png" alt="Yt" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a> </td>
+                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Facebook" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/facebook-rounded-white.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Instagram" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/instagram-rounded-white.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Youtube" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/youtube-rounded-white.png" alt="Yt" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                          <td align="center" valign="top" width="null" style="padding:0;Margin:0"><img title="X.com" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/x-rounded-white.png" alt="X" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
                          </tr>
                        </tbody></table></td>
                      </tr>
                      <tr>
-                      <td align="center" style="padding:0;Margin:0;padding-bottom:35px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:18px;color:#f4f2f2;font-size:12px;margin-bottom:10px;">Favorite Wish &copy; 2023 All Right Reserved.</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:18px;color:#fff;font-size:12px">1051 S De Anza Blvd, San Jose, California, 95129, United States</p></td>
+                      <td align="center" style="padding:0;Margin:0;padding-bottom: 2rem;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">FavoriteWish &copy; 2023 All Right Reserved.</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">1051 S De Anza Blvd, San Jose, California, 95129, United States</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;"><a href="mailto:info@favoritewish.com" style="
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 0.6px;
+">info@favoritewish.com</a></p></td>
                      </tr>
                      <tr>
                       <td style="padding:0;Margin:0">
-                       <table cellpadding="0" cellspacing="0" width="100%" class="es-menu" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                       <table cellpadding="0" cellspacing="0" width="100%" class="es-menu" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                          <tbody><tr class="links">
-                          <td align="center" valign="top" width="33.33%" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0"><a target="_blank" href="" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size:12px">Visit Us </a></td>
-                          <td align="center" valign="top" width="33.33%" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff"><a target="_blank" href="" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size:12px">Privacy Policy</a></td>
-                          <td align="center" valign="top" width="33.33%" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff"><a target="_blank" href="" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size:12px">Terms of Use</a></td>
+                          <td align="center" valign="top" width="33.33%" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0"><a target="_blank" href="" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Visit Us </a></td>
+                          <td align="center" valign="top" width="33.33%" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff"><a target="_blank" href="" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Privacy Policy</a></td>
+                          <td align="center" valign="top" width="33.33%" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff"><a target="_blank" href="" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Terms and Conditions</a></td>
                          </tr>
                        </tbody></table></td>
                      </tr>
