@@ -138,7 +138,7 @@ a[x-apple-data-detectors] {
                           <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Instagram" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/instagram-rounded-white.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
                           <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Youtube" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/youtube-rounded-white.png" alt="Yt" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
                           <td align="center" valign="top" width="null" style="padding:0;Margin:0"><img title="X.com" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/x-rounded-white.png" alt="X" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
-                         </tr>
+                         </tr>  
                        </tbody></table></td>
                      </tr>
                      <tr>
