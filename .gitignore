@@ -40,3 +40,4 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 .htaccess
+application/views/user/.DS_Store
