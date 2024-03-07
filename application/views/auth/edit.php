@@ -22,7 +22,41 @@
 							<?php } ?>
                 <div class="myaccountForm-inner">
                     <div class="card bg-light border-0 p-4">
-                        <h2>Update Your Profile</h2>
+					<span id="success_message"></span>
+				    <span id="error_message"></span>
+					<div class="profile-content-inner">
+						    <div class="create-wish border-0 p-0 mb-3">							
+                                <h3 class="mb-0">Update Your Profile</h2>
+								<a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#removeAccount">Delete Account</a>
+							</div>
+							<p>Are you sure you want to delete your account? This is an irreversible change, and once your account is deleted, the data can not be recovered.</p>
+								<!-- The Modal -->
+								<div class="modal" id="removeAccount">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Remove your account</h4>
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+											</div>
+
+											<!-- Modal body -->
+											<div class="modal-body">
+												<p>
+												   Are you sure you want to delete your account? This is an irreversible change, and once your account is deleted, the data can not be recovered.
+												</p>
+											</div>
+
+											<!-- Modal footer -->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-success remove_account" data-user-id="account" data-dismiss="modal">Yes</button>
+											</div>
+									</div>
+								</div>
+							</div>
+							</div>
                         <?php if (validation_errors()) { ?>
                         <div class="alert alert-danger">
                             <?php echo validation_errors(); ?>
@@ -174,6 +208,7 @@
                                     <label for="Company">Update profile photo</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="profilePhoto" name="profile_photo" onchange="profilephoto(event,'profilePhotos');">
+										<small id="file-upload-help" class="form-text text-muted">File recomended size 250x250px</small>
                                         <label class="custom-file-label" for="profilePhoto">Choose file</label>
                                     </div>
                                     <div class="profile-banner">
@@ -192,6 +227,7 @@
                                     <label for="Company">Update cover photo</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="coverPhoto" name="cover_photo" onchange="profilephoto(event,'coverphotoview');">
+										<small id="file-upload-help" class="form-text text-muted">File recomended size 1232x234px</small>
                                         <label class="custom-file-label" for="coverPhoto">Choose file</label>
                                     </div>
                                     <div class="profile-banner">
