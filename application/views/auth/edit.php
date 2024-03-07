@@ -29,8 +29,7 @@
                                 <h3 class="mb-0">Update Your Profile</h2>
 								<a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#removeAccount">Delete Account</a>
 							</div>
-							<p>Are you sure you want to delete your account? This is an irreversible change, and once your account is deleted, the data can not be recovered.</p>
-								<!-- The Modal -->
+							<!-- The Modal -->
 								<div class="modal" id="removeAccount">
 									<div class="modal-dialog">
 										<div class="modal-content">

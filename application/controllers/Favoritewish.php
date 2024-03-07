@@ -1393,7 +1393,7 @@ class Favoritewish extends CI_Controller
 					$arrCheckFromfriend = array('from_friend'=> $user['user_id']);
 					$deleteUser = $this->Favoritewish_Model->deleteUser($arrCheck);
 					$deleteToFriends = $this->Favoritewish_Model->deletefriendUser($arrCheckTofriend);
-					$deleteFromFriends = $this->Favoritewish_Model->deletefriendUser($arrCheckTofriend);
+					$deleteFromFriends = $this->Favoritewish_Model->deletefriendUser($arrCheckFromfriend);
 					$this->session->unset_userdata('ci_seesion_key');
 					$this->session->unset_userdata('ci_session_key_generate');
 					$this->session->sess_destroy();
