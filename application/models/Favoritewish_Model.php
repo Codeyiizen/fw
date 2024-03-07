@@ -581,9 +581,10 @@ class Favoritewish_Model extends CI_Model {
     public function getUserFriendsList($params){
         $search = (!empty($params['q']))?$params['q']:'';
         
-        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
+        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend,user_family_member.family_member_id');
         $this->db->from('friends');
         $this->db->join('users', '(friends.from_friend = users.id OR friends.to_friend = users.id) AND friends.status=1');
+        $this->db->join('user_family_member', '(user_family_member.to_user_id = friends.from_friend )','left');
         if(!empty($search)){
             $condition = "CONCAT(users.first_name,users.last_name,users.user_name,users.email)" . "LIKE '%" . $search . "%'";
             $this->db->where($condition);
@@ -687,5 +688,34 @@ class Favoritewish_Model extends CI_Model {
         }
         $query = $this->db->get();
        return $query->result();
+    }
+    public function getObjFamilyMemberDetails() {
+        $this->db->select('*');
+        $this->db->from('family_member');
+        $this->db->where('status', 1);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getObjUserFamilyChk($fromUserId,$toUserId){
+        $this->db->select('*');
+        $this->db->from('user_family_member');
+        $this->db->where('from_user_id', $fromUserId);
+        $this->db->where('to_user_id', $toUserId);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+    public function getObjFamilyDetailsByUserId($loginUserId){
+        $this->db->select('user_family_member.*,users.id as userId,CONCAT(users.first_name, " ", users.last_name) as full_name, users.first_name, users.last_name,family_member.fm_name');
+        $this->db->from('user_family_member');
+        $this->db->join('users','users.id=user_family_member.to_user_id');
+        $this->db->join('family_member','family_member.id=user_family_member.family_member_id');
+        $this->db->where('from_user_id',$loginUserId);
+        $this->db->order_by("user_family_member.to_user_id", "desc");
+        $query = $this->db->get();
+        return $query->result();
     }
 }

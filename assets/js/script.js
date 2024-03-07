@@ -233,7 +233,7 @@
 		}
 		
 	})
-
+   
 	$("body").on("change",".filter_by_cat_registry_list",function(){ 
 		var dataId = $(this).attr('data-id'); 
 		if($(this).val()!==""){
@@ -243,6 +243,36 @@
 		}
 		
 	})
+	
+	$("body").on("change",".select-family",function(){
+		var famliyId = $(this).val();
+		//if(famliyId!=''){
+			var toUserId = $(this).attr('to-user-id');
+			var params = { "id": famliyId,to_user_id:toUserId}; 
+			//console.log(params);return false;
+			$.ajax({
+				url: BASE_URL + "/user/family/request",
+				type: "post",
+				data: JSON.stringify(params),
+				contentType: "application/json; charset=utf-8",
+				success: function (response) {
+					var res = JSON.parse(response);
+					console.log(res);
+					if (res?.code == 200) {
+						//window.location.reload();
+						$('#success_message').html(res?.success);
+					}else{
+						$('#error_message').html(res?.error);
+					}
+					setTimeout(function () {
+						 $('#success_message').html('');
+						 $('#error_message').html('');
+					 }, 1000); 
+				}
+			});
+		//}
+		
+	});
 	// Progress Bar
 
 

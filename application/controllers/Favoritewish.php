@@ -417,7 +417,8 @@ class Favoritewish extends CI_Controller
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo($get);
 			$data['get'] = $get;
-	    //	echo"<pre>"; var_dump($data['wishInfo']); exit;
+			$data['getObjFamilyDetails'] = $this->Favoritewish_Model->getObjFamilyDetailsByUserId($sessionArray['user_id']);
+	    	//echo"<pre>"; var_dump($data['getObjFamilyDetails']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/user-dashboard');
@@ -1012,8 +1013,8 @@ class Favoritewish extends CI_Controller
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			$data['userData'] = $this->Favoritewish_Model->getUserFriendsList($get);
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
-
-
+            $data['getObjFamilyMember'] = $this->Favoritewish_Model->getObjFamilyMemberDetails();
+			//echo "<pre>";var_dump($data['userData']);exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'user/friends');
@@ -1332,6 +1333,50 @@ class Favoritewish extends CI_Controller
 		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
 		  redirect('user/friends/'.$id.'/massages');
 	}
+ }
+ public function familyRequest(){
+	   $user = getUser();
+	   //echo "<pre>";var_dump($user);exit;
+	   $stream = $this->security->xss_clean($this->input->raw_input_stream);
+	   if (!empty($stream)) {
+		   $objPost = json_decode(trim($stream), true);
+		   if (!empty($objPost['id'])) {
+				$getObjUserFamilyChk = $this->Favoritewish_Model->getObjUserFamilyChk($user['user_id'],$objPost['to_user_id']);
+				if(!empty($getObjUserFamilyChk)){
+					$arrCheck = array('from_user_id'=> $user['user_id'],
+					'to_user_id'=> $objPost['to_user_id']);
+					$this->db->where($arrCheck);
+					$this->db->delete('user_family_member');
+				}
+				$array = array(
+						'from_user_id'=> $user['user_id'],
+						'to_user_id'=> $objPost['to_user_id'],
+						'family_member_id'=> $objPost['id'],
+						'created_on'=> Date('Y-m-d H:i:s')
+					);
+				  if ($this->db->insert('user_family_member', $array)) {
+					$array = array('code'=>200,
+						           'success' => '<div class="alert alert-warning">Family Member Added Successfully</div>'
+					);
+				   } else {
+					$array = array('code'=>201,
+						           'error' => '<div class="alert alert-danger">Something wents wrong!</div>'
+					);
+					   echo returnSuccessResponse($arrUpdate, "Something went wrong please try after some time");
+				   } 
+		   }else{
+				$array = array(
+					'code'=>201,
+					'error' => '<div class="alert alert-danger">Choose Family First!</div>'
+				);
+		   }
+	   } else {
+		$array = array(
+			'code'=>201,
+			'error' => '<div class="alert alert-danger">Invalid Data!</div>'
+		);
+	   }
+	   echo json_encode($array);
  }
  
 
