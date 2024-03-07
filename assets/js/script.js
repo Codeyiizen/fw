@@ -274,7 +274,8 @@
 		
 	});
 	$("body").on("click",".remove_account",function(){
-		$(this).html('Loading');
+		var varThis = $(this);
+		varThis.html('Loading...');
 		var user_id = $(this).attr('data-user-id');
 		if(user_id=='account'){
 			var params = { "user_id": user_id}; 
@@ -287,13 +288,17 @@
 					var res = JSON.parse(response);
 					console.log(res);
 					if (res?.code == 200) {
-						$(this).html('');
-			            $(this).html('Yes');
+						varThis.html('');
+			            varThis.html('Yes');
 						$('#success_message').html(res?.success);
-						window.location.replace(BASE_URL+'sign-in')
+						setTimeout(function () {
+						 $('#success_message').html('');
+						 window.location.replace(BASE_URL+'sign-in');
+					 }, 1000); 
+						//window.location.replace(BASE_URL+'sign-in')
 					}else{
-						$(this).html('');
-			            $(this).html('Yes');
+						varThis.html('');
+			            varThis.html('Yes');
 						$('#error_message').html(res?.error);
 					}
 					setTimeout(function () {
@@ -303,8 +308,8 @@
 				}
 			});
 		}else{
-			$(this).html('');
-			$(this).html('Yes');
+			varThis.html('');
+			varThis.html('Yes');
 			setTimeout(function () {
 				 $('#error_message').html('Something wents wrong!');
 			 }, 1000); 
