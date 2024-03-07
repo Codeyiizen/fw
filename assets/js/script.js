@@ -246,7 +246,7 @@
 	
 	$("body").on("change",".select-family",function(){
 		var famliyId = $(this).val();
-		//if(famliyId!=''){
+		if(famliyId!=''){
 			var toUserId = $(this).attr('to-user-id');
 			var params = { "id": famliyId,to_user_id:toUserId}; 
 			//console.log(params);return false;
@@ -270,7 +270,45 @@
 					 }, 1000); 
 				}
 			});
-		//}
+		}
+		
+	});
+	$("body").on("click",".remove_account",function(){
+		$(this).html('Loading');
+		var user_id = $(this).attr('data-user-id');
+		if(user_id=='account'){
+			var params = { "user_id": user_id}; 
+			$.ajax({
+				url: BASE_URL + "/user/account/remove",
+				type: "post",
+				data: JSON.stringify(params),
+				contentType: "application/json; charset=utf-8",
+				success: function (response) {
+					var res = JSON.parse(response);
+					console.log(res);
+					if (res?.code == 200) {
+						$(this).html('');
+			            $(this).html('Yes');
+						$('#success_message').html(res?.success);
+						window.location.replace(BASE_URL+'sign-in')
+					}else{
+						$(this).html('');
+			            $(this).html('Yes');
+						$('#error_message').html(res?.error);
+					}
+					setTimeout(function () {
+						 $('#success_message').html('');
+						 $('#error_message').html('');
+					 }, 1000); 
+				}
+			});
+		}else{
+			$(this).html('');
+			$(this).html('Yes');
+			setTimeout(function () {
+				 $('#error_message').html('Something wents wrong!');
+			 }, 1000); 
+		}
 		
 	});
 	// Progress Bar

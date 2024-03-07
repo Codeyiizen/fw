@@ -718,4 +718,23 @@ class Favoritewish_Model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    public function getObjgetObjUserDetails($loginid){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id', $loginid);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+    public function deleteUser($arrCheck){
+        $this->db->where($arrCheck);
+        $this->db->delete('users');
+    }
+    public function deletefriendUser($arrCheck){
+        $this->db->where($arrCheck);
+        $this->db->delete('friends');
+    }
 }

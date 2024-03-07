@@ -1378,6 +1378,46 @@ class Favoritewish extends CI_Controller
 	   }
 	   echo json_encode($array);
  }
+ public function userAccountRemove(){
+	   $user = getUser();
+	   //echo "<pre>";var_dump($user);exit;
+	   $stream = $this->security->xss_clean($this->input->raw_input_stream);
+	   if (!empty($stream)) {
+		   $objPost = json_decode(trim($stream), true);
+		   //echo "<pre>";var_dump($objPost);exit;
+		   if (!empty($objPost['user_id']) &&($objPost['user_id'] == 'account')) {
+				$getObjUserChk = $this->Favoritewish_Model->getObjgetObjUserDetails($user['user_id']);
+				if(!empty($getObjUserChk)){
+					$arrCheck = array('id'=> $user['user_id']);
+					$arrCheckTofriend = array('to_friend'=> $user['user_id']);
+					$arrCheckFromfriend = array('from_friend'=> $user['user_id']);
+					$deleteUser = $this->Favoritewish_Model->deleteUser($arrCheck);
+					$deleteToFriends = $this->Favoritewish_Model->deletefriendUser($arrCheckTofriend);
+					$deleteFromFriends = $this->Favoritewish_Model->deletefriendUser($arrCheckTofriend);
+					$this->session->unset_userdata('ci_seesion_key');
+					$this->session->unset_userdata('ci_session_key_generate');
+					$this->session->sess_destroy();
+					$this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
+					$this->output->set_header("Pragma: no-cache");
+				   }
+				   $array = array('code'=>200,
+						         'success' => '<div class="alert alert-warning">User Remove Successfully</div>'
+					);
+				   
+		   }else{
+				$array = array(
+					'code'=>201,
+					'error' => '<div class="alert alert-danger">Invalid Data!</div>'
+				);
+		   }
+	   } else {
+		$array = array(
+			'code'=>201,
+			'error' => '<div class="alert alert-danger">Invalid Data!</div>'
+		);
+	   }
+	   echo json_encode($array);
+ }
  
 
 }
