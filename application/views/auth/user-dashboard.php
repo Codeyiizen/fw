@@ -11,18 +11,20 @@
 						<h3>Family</h3>
 						<div class="friends-list mb-4">
 							<?php
-							if (!empty($frienddetails)) {
-								foreach ($frienddetails as $friend) { ?>
+							if (!empty($getObjFamilyDetails)) {
+								foreach ($getObjFamilyDetails as $friend) { ?>
 									<div class="media align-items-center">
 										<img src="assets/images/site-image/avatar.png" alt="" class="img-fluid">
 										<div class="media-body">
-											<h5><a href="<?php echo base_url(); ?>user/friends/details/<?php echo $friend->id; ?>"><?php echo $friend->first_name; ?></a>
+											<h5><a href="<?php echo base_url(); ?>user/friends/details/<?php echo $friend->userId; ?>"><?php echo $friend->first_name; ?></a>
 											</h5>
-											<p>NYC, USA</p>
+											<p><?php echo $friend->fm_name; ?></p>
 										</div>
 									</div>
 							<?php }
-							}  ?>
+							}else{  ?>
+							    <p> Family Not Found</p>
+							<?php } ?>
 
 						</div>
 						<div class="text-center common-link">

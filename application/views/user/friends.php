@@ -20,11 +20,14 @@
 					</div>
 				</form>
 				<span id="success_message"></span>
+				<span id="error_message"></span>
 				<div class="profile-content-inner">
 					<div class="added-wishes">
 						<div class="row">
 							<?php if (!empty($userData)) {
 								foreach ($userData as $data) {
+									//echo "<pre>";var_dump($data);exit;
+									
 							?>
 									<div class="col-md-6 col-lg-4">
 										<div class="card mb-4">
@@ -64,7 +67,25 @@
 												} else {  ?>
 													<button type="button" class="theme-btn yellow-bg px-4 mr-0 sendFriendRequest" data-token="<?php echo $data->token; ?>">Add Friend</button>
 												<?php } ?>
+												<div class="form-group form-inline mt-4">
+													<select class="form-control select-family" id="select-family" to-user-id="<?php echo $data->from_friend;?>">
+														<option value="">Choose Family</option>
+														<?php if(!empty($getObjFamilyMember[0])){
+															foreach($getObjFamilyMember as $familyMember){
+																if(!empty($data->family_member_id) && ($data->family_member_id == $familyMember->id)){
+																	$selected = 'selected';
+																}else{
+																	$selected = '';
+																}
+																?>
+															   <option value="<?php echo $familyMember->id;?>" <?php echo $selected;?>><?php echo $familyMember->fm_name;?> </option>
+														<?php }
+														}?>
+														
+													</select>
+												</div>
 											</div>
+											
 										</div>
 									</div>
 							<?php  }
