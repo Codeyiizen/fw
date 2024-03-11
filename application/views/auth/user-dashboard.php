@@ -141,12 +141,14 @@
 												<?php if (!empty($subCatName)) { ?>
 													<li>Type - <?php echo $subCatName; ?></li>
 												<?php } ?>
-												<li>Brand - <?php print_r($wishInfos->brand); ?></li>
-												<li>Color - <?php print_r($wishInfos->color); ?></li>
-												<li>Size - <?php print_r($wishInfos->size); ?></li>
-												<li>Style - <?php print_r($wishInfos->style); ?></li>
+												<li class="brand" data-brand="<?php print_r($wishInfos->brand); ?>">Brand - <?php print_r($wishInfos->brand); ?></li>
+												<li class="color" data-color="<?php print_r($wishInfos->color); ?>">Color - <?php print_r($wishInfos->color); ?></li>
+												<li class="size" data-size="<?php print_r($wishInfos->size); ?>">Size - <?php print_r($wishInfos->size); ?></li>
+												<li class="style" data-style="<?php print_r($wishInfos->style); ?>">Style - <?php print_r($wishInfos->style); ?></li>
 												<li>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></li>
 											</ul>
+											<a href="#" class="theme-btn yellow-bg showCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editWish">Edit</a>
+											<a href="#" class="theme-btn yellow-bg" id="wish_delete" data-id="<?php print_r($wishInfos->id); ?>">Delete</a>
 										</div>
 									</div>
 								</div>
@@ -155,7 +157,132 @@
 					</div>
 				</div>
 			</div>
+            <!-- Edit Model Start -->
+			<div class="modal" id="editWish">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Edit your Wish</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<!-- Modal body -->
+						<div class="modal-body">
+							<span id="success_message"></span>
+							<form class="wishlist-form" method="post" id="contact_form">
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Category</label>
+									<select class="select-category form-control category-edit" id="category" name="category">
+										<option value="">Select Category</option>
+									</select>
+								</div>
+								<span id="category" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Type</label>
+									<select class="select-type form-control type-edit" id="type" name="type">
+										<option value="">Select Type</option>
+									</select>
+								</div>
+								<span id="types" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Brand</label>
+									<input type="text" class="form-control brand-edit" id="brand" value="" name="brand" placeholder="Brand">
+								</div>
+								<span id="brands" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Color</label>
+									<input type="text" class="form-control color-edit" id="color" value="" name="color" placeholder="color">
+								</div>
+								<span id="colors" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Size</label>
+									<input type="text" class="form-control size-edit" id="size" value="" name="size">
+								</div>
+								<span id="sizes" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Style</label>
+									<input type="text" class="form-control style-edit" id="style" value="" name="style">
+								</div>
+								<span id="styles" class="text-danger text-center"></span>
+								<input type="hidden" class="wish_id">
+								<div class="form-group text-center">
+									<input type="button" name="contact" id="contact_form_edit"  class="theme-btn yellow-bg" value="Submit">
+								</div>
+							</form>
+						</div>
 
+						<!-- Modal footer -->
+						<div class="modal-footer d-none">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- Edit Model End -->
+
+			<!-- delete conformation model start -->
+			<div class="modal" id="editWish">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Edit your Wish</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<!-- Modal body -->
+						<div class="modal-body">
+							<span id="success_message"></span>
+							<form class="wishlist-form" method="post" id="contact_form">
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Category</label>
+									<select class="select-category form-control" id="category" name="category">
+										<option value="">Select Category</option>
+									</select>
+								</div>
+								<span id="category" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Type</label>
+									<select class="select-type form-control" id="type" name="type">
+										<option value="">Select Type</option>
+									</select>
+								</div>
+								<span id="types" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Brand</label>
+									<input type="text" class="form-control brand" id="brand" value="" name="brand" placeholder="Brand">
+								</div>
+								<span id="brands" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Color</label>
+									<input type="text" class="form-control color" id="color" value="" name="color" placeholder="color">
+								</div>
+								<span id="colors" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Size</label>
+									<input type="text" class="form-control size" id="size" value="" name="size">
+								</div>
+								<span id="sizes" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Style</label>
+									<input type="text" class="form-control style" id="style" value="" name="style">
+								</div>
+								<span id="styles" class="text-danger text-center"></span>
+								<div class="form-group text-center">
+									<input type="submit" name="contact" id="contact_form" class="theme-btn yellow-bg" value="Submit">
+								</div>
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer d-none">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+            <!-- delete conformation model end -->
 			<div class="col-lg-3">
 				<div class="profile-sidebar right">
 					<div class="sidebar-about sidebar-widget sidebar-bg">

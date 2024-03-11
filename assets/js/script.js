@@ -499,3 +499,64 @@ function profilephoto(event,varId){
 		reader.readAsDataURL(file);
 	}
 }
+
+$("body").on("click", ".showCategory", function () { 
+	$(".select-category").html('Loading');
+	var wish_id = $(this).attr('data-id');         // alert(cat_id);
+	var brand = $('.brand').attr('data-brand');   // alert(brand); 
+	var color = $('.color').attr('data-color');   // alert(color);       
+	var size = $('.size').attr('data-size');      // alert(size);
+	var style = $('.style').attr('data-style');      // alert(size);
+	
+	$.ajax({
+		url: BASE_URL + "/getSubCat/Cat_id",
+		type: "post",
+		data: {wish_id:wish_id,
+			   brand:brand,
+			   color:color,
+			   size:size,
+			   style:style
+		      },
+		success: function (response) { // alert(response);
+			var res = JSON.parse(response);
+			if (res?.code == 200) {
+				console.log(res);
+				$(".category-edit").html(res?.html);
+				$(".type-edit").html(res?.htmlType);
+				$(".brand-edit").val(res?.htmlBrand);
+				$(".color-edit").val(res?.htmlColor);
+				$(".size-edit").val(res?.htmlsize);
+				$(".style-edit").val(res?.htmlstyle);
+				$(".wish_id").val(res?.htmlwish_id);
+				//window.location.reload();
+			}
+		}
+	});
+
+});  
+
+$("body").on("click", "#contact_form_edit", function () { 
+	var wish_id = $('.wish_id').val();            // alert(wish_id);
+	var cat_id = $('.category-edit').val();         //    alert(cat_id);
+	var type_id = $('.type-edit').val();           // alert(type_id);    
+	var brand = $('.brand-edit').val();             //    alert(brand); 
+	var color = $('.color-edit').val();            //   alert(color);       
+	var size = $('.size-edit').val();              // alert(size);
+	var style = $('.style-edit').val();            //  alert(style);
+	$.ajax({
+		url: BASE_URL + "/getSubCat/Cat_id/post",
+		type: "post",
+		data: {wish_id:wish_id,
+			   cat_id :cat_id,
+			   type_id:type_id,
+			   brand:brand,
+			   color:color,
+			   size:size,
+			   style:style
+		      },
+		success: function (response) { // alert(response);
+			window.location.reload();
+			
+		}
+	});
+});  

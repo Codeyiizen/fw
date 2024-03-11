@@ -135,7 +135,7 @@
 								$subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
 							?>
 								<div class="col-lg-6">
-									<div class="card bg-gradient-<?php echo $i; ?> border-0 mb-4">
+									<div class="card bg-gradient-1 border-0 mb-4">
 										<div class="card-body">
 											<h5 class="mb-1"><strong><?php print_r($wishInfos->occasion); ?> - </strong>
 												<?php print_r($wishInfos->cat_name); ?></h5>
@@ -149,6 +149,7 @@
 												<li>Color - <?php print_r($wishInfos->color); ?></li>
 												<li>Size - <?php print_r($wishInfos->size); ?></li>
 												<li>Style - <?php print_r($wishInfos->style); ?></li>
+												<li>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></li>
 											</ul>
 										</div>
 									</div>

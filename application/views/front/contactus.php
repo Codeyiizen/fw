@@ -107,10 +107,10 @@ business days. Thank you for understanding, and happy wish listing.</p>
                         <h5>Address</h5>
                         <p>1461 Irving Place, Arlington, Texas, 76011, United States</p>
                     </div> -->
-                    <div class="contact-item">
+                    <!-- <div class="contact-item">
                         <h5>Email Us</h5>
                         <p>operations@favoritewish.com</p>
-                    </div>
+                    </div> -->
                     <!-- <div class="contact-item">
                         <h5>Phone Number</h5>
                         <p>214-288-1335</p>

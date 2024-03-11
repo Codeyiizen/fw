@@ -90,6 +90,8 @@ $route['user/friends/(:num)/massages'] = 'favoritewish/getMessagelist/$1';
 $route['user/test'] = 'favoritewish/test';
 $route['user/family/request'] = 'favoritewish/familyRequest';
 $route['user/account/remove'] = 'favoritewish/userAccountRemove';
+$route['getSubCat/Cat_id'] = 'favoritewish/getSubCat_cat_id';
+$route['getSubCat/Cat_id/post'] = 'favoritewish/wishEditPost';  
 /*
 
 

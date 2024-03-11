@@ -25,7 +25,7 @@
 				<div class="col-md-6 col-sm-12 text-center text-md-left">
 					<div class="footer-menu-list">
 						<a href="<?php echo base_url('/terms-and-conditions'); ?>">Terms and Conditions</a>
-						<a href="<?php echo base_url('/privacy-policy'); ?>">Privacy Policy</a>
+						<!-- <a href="<?php echo base_url('/privacy-policy'); ?>">Privacy Policy</a> -->
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-12 text-center text-md-right">
