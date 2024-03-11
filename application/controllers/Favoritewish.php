@@ -563,6 +563,72 @@ class Favoritewish extends CI_Controller
 			}
 		}
 	}
+    
+	public function getSubCat_cat_id(){ 
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); // the user is not logged in, redirect them!
+		} else {
+			$data = array();
+			$wishId =  $this->input->post('wish_id');
+		//	echo"<pre>"; var_dump($cat_id);exit;
+			if (!empty($wishId)){
+				$getObjWishData = $this->Favoritewish_Model->getWishListById($wishId);
+				$categories = $this->Favoritewish_Model->getCategories();
+				$subCategories = $this->Favoritewish_Model->getSubCat($getObjWishData->categories_id);
+				//echo"<pre>"; var_dump($subCategories);exit;
+		     	$arrayHtml = "";
+				$arrayHtml .= "<option value=''>Select Category</option>";
+				if (!empty($categories)) {
+					foreach ($categories as $cat_data) {   
+						$selected = (!empty($getObjWishData) && ($getObjWishData->categories_id == $cat_data->id)) ? 'selected' :'';
+					//	$arrayHtml .= "<option value=" . $cat_data->id . ">" . $cat_data->name . "</option>";
+					$arrayHtml .= '<option value="' . $cat_data->id .'" '.$selected.'>'.$cat_data->name . '</option>';
+						
+					}
+				}
+				$arrayHtmlType = "";
+				$arrayHtmlType .= "<option value=''>Select Type</option>";
+				if (!empty($subCategories)) {
+					foreach ($subCategories as $subCatData) {  
+					$subCatId =  $subCatData['id'];
+					$subCatName =  $subCatData['name'];
+						$selected = (!empty($getObjWishData) && ($getObjWishData->type == $subCatData['id'])) ? 'selected' :'';
+					//	$arrayHtml .= "<option value=" . $cat_data->id . ">" . $cat_data->name . "</option>";
+					$arrayHtmlType .= '<option value="' . $subCatId .'" '.$selected.'>'.$subCatName . '</option>';
+						
+					}
+				}
+				$data['code'] = 200;
+				$data['html'] = $arrayHtml;
+				$data['htmlType'] = $arrayHtmlType;
+				$data['htmlBrand'] = $getObjWishData->brand;
+				$data['htmlColor'] = $getObjWishData->color;
+				$data['htmlsize'] = $getObjWishData->size;
+				$data['htmlstyle'] = $getObjWishData->style;
+				$data['htmlwish_id'] = $getObjWishData->id;
+				echo json_encode($data);
+			}
+		}
+	}
+    
+   public function wishEditPost(){ 
+	if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+		redirect('sign-in'); // the user is not logged in, redirect them!
+	} else {
+		//$wishId =  $this->input->post('wish_id');
+		$data = array(
+			'table_name' => 'user_wish', // pass the real table name
+			'id' => $this->input->post('wish_id'),
+			'categories_id' => $this->input->post('cat_id'),
+			'type' => $this->input->post('type_id'),
+			'brand' => $this->input->post('brand'),
+			'color' => $this->input->post('color'),
+			'size' => $this->input->post('size'),
+			'style' => $this->input->post('style'),
+		);
+		$this->Favoritewish_Model->updateWishData($data);
+	}
+   }
 	// edit method
 	public function edit()
 	{

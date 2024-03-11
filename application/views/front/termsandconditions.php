@@ -92,7 +92,7 @@ FAVORITE WISH, LTD CO will treat any personal information that you submit throug
                     <p>Be aware that a notice must contain all six points for FAVORITE WISH, LTD CO to take action. All other notices will be ignored.</p>
                     <h3>Designated Agent:</h3>
                     <p>FAVORITE WISH, LTD CO’s Designated Agent can be can be contacted at:</p>
-                    <p>e-mail: tgbtg@favoritewish.com</p>
+                    <p>e-mail: operations@favoritewish.com</p>
                     <h3>Counter-Notification Procedure</h3>
                     <p>The provider of the allegedly infringing content may make a counter-notification pursuant to sections 512(g)(2) and (3) of the DMCA. To file a counter-notification with FAVORITE WISH, LTD CO please provide FAVORITE WISH, LTD CO’s Designated Agent (listed above) with the following information (preferably via email):</p>
                     <ul>

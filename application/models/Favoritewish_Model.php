@@ -415,7 +415,7 @@ class Favoritewish_Model extends CI_Model {
     }
 
     public function getWishInfo($get){
-        $this->db->select('user_wish.*,categories.name as cat_name');
+        $this->db->select('user_wish.*,categories.name as cat_name,categories.id as cat_id');
         $this->db->from('user_wish');
         $this->db->join('categories','categories.id=user_wish.categories_id','left');
         $this->db->where('user_id',$this->_userID);
@@ -453,6 +453,16 @@ class Favoritewish_Model extends CI_Model {
             $i++;
         }
         return $categories;
+
+    }
+
+    public function getCategories_Wish_Edit(){
+
+        $this->db->select('*');
+        $this->db->from('categories');
+        $this->db->where('parent_id', NULL);
+        $query = $this->db->get();
+       return $query->result();
 
     }
     public function sub_categories($id){
@@ -667,6 +677,30 @@ class Favoritewish_Model extends CI_Model {
             return FALSE;
         }
     }
+    public function updateWishData($data){  
+        extract($data);
+        $this->db->where('id', $id);
+        $this->db->update($table_name, array('categories_id' => $categories_id,
+                                             'type' => $type,
+                                             'brand' => $brand,
+                                             'color' => $color,
+                                             'size' => $size,
+                                             'style' => $style,
+                                         ));
+        return true;
+    }
+    public function getWishListById($wishId){
+        $this->db->select('*');
+        $this->db->from('user_wish');
+        $this->db->where('id',$wishId);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+
     public function getCategoryById($id) {
         $this->db->select('*');
         $this->db->from('categories');

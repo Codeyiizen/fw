@@ -44,7 +44,7 @@
 					<div class="logo-box">
 						<figure class="logo">
 							<a href="<?php echo base_url(); ?>">
-								<img src="<?php echo base_url(); ?>assets/images/site-image/logo.png" alt="Favorite Wish" class="img-fluid">
+								<img src="<?php echo base_url(); ?>assets/images/site-image/logo1.png" alt="Favorite Wish" class="img-fluid">
 							</a>
 						</figure>
 					</div>

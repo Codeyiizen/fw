@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <!-- <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="Email Address">User Type</label>
                                     <div class="input-group">
@@ -117,7 +117,7 @@
                                             value="<?php print $userInfo['company']; ?>">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="Company">User Bio</label>
