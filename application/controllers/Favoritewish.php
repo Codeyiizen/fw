@@ -611,24 +611,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
     
-   public function wishEditPost(){ 
-	if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-		redirect('sign-in'); // the user is not logged in, redirect them!
-	} else {
-		//$wishId =  $this->input->post('wish_id');
-		$data = array(
-			'table_name' => 'user_wish', // pass the real table name
-			'id' => $this->input->post('wish_id'),
-			'categories_id' => $this->input->post('cat_id'),
-			'type' => $this->input->post('type_id'),
-			'brand' => $this->input->post('brand'),
-			'color' => $this->input->post('color'),
-			'size' => $this->input->post('size'),
-			'style' => $this->input->post('style'),
-		);
-		$this->Favoritewish_Model->updateWishData($data);
-	}
-   }
+ 
 	// edit method
 	public function edit()
 	{
@@ -1261,7 +1244,54 @@ class Favoritewish extends CI_Controller
 		}
 		echo json_encode($array);
 	}
+  
+	public function wishEditPost(){   
+		$sessionArray = $this->session->userdata('ci_seesion_key');
+		$this->load->library('form_validation');
+	 //	$this->form_validation->set_rules('category', 'category', 'required');
+	//	$this->form_validation->set_rules('type', 'type', 'required');
+		$this->form_validation->set_rules('brand', 'brand', 'required');
+		$this->form_validation->set_rules('color', 'color', 'required');
+		$this->form_validation->set_rules('size', 'size', 'required');
+		$this->form_validation->set_rules('style', 'style', 'required');
+		if ($this->form_validation->run()) { 
+			 	$data = array(
+						'table_name' => 'user_wish', // pass the real table name
+						'id' => $this->input->post('wish_id'),
+						'categories_id' => $this->input->post('cat_id'),
+						'type' => $this->input->post('type_id'),
+						'brand' => $this->input->post('brand'),
+						'color' => $this->input->post('color'),
+						'size' => $this->input->post('size'),
+						'style' => $this->input->post('style'),
+					);
+					$this->Favoritewish_Model->updateWishData($data);
+			$array = array(
+				'success' => '<div class="alert alert-warning">Wish Update Successfully</div>'
+			);
+		} else { 
+			$array = array(
+				'error'   => true,
+				'category' => form_error('category'),
+				'type' => form_error('type'),
+				'brand' => form_error('brand'),
+				'color' => form_error('color'),
+				'size' => form_error('size'),
+				'style' => form_error('style')
 
+			);
+		}
+		echo json_encode($array);
+	}
+
+	public function wishDelete(){
+		$wishId = $this->input->post('wishId'); 
+		$this->Favoritewish_Model->wishDelete($wishId);
+		$array = array(
+			'delete' => '<div class="alert alert-warning">Wish Delete Successfully</div>'
+		);
+		echo json_encode($array);
+	}
 	public function addRegistry()
 	{   
 		$sessionArray = $this->session->userdata('ci_seesion_key');

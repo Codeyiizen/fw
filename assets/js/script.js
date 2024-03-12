@@ -554,9 +554,65 @@ $("body").on("click", "#contact_form_edit", function () {
 			   size:size,
 			   style:style
 		      },
-		success: function (response) { // alert(response);
-			window.location.reload();
-			
+		success: function (data) { 
+		var res = JSON.parse(data); 
+		if (res?.error) {
+				if (res?.brand != '') {  
+					$('#brands_edit').html(res?.brand);
+				} else {
+					$('#brands_edit').html('');
+				}
+				if (res?.color != '') {
+					$('#colors_edit').html(res?.color);
+				} else {
+					$('#colors_edit').html('');
+				}
+				if (res?.size != '') {
+					$('#sizes_edit').html(res?.size);
+				} else {
+					$('#sizes_edit').html('');
+				}
+				if (res?.style != '') {
+					$('#styles_edit').html(res?.style);
+				} else {
+					$('#styles_edit').html('');
+				}	
 		}
+		if (res?.success) {
+			$('#success_message_edit').html(res?.success);
+			$('#brands_edit').html('');
+			$('#colors_edit').html('');
+			$('#sizes_edit').html('');
+			$('#styles_edit').html('');
+		//	$('#contact_form_edit')[0].reset();
+			window.location.reload();
+		}
+	 }
+		
 	});
 });  
+
+
+
+$("body").on("click", "#wish_delete", function (){
+	var wishId = $(this).attr('data-id');  
+	$('.wishDeleteId').attr('data-id',wishId);
+
+}); 
+$("body").on("click", ".wishDeleteId", function (){
+   var wishId =$('.wishDeleteId').attr('data-id');
+     $.ajax({
+	url: BASE_URL + "/wish/delete",
+	type: "post",
+	data: {wishId:wishId},
+	success: function (data) {
+		var res = JSON.parse(data);   
+		if (res?.delete) {
+			$('#success_message_delete').html(res?.delete);
+			window.location.reload();
+		}
+    }
+	
+});   
+ });	
+
