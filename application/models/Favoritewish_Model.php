@@ -686,7 +686,14 @@ class Favoritewish_Model extends CI_Model {
                                              'color' => $color,
                                              'size' => $size,
                                              'style' => $style,
+                                             'created_on' => date("y/m/d"),
                                          ));
+        return true;
+    }
+
+    public function wishDelete($wishId){
+        $this->db-> where('id',$wishId);
+        $this->db-> delete('user_wish');
         return true;
     }
     public function getWishListById($wishId){

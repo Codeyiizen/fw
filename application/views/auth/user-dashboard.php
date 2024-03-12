@@ -121,6 +121,7 @@
 						</div>
 					</div>
 					<div class="added-wishes">
+					<span id="success_message_delete"></span>
 						<div class="row">
 							<?php
 							$i = 0;
@@ -148,7 +149,7 @@
 												<li>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></li>
 											</ul>
 											<a href="#" class="theme-btn yellow-bg showCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editWish">Edit</a>
-											<a href="#" class="theme-btn yellow-bg" id="wish_delete" data-id="<?php print_r($wishInfos->id); ?>">Delete</a>
+											<a href="#" class="theme-btn yellow-bg wishDeleteModel" id="wish_delete" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#removeWishAccount">Delete</a>
 										</div>
 									</div>
 								</div>
@@ -168,7 +169,7 @@
 						</div>
 						<!-- Modal body -->
 						<div class="modal-body">
-							<span id="success_message"></span>
+							<span id="success_message_edit"></span>
 							<form class="wishlist-form" method="post" id="contact_form">
 								<div class="form-group form-inline">
 									<label for="email" class="mr-sm-2">Category</label>
@@ -188,22 +189,22 @@
 									<label for="email" class="mr-sm-2">Brand</label>
 									<input type="text" class="form-control brand-edit" id="brand" value="" name="brand" placeholder="Brand">
 								</div>
-								<span id="brands" class="text-danger text-center"></span>
+								<span id="brands_edit" class="text-danger text-center"></span>
 								<div class="form-group form-inline">
 									<label for="email" class="mr-sm-2">Color</label>
 									<input type="text" class="form-control color-edit" id="color" value="" name="color" placeholder="color">
 								</div>
-								<span id="colors" class="text-danger text-center"></span>
+								<span id="colors_edit" class="text-danger text-center"></span>
 								<div class="form-group form-inline">
 									<label for="email" class="mr-sm-2">Size</label>
 									<input type="text" class="form-control size-edit" id="size" value="" name="size">
 								</div>
-								<span id="sizes" class="text-danger text-center"></span>
+								<span id="sizes_edit" class="text-danger text-center"></span>
 								<div class="form-group form-inline">
 									<label for="email" class="mr-sm-2">Style</label>
 									<input type="text" class="form-control style-edit" id="style" value="" name="style">
 								</div>
-								<span id="styles" class="text-danger text-center"></span>
+								<span id="styles_edit" class="text-danger text-center"></span>
 								<input type="hidden" class="wish_id">
 								<div class="form-group text-center">
 									<input type="button" name="contact" id="contact_form_edit"  class="theme-btn yellow-bg" value="Submit">
@@ -222,66 +223,28 @@
 			<!-- Edit Model End -->
 
 			<!-- delete conformation model start -->
-			<div class="modal" id="editWish">
+			<div class="modal" id="removeWishAccount">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<!-- Modal Header -->
 						<div class="modal-header">
-							<h4 class="modal-title">Edit your Wish</h4>
+							<h4 class="modal-title">Remove your Wish</h4>
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 						</div>
 						<!-- Modal body -->
 						<div class="modal-body">
-							<span id="success_message"></span>
-							<form class="wishlist-form" method="post" id="contact_form">
-								<div class="form-group form-inline">
-									<label for="email" class="mr-sm-2">Category</label>
-									<select class="select-category form-control" id="category" name="category">
-										<option value="">Select Category</option>
-									</select>
-								</div>
-								<span id="category" class="text-danger text-center"></span>
-								<div class="form-group form-inline">
-									<label for="email" class="mr-sm-2">Type</label>
-									<select class="select-type form-control" id="type" name="type">
-										<option value="">Select Type</option>
-									</select>
-								</div>
-								<span id="types" class="text-danger text-center"></span>
-								<div class="form-group form-inline">
-									<label for="email" class="mr-sm-2">Brand</label>
-									<input type="text" class="form-control brand" id="brand" value="" name="brand" placeholder="Brand">
-								</div>
-								<span id="brands" class="text-danger text-center"></span>
-								<div class="form-group form-inline">
-									<label for="email" class="mr-sm-2">Color</label>
-									<input type="text" class="form-control color" id="color" value="" name="color" placeholder="color">
-								</div>
-								<span id="colors" class="text-danger text-center"></span>
-								<div class="form-group form-inline">
-									<label for="email" class="mr-sm-2">Size</label>
-									<input type="text" class="form-control size" id="size" value="" name="size">
-								</div>
-								<span id="sizes" class="text-danger text-center"></span>
-								<div class="form-group form-inline">
-									<label for="email" class="mr-sm-2">Style</label>
-									<input type="text" class="form-control style" id="style" value="" name="style">
-								</div>
-								<span id="styles" class="text-danger text-center"></span>
-								<div class="form-group text-center">
-									<input type="submit" name="contact" id="contact_form" class="theme-btn yellow-bg" value="Submit">
-								</div>
-							</form>
+							<p>
+								Are you sure you want to delete your Wish ?
+							</p>
 						</div>
-
 						<!-- Modal footer -->
-						<div class="modal-footer d-none">
+						<div class="modal-footer">
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-success wishDeleteId" data-user-id="account" data-dismiss="modal">Yes</button>
 						</div>
-
-					</div>
 				</div>
 			</div>
+			 </div>
             <!-- delete conformation model end -->
 			<div class="col-lg-3">
 				<div class="profile-sidebar right">
