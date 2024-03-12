@@ -1312,7 +1312,8 @@ class Favoritewish extends CI_Controller
 				'color' => $this->input->post('color'),
 				'size' => $this->input->post('size'),
 				'style' => $this->input->post('style'),
-				'user_id' => $sessionArray['user_id']
+				'user_id' => $sessionArray['user_id'],
+				'created_on' => date("y/m/d")
 			);
 			//	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert('user_registry', $array);
