@@ -681,9 +681,9 @@ span.user-info {
 
 .theme-btn.btn-sm,
 .btn.btn-sm {
-    padding: 0.35rem 0.85rem;
-    font-size: 0.85rem;
-    line-height: 1.5;
+    padding: 0.35em 0.65em;
+    font-size: .625em;
+    line-height: 1;
     border-radius: 35px;
 }
 
