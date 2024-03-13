@@ -138,7 +138,7 @@
 											<h5 class="mb-1"><strong>Wish - </strong>
 												<?php print_r($wishInfos->cat_name); ?></h5>
 												<p class="mb-1 font-weight-semibold font-italic">Details - </p>
-												<ul class="list-unstyled font-italic text-capitalize mb-0">
+												<ul class="list-unstyled font-italic text-capitalize mb-2">
 												<?php if (!empty($subCatName)) { ?>
 													<li>Type - <?php echo $subCatName; ?></li>
 												<?php } ?>
@@ -148,8 +148,8 @@
 												<li class="style" data-style="<?php print_r($wishInfos->style); ?>">Style - <?php print_r($wishInfos->style); ?></li>
 												<li>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></li>
 											</ul>
-											<a href="#" class="theme-btn yellow-bg showCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editWish">Edit</a>
-											<a href="#" class="theme-btn yellow-bg wishDeleteModel" id="wish_delete" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#removeWishAccount">Delete</a>
+											<a href="#" class="theme-btn yellow-bg border btn-sm showCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editWish"><i class="fas fa-pencil mr-1"></i>Edit</a>
+											<a href="#" class="theme-btn yellow-bg border btn-sm wishDeleteModel" id="wish_delete" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#removeWishAccount"><i class="fas fa-trash mr-1"></i>Delete</a>
 										</div>
 									</div>
 								</div>

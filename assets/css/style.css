@@ -444,8 +444,10 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
         max-width: 1366px;
     }
 }
-.cancelFriend:hover ,.removeFriend:hover{
-    color: #fff!important;
+
+.cancelFriend:hover,
+.removeFriend:hover {
+    color: #fff !important;
 }
 
 
@@ -675,6 +677,14 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 
 span.user-info {
     font-family: var(--body-heading);
+}
+
+.theme-btn.btn-sm,
+.btn.btn-sm {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    border-radius: 35px;
 }
 
 .btn-primary {
@@ -1000,7 +1010,8 @@ section.fav-profile-section .profile-banner img {
     padding: 2rem 0;
 }
 
-section.fav-profile-section .profile-picture object {
+section.fav-profile-section .profile-picture object,
+section.fav-profile-section .profile-picture .img-fluid {
     position: absolute;
     z-index: 9;
     top: -100px;
@@ -1963,5 +1974,5 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 }
 
 .chat-room .dropdown-toggle::after {
-    border:0
+    border: 0
 }
