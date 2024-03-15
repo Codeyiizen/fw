@@ -688,12 +688,30 @@ class Favoritewish_Model extends CI_Model {
                                              'style' => $style,
                                              'created_on' => date("y/m/d"),
                                          ));
-        return true;
+                                         return true;
     }
-
+    public function updateRegistryData($data){  //echo"<pre>"; var_dump($data);exit;
+        extract($data);
+        $this->db->where('id', $id);
+        $this->db->update($table_name, array('cat_id' => $cat_id,
+                                             'type' => $type,
+                                             'brand' => $brand,
+                                             'occasion' => $occasion,
+                                             'color' => $color,
+                                             'size' => $size,
+                                             'style' => $style,
+                                             'created_on' => date("y/m/d"),
+                                         ));
+                                         return true; 
+    }
     public function wishDelete($wishId){
         $this->db-> where('id',$wishId);
         $this->db-> delete('user_wish');
+        return true;
+    }
+    public function registryDelete($registryId){
+        $this->db-> where('id',$registryId);
+        $this->db-> delete('user_registry');
         return true;
     }
     public function getWishListById($wishId){
@@ -707,7 +725,18 @@ class Favoritewish_Model extends CI_Model {
             return FALSE;
         }
     }
-
+    public function getRegistryListById($registryId){
+        $this->db->select('*');
+        $this->db->from('user_registry');
+        $this->db->where('id',$registryId);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        } 
+    }
+     
     public function getCategoryById($id) {
         $this->db->select('*');
         $this->db->from('categories');

@@ -557,6 +557,16 @@ $("body").on("click", "#contact_form_edit", function () {
 		success: function (data) { 
 		var res = JSON.parse(data); 
 		if (res?.error) {
+				if (res?.category != '') {  
+					$('#category_edit').html(res?.category);
+				} else {
+					$('#category_edit').html('');
+				}
+				if (res?.type != '') {  
+					$('#types_edit').html(res?.type);
+				} else {
+					$('#types_edit').html('');
+				}
 				if (res?.brand != '') {  
 					$('#brands_edit').html(res?.brand);
 				} else {
@@ -580,6 +590,8 @@ $("body").on("click", "#contact_form_edit", function () {
 		}
 		if (res?.success) {
 			$('#success_message_edit').html(res?.success);
+			$('#category_edit').html('');
+			$('#types_edit').html('');
 			$('#brands_edit').html('');
 			$('#colors_edit').html('');
 			$('#sizes_edit').html('');
@@ -613,6 +625,128 @@ $("body").on("click", ".wishDeleteId", function (){
 		}
     }
 	
-});   
+  });   
  });	
+  
+ $("body").on("click", ".showRegistryCategory",function(){
+		$(".select-category_registry").html('Loading');
+		var registry_id = $(this).attr('data-id');  
+		$.ajax({
+			url: BASE_URL + "/getCategory/subcategory/registry_id",
+			type: "post",
+			data: {registry_id:registry_id,
+				},
+			success: function (response) { // alert(response);
+				var res = JSON.parse(response);
+				if (res?.code == 200) {
+					console.log(res);    
+					$(".category-registry-edit").html(res?.html);   
+					$(".type-registry-edit").html(res?.htmlRegistryType);
+					$(".occasion-registry-edit").val(res?.htmlRegistryOccasionType);
+					$(".brand-registry-edit").val(res?.htmlRegistryBrand);
+					$(".color-registry-edit").val(res?.htmlRegistryColor);
+					$(".size-registry-edit").val(res?.htmlRegistrysize);
+					$(".style-registry-edit").val(res?.htmlRegistrystyle);
+					$(".registry_id").val(res?.htmlRegistry_id);
+				}
+			}
+		}); 
+ });
 
+ $("body").on("click", "#registry_contact_update", function () {  
+	var registryId = $('.registry_id').val();                   
+	var registry_catId = $('.category-registry-edit').val();         
+	var registry_typeId = $('.type-registry-edit').val();             
+	var registry_occasion = $('.occasion-registry-edit').val();          
+	var registry_brand = $('.brand-registry-edit').val();              
+	var registry_color = $('.color-registry-edit').val();                       
+	var registry_size = $('.size-registry-edit').val();                  
+	var registry_style = $('.style-registry-edit').val();                
+	$.ajax({
+		url: BASE_URL + "/registry/update/post",
+		type: "post",
+		data: {registryId:registryId,
+			   registry_catId :registry_catId,
+			   registry_typeId:registry_typeId,
+			   registry_occasion:registry_occasion,
+			   registry_brand:registry_brand,
+			   registry_color:registry_color,
+			   registry_size:registry_size,
+			   registry_style:registry_style
+		      },
+		success: function (data) { 
+		var res = JSON.parse(data); 
+		if (res?.error) {
+				if (res?.category != '') {  
+					$('#categorys_registry').html(res?.category);
+				} else {
+					$('#categorys_registry').html('');
+				}
+				if (res?.type != '') {  
+					$('#type_registry').html(res?.type);
+				} else {
+					$('#type_registry').html('');
+				}
+				if (res?.occasion != '') {
+					$('#occasions_registry').html(res?.occasion);
+				} else {
+					$('#occasions_registry').html('');
+				}
+				if (res?.brand != '') {
+					$('#brand_registry').html(res?.brand);
+				} else {
+					$('#brand_registry').html('');
+				}
+				if (res?.color != '') {
+					$('#colors_registry').html(res?.color);
+				} else {
+					$('#colors_registry').html('');
+				}
+				if (res?.size != '') {
+					$('#sizes_registry').html(res?.size);
+				} else {
+					$('#sizes_registry').html('');
+				}
+				if (res?.style != '') {
+					$('#styles_registry').html(res?.style);
+				} else {
+					$('#styles_registry').html('');
+				}	
+		}
+		if (res?.success) {
+			$('#success_message_registry_massage').html(res?.success);
+			$('#categorys_registry').html('');
+			$('#type_registry').html('');
+			$('#brand_registry').html('');
+			$('#colors_registry').html('');
+			$('#sizes_registry').html('');
+			$('#styles_registry').html('');
+		//	$('#contact_form_edit')[0].reset();
+			window.location.reload();
+		}
+	 }
+		
+	});
+});  
+
+$("body").on("click", "#Registry_delete", function (){ 
+	var registryId = $(this).attr('data-id');    
+	$('.registryDeleteId').attr('data-id',registryId);
+});
+
+$("body").on("click", ".registryDeleteId", function (){
+	var registryId =$('.registryDeleteId').attr('data-id'); 
+	  $.ajax({
+	 url: BASE_URL + "/registry/delete",
+	 type: "post",
+	 data: {registryId:registryId},
+	 success: function (data) {
+		 var res = JSON.parse(data);   
+		 if (res?.delete) {
+			 $('#success_message_delete').html(res?.delete);
+			 window.location.reload();
+		 }
+	 }
+	 
+   });   
+  });

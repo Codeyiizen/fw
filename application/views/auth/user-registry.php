@@ -124,6 +124,7 @@
 						</div>
 					</div>
 					<div class="added-wishes">
+					<span id="success_message_delete"></span>
 						<div class="row">
 							<?php
 							$i = 0;
@@ -150,6 +151,8 @@
 												<li>Size - <?php print_r($wishInfos->size); ?></li>
 												<li>Style - <?php print_r($wishInfos->style); ?></li>
 												<li>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></li>
+												<a href="#" class="theme-btn yellow-bg border btn-sm showRegistryCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editRegistry">Edit</a>
+												<a href="#" class="theme-btn yellow-bg border btn-sm wishDeleteModel" id="Registry_delete" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#removeRegistryAccount">Delete</a>
 											</ul>
 										</div>
 									</div>
@@ -159,7 +162,99 @@
 					</div>
 				</div>
 			</div>
+				<!-- delete conformation model start -->
+				<div class="modal" id="removeRegistryAccount">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">Remove your Wish</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<!-- Modal body -->
+							<div class="modal-body">
+								<p>
+									Are you sure you want to delete your Wish ?
+								</p>
+							</div>
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-success registryDeleteId" data-user-id="account" data-dismiss="modal">Yes</button>
+							</div>
+					</div>
+				</div>
+			 </div>
+            <!-- delete conformation model end -->
+              <!-- Edit Model Start -->
+			  <div class="modal" id="editRegistry">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Edit your Wish</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<!-- Modal body -->
+						<div class="modal-body">
+							<span id="success_message_registry_massage"></span>
+							<form class="wishlist-form" method="post" id="">
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Category</label>
+									<select class="select-category form-control category-registry-edit" id="category_registry" name="category">
+									    <option value="">Select Category</option>
+									</select>
+								</div>
+								<span id="categorys_registry" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Type</label>
+									<select class="select-type form-control type-registry-edit" id="type" name="type_registry">
+										<option value="">Select Type</option>
+									</select>
+								</div>
+								<span id="type_registry" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Occasion</label>
+									<input type="text" class="form-control occasion-registry-edit"  value="" name="occasion_registry" placeholder="Occasion">
+								</div>
+								<span id="occasions_registry" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Brand</label>
+									<input type="text" class="form-control brand-registry-edit" value="" name="brand_registry" placeholder="Brand">
+								</div>
+								<span id="brand_registry" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Color</label>
+									<input type="text" class="form-control color-registry-edit"  value="" name="color_registry" placeholder="color">
+								</div>
+								<span id="colors_registry" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Size</label>
+									<input type="text" class="form-control size-registry-edit"  value="" name="size_registry" placeholder="Size">
+								</div>
+								<span id="sizes_registry" class="text-danger text-center"></span>
+								<div class="form-group form-inline">
+									<label for="email" class="mr-sm-2">Style</label>
+									<input type="text" class="form-control style-registry-edit"  value="" name="style_registry" placeholder="Style">
+								</div>
+								<span id="styles" class="text-danger text-center"></span>
+								<input type="hidden" class="registry_id">
+								<span id="styles" class="text-danger text-center"></span>
+								<div class="form-group text-center">
+									<input type="button" name="contact" id="registry_contact_update" class="theme-btn yellow-bg" value="Submit">
+								</div>
+							</form>
+						</div>
 
+						<!-- Modal footer -->
+						<div class="modal-footer d-none">
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			 </div>
+			<!-- Edit Model End -->
 			<div class="col-lg-3">
 				<div class="profile-sidebar right">
 					<div class="sidebar-about sidebar-widget sidebar-bg">
