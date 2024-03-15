@@ -611,6 +611,49 @@ class Favoritewish extends CI_Controller
 		}
 	}
     
+	public function getCategorySucategory_registry_id(){
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); 
+		} else {
+			$data = array();
+			$registryId =  $this->input->post('registry_id');
+			if (!empty($registryId)){
+				$getObjWishData = $this->Favoritewish_Model->getRegistryListById($registryId); 
+				$categories = $this->Favoritewish_Model->getCategories();
+				$subCategories = $this->Favoritewish_Model->getSubCat($getObjWishData->cat_id);
+		     	$arrayHtml = "";
+				$arrayHtml .= "<option value=''>Select Category</option>";
+				if (!empty($categories)) {
+					foreach ($categories as $cat_data) {   
+						$selected = (!empty($getObjWishData) && ($getObjWishData->cat_id == $cat_data->id)) ? 'selected' :'';
+					$arrayHtml .= '<option value="' . $cat_data->id .'" '.$selected.'>'.$cat_data->name . '</option>';
+						
+					}
+				}
+				$arrayHtmlType = "";
+				$arrayHtmlType .= "<option value=''>Select Type</option>";
+				if (!empty($subCategories)) {
+					foreach ($subCategories as $subCatData) {  
+					$subCatId =  $subCatData['id'];
+					$subCatName =  $subCatData['name'];
+						$selected = (!empty($getObjWishData) && ($getObjWishData->type == $subCatData['id'])) ? 'selected' :'';
+					$arrayHtmlType .= '<option value="' . $subCatId .'" '.$selected.'>'.$subCatName . '</option>';
+						
+					}
+				}
+				$data['code'] = 200;
+				$data['html'] = $arrayHtml;
+				$data['htmlRegistryType'] = $arrayHtmlType;
+				$data['htmlRegistryOccasionType'] =  $getObjWishData->occasion;
+				$data['htmlRegistryBrand'] = $getObjWishData->brand;
+				$data['htmlRegistryColor'] = $getObjWishData->color;
+				$data['htmlRegistrysize'] = $getObjWishData->size;
+				$data['htmlRegistrystyle'] = $getObjWishData->style;
+				$data['htmlRegistry_id'] = $getObjWishData->id;
+				echo json_encode($data);
+			}
+		}
+	}
  
 	// edit method
 	public function edit()
@@ -1283,7 +1326,48 @@ class Favoritewish extends CI_Controller
 		}
 		echo json_encode($array);
 	}
+   
+	public function registryEditPost(){ 
+		$sessionArray = $this->session->userdata('ci_seesion_key');
+		$this->load->library('form_validation');
+	 	$this->form_validation->set_rules('registry_catId', 'Category', 'required');
+		$this->form_validation->set_rules('registry_typeId', 'type', 'required');
+		$this->form_validation->set_rules('registry_occasion', 'occasion', 'required');
+		$this->form_validation->set_rules('registry_brand', 'brand', 'required');
+		$this->form_validation->set_rules('registry_color', 'color', 'required');
+		$this->form_validation->set_rules('registry_size', 'size', 'required');
+		$this->form_validation->set_rules('registry_style', 'style', 'required');
+		if ($this->form_validation->run()) { 
+			 	$data = array(
+						'table_name' => 'user_registry', 
+						'id' => $this->input->post('registryId'),
+						'cat_id' => $this->input->post('registry_catId'),
+						'type' => $this->input->post('registry_typeId'),
+						'occasion' => $this->input->post('registry_occasion'),
+						'brand' => $this->input->post('registry_brand'),
+						'color' => $this->input->post('registry_color'),
+						'size' => $this->input->post('registry_size'),
+						'style' => $this->input->post('registry_style'),
+					);
+					$this->Favoritewish_Model->updateRegistryData($data);
+			$array = array(
+				'success' => '<div class="alert alert-warning">Wish Update Successfully</div>'
+			);
+		} else { 
+			$array = array(
+				'error'   => true,
+				'category' => form_error('registry_catId'),
+				'type' => form_error('registry_typeId'),
+				'brand' => form_error('registry_occasion'),
+				'occasion' => form_error('registry_brand'),
+				'color' => form_error('registry_color'),
+				'size' => form_error('registry_size'),
+				'style' => form_error('registry_style')
 
+			);
+		}
+		echo json_encode($array);
+	} 
 	public function wishDelete(){
 		$wishId = $this->input->post('wishId'); 
 		$this->Favoritewish_Model->wishDelete($wishId);
@@ -1292,6 +1376,15 @@ class Favoritewish extends CI_Controller
 		);
 		echo json_encode($array);
 	}
+    public function registryDelete(){
+		$registryId = $this->input->post('registryId'); 
+		$this->Favoritewish_Model->registryDelete($registryId);
+		$array = array(
+			'delete' => '<div class="alert alert-warning">Wish Delete Successfully</div>'
+		);
+		echo json_encode($array);
+	}
+
 	public function addRegistry()
 	{   
 		$sessionArray = $this->session->userdata('ci_seesion_key');

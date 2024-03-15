@@ -177,14 +177,14 @@
 										<option value="">Select Category</option>
 									</select>
 								</div>
-								<span id="category" class="text-danger text-center"></span>
+								<span id="category_edit" class="text-danger text-center"></span>
 								<div class="form-group form-inline">
 									<label for="email" class="mr-sm-2">Type</label>
 									<select class="select-type form-control type-edit" id="type" name="type">
 										<option value="">Select Type</option>
 									</select>
 								</div>
-								<span id="types" class="text-danger text-center"></span>
+								<span id="types_edit" class="text-danger text-center"></span>
 								<div class="form-group form-inline">
 									<label for="email" class="mr-sm-2">Brand</label>
 									<input type="text" class="form-control brand-edit" id="brand" value="" name="brand" placeholder="Brand">
@@ -224,26 +224,26 @@
 
 			<!-- delete conformation model start -->
 			<div class="modal" id="removeWishAccount">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<!-- Modal Header -->
-						<div class="modal-header">
-							<h4 class="modal-title">Remove your Wish</h4>
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-						</div>
-						<!-- Modal body -->
-						<div class="modal-body">
-							<p>
-								Are you sure you want to delete your Wish ?
-							</p>
-						</div>
-						<!-- Modal footer -->
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-success wishDeleteId" data-user-id="account" data-dismiss="modal">Yes</button>
-						</div>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal Header -->
+							<div class="modal-header">
+								<h4 class="modal-title">Remove your Wish</h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<!-- Modal body -->
+							<div class="modal-body">
+								<p>
+									Are you sure you want to delete your Wish ?
+								</p>
+							</div>
+							<!-- Modal footer -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-success wishDeleteId" data-user-id="account" data-dismiss="modal">Yes</button>
+							</div>
+					</div>
 				</div>
-			</div>
 			 </div>
             <!-- delete conformation model end -->
 			<div class="col-lg-3">
