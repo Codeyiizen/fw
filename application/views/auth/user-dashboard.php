@@ -148,8 +148,8 @@
 												<li class="style" data-style="<?php print_r($wishInfos->style); ?>">Style - <?php print_r($wishInfos->style); ?></li>
 												<li>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></li>
 											</ul>
-											<a href="#" class="theme-btn yellow-bg border btn-sm showCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editWish">Edit</a>
-											<a href="#" class="theme-btn yellow-bg border btn-sm wishDeleteModel" id="wish_delete" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#removeWishAccount">Delete</a>
+											<a href="#" class="showCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editWish">Edit</a>
+											<a href="#" class="wishDeleteModel" id="wish_delete" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#removeWishAccount">Delete</a>
 										</div>
 									</div>
 								</div>

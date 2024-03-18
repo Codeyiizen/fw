@@ -151,8 +151,8 @@
 												<li>Size - <?php print_r($wishInfos->size); ?></li>
 												<li>Style - <?php print_r($wishInfos->style); ?></li>
 												<li>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></li>
-												<a href="#" class="theme-btn yellow-bg border btn-sm showRegistryCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editRegistry">Edit</a>
-												<a href="#" class="theme-btn yellow-bg border btn-sm wishDeleteModel" id="Registry_delete" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#removeRegistryAccount">Delete</a>
+												<a href="#" class="showRegistryCategory" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#editRegistry">Edit</a>
+												<a href="#" class="wishDeleteModel" id="Registry_delete" data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal" data-target="#removeRegistryAccount">Delete</a>
 											</ul>
 										</div>
 									</div>

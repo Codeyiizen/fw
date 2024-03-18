@@ -14,10 +14,15 @@
 									<h3>Welcome to <span>Favorite Wish</span></h3>
 									<p>No Account?<br><a href="<?php echo base_url(); ?>sign-up" id="signups">Sign up</a></p>
 								</div>
-								<h1>Sign In</h1>
+							
+							
 								<div class="social-login my-4 text-center">
-									<a href="#" class="social-login-btn"><img src="<?php echo base_url(); ?>assets/images/site-image/google.png" alt="google" width="22">Sign in with Google</a>
+									<!-- <a href="#" class="social-login-btn"><img src="<?php echo base_url(); ?>assets/images/site-image/google.png" alt="google" width="22">Sign in with Google</a> -->
+									<?php if(!empty($login_button)){   ?>
+									<?php echo $login_button; ?>
+									<?php } ?>
 								</div>
+
 							</div>
 							<?php if (validation_errors()) { ?>
 								<div class="alert alert-danger">

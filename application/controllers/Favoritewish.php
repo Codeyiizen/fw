@@ -326,9 +326,84 @@ class Favoritewish extends CI_Controller
 			}
 		}
 	}
-
+    
+	public function googleLogin(){
+		include_once "vendor/autoload.php";
+		$google_client = new Google_Client();
+	  
+		$google_client->setClientId('303746168371-f4hvqsag3pvam7v2m5m60r8hq9kcd9hu.apps.googleusercontent.com'); //Define your ClientID
+	  
+		$google_client->setClientSecret('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'); //Define your Client Secret Key
+	  
+		$google_client->setRedirectUri('http://localhost/fw/google/sign-in'); //Define your Redirect Uri
+	  
+		$google_client->addScope('email');
+	  
+		$google_client->addScope('profile');
+	  
+		if(isset($_GET["code"]))
+		{  
+		 $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+	  
+		 if(!isset($token["error"]))
+		 {
+		  $google_client->setAccessToken($token['access_token']);
+		  $this->session->set_userdata('access_token', $token['access_token']);
+		  $google_service = new Google_Service_Oauth2($google_client);
+		  $data = $google_service->userinfo->get();
+		  $getObjUserDataById = $this->Favoritewish_Model->getObjUserGoogleDetails($data['id']); 
+		  //echo"<pre>"; var_dump($getObjUserDataById); exit;
+				//update data
+				$user_data = array(
+					'first_name' => $data['given_name'],
+					'last_name'  => $data['family_name'],
+					'email' => $data['email'],
+					'login_oauth_uid' => $data['id'],
+				);
+				if(!empty($getObjUserDataById)){    
+		               $this->Favoritewish_Model->Update_user_data($user_data, $getObjUserDataById->id);
+				}else{
+					$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data); 
+				}
+				$dataUpdate = array(        
+					'status' => 1,
+					'verification_code' => 1,
+				);
+			//	echo "<pre>";var_dump($insertUser);exit;
+				$userId = !empty($getObjUserDataById) ? $getObjUserDataById->id : $insertUser->id;
+				$this->db->where('id', $userId);
+				$msg = $this->db->update('users', $dataUpdate);
+				$getFinalUserDetails =  $this->Favoritewish_Model->InsertDataById($userId);
+				$this->session->set_userdata('ci_session_key_generate', TRUE);
+					$authArray = array(
+						'user_id' => $getFinalUserDetails->id,
+						'email' => $getFinalUserDetails->email,
+						'first_name' => $getFinalUserDetails->first_name,
+						'last_name' => $getFinalUserDetails->last_name,
+						'contact_no' => !empty($getFinalUserDetails->contact_no) ? $getFinalUserDetails->contact_no :'',
+						'company' => !empty($getFinalUserDetails->company) ? $getFinalUserDetails->company :'',
+					);
+					$this->session->set_userdata('ci_session_key_generate', TRUE);
+					$this->session->set_userdata('ci_seesion_key', $authArray);
+				
+				$this->session->set_userdata('ci_seesion_key',$authArray); 
+				redirect('user-dashboard');
+		  }
+	     }
+		$login_button = '';
+		if ($this->session->userdata('ci_session_key_generate') != FALSE) 
+		{ 
+		    
+		 	redirect('user-dashboard');
+		}else{
+			$login_button = '<a href="'.$google_client->createAuthUrl().'"><img src="'.base_url().'asset/sign-in-with-google.png" /></a>';
+			$data['login_button'] = $login_button;
+			$this->load->view('auth/sign-in', $data);
+		// $this->load->view('auth/sign-in', $data);
+		}
+	}
 	public function login() // Login Controller for users
-	{
+	{  
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			if (!empty($this->input->get('usid'))) {
 				$verificationCode = urldecode(base64_decode($this->input->get('usid')));
@@ -344,19 +419,42 @@ class Favoritewish extends CI_Controller
 			$data['title'] = "Login";
 			$data['breadcrumbs'] = array('Login' => '#');
 			$this->load->view('front/header_inner', $data);
-			//$this->load->view('front/bannerSection',$arr);
-			$this->template->load('default_layout', 'contents', 'auth/sign-in');
-			$this->load->view('front/footer_main');
-		} else {
+			   include_once "vendor/autoload.php";
+				$google_client = new Google_Client();
+
+				$google_client->setClientId('303746168371-f4hvqsag3pvam7v2m5m60r8hq9kcd9hu.apps.googleusercontent.com'); //Define your ClientID
+
+				$google_client->setClientSecret('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'); //Define your Client Secret Key
+
+				$google_client->setRedirectUri('http://localhost/fw/google/sign-in'); //Define your Redirect Uri
+
+				$google_client->addScope('email');
+
+				$google_client->addScope('profile');
+				$login_button = '';
+				if(!$this->session->userdata('access_token'))
+				{  
+				$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';
+				$data['login_button'] = $login_button;
+				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
+			    $this->load->view('front/footer_main');
+				}
+				else
+				{
+				$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';	
+				$data['login_button'] = $login_button;
+				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
+			    $this->load->view('front/footer_main');
+				}
+		}else{
 			redirect('user-dashboard');
 		}
 	}
 
 	// action login method
 	function loginSubmit()
-	{
+	{   
 		// Check form  validation
-
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('user_name', 'User Name/Email', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -398,7 +496,8 @@ class Favoritewish extends CI_Controller
 
 	// user profile
 	public function user_dashboard()
-	{
+	{   // die('dashbord');
+		
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -410,10 +509,11 @@ class Favoritewish extends CI_Controller
 			$data['title'] = "User Dashboard";
 			$data['breadcrumbs'] = array('User Dashboard' => '#');
 			$sessionArray = $this->session->userdata('ci_seesion_key');
+		  //	echo"<pre>"; var_dump($sessionArray->user_id); exit;
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 		//	echo"<pre>"; var_dump($data['userInfo']); exit;
-			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
+		//	$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo($get);
 			$data['get'] = $get;
@@ -1266,7 +1366,8 @@ class Favoritewish extends CI_Controller
 				'color' => $this->input->post('color'),
 				'size' => $this->input->post('size'),
 				'style' => $this->input->post('style'),
-				'user_id' => $sessionArray['user_id']
+				'user_id' => $sessionArray['user_id'],
+				'created_on' => date("y/m/d")
 			);
 			//	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert(' user_wish', $array);
