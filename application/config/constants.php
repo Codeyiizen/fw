@@ -106,3 +106,5 @@ define('MAILING_SERVICE_PROVIDER',  'sendinblue');
 define('MAIL_FROM', 'no-reply@fw.kurieta.ca');
 define('MAIL_TO', 'info@fw.kurieta.ca');
 define('FROM_TEXT', 'Favorite Wish');
+
+

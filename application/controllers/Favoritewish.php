@@ -326,37 +326,11 @@ class Favoritewish extends CI_Controller
 			}
 		}
 	}
-
-	public function login() // Login Controller for users
-	{
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			if (!empty($this->input->get('usid'))) {
-				$verificationCode = urldecode(base64_decode($this->input->get('usid')));
-				$this->Favoritewish_Model->setVerificationCode($verificationCode);
-				$this->Favoritewish_Model->activate();
-				$this->session->set_flashdata('success', 'Your email verified successfully!');
-				redirect('sign-in');
-			}
-			$arr['data'] = $this->Favoritewish_Model->bannerSection('login'); // Calling model function defined in Favoritewish_Model.php
-			$data = array();
-			$data['metaDescription'] = 'New User Login';
-			$data['metaKeywords'] = 'New User Login';
-			$data['title'] = "Login";
-			$data['breadcrumbs'] = array('Login' => '#');
-			$this->load->view('front/header_inner', $data);
-			//$this->load->view('front/bannerSection',$arr);
-			$this->template->load('default_layout', 'contents', 'auth/sign-in');
-			$this->load->view('front/footer_main');
-		} else {
-			redirect('user-dashboard');
-		}
-	}
-
+    
 	// action login method
 	function loginSubmit()
-	{
+	{   
 		// Check form  validation
-
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('user_name', 'User Name/Email', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -398,7 +372,8 @@ class Favoritewish extends CI_Controller
 
 	// user profile
 	public function user_dashboard()
-	{
+	{   // die('dashbord');
+		
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -410,10 +385,11 @@ class Favoritewish extends CI_Controller
 			$data['title'] = "User Dashboard";
 			$data['breadcrumbs'] = array('User Dashboard' => '#');
 			$sessionArray = $this->session->userdata('ci_seesion_key');
+		  //	echo"<pre>"; var_dump($sessionArray->user_id); exit;
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 		//	echo"<pre>"; var_dump($data['userInfo']); exit;
-			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
+		//	$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo($get);
 			$data['get'] = $get;
@@ -1266,7 +1242,8 @@ class Favoritewish extends CI_Controller
 				'color' => $this->input->post('color'),
 				'size' => $this->input->post('size'),
 				'style' => $this->input->post('style'),
-				'user_id' => $sessionArray['user_id']
+				'user_id' => $sessionArray['user_id'],
+				'created_on' => date("y/m/d")
 			);
 			//	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert(' user_wish', $array);

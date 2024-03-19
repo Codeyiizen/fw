@@ -807,4 +807,45 @@ class Favoritewish_Model extends CI_Model {
         $this->db->where($arrCheck);
         $this->db->delete('friends');
     }
+
+    function Is_already_register($id){ 
+        $this->db->where('login_oauth_uid', $id);
+        $query = $this->db->get('users');
+        if($query->num_rows() > 0)
+        {  
+        return true;
+        }
+        else
+        {
+        return false;
+        }
+    }
+    function Insert_user_data($data)
+    {
+      $this->db->insert('users', $data);
+      $insert_id = $this->db->insert_id();
+      return $insert_id;
+    }
+    public function InsertDataById($insertUser){  
+        $this->db->where('id',$insertUser);
+        $query = $this->db->get('users');
+        $row = $query->row();
+        return $row; 
+    }
+    function Update_user_data($data, $id)     
+    { 
+     $this->db->where('id', $id);
+     $this->db->update('users', $data);
+    }
+    public function getObjUserGoogleDetails($loginid){ 
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('login_oauth_uid', $loginid);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
 }
