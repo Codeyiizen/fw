@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+date_default_timezone_set('US/Eastern');
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -443,6 +445,7 @@ $config['standardize_newlines'] = FALSE;
 |
 */
 $config['global_xss_filtering'] = FALSE;
+
 
 /*
 |--------------------------------------------------------------------------

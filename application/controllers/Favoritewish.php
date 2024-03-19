@@ -353,6 +353,7 @@ class Favoritewish extends CI_Controller
 					'email' => $data['email'],
 					'login_oauth_uid' => $data['id'],
 				);
+			
 				if(!empty($getObjUserDataById)){    
 		               $this->Favoritewish_Model->Update_user_data($user_data, $getObjUserDataById->id);
 				}else{
@@ -389,6 +390,7 @@ class Favoritewish extends CI_Controller
 	}
 	public function login() // Login Controller for users
 	{  
+	   //	echo"<pre>"; var_dump($timeStamp = time();); exit;
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			if (!empty($this->input->get('usid'))) {
 				$verificationCode = urldecode(base64_decode($this->input->get('usid')));
@@ -753,7 +755,6 @@ class Favoritewish extends CI_Controller
 	// action update user 
 	public function editUser()
 	{
-     
 	    $sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 		$userInfo = $this->Favoritewish_Model->getUserDetails(); 
@@ -778,6 +779,7 @@ class Favoritewish extends CI_Controller
 			$favorite_public_outfit_wear = $this->input->post('favorite_p_wear');
 			$favorite_s_team = $this->input->post('favorite_s_team');
 			$favorite_music = $this->input->post('favorite_music');
+			$dob = $this->input->post('dob');
 			// Upload profile photo in folder
 			if(!empty($_FILES['profile_photo']['name'])){
 				$config['upload_path']          = './assets/uploads/profile_photo/';
@@ -836,6 +838,7 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setfavoripublic_outfit_wear($favorite_public_outfit_wear);
 			$this->Favoritewish_Model->setfavorite_sports_teams($favorite_s_team);
 			$this->Favoritewish_Model->setfavorite_music($favorite_music);
+			$this->Favoritewish_Model->set_dob($dob);
 			$this->Favoritewish_Model->setprofile_photo($profile_photo);
 			$this->Favoritewish_Model->setcover_photo($cover_photo);
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
@@ -1319,7 +1322,7 @@ class Favoritewish extends CI_Controller
 	}
 
 	public function addYourWish()
-	{
+	{ 
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('category', 'category', 'required');
@@ -1328,7 +1331,7 @@ class Favoritewish extends CI_Controller
 		$this->form_validation->set_rules('color', 'color', 'required');
 		$this->form_validation->set_rules('size', 'size', 'required');
 		$this->form_validation->set_rules('style', 'style', 'required');
-		if ($this->form_validation->run()) {
+		if ($this->form_validation->run()){
 			$array = array(
 				'categories_id'     => $this->input->post('category'),
 				'type'  => $this->input->post('type'),
@@ -1337,7 +1340,7 @@ class Favoritewish extends CI_Controller
 				'size' => $this->input->post('size'),
 				'style' => $this->input->post('style'),
 				'user_id' => $sessionArray['user_id'],
-				'created_on' => date("y/m/d")
+				'created_on' => date('Y-m-d H:i:s')
 			);
 			//	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert(' user_wish', $array);
@@ -1477,7 +1480,7 @@ class Favoritewish extends CI_Controller
 				'size' => $this->input->post('size'),
 				'style' => $this->input->post('style'),
 				'user_id' => $sessionArray['user_id'],
-				'created_on' => date("y/m/d")
+				'created_on' => date('Y-m-d H:i:s')
 			);
 			//	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert('user_registry', $array);
