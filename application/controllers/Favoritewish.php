@@ -330,22 +330,15 @@ class Favoritewish extends CI_Controller
 	public function googleLogin(){
 		include_once "vendor/autoload.php";
 		$google_client = new Google_Client();
-	  
-		$google_client->setClientId('303746168371-f4hvqsag3pvam7v2m5m60r8hq9kcd9hu.apps.googleusercontent.com'); //Define your ClientID
-	  
-		$google_client->setClientSecret('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'); //Define your Client Secret Key
-	  
-		$google_client->setRedirectUri('http://localhost/fw/google/sign-in'); //Define your Redirect Uri
-	  
-		$google_client->addScope('email');
-	  
-		$google_client->addScope('profile');
-	  
-		if(isset($_GET["code"]))
+	    $google_client->setClientId(GOOGLE_CLIENT_ID); //Define your ClientID
+	    $google_client->setClientSecret(GOOGLE_CLIENT_SECRET); //Define your Client Secret Key
+	    $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
+	    $google_client->addScope('email');
+	    $google_client->addScope('profile');
+	    if(isset($_GET["code"]))
 		{  
 		 $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
-	  
-		 if(!isset($token["error"]))
+	     if(!isset($token["error"]))
 		 {
 		  $google_client->setAccessToken($token['access_token']);
 		  $this->session->set_userdata('access_token', $token['access_token']);
@@ -363,19 +356,17 @@ class Favoritewish extends CI_Controller
 				if(!empty($getObjUserDataById)){    
 		               $this->Favoritewish_Model->Update_user_data($user_data, $getObjUserDataById->id);
 				}else{
-					$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data); 
+					   $insertUser = $this->Favoritewish_Model->Insert_user_data($user_data); 
 				}
 				$dataUpdate = array(        
 					'status' => 1,
 					'verification_code' => 1,
 				);
-			//	echo "<pre>";var_dump($insertUser);exit;
-				$userId = !empty($getObjUserDataById) ? $getObjUserDataById->id : $insertUser->id;
+			    $userId = !empty($getObjUserDataById) ? $getObjUserDataById->id : $insertUser;
 				$this->db->where('id', $userId);
 				$msg = $this->db->update('users', $dataUpdate);
 				$getFinalUserDetails =  $this->Favoritewish_Model->InsertDataById($userId);
-				$this->session->set_userdata('ci_session_key_generate', TRUE);
-					$authArray = array(
+				$authArray = array(
 						'user_id' => $getFinalUserDetails->id,
 						'email' => $getFinalUserDetails->email,
 						'first_name' => $getFinalUserDetails->first_name,
@@ -385,22 +376,16 @@ class Favoritewish extends CI_Controller
 					);
 					$this->session->set_userdata('ci_session_key_generate', TRUE);
 					$this->session->set_userdata('ci_seesion_key', $authArray);
-				
-				$this->session->set_userdata('ci_seesion_key',$authArray); 
 				redirect('user-dashboard');
+		  }else{
+			  $this->session->set_flashdata('error', 'Something wents wrong by google token!');
+			  redirect('sign-in');
 		  }
-	     }
-		$login_button = '';
-		if ($this->session->userdata('ci_session_key_generate') != FALSE) 
-		{ 
-		    
-		 	redirect('user-dashboard');
-		}else{
-			$login_button = '<a href="'.$google_client->createAuthUrl().'"><img src="'.base_url().'asset/sign-in-with-google.png" /></a>';
-			$data['login_button'] = $login_button;
-			$this->load->view('auth/sign-in', $data);
-		// $this->load->view('auth/sign-in', $data);
-		}
+	     }else{
+			 $this->session->set_flashdata('error', 'Something wents wrong by google code!');
+			 redirect('sign-in');
+		 }
+		
 	}
 	public function login() // Login Controller for users
 	{  
@@ -420,32 +405,17 @@ class Favoritewish extends CI_Controller
 			$data['breadcrumbs'] = array('Login' => '#');
 			$this->load->view('front/header_inner', $data);
 			   include_once "vendor/autoload.php";
-				$google_client = new Google_Client();
-
-				$google_client->setClientId('303746168371-f4hvqsag3pvam7v2m5m60r8hq9kcd9hu.apps.googleusercontent.com'); //Define your ClientID
-
-				$google_client->setClientSecret('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'); //Define your Client Secret Key
-
-				$google_client->setRedirectUri('http://localhost/fw/google/sign-in'); //Define your Redirect Uri
-
-				$google_client->addScope('email');
-
-				$google_client->addScope('profile');
-				$login_button = '';
-				if(!$this->session->userdata('access_token'))
-				{  
-				$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';
-				$data['login_button'] = $login_button;
-				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
-			    $this->load->view('front/footer_main');
-				}
-				else
-				{
+			    $google_client = new Google_Client();
+                 $google_client->setClientId(GOOGLE_CLIENT_ID); //Define your ClientID
+	             $google_client->setClientSecret(GOOGLE_CLIENT_SECRET); //Define your Client Secret Key
+	             $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
+                $google_client->addScope('email');
+                $google_client->addScope('profile');
 				$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';	
 				$data['login_button'] = $login_button;
 				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
 			    $this->load->view('front/footer_main');
-				}
+				
 		}else{
 			redirect('user-dashboard');
 		}
