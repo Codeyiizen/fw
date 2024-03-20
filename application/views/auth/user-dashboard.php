@@ -72,7 +72,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Tooltip on top"></i>
+                                                        data-placement="top" title="Category"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -87,7 +87,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Tooltip on top"></i>
+                                                        data-placement="top" title="Type"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -101,7 +101,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Tooltip on top"></i>
+                                                        data-placement="top" title="Brand"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -115,7 +115,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Tooltip on top"></i>
+                                                        data-placement="top" title="Color"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -129,7 +129,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Tooltip on top"></i>
+                                                        data-placement="top" title="Size"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -143,12 +143,12 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Tooltip on top"></i>
+                                                        data-placement="top" title="Style"></i>
                                                 </div>
                                             </div>
                                             <div class="form-group text-center">
                                                 <input type="submit" name="contact" id="contact_form"
-                                                    class="theme-btn yellow-bg" value="Submit">
+                                                    class="theme-btn-submit yellow-bg" value="Create List">
                                             </div>
                                         </form>
                                     </div>
@@ -253,7 +253,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Tooltip on top"></i>
+                                            title="Category"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -268,7 +268,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Tooltip on top"></i>
+                                            title="Type"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -282,7 +282,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Tooltip on top"></i>
+                                            title="Brand"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -296,7 +296,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Tooltip on top"></i>
+                                            title="Color"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -310,7 +310,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Tooltip on top"></i>
+                                            title="Size"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -324,13 +324,13 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Tooltip on top"></i>
+                                            title="Style"></i>
                                     </div>
                                 </div>
                                 <input type="hidden" class="wish_id">
                                 <div class="form-group text-center">
                                     <input type="button" name="contact" id="contact_form_edit"
-                                        class="theme-btn yellow-bg" value="Submit">
+                                        class="theme-btn-submit yellow-bg" value="Update List">
                                 </div>
                             </form>
                         </div>

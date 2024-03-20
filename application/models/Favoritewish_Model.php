@@ -844,7 +844,7 @@ class Favoritewish_Model extends CI_Model {
     public function getObjUserGoogleDetails($loginid){ 
         $this->db->select('*');
         $this->db->from('users');
-        $this->db->where('login_oauth_uid', $loginid);
+        $this->db->where('id', $loginid);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->row();
@@ -852,6 +852,17 @@ class Favoritewish_Model extends CI_Model {
             return FALSE;
         }
     }
-
+    
+    public function checkEmailExit($email){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('email',$email);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return FALSE;
+        }
+    }
   
 }

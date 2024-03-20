@@ -344,28 +344,37 @@ class Favoritewish extends CI_Controller
 		  $this->session->set_userdata('access_token', $token['access_token']);
 		  $google_service = new Google_Service_Oauth2($google_client);
 		  $data = $google_service->userinfo->get();
-		  $getObjUserDataById = $this->Favoritewish_Model->getObjUserGoogleDetails($data['id']); 
-		  //echo"<pre>"; var_dump($getObjUserDataById); exit;
-				//update data
-				$user_data = array(
-					'first_name' => $data['given_name'],
-					'last_name'  => $data['family_name'],
-					'email' => $data['email'],
-					'login_oauth_uid' => $data['id'],
-				);
-			
-				if(!empty($getObjUserDataById)){    
-		               $this->Favoritewish_Model->Update_user_data($user_data, $getObjUserDataById->id);
+		  $checkEmailExit = $this->Favoritewish_Model->checkEmailExit($data['email']);
+		  if(!empty($checkEmailExit)){
+		  $getObjUserDataById = $this->Favoritewish_Model->getObjUserGoogleDetails($checkEmailExit['id']); 
+						if(!empty($getObjUserDataById)){  
+							$updateData = array(
+								'first_name' => $checkEmailExit['first_name'],
+								'last_name'  => $checkEmailExit['last_name'],
+								'user_name'  => $checkEmailExit['first_name'].$checkEmailExit['last_name'],
+								'email' =>    $checkEmailExit['email'],
+								'login_oauth_uid' => $data['id'],
+								'status' => 1,
+								'verification_code' => 1,
+							);  
+							$this->Favoritewish_Model->Update_user_data($updateData, $getObjUserDataById->id);
+						}else{
+							$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data); 
+						}
 				}else{
-					   $insertUser = $this->Favoritewish_Model->Insert_user_data($user_data); 
+					$user_data = array(
+						'first_name' => $data['given_name'],
+						'last_name'  => $data['family_name'],
+						'user_name'  => $data['given_name'].$data['family_name'],
+						'email' => $data['email'],
+						'login_oauth_uid' => $data['id'],
+						'status' => 1,
+						'verification_code' => 1,
+					);
+					$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data);
 				}
-				$dataUpdate = array(        
-					'status' => 1,
-					'verification_code' => 1,
-				);
 			    $userId = !empty($getObjUserDataById) ? $getObjUserDataById->id : $insertUser;
 				$this->db->where('id', $userId);
-				$msg = $this->db->update('users', $dataUpdate);
 				$getFinalUserDetails =  $this->Favoritewish_Model->InsertDataById($userId);
 				$authArray = array(
 						'user_id' => $getFinalUserDetails->id,
@@ -481,11 +490,11 @@ class Favoritewish extends CI_Controller
 			$data['title'] = "User Dashboard";
 			$data['breadcrumbs'] = array('User Dashboard' => '#');
 			$sessionArray = $this->session->userdata('ci_seesion_key');
-		  //	echo"<pre>"; var_dump($sessionArray->user_id); exit;
+		  //	echo"<pre>"; var_dump($sessionArray); exit;
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 		//	echo"<pre>"; var_dump($data['userInfo']); exit;
-		//	$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
+			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo($get);
 			$data['get'] = $get;

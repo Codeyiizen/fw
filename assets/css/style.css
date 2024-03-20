@@ -634,7 +634,18 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
     font-size: 16px;
     font-family: 'Gilroy-Medium';
 }
-
+.theme-btn-submit {
+    color: #fff;
+    background-color: #022947;
+    border: 2px solid #fff;
+    letter-spacing: 0.6px;
+    padding: 0 2rem;
+    display: inline-block;
+    transition: all 300ms ease-in 0s;
+    line-height: 40px;
+    font-size: 16px;
+    font-family: 'Gilroy-Medium';
+}
 .theme-btn:hover,
 .theme-btn:focus {
     color: #022947;
