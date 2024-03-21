@@ -35,6 +35,7 @@ $(document).ready(function() {
         event.preventDefault();
         var category = $("#category").val(); // alert(category);
         var type = $("#type").val();
+        var accessories = $("#accessories").val();  // alert(accessories);
         var brand = $("#brand").val(); // alert(brand);
         var color = $("#color").val(); //  alert(color);
         var size = $("#size").val(); // alert(size);
@@ -47,6 +48,7 @@ $(document).ready(function() {
             data: {
                 category: category,
                 type: type,
+                accessories:accessories,
                 brand: brand,
                 color: color,
                 size: size,

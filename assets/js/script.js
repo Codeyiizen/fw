@@ -380,6 +380,7 @@
 })(window.jQuery);
 
 
+
 $(document).ready(function() {
 	$('#registry_form').on('submit', function(event){    
 		event.preventDefault();
@@ -500,8 +501,9 @@ function profilephoto(event,varId){
 	}
 }
 
-$("body").on("click", ".showCategory", function () { 
+$("body").on("click", ".showCategory", function () {  
 	$(".select-category").html('Loading');
+	var accessories = $('.accessories').attr('data-accessories');      //   alert(accessories);
 	var wish_id = $(this).attr('data-id');         // alert(cat_id);
 	var brand = $('.brand').attr('data-brand');   // alert(brand); 
 	var color = $('.color').attr('data-color');   // alert(color);       
@@ -519,10 +521,18 @@ $("body").on("click", ".showCategory", function () {
 		      },
 		success: function (response) { // alert(response);
 			var res = JSON.parse(response);
-			if (res?.code == 200) {
-				console.log(res);
+			if (res?.code == 200) { 
+				var accessories = res?.htmlotherAccessories; // alert(accessories);
+				console.log(accessories);
 				$(".category-edit").html(res?.html);
 				$(".type-edit").html(res?.htmlType);
+				if(accessories == null){  
+					
+					$('.otherAccessories_edit').addClass('d-none');
+				}else{ 
+					$(".accessories_edit").val(accessories);
+				    $('.otherAccessories_edit').removeClass('d-none');
+				}
 				$(".brand-edit").val(res?.htmlBrand);
 				$(".color-edit").val(res?.htmlColor);
 				$(".size-edit").val(res?.htmlsize);
@@ -538,7 +548,8 @@ $("body").on("click", ".showCategory", function () {
 $("body").on("click", "#contact_form_edit", function () { 
 	var wish_id = $('.wish_id').val();            // alert(wish_id);
 	var cat_id = $('.category-edit').val();         //    alert(cat_id);
-	var type_id = $('.type-edit').val();           // alert(type_id);    
+	var type_id = $('.type-edit').val(); 
+	var accessories = $('.accessories_edit').val();          // alert(type_id);    
 	var brand = $('.brand-edit').val();             //    alert(brand); 
 	var color = $('.color-edit').val();            //   alert(color);       
 	var size = $('.size-edit').val();              // alert(size);
@@ -549,6 +560,7 @@ $("body").on("click", "#contact_form_edit", function () {
 		data: {wish_id:wish_id,
 			   cat_id :cat_id,
 			   type_id:type_id,
+			   accessories:accessories,
 			   brand:brand,
 			   color:color,
 			   size:size,
@@ -750,3 +762,21 @@ $("body").on("click", ".registryDeleteId", function (){
 	 
    });   
   });
+
+  $("body").on("click",".otherAccessories", function(){  
+     var otherAccessoriesId = $(this).val(); 
+	 if(otherAccessoriesId == 43){
+	  $('.otherAccessories_inputbox').removeClass('d-none');
+	 }else{
+		$('.otherAccessories_inputbox').addClass('d-none');
+	 }
+  });
+
+  $("body").on("click",".accessoriesEdit", function(){  
+	var otherAccessoriesId = $(this).val(); 
+	if(otherAccessoriesId == 43){
+	 $('.otherAccessories_edit').removeClass('d-none');
+	}else{
+	   $('.otherAccessories_edit').addClass('d-none');
+	}
+ });

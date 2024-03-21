@@ -686,6 +686,7 @@ class Favoritewish_Model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update($table_name, array('categories_id' => $categories_id,
                                              'type' => $type,
+                                             'other_accessories' =>$other_accessories,
                                              'brand' => $brand,
                                              'color' => $color,
                                              'size' => $size,
