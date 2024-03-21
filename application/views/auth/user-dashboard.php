@@ -79,7 +79,7 @@
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Type</label>
-                                                        <select class="select-type form-control" id="type" name="type">
+                                                        <select class="select-type form-control otherAccessories" id="type" name="type">
                                                             <option value="">Select Type</option>
                                                         </select>
                                                     </div>
@@ -88,6 +88,19 @@
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
                                                         data-placement="top" title="Type"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row otherAccessories_inputbox d-none">
+                                                <div class="col-11">
+                                                    <div class="form-group form-inline">
+                                                        <label for="email" class="mr-sm-2">Accessories</label>
+                                                        <input type="text" class="form-control" id="accessories" value=""
+                                                            name="accessories" placeholder="Accessories">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 pl-0 pt-2">
+                                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                                        title="Accessories"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -107,15 +120,15 @@
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Color</label>
-                                                        <input type="text" class="form-control" id="color" value=""
-                                                            name="color" placeholder="color">
+                                                        <label for="email" class="mr-sm-2">Style</label>
+                                                        <input type="text" class="form-control" id="style" value=""
+                                                            name="style" placeholder="Style">
                                                     </div>
-                                                    <span id="colors" class="text-danger text-center"></span>
+                                                    <span id="styles" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Color"></i>
+                                                        data-placement="top" title="Style"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -123,7 +136,7 @@
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Size</label>
                                                         <input type="text" class="form-control" id="size" value=""
-                                                            name="size">
+                                                            name="size" placeholder="Size">
                                                     </div>
                                                     <span id="sizes" class="text-danger text-center"></span>
                                                 </div>
@@ -135,15 +148,15 @@
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Style</label>
-                                                        <input type="text" class="form-control" id="style" value=""
-                                                            name="style">
+                                                        <label for="email" class="mr-sm-2">Color</label>
+                                                        <input type="text" class="form-control" id="color" value=""
+                                                            name="color" placeholder="color">
                                                     </div>
-                                                    <span id="styles" class="text-danger text-center"></span>
+                                                    <span id="colors" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Style"></i>
+                                                        data-placement="top" title="Color"></i>
                                                 </div>
                                             </div>
                                             <div class="form-group text-center">
@@ -200,6 +213,10 @@
                                             <?php if (!empty($subCatName)) { ?>
                                             <li>Type - <?php echo $subCatName; ?></li>
                                             <?php } ?>
+                                            <?php  if(!empty($wishInfos->other_accessories)){ ?>
+                                            <li class="accessories" data-accessories="<?php print_r($wishInfos->other_accessories); ?>">Accessories -
+                                                <?php print_r($wishInfos->other_accessories); ?></li> 
+                                            <?php  } ?>    
                                             <li class="brand" data-brand="<?php print_r($wishInfos->brand); ?>">Brand -
                                                 <?php print_r($wishInfos->brand); ?></li>
                                             <li class="color" data-color="<?php print_r($wishInfos->color); ?>">Color -
@@ -260,7 +277,7 @@
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Type</label>
-                                            <select class="select-type form-control type-edit" id="type" name="type">
+                                            <select class="select-type form-control type-edit accessoriesEdit" id="type" name="type">
                                                 <option value="">Select Type</option>
                                             </select>
                                         </div>
@@ -269,6 +286,19 @@
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                                             title="Type"></i>
+                                    </div>
+                                </div>
+                                <div class="row otherAccessories_edit d-none">
+                                    <div class="col-11">
+                                        <div class="form-group form-inline">
+                                            <label for="email" class="mr-sm-2">Accessories</label>
+                                            <input type="text" class="form-control accessories_edit" id="accessoriesEdit" value=""
+                                                name="accessories" placeholder="Accessories">
+                                        </div>
+                                    </div>
+                                    <div class="col-1 pl-0 pt-2">
+                                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                            title="Accessories"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -288,15 +318,15 @@
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
-                                            <label for="email" class="mr-sm-2">Color</label>
-                                            <input type="text" class="form-control color-edit" id="color" value=""
-                                                name="color" placeholder="color">
+                                            <label for="email" class="mr-sm-2">Style</label>
+                                            <input type="text" class="form-control style-edit" id="style" value=""
+                                                name="style">
                                         </div>
-                                        <span id="colors_edit" class="text-danger text-center"></span>
+                                        <span id="styles_edit" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Color"></i>
+                                            title="Style"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -316,15 +346,15 @@
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
-                                            <label for="email" class="mr-sm-2">Style</label>
-                                            <input type="text" class="form-control style-edit" id="style" value=""
-                                                name="style">
+                                            <label for="email" class="mr-sm-2">Color</label>
+                                            <input type="text" class="form-control color-edit" id="color" value=""
+                                                name="color" placeholder="color">
                                         </div>
-                                        <span id="styles_edit" class="text-danger text-center"></span>
+                                        <span id="colors_edit" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Style"></i>
+                                            title="Color"></i>
                                     </div>
                                 </div>
                                 <input type="hidden" class="wish_id">

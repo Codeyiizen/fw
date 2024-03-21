@@ -679,9 +679,11 @@ class Favoritewish extends CI_Controller
 						
 					}
 				}
+			//	echo"<pre>"; var_dump($getObjWishData); exit;
 				$data['code'] = 200;
 				$data['html'] = $arrayHtml;
 				$data['htmlType'] = $arrayHtmlType;
+				$data['htmlotherAccessories'] = $getObjWishData->other_accessories;
 				$data['htmlBrand'] = $getObjWishData->brand;
 				$data['htmlColor'] = $getObjWishData->color;
 				$data['htmlsize'] = $getObjWishData->size;
@@ -1331,7 +1333,8 @@ class Favoritewish extends CI_Controller
 	}
 
 	public function addYourWish()
-	{ 
+	{   
+		
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('category', 'category', 'required');
@@ -1344,6 +1347,7 @@ class Favoritewish extends CI_Controller
 			$array = array(
 				'categories_id'     => $this->input->post('category'),
 				'type'  => $this->input->post('type'),
+				'other_accessories'  => $this->input->post('accessories'),
 				'brand'   => $this->input->post('brand'),
 				'color' => $this->input->post('color'),
 				'size' => $this->input->post('size'),
@@ -1372,6 +1376,7 @@ class Favoritewish extends CI_Controller
 	}
   
 	public function wishEditPost(){   
+		//echo"<pre>"; var_dump($this->input->post('accessories')); exit;
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');
 	 //	$this->form_validation->set_rules('category', 'category', 'required');
@@ -1386,6 +1391,7 @@ class Favoritewish extends CI_Controller
 						'id' => $this->input->post('wish_id'),
 						'categories_id' => $this->input->post('cat_id'),
 						'type' => $this->input->post('type_id'),
+						'other_accessories' => $this->input->post('accessories'),
 						'brand' => $this->input->post('brand'),
 						'color' => $this->input->post('color'),
 						'size' => $this->input->post('size'),
