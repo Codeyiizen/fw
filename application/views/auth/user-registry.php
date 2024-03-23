@@ -54,7 +54,6 @@
                                     <div class="modal-body">
                                         <span id="success_message"></span>
                                         <form class="wishlist-form" method="post" id="registry_form">
-                                            <span id="categorys" class="text-danger text-center"></span>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
@@ -68,13 +67,13 @@
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </div>
-                                                    <span id="types" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Category"></i>
+                                                        data-placement="top" title="select a clothing category that interest you—this will subsequently refine the options in the following dropdown menu"></i>
                                                 </div>
                                             </div>
+                                            <span id="categorys" class="text-danger text-center"></span>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
@@ -83,13 +82,13 @@
                                                             <option value="">Select Type</option>
                                                         </select>
                                                     </div>
-                                                    <span id="occasions" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Type"></i>
+                                                        data-placement="top" title="select a type that fits your appearance"></i>
                                                 </div>
                                             </div>
+                                            <span id="types" class="text-danger text-center"></span>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
@@ -97,13 +96,13 @@
                                                         <input type="text" class="form-control" id="occasion" value=""
                                                             name="occasion" placeholder="Occasion">
                                                     </div>
-                                                    <span id="brands" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
                                                         data-placement="top" title="Occasion"></i>
                                                 </div>
                                             </div>
+                                            <span id="occasions" class="text-danger text-center"></span>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
@@ -111,11 +110,40 @@
                                                         <input type="text" class="form-control" id="brand" value=""
                                                             name="brand" placeholder="Brand">
                                                     </div>
-                                                    <span id="colors" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Brand"></i>
+                                                        data-placement="top" title="list a brand that appeals to you"></i>
+                                                </div>
+                                            </div>
+                                            <span id="brands" class="text-danger text-center"></span>
+                                            <div class="row">
+                                                <div class="col-11">
+                                                    <div class="form-group form-inline">
+                                                        <label for="email" class="mr-sm-2">Style</label>
+                                                        <input type="text" class="form-control" id="style" value=""
+                                                            name="style" placeholder="Style">
+                                                    </div>
+                                                    <span id="styles" class="text-danger text-center"></span>
+                                                </div>
+                                                <div class="col-1 pl-0 pt-2">
+                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                                        data-placement="top" title="list a style that suits your taste"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-11">
+                                                    <div class="form-group form-inline">
+                                                        <label for="email" class="mr-sm-2">Size</label>
+                                                        <input type="text" class="form-control" id="size" value=""
+                                                            name="size" placeholder="Size">
+                                                    </div>
+                                                    <span id="sizes" class="text-danger text-center"></span>
+                                                    
+                                                </div>
+                                                <div class="col-1 pl-0 pt-2">
+                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                                        data-placement="top" title="provide an exact size that fits you just right"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -125,41 +153,14 @@
                                                         <input type="text" class="form-control" id="color" value=""
                                                             name="color" placeholder="color">
                                                     </div>
-                                                    <span id="sizes" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Color"></i>
+                                                        data-placement="top" title="pick a color that reflects your individuality"></i>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-11">
-                                                    <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Size</label>
-                                                        <input type="text" class="form-control" id="size" value=""
-                                                            name="size">
-                                                    </div>
-                                                    <span id="styles" class="text-danger text-center"></span>
-                                                </div>
-                                                <div class="col-1 pl-0 pt-2">
-                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Size"></i>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-11">
-                                                    <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Style</label>
-                                                        <input type="text" class="form-control" id="style" value=""
-                                                            name="style">
-                                                    </div>
-                                                    <span id="styles" class="text-danger text-center"></span>
-                                                </div>
-                                                <div class="col-1 pl-0 pt-2">
-                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Style"></i>
-                                                </div>
-                                            </div>
+                                            <span id="colors" class="text-danger text-center"></span>
+                                          
                                             <div class="form-group text-center">
                                                 <input type="submit" name="contact" id="registry_contact"
                                                     class="theme-btn-submit yellow-bg" value="Create List">
@@ -286,13 +287,13 @@
                                                 <option value="">Select Category</option>
                                             </select>
                                         </div>
-                                        <span id="categorys_registry" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                                             title="Category"></i>
                                     </div>
                                 </div>
+                                <span id="categorys_registry" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
@@ -302,13 +303,13 @@
                                                 <option value="">Select Type</option>
                                             </select>
                                         </div>
-                                        <span id="type_registry" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                                             title="Type"></i>
                                     </div>
                                 </div>
+                                <span id="type_registry" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
@@ -316,13 +317,13 @@
                                             <input type="text" class="form-control occasion-registry-edit" value=""
                                                 name="occasion_registry" placeholder="Occasion">
                                         </div>
-                                        <span id="occasions_registry" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                                             title="Occasion"></i>
                                     </div>
                                 </div>
+                                <span id="brand_registry" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
@@ -330,13 +331,13 @@
                                             <input type="text" class="form-control brand-registry-edit" value=""
                                                 name="brand_registry" placeholder="Brand">
                                         </div>
-                                        <span id="brand_registry" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                                             title="Brand"></i>
                                     </div>
                                 </div>
+                                <span id="occasions_registry" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
@@ -344,13 +345,14 @@
                                             <input type="text" class="form-control color-registry-edit" value=""
                                                 name="color_registry" placeholder="color">
                                         </div>
-                                        <span id="colors_registry" class="text-danger text-center"></span>
+                                        
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                                             title="Color"></i>
                                     </div>
                                 </div>
+                                <span id="colors_registry" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
@@ -358,13 +360,14 @@
                                             <input type="text" class="form-control size-registry-edit" value=""
                                                 name="size_registry" placeholder="Size">
                                         </div>
-                                        <span id="sizes_registry" class="text-danger text-center"></span>
+                                        
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                                             title="Size"></i>
                                     </div>
                                 </div>
+                                <span id="sizes_registry" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
@@ -372,15 +375,14 @@
                                             <input type="text" class="form-control style-registry-edit" value=""
                                                 name="style_registry" placeholder="Style">
                                         </div>
-                                        <span id="styles" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
                                             title="Style"></i>
                                     </div>
                                 </div>
+                                <span id="styles_registry" class="text-danger text-center"></span>
                                 <input type="hidden" class="registry_id">
-                                <span id="styles" class="text-danger text-center"></span>
                                 <div class="form-group text-center">
                                     <input type="button" name="contact" id="registry_contact_update"
                                         class="theme-btn-submit yellow-bg" value="Update List">

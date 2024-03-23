@@ -441,6 +441,8 @@ class Favoritewish_Model extends CI_Model {
        return $query->result();
     }
     // Function to get all categories
+
+    
     public function getCategories() {
 
         $this->db->select('*');
@@ -723,6 +725,29 @@ class Favoritewish_Model extends CI_Model {
         $this->db->select('*');
         $this->db->from('user_wish');
         $this->db->where('id',$wishId);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function getcatById($catId){
+        $this->db->select('*');
+        $this->db->from('categories');
+        $this->db->where('id',$catId);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        }
+    }
+    public function getcatByIdEdit($cat_id){
+        $this->db->select('*');
+        $this->db->from('categories');
+        $this->db->where('id',$cat_id);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->row();
