@@ -409,7 +409,7 @@ $(document).ready(function() {
 				$('#registry_contact').attr('disabled', 'disabled');
 			},
 			success: function(data) {  // alert(data.error);
-				if (data.error) {
+				if (data.error) {   
 					if (data.category != '') {
 						$('#categorys').html(data.category);
 					} else {
@@ -502,7 +502,7 @@ function profilephoto(event,varId){
 }
 
 $("body").on("click", ".showCategory", function () {  
-	$(".select-category").html('Loading');
+//	$(".select-category").html('Loading');
 	var accessories = $('.accessories').attr('data-accessories');      //   alert(accessories);
 	var wish_id = $(this).attr('data-id');         // alert(cat_id);
 	var brand = $('.brand').attr('data-brand');   // alert(brand); 
@@ -526,7 +526,7 @@ $("body").on("click", ".showCategory", function () {
 				console.log(accessories);
 				$(".category-edit").html(res?.html);
 				$(".type-edit").html(res?.htmlType);
-				if(accessories == null){  
+				if(accessories == ''){  
 					
 					$('.otherAccessories_edit').addClass('d-none');
 				}else{ 
@@ -719,7 +719,7 @@ $("body").on("click", ".wishDeleteId", function (){
 				} else {
 					$('#sizes_registry').html('');
 				}
-				if (res?.style != '') {
+				if (res?.style != '') { 
 					$('#styles_registry').html(res?.style);
 				} else {
 					$('#styles_registry').html('');
@@ -764,19 +764,139 @@ $("body").on("click", ".registryDeleteId", function (){
   });
 
   $("body").on("click",".otherAccessories", function(){  
-     var otherAccessoriesId = $(this).val(); 
-	 if(otherAccessoriesId == 43){
+     var otherAccessoriesId = $(this).val(); // alert(otherAccessoriesId);
+	 if(otherAccessoriesId == 24){
 	  $('.otherAccessories_inputbox').removeClass('d-none');
 	 }else{
 		$('.otherAccessories_inputbox').addClass('d-none');
 	 }
   });
 
-  $("body").on("click",".accessoriesEdit", function(){  
-	var otherAccessoriesId = $(this).val(); 
-	if(otherAccessoriesId == 43){
+  $("body").on("click",".accessoriesEdit", function(){   
+	var otherAccessoriesId = $(this).val();   
+	if(otherAccessoriesId == 24){
 	 $('.otherAccessories_edit').removeClass('d-none');
 	}else{
 	   $('.otherAccessories_edit').addClass('d-none');
 	}
+ });
+
+ //Acording to category palceholder change Start
+ $("body").on("change",".showPlaceHolder",function(){
+     var catId = $(".showPlaceHolder").val(); 
+	 $.ajax({
+		url: BASE_URL + "/show/placeholder",
+		type: "post",
+		data: {catId:catId},
+		success: function(data){   
+		var res = JSON.parse(data);   
+		var category = res?.category;  
+			if (category == 'Bottoms') {  
+				$(".brandPlaceHolderAdd").attr("placeholder","(e.g., Express, Gap, etc.)");
+				$(".colorPlaceHolderAdd").attr("placeholder","(e.g., Black, Blue, etc.)");
+				$(".stylePlaceHolderAdd").attr("placeholder","(e.g., Cargo, relaxed, etc.)");
+				$(".sizePlaceHolderAdd").attr("placeholder","(e.g., 8,10, 36*40 etc.)");
+			} else if(category == 'Shirts') { 
+				$(".brandPlaceHolderAdd").attr("placeholder","(e.g., Polo, American Eagle, etc.)");
+				$(".colorPlaceHolderAdd").attr("placeholder","(e.g., Red, Blue, etc.)");
+				$(".stylePlaceHolderAdd").attr("placeholder"," (e.g., short/long sleeve, v-neck)");
+				$(".sizePlaceHolderAdd").attr("placeholder","(e.g., 5,6.5, etc)");
+			} else if(category == 'Shoes') { 
+				$(".brandPlaceHolderAdd").attr("placeholder","(e.g., Nike, Tory Burch etc.)");
+				$(".colorPlaceHolderAdd").attr("placeholder","(e.g., Red, Blue, etc.)");
+				$(".stylePlaceHolderAdd").attr("placeholder","(e.g., short/long sleeve, v-neck)");
+				$(".sizePlaceHolderAdd").attr("placeholder","(e.g., 5,6.5, etc)");
+			} else if(category == 'Misc (e.g.,maternity)') { 
+				$(".brandPlaceHolderAdd").attr("placeholder","(e.g., Old Navy, J. Crew)");
+				$(".colorPlaceHolderAdd").attr("placeholder","(e.g., Green, Red, etc.)");
+				$(".stylePlaceHolderAdd").attr("placeholder","(e.g., dress socks, slouchy beanie hat)");
+				$(".sizePlaceHolderAdd").attr("placeholder","(e.g., 8, small etc)");
+			} else if(category == 'Pets') {   
+				$(".brandPlaceHolderAdd").attr("placeholder"," (e.g., Spark Paws)");
+				$(".colorPlaceHolderAdd").attr("placeholder","(e.g., Yellow, Purple, etc.)");
+				$(".stylePlaceHolderAdd").attr("placeholder","(e.g., hoodie, pajamas)");
+				$(".sizePlaceHolderAdd").attr("placeholder","(e.g., small, medium)");
+			}else if(category == 'NULL'){   
+				$(".brandPlaceHolderAdd").attr("placeholder","(e.g. Nike, Old Navy, Polo)");
+				$(".colorPlaceHolderAdd").attr("placeholder","(e.g. blue, yellow, black)");
+				$(".stylePlaceHolderAdd").attr("placeholder","(e.g. Cargo, v-neck)");
+				$(".sizePlaceHolderAdd").attr("placeholder","(e.g. 36*40, medium, 8)");
+			}
+	 }
+		
+	});
+ });
+ //Acording to category palceholder change End
+ $("body").on("change",".category-edit",function(){ 
+	var cat_id = $(this).val();  // alert(cat_id);
+	$.ajax({
+		url: BASE_URL + "/show/placeholder/edit",
+		type: "post",
+		data: {cat_id:cat_id},
+		success: function(data){   
+		var res = JSON.parse(data);   
+		var category = res?.category;  
+			if (category == 'Bottoms') { 
+				$(".accessoriesPlaceHolderEdit").val("");
+				$(".brandPlaceHolderEdit").val("");
+				$(".colorPlaceHolderEdit").val("");
+				$(".stylePlaceHolderEdit").val("");
+				$(".sizePlaceHolderEdit").val(""); 
+				$(".brandPlaceHolderEdit").attr("placeholder","(e.g., Express, Gap, etc.)");
+				$(".colorPlaceHolderEdit").attr("placeholder","(e.g., Black, Blue, etc.)");
+				$(".stylePlaceHolderEdit").attr("placeholder","(e.g., Cargo, relaxed, etc.)");
+				$(".sizePlaceHolderEdit").attr("placeholder","(e.g., 8,10, 36*40 etc.)");
+			} else if(category == 'Shirts') { 
+				$(".accessoriesPlaceHolderEdit").val("");
+				$(".brandPlaceHolderEdit").val("");
+				$(".colorPlaceHolderEdit").val("");
+				$(".stylePlaceHolderEdit").val("");
+				$(".sizePlaceHolderEdit").val("");
+				$(".brandPlaceHolderEdit").attr("placeholder","(e.g., Polo, American Eagle, etc.)");
+				$(".colorPlaceHolderEdit").attr("placeholder","(e.g., Red, Blue, etc.)");
+				$(".stylePlaceHolderEdit").attr("placeholder"," (e.g., short/long sleeve, v-neck)");
+				$(".sizePlaceHolderEdit").attr("placeholder","(e.g., 5,6.5, etc)");
+			} else if(category == 'Shoes') {
+				$(".accessoriesPlaceHolderEdit").val(""); 
+				$(".brandPlaceHolderEdit").val("");
+				$(".colorPlaceHolderEdit").val("");
+				$(".stylePlaceHolderEdit").val("");
+				$(".sizePlaceHolderEdit").val("");
+				$(".brandPlaceHolderEdit").attr("placeholder","(e.g., Nike, Tory Burch etc.)");
+				$(".colorPlaceHolderEdit").attr("placeholder","(e.g., Red, Blue, etc.)");
+				$(".stylePlaceHolderEdit").attr("placeholder","(e.g., short/long sleeve, v-neck)");
+				$(".sizePlaceHolderEdit").attr("placeholder","(e.g., 5,6.5, etc)");
+			} else if(category == 'Misc (e.g.,maternity)') { 
+				$(".accessoriesPlaceHolderEdit").val("");
+				$(".brandPlaceHolderEdit").val("");
+				$(".colorPlaceHolderEdit").val("");
+				$(".stylePlaceHolderEdit").val("");
+				$(".sizePlaceHolderEdit").val("");
+				$(".brandPlaceHolderEdit").attr("placeholder","(e.g., Old Navy, J. Crew)");
+				$(".colorPlaceHolderEdit").attr("placeholder","(e.g., Green, Red, etc.)");
+				$(".stylePlaceHolderEdit").attr("placeholder","(e.g., dress socks, slouchy beanie hat)");
+				$(".sizePlaceHolderEdit").attr("placeholder","(e.g., 8, small etc)");
+			} else if(category == 'Pets') { 
+				$(".accessoriesPlaceHolderEdit").val("");
+				$(".brandPlaceHolderEdit").val("");
+				$(".colorPlaceHolderEdit").val("");
+				$(".stylePlaceHolderEdit").val("");
+				$(".sizePlaceHolderEdit").val("");  
+				$(".brandPlaceHolderEdit").attr("placeholder"," (e.g., Spark Paws)");
+				$(".colorPlaceHolderEdit").attr("placeholder","(e.g., Yellow, Purple, etc.)");
+				$(".stylePlaceHolderEdit").attr("placeholder","(e.g., hoodie, pajamas)");
+				$(".sizePlaceHolderEdit").attr("placeholder","(e.g., small, medium)");
+			}else if(category == 'NULL'){  
+				$(".accessoriesPlaceHolderEdit").val("");
+				$(".brandPlaceHolderEdit").val("");
+				$(".colorPlaceHolderEdit").val("");
+				$(".stylePlaceHolderEdit").val("");
+				$(".sizePlaceHolderEdit").val(""); 
+				$(".brandPlaceHolderEdit").attr("placeholder","(e.g. Nike, Old Navy, Polo)");
+				$(".colorPlaceHolderEdit").attr("placeholder","(e.g. blue, yellow, black)");
+				$(".stylePlaceHolderEdit").attr("placeholder","(e.g. Cargo, v-neck)");
+				$(".sizePlaceHolderEdit").attr("placeholder","(e.g. 36*40, medium, 8)");
+			}
+	 }
+	});
  });

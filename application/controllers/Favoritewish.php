@@ -654,7 +654,8 @@ class Favoritewish extends CI_Controller
 		//	echo"<pre>"; var_dump($cat_id);exit;
 			if (!empty($wishId)){
 				$getObjWishData = $this->Favoritewish_Model->getWishListById($wishId);
-				$categories = $this->Favoritewish_Model->getCategories();
+				$categories = $this->Favoritewish_Model->getCategories_Wish_Edit();
+			//	echo"<pre>"; var_dump($categories);exit;
 				$subCategories = $this->Favoritewish_Model->getSubCat($getObjWishData->categories_id);
 				//echo"<pre>"; var_dump($subCategories);exit;
 		     	$arrayHtml = "";
@@ -679,7 +680,7 @@ class Favoritewish extends CI_Controller
 						
 					}
 				}
-			//	echo"<pre>"; var_dump($getObjWishData); exit;
+			//	echo"<pre>"; var_dump($getObjWishData->other_accessories); exit;
 				$data['code'] = 200;
 				$data['html'] = $arrayHtml;
 				$data['htmlType'] = $arrayHtmlType;
@@ -737,8 +738,38 @@ class Favoritewish extends CI_Controller
 			}
 		}
 	}
- 
 	// edit method
+
+	public function showPlaceHolderBycatName(){
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); 
+		} else {
+			$data = array();
+			$catId =  $this->input->post('catId');
+			$getCategory = $this->Favoritewish_Model->getcatById($catId); 
+			$categoryName = !empty($getCategory->name) ? $getCategory->name :'NULL';
+			if (!empty($categoryName)){
+				$data['code'] = 200;
+				$data['category'] = $categoryName;
+				echo json_encode($data);
+			}
+		}
+	}
+    public function showPlaceHolderBycatNameEdit(){
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); 
+		} else {
+			$data = array();
+			$cat_id =  $this->input->post('cat_id');
+			$getCategory = $this->Favoritewish_Model->getcatByIdEdit($cat_id); 
+			$categoryNameEdit = !empty($getCategory->name) ? $getCategory->name :'NULL';
+			if (!empty($categoryNameEdit)){
+				$data['code'] = 200;
+				$data['category'] = $categoryNameEdit;
+				echo json_encode($data);
+			}
+		}
+	}
 	public function edit()
 	{
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
@@ -1415,7 +1446,7 @@ class Favoritewish extends CI_Controller
 		}
 		echo json_encode($array);
 	}
-   
+
 	public function registryEditPost(){ 
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');

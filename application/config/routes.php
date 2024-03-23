@@ -97,6 +97,8 @@ $route['getCategory/subcategory/registry_id'] = 'favoritewish/getCategorySucateg
 $route['registry/update/post'] = 'favoritewish/registryEditPost';
 $route['registry/delete'] = 'favoritewish/registryDelete';   
 $route['google/sign-in'] = 'favoritewish/googleLogin';
+$route['show/placeholder'] = 'favoritewish/showPlaceHolderBycatName';
+$route['show/placeholder/edit'] = 'favoritewish/showPlaceHolderBycatNameEdit';
 /*
 
 

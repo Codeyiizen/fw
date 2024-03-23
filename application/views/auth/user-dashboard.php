@@ -59,11 +59,11 @@
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Category</label>
-                                                        <select class="select-category form-control" id="category"
+                                                        <select class="select-category form-control showPlaceHolder" id="category"
                                                             name="category">
                                                             <option value="">Select Category</option>
                                                             <?php foreach ($categories as $category) : ?>
-                                                            <option value="<?php echo $category->id; ?>">
+                                                            <option  value="<?php echo $category->id; ?>" data-category ="<?php echo $category->name; ?>">
                                                                 <?php echo $category->name; ?></option>
                                                             <?php endforeach; ?>
                                                         </select>
@@ -72,7 +72,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Category"></i>
+                                                        data-placement="top" title="select a clothing category that interest you—this will subsequently refine the options in the following dropdown menu"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -87,7 +87,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Type"></i>
+                                                        data-placement="top" title="select a type that fits your appearance"></i>
                                                 </div>
                                             </div>
                                             <div class="row otherAccessories_inputbox d-none">
@@ -107,56 +107,56 @@
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Brand</label>
-                                                        <input type="text" class="form-control" id="brand" value=""
-                                                            name="brand" placeholder="Brand">
+                                                        <input type="text" class="form-control brandPlaceHolderAdd" id="brand" value=""
+                                                            name="brand" placeholder="(e.g. Nike, Old Navy, Polo)">
                                                     </div>
                                                     <span id="brands" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Brand"></i>
+                                                        data-placement="top" title="list a brand that appeals to you"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Style</label>
-                                                        <input type="text" class="form-control" id="style" value=""
-                                                            name="style" placeholder="Style">
+                                                        <input type="text" class="form-control stylePlaceHolderAdd" id="style" value=""
+                                                            name="style" placeholder="(e.g. Cargo, v-neck)">
                                                     </div>
                                                     <span id="styles" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Style"></i>
+                                                        data-placement="top" title="list a style that suits your taste"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Size</label>
-                                                        <input type="text" class="form-control" id="size" value=""
-                                                            name="size" placeholder="Size">
+                                                        <input type="text" class="form-control sizePlaceHolderAdd" id="size" value=""
+                                                            name="size" placeholder="(e.g. 36*40, medium, 8)">
                                                     </div>
                                                     <span id="sizes" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Size"></i>
+                                                        data-placement="top" title="provide an exact size that fits you just right"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Color</label>
-                                                        <input type="text" class="form-control" id="color" value=""
-                                                            name="color" placeholder="color">
+                                                        <input type="text" class="form-control colorPlaceHolderAdd" id="color" value=""
+                                                            name="color" placeholder="(e.g. blue, yellow, black)">
                                                     </div>
                                                     <span id="colors" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Color"></i>
+                                                        data-placement="top" title="pick a color that reflects your individuality"></i>
                                                 </div>
                                             </div>
                                             <div class="form-group text-center">
@@ -203,8 +203,8 @@
 								$getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type);
 								$subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
 							?>
-                            <div class="col-lg-6">
-                                <div class="card bg-gradient-1 border-0 mb-4">
+                            <div class="col-lg-6 mb-4">
+                                <div class="card bg-gradient-1 border-0 h-100">
                                     <div class="card-body">
                                         <h5 class="mb-1"><strong>Wish - </strong>
                                             <?php print_r($wishInfos->cat_name); ?></h5>
@@ -270,7 +270,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Category"></i>
+                                            title=" select a clothing category that interest you—this will subsequently refine the options in the following dropdown menu"></i>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -285,14 +285,14 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Type"></i>
+                                            title="select a type that fits your appearance"></i>
                                     </div>
                                 </div>
                                 <div class="row otherAccessories_edit d-none">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Accessories</label>
-                                            <input type="text" class="form-control accessories_edit" id="accessoriesEdit" value=""
+                                            <input type="text" class="form-control accessories_edit accessoriesPlaceHolderEdit" id="accessoriesEdit" value=""
                                                 name="accessories" placeholder="Accessories">
                                         </div>
                                     </div>
@@ -305,56 +305,56 @@
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Brand</label>
-                                            <input type="text" class="form-control brand-edit" id="brand" value=""
-                                                name="brand" placeholder="Brand">
+                                            <input type="text" class="form-control brand-edit brandPlaceHolderEdit" id="brand" value=""
+                                                name="brand" placeholder="(e.g. Nike, Old Navy, Polo)">
                                         </div>
                                         <span id="brands_edit" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Brand"></i>
+                                            title="list a brand that appeals to you"></i>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Style</label>
-                                            <input type="text" class="form-control style-edit" id="style" value=""
-                                                name="style">
+                                            <input type="text" class="form-control style-edit stylePlaceHolderEdit" id="style" value=""
+                                                name="style" placeholder="(e.g. Cargo, v-neck)"> 
                                         </div>
                                         <span id="styles_edit" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Style"></i>
+                                            title="list a style that suits your taste"></i>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Size</label>
-                                            <input type="text" class="form-control size-edit" id="size" value=""
-                                                name="size">
+                                            <input type="text" class="form-control size-edit sizePlaceHolderEdit" id="size" value=""
+                                                name="size" placeholder="(e.g. 36*40, medium, 8)">
                                         </div>
                                         <span id="sizes_edit" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Size"></i>
+                                            title="provide an exact size that fits you just right"></i>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Color</label>
-                                            <input type="text" class="form-control color-edit" id="color" value=""
-                                                name="color" placeholder="color">
+                                            <input type="text" class="form-control color-edit colorPlaceHolderEdit" id="color" value=""
+                                                name="color" placeholder="(e.g. blue, yellow, black)">
                                         </div>
                                         <span id="colors_edit" class="text-danger text-center"></span>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Color"></i>
+                                            title="pick a color that reflects your individuality"></i>
                                     </div>
                                 </div>
                                 <input type="hidden" class="wish_id">
