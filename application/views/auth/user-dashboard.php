@@ -226,7 +226,8 @@
                                             <li class="style" data-style="<?php print_r($wishInfos->style); ?>">Style -
                                                 <?php print_r($wishInfos->style); ?></li>
                                             <li>Created on -
-                                                <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?>
+                                                <!-- <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?> -->
+                                                <?php print_r(date("Y-m-d",strtotime($wishInfos->created_on))); ?> 
                                             </li>
                                         </ul>
                                         <div class="d-flex justify-content-between">

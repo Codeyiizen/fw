@@ -11,7 +11,7 @@
 						<div class="myform form background-image" data-background="<?php echo base_url(); ?>assets/images/site-image/signup-form-bg.png">
 							<div class="logo mb-3 form-header">
 								<div class="d-flex align-items-center justify-content-between">
-									<h3>Welcome to <span>Favorite Wish</span></h3>
+									<h3>Welcome to <span class="bg-primary text-white">Favorite Wish</span></h3>
 									<p>Have an Account?<br><a href="<?php echo base_url(); ?>sign-in" id="signins">Sign In</a></p>
 								</div>
 								

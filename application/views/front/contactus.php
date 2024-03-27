@@ -26,7 +26,7 @@ business days. Thank you for understanding, and happy wish listing.</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7 col-sm-12">
+            <div class="col-md-8 col-sm-12 offset-md-2">
                 <div id="search-form">
 							
                     <?php
@@ -61,7 +61,7 @@ business days. Thank you for understanding, and happy wish listing.</p>
                         ?>
                         
                         <?php echo form_open('favoritewish/contactFormSubmission'); ?>
-                            <div class="row">
+                            <div class="row justify-content-center">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="Fullname">Full Name</label>

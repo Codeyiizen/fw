@@ -8,7 +8,7 @@
             <div class="col-lg-3">
                 <div class="profile-sidebar right">
                     <div class="sidebar-about sidebar-widget sidebar-bg">
-                        <h3>Family</h3>
+                        <h3>Family Members</h3>
                         <div class="friends-list mb-4">
                             <?php
 							if (!empty($frienddetails)) {
@@ -37,28 +37,96 @@
             <div class="col-lg-6">
                 <div class="profile-content-inner">
                     <div class="create-wish mb-4">
-                        <h3>Have a wish in a mind?</h3>
-                        <a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#createWish"><i
+                        <h3>Have a wish in mind ?</h3>
+                        <a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#createFamilyWish"><i
                                 class="fas fa-plus-circle"></i> Let's Create</a>
                         <!-- The Modal -->
-                        <div class="modal" id="createWish">
+                        <div class="modal" id="createFamilyWish">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Create your Wish</h4>
+                                        <h4 class="modal-title">Create your Family Wish</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
-
                                     <!-- Modal body -->
                                     <div class="modal-body">
                                         <span id="success_message"></span>
-                                        <form class="wishlist-form" method="post" id="registry_form">
+                                        <form class="wishlist-form" method="post" id="familyMember_form">
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
+                                                        <label for="email" class="mr-sm-2">Family member</label>
+                                                        <select class="form-control" id="familyMamber"
+                                                            name="family-mamber">
+                                                            <option value="">Select Family member</option>
+                                                            <option value="1st born">1st born</option>
+                                                            <option value="2nd born">2nd born</option>
+                                                            <option value="3rd born">3rd born</option>
+                                                            <option value="4th born">4th born</option>
+                                                            <option value="5th born">5th born</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 pl-0 pt-2">
+                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                                        data-placement="top" title="Family member"></i>
+                                                </div>
+                                           </div> 
+                                           <span id="family_member" class="text-danger text-center"></span> 
+                                           <div class="row">
+                                                <div class="col-11">
+                                                    <div class="form-group form-inline">
+                                                        <label for="email" class="mr-sm-2">Child’s Name</label>
+                                                        <input type="text" class="form-control" id="childName" value=""
+                                                            name="occasion" placeholder="(name, nicknames or initials)">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 pl-0 pt-2">
+                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                                        data-placement="top" title="Child’s Name"></i>
+                                                </div>
+                                            </div>
+                                            <span id="child_name" class="text-danger text-center"></span> 
+                                            <div class="row">
+                                                <div class="col-11">
+                                                    <div class="form-group form-inline">
+                                                        <label for="email" class="mr-sm-2">Child’s Birthday</label>
+                                                        <input type="date" class="form-control" id="childBirthday" value=""
+                                                            name="child-birthday" placeholder="Child’s Birthday:">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 pl-0 pt-2">
+                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                                        data-placement="top" title="Child’s Birthday:"></i>
+                                                </div>
+                                            </div>
+                                            <span id="child_birthday" class="text-danger text-center"></span> 
+                                            <div class="row">
+                                                <div class="col-11">
+                                                    <div class="form-group form-inline">
+                                                        <label for="email" class="mr-sm-2">Sex</label>
+                                                        <select class="select-category form-control" id="sex"
+                                                            name="sex">
+                                                            <option value="">Select Sex</option>
+                                                            <option value="male">male</option>
+                                                            <option value="female">female</option>
+                                                            <option value="not applicable">not applicable</option>
+                                                            <option value="prefer not to say">prefer not to say</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 pl-0 pt-2">
+                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                                        data-placement="top" title="Sex"></i>
+                                                </div>
+                                           </div> 
+                                           <span id="sexsss" class="text-danger text-center"></span> 
+                                             <div  class="row">
+                                                <div class="col-11">
+                                                    <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Category</label>
-                                                        <select class="select-category form-control" id="category"
+                                                        <select class="select-category form-control" id="familyCategory"
                                                             name="category">
                                                             <option value="">Select Category</option>
                                                             <?php foreach ($categories as $category) : ?>
@@ -73,12 +141,12 @@
                                                         data-placement="top" title="select a clothing category that interest you—this will subsequently refine the options in the following dropdown menu"></i>
                                                 </div>
                                             </div>
-                                            <span id="categorys" class="text-danger text-center"></span>
+                                            <span id="cat_id" class="text-danger text-center"></span>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Type</label>
-                                                        <select class="select-type form-control" id="type" name="type">
+                                                        <select class="select-type form-control" id="familyType" name="family-type">
                                                             <option value="">Select Type</option>
                                                         </select>
                                                     </div>
@@ -88,26 +156,12 @@
                                                         data-placement="top" title="select a type that fits your appearance"></i>
                                                 </div>
                                             </div>
-                                            <span id="types" class="text-danger text-center"></span>
-                                            <div class="row">
-                                                <div class="col-11">
-                                                    <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Occasion</label>
-                                                        <input type="text" class="form-control" id="occasion" value=""
-                                                            name="occasion" placeholder="Occasion">
-                                                    </div>
-                                                </div>
-                                                <div class="col-1 pl-0 pt-2">
-                                                    <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Occasion"></i>
-                                                </div>
-                                            </div>
-                                            <span id="occasions" class="text-danger text-center"></span>
+                                            <span id="type_id" class="text-danger text-center"></span>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Brand</label>
-                                                        <input type="text" class="form-control" id="brand" value=""
+                                                        <input type="text" class="form-control" id="familyBrand" value=""
                                                             name="brand" placeholder="Brand">
                                                     </div>
                                                 </div>
@@ -116,29 +170,29 @@
                                                         data-placement="top" title="list a brand that appeals to you"></i>
                                                 </div>
                                             </div>
-                                            <span id="brands" class="text-danger text-center"></span>
+                                            <span id="brand" class="text-danger text-center"></span>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Style</label>
-                                                        <input type="text" class="form-control" id="style" value=""
-                                                            name="style" placeholder="Style">
+                                                        <label for="email" class="mr-sm-2">Color</label>
+                                                        <input type="text" class="form-control" id="familyColor" value=""
+                                                            name="familyColor" placeholder="color">
                                                     </div>
-                                                    <span id="styles" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="list a style that suits your taste"></i>
+                                                        data-placement="top" title="pick a color that reflects your individuality"></i>
                                                 </div>
                                             </div>
+                                            <span id="color" class="text-danger text-center"></span>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Size</label>
-                                                        <input type="text" class="form-control" id="size" value=""
-                                                            name="size" placeholder="Size">
+                                                        <input type="text" class="form-control" id="familySize" value=""
+                                                            name="familySize" placeholder="Size">
                                                     </div>
-                                                    <span id="sizes" class="text-danger text-center"></span>
+                                                    <span id="size" class="text-danger text-center"></span>
                                                     
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
@@ -149,17 +203,17 @@
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Color</label>
-                                                        <input type="text" class="form-control" id="color" value=""
-                                                            name="color" placeholder="color">
+                                                        <label for="email" class="mr-sm-2">Style</label>
+                                                        <input type="text" class="form-control" id="familyStyle" value=""
+                                                            name="familyStyle" placeholder="Style">
                                                     </div>
+                                                    <span id="style" class="text-danger text-center"></span>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="pick a color that reflects your individuality"></i>
+                                                        data-placement="top" title="list a style that suits your taste"></i>
                                                 </div>
                                             </div>
-                                            <span id="colors" class="text-danger text-center"></span>
                                           
                                             <div class="form-group text-center">
                                                 <input type="submit" name="contact" id="registry_contact"
@@ -178,9 +232,21 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-7"></div>
-                        <div class="col-5">
-                            <select class="form-control form-select form-select-lg mb-3 filter_by_cat_registry"
+                        <div class="col-6">
+                            <select class="form-control form-select form-select-lg mb-3 filter_by_familymember_wish"
+                                aria-label="Default select example">
+                                <option value="">Filter by family member</option>
+                                <?php if (!empty($allWishMember)) {
+									foreach ($allWishMember as $wishMember) {
+								?>
+                                <option <?php echo (!empty($get['family']) && $get['family']==$wishMember->family_member)?"selected":'' ?>
+                                    value="<?php echo $wishMember->family_member ?>"><?php echo $wishMember->family_member ?></option>
+                                <?php }
+								} ?>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <select class="form-control form-select form-select-lg mb-3 filter_by_cat_family_wish"
                                 aria-label="Default select example">
                                 <option value="">Filter By Category</option>
                                 <?php if (!empty($categories)) {
@@ -193,6 +259,7 @@
                             </select>
                         </div>
                     </div>
+                    
                     <div class="added-wishes">
                         <span id="success_message_delete"></span>
                         <div class="row">
@@ -202,37 +269,29 @@
 								$i = $i + 1;
 								$CI = &get_instance();
 								$CI->load->model('Favoritewish_Model');
-								$getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type);
+								$getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type_id);
 								$subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
 							?>
                             <div class="col-lg-6">
                                 <div class="card bg-gradient-1 border-0 mb-4">
                                     <div class="card-body">
-                                        <h5 class="mb-1"><strong><?php print_r($wishInfos->occasion); ?> - </strong>
-                                            <?php print_r($wishInfos->cat_name); ?></h5>
-                                        <p class="mb-1 font-weight-semibold font-italic">Details - </p>
+                                        <!-- <h5 class="mb-1"><strong><?php print_r($wishInfos->occasion); ?> - </strong>
+                                            <?php print_r($wishInfos->cat_name); ?></h5> -->
+                                        <p class="mb-1 font-weight-semibold font-italic">Wish -<?php print_r($wishInfos->cat_name); ?> </p>
                                         <ul class="list-unstyled font-italic text-capitalize mb-0">
-                                            <?php if (!empty($subCatName)) { ?>
-                                            <li>Type - <?php echo $subCatName; ?></li>
-                                            <?php } ?>
-                                            <li>Brand - <?php print_r($wishInfos->brand); ?></li>
-                                            <li>Occasion - <?php print_r($wishInfos->occasion); ?></li>
-                                            <li>Color - <?php print_r($wishInfos->color); ?></li>
-                                            <li>Size - <?php print_r($wishInfos->size); ?></li>
-                                            <li>Style - <?php print_r($wishInfos->style); ?></li>
-                                            <li>Created on -
-                                                <!-- <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?> -->
-                                                <?php print_r(date("Y-m-d",strtotime($wishInfos->created_on))); ?>
-                                            </li>
+                                            <li>For - <?php print_r($subCatName); ?></li>
+                                            <li>Family Member - <?php print_r($wishInfos->family_member); ?></li>
+                                            <li>Water mark - <?php print_r($wishInfos->child_name); ?></li>
+                                            <li>Child’s Birthday - <?php print_r($wishInfos->child_birthday); ?></li>
                                         </ul>
-                                        <div class="d-flex justify-content-between">
+                                        <!-- <div class="d-flex justify-content-between">
                                             <a href="#" class="showRegistryCategory"
                                                 data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal"
                                                 data-target="#editRegistry">Edit</a>
                                             <a href="#" class="wishDeleteModel" id="Registry_delete"
                                                 data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal"
                                                 data-target="#removeRegistryAccount">Delete</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

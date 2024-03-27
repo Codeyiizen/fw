@@ -441,8 +441,26 @@ class Favoritewish_Model extends CI_Model {
        return $query->result();
     }
     // Function to get all categories
-
     
+   public function getFamilyWishInfo($get){  
+        $this->db->select('family_wish_add.*,categories.name as cat_name');
+        $this->db->from('family_wish_add');
+        $this->db->join('categories','categories.id=family_wish_add.cat_id','left');
+        $this->db->where('user_id',$this->_userID);
+        if(!empty($get['cat'])){
+            $this->db->where('family_wish_add.cat_id',$get['cat']);
+        }
+        if(!empty($get['family'])){
+            $this->db->where('family_wish_add.family_member',$get['family']);
+        }
+        $query = $this->db->get();
+        return $query->result();
+   }
+   public function allWishMember(){
+        $this->db->from('family_wish_add');
+        $query = $this->db->get();
+        return $query->result();
+   }
     public function getCategories() {
 
         $this->db->select('*');

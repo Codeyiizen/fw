@@ -222,7 +222,22 @@
 		} else {
 			window.location.replace(BASE_URL+'/user/registry')
 		}
-		
+	}) 
+    
+	$("body").on("change",".filter_by_cat_family_wish",function(){
+		if($(this).val()!==""){
+			window.location.replace(BASE_URL+'/family/wishes?cat='+$(this).val())
+		} else {
+			window.location.replace(BASE_URL+'/family/wishes')
+		}
+	}) 
+
+	$("body").on("change",".filter_by_familymember_wish",function(){ 
+		if($(this).val()!==""){
+			window.location.replace(BASE_URL+'/family/wishes?family='+$(this).val())
+		} else {
+			window.location.replace(BASE_URL+'/family/wishes')
+		}
 	})
 	$("body").on("change",".filter_by_cat_wish",function(){ 
 		var dataId = $(this).attr('data-id');
@@ -455,6 +470,115 @@ $(document).ready(function() {
 					$('#colors').html('');
 					$('#sizes').html('');
 					$('#styles').html('');
+					window.location.reload();
+				}
+				$('#registry_contact').attr('disabled', false);
+			}
+		});
+	});
+});
+
+
+
+$(document).ready(function() {
+	$('#familyMember_form').on('submit', function(event){    
+		event.preventDefault();
+        var familyMamber = $("#familyMamber").val();   // alert(familyMamber);
+		var childName  =   $("#childName").val();        // alert(childName);
+		var childBirthday = $("#childBirthday").val();   // alert(childBirthday);
+		var sex           = $("#sex").val();              // alert(sex);
+		var familyCategory = $("#familyCategory").val();  // alert(familyCategory); 
+		var familyType     = $("#familyType").val();      //  alert(familyType);
+		var familyBrand    = $("#familyBrand").val();     //  alert(familyBrand);
+		var familyColor    = $("#familyColor").val();     //  alert(familyColor);
+		var familySize     = $("#familySize").val();      //  alert(familySize);
+		var familyStyle    = $("#familyStyle").val();     //  alert(familyStyle);
+		$.ajax({
+			url: BASE_URL + "/family/wishes/add",
+			type: "POST",
+			dataType: "json",
+			data: {
+				familyMamber: familyMamber,
+				childName: childName,
+				childBirthday: childBirthday,
+				sex: sex,
+				familyCategory: familyCategory,
+				familyType:familyType,
+				familyBrand:familyBrand,
+				familyColor:familyColor,
+				familySize:familySize,
+				familyStyle:familyStyle
+
+			},
+			beforeSend: function() {
+				$('#registry_contact').attr('disabled', 'disabled');
+			},
+			success: function(data) {   //alert(data);
+				console.log(data);
+				if (data.error) {   
+					if (data.family_member != '') {
+						$('#family_member').html(data.family_member);
+					} else {
+						$('#family_member').html('');
+					}
+					if (data.child_name != '') {
+						$('#child_name').html(data.child_name);
+					} else {
+						$('#child_name').html('');
+					}
+					if (data.child_birthday != '') {
+						$('#child_birthday').html(data.child_birthday);
+					} else {
+						$('#child_birthday').html('');
+					}
+					if (data.sex != '') {
+						$('#sexsss').html(data.sex);
+					} else {
+						$('#sexsss').html('');
+					}
+					if (data.cat_id != '') {
+						$('#cat_id').html(data.cat_id);
+					} else {
+						$('#cat_id').html('');
+					}
+					if (data.type_id != '') {
+						$('#type_id').html(data.type_id);
+					} else {
+						$('#type_id').html('');
+					}
+					if (data.brand != '') {
+						$('#brand').html(data.brand);
+					} else {
+						$('#brand').html('');
+					} 
+					if (data.color != '') {
+						$('#color').html(data.color);
+					} else {
+						$('#color').html('');
+					}
+					if (data.size != '') {
+						$('#size').html(data.size);
+					} else {
+						$('#size').html('');
+					}
+					if (data.style != '') {
+						$('#style').html(data.style);
+					} else {
+						$('#style').html('');
+					}
+				}
+				if (data.success) {
+					$('#success').html(data.success);
+					$('#family_member').html('');
+					$('#child_name').html('');
+					$('#child_birthday').html('');
+					$('#sexsss').html('');
+					$('#cat_id').html('');
+					$('#type_id').html('');
+					$('#brand').html('');
+					$('#color').html('');
+					$('#size').html('');
+					$('#style').html('');
 					window.location.reload();
 				}
 				$('#registry_contact').attr('disabled', false);
