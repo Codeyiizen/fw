@@ -11,11 +11,9 @@
 						<div class="myform form background-image" data-background="<?php echo base_url(); ?>assets/images/site-image/signup-form-bg.png">
 							<div class="logo mb-3 form-header">
 								<div class="d-flex align-items-center justify-content-between">
-									<h3>Welcome to <span>Favorite Wish</span></h3>
+									<h3>Welcome to <span class="bg-primary text-white">Favorite Wish</span></h3>
 									<p>No Account?<br><a href="<?php echo base_url(); ?>sign-up" id="signups">Sign up</a></p>
 								</div>
-							
-							
 								<div class="social-login my-4 text-center">
 									<!-- <a href="#" class="social-login-btn"><img src="<?php echo base_url(); ?>assets/images/site-image/google.png" alt="google" width="22">Sign in with Google</a> -->
 									<?php if(!empty($login_button)){   ?>

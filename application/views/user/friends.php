@@ -67,7 +67,7 @@
 												} else {  ?>
 													<button type="button" class="theme-btn yellow-bg px-4 mr-0 sendFriendRequest" data-token="<?php echo $data->token; ?>">Add Friend</button>
 												<?php } ?>
-												<div class="form-group form-inline mt-4">
+												<!-- <div class="form-group form-inline mt-4">
 													<select class="form-control select-family" id="select-family" to-user-id="<?php echo $data->from_friend;?>">
 														<option value="">Choose Family</option>
 														<?php if(!empty($getObjFamilyMember[0])){
@@ -83,7 +83,7 @@
 														}?>
 														
 													</select>
-												</div>
+												</div> -->
 											</div>
 											
 										</div>

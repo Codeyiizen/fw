@@ -533,6 +533,34 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
+   
+	public function family_wishes(){
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); // the user is not logged in, redirect them!
+		} else {
+			 $get = $this->input->get();  
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
+			$data = array();
+			$data['metaDescription'] = 'User Family Wish';
+			$data['metaKeywords'] = 'User Dashboard';
+			$data['title'] = "User Family Wish";
+			$data['breadcrumbs'] = array('User Dashboard' => '#');
+			$sessionArray = $this->session->userdata('ci_seesion_key');
+			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
+			$data['categories'] = $this->Favoritewish_Model->getCategories();
+			$data['wishInfo'] = $this->Favoritewish_Model->getFamilyWishInfo($get);
+			$data['allWishMember'] = $this->Favoritewish_Model->allWishMember();
+		//	echo"<pre>"; var_dump($data['allWishMember']); exit;
+			$data['get'] = $get;
+			$this->load->view('front/header_inner', $data);
+			$this->template->load('default_layout', 'contents', 'auth/family-wishes');
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+		}
+	}
+
 
 	// user profile
 	public function user_profile()
@@ -1178,7 +1206,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 	public function getUserProfile()
-	{
+	{   
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -1230,7 +1258,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-
+  
 
 	public function getUserFriendsSearch()
 	{
@@ -1543,6 +1571,58 @@ class Favoritewish extends CI_Controller
 				'color' => form_error('color'),
 				'size' => form_error('size'),
 				'style' => form_error('style')
+			);
+		//	echo"<pre>"; var_dump($array);exit;
+		}
+		echo json_encode($array);
+	}
+
+	public function addFamilyAdd(){ 
+		$sessionArray = $this->session->userdata('ci_seesion_key');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('familyMamber', 'Family Member', 'required');
+		$this->form_validation->set_rules('childName', 'Child Name', 'required');
+		$this->form_validation->set_rules('childBirthday','Child Birthday', 'required');
+		$this->form_validation->set_rules('sex','sex', 'required');
+		$this->form_validation->set_rules('familyCategory', 'Category', 'required');
+		$this->form_validation->set_rules('familyType', 'Type', 'required');
+		$this->form_validation->set_rules('familyBrand', 'Brand', 'required');
+		$this->form_validation->set_rules('familyColor', 'Color', 'required');
+		$this->form_validation->set_rules('familySize', 'Size', 'required');
+		$this->form_validation->set_rules('familyStyle', 'Style', 'required');
+		if ($this->form_validation->run()) {  
+			$array = array(
+				'family_member'     => $this->input->post('familyMamber'),
+				'child_name'     => $this->input->post('childName'),
+				'child_birthday'     => $this->input->post('childBirthday'),
+				'sex'     => $this->input->post('sex'),
+				'cat_id'     => $this->input->post('familyCategory'),
+				'type_id'  => $this->input->post('familyType'),
+				'brand'   => $this->input->post('familyBrand'),
+				'color'   => $this->input->post('familyColor'),
+				'size' => $this->input->post('familySize'),
+				'style' => $this->input->post('familyStyle'),
+				'user_id' => $sessionArray['user_id'],
+				'created_on' => date('Y-m-d H:i:s')
+			);
+			//	echo"<pre>"; var_dump($array); exit;
+			$this->db->insert('family_wish_add', $array);
+			$array = array(
+				'success' => '<div class="alert alert-warning">Family Wish Added Successfully</div>'
+			);
+		} else {
+			$array = array(
+				'error'   => true,
+				'family_member' => form_error('familyMamber'),
+				'child_name' => form_error('childName'),
+				'child_birthday' => form_error('childBirthday'),
+				'sex' => form_error('sex'),
+				'cat_id' => form_error('familyCategory'),
+				'type_id' => form_error('familyType'),
+				'brand' => form_error('familyBrand'),
+				'color' => form_error('familyColor'),
+				'size' => form_error('familySize'),
+				'style' => form_error('familyStyle')
 			);
 		//	echo"<pre>"; var_dump($array);exit;
 		}

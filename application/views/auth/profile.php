@@ -29,6 +29,9 @@
 								<?php if(!empty($userInfo['full_name'])) { ?> 
 									<li><span>Full Name</span> <?php print $userInfo['full_name']; ?></li> 
 								<?php } ?> 
+								<?php if(!empty($userInfo['full_name'])) { ?> 
+									<li><span>Birthday </span> <?php print $userInfo['dob']; ?></li> 
+								<?php } ?>
 								<?php if(!empty($userInfo['birthday'])) { ?> 
 									<li><span>Date of Birth</span> <?php print $userInfo['birthday']; ?></li> 
 								<?php } ?> 
