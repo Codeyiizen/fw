@@ -232,7 +232,7 @@
 		}
 	}) 
 
-	$("body").on("change",".filter_by_familymember_wish",function(){ 
+	$("body").on("change",".filter_by_familymember_wish",function(){
 		if($(this).val()!==""){
 			window.location.replace(BASE_URL+'/family/wishes?family='+$(this).val())
 		} else {

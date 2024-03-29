@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="Email Address">Email</label>
                                     <div class="input-group">
@@ -91,7 +91,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="Username">Phone</label>
                                     <div class="input-group">
@@ -100,12 +100,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="Username">Date of Birth </label>
                                     <div class="input-group">
-                                        <input type="date" name="dob" class="form-control" id="user_phone"
+                                        <input type="date" name="dob" min="1-01-01" max="2024-12-31" class="form-control" id="user_phone"
                                             value="<?php print $userInfo['dob']; ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="Username">Favorite Charity</label>
+                                    <div class="input-group">
+                                        <input type="text" name="favorite_charity" class="form-control" id="user_phone"
+                                            value="<?php print $userInfo['favorite_charity']; ?>">
                                     </div>
                                 </div>
                             </div>

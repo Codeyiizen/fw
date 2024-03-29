@@ -60,11 +60,11 @@
                                                         <select class="form-control" id="familyMamber"
                                                             name="family-mamber">
                                                             <option value="">Select Family member</option>
-                                                            <option value="1st born">1st born</option>
-                                                            <option value="2nd born">2nd born</option>
-                                                            <option value="3rd born">3rd born</option>
-                                                            <option value="4th born">4th born</option>
-                                                            <option value="5th born">5th born</option>
+                                                            <option value="First Born">First Born</option>
+                                                            <option value="Second Born">Second Born</option>
+                                                            <option value="Third Born">Third Born</option>
+                                                            <option value="Forth Born">Forth Born</option>
+                                                            <option value="Fifth Born">Fifth Born</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -236,13 +236,11 @@
                             <select class="form-control form-select form-select-lg mb-3 filter_by_familymember_wish"
                                 aria-label="Default select example">
                                 <option value="">Filter by family member</option>
-                                <?php if (!empty($allWishMember)) {
-									foreach ($allWishMember as $wishMember) {
-								?>
-                                <option <?php echo (!empty($get['family']) && $get['family']==$wishMember->family_member)?"selected":'' ?>
-                                    value="<?php echo $wishMember->family_member ?>"><?php echo $wishMember->family_member ?></option>
-                                <?php }
-								} ?>
+                                <option value="First Born" <?php echo (!empty($get['family']) && $get['family']=='First Born')?"selected":'' ?>>First Born</option>
+                                <option value="Second Born" <?php echo (!empty($get['family']) && $get['family']=='Second Born')?"selected":'' ?>>Second Born</option>
+                                <option value="Third Born" <?php echo (!empty($get['family']) && $get['family']=='Third Born')?"selected":'' ?>>Third Born</option>
+                                <option value="Forth Born" <?php echo (!empty($get['family']) && $get['family']=='Forth Born')?"selected":'' ?>>Forth Born</option>
+                                <option value="Fifth Born" <?php echo (!empty($get['family']) && $get['family']=='Fifth Born')?"selected":'' ?>>Fifth Born</option>
                             </select>
                         </div>
                         <div class="col-6">
@@ -275,14 +273,19 @@
                             <div class="col-lg-6">
                                 <div class="card bg-gradient-1 border-0 mb-4">
                                     <div class="card-body">
-                                        <!-- <h5 class="mb-1"><strong><?php print_r($wishInfos->occasion); ?> - </strong>
-                                            <?php print_r($wishInfos->cat_name); ?></h5> -->
-                                        <p class="mb-1 font-weight-semibold font-italic">Wish -<?php print_r($wishInfos->cat_name); ?> </p>
+                                        <p class="mb-1 font-weight-semibold font-italic">For -<?php print_r($wishInfos->child_name); ?> </p>
+                                        <!-- <p class="mb-1 font-weight-semibold font-italic">Wish -<?php print_r($wishInfos->cat_name); ?> </p> -->
                                         <ul class="list-unstyled font-italic text-capitalize mb-0">
-                                            <li>For - <?php print_r($subCatName); ?></li>
                                             <li>Family Member - <?php print_r($wishInfos->family_member); ?></li>
-                                            <li>Water mark - <?php print_r($wishInfos->child_name); ?></li>
-                                            <li>Child’s Birthday - <?php print_r($wishInfos->child_birthday); ?></li>
+                                            <li>Child’s birthday - <?php print_r($wishInfos->child_birthday); ?></li> 
+                                            <li>Gender - <?php print_r($wishInfos->sex); ?></li>
+                                            <li>Wish - <?php print_r($wishInfos->cat_name); ?></li> 
+                                            <li>Type - <?php print_r($subCatName); ?></li> 
+                                            <li>Brand - <?php print_r($wishInfos->brand); ?></li>
+                                            <li>Color  - <?php print_r($wishInfos->color); ?></li>
+                                            <li>Size  - <?php print_r($wishInfos->size); ?></li>
+                                            <li>Style  - <?php print_r($wishInfos->style); ?></li>  
+                                            <li>Created On  - <?php print_r(date("Y-m-d",strtotime($wishInfos->created_on))); ?></li>
                                         </ul>
                                         <!-- <div class="d-flex justify-content-between">
                                             <a href="#" class="showRegistryCategory"

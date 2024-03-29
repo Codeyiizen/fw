@@ -193,6 +193,9 @@ class Favoritewish_Model extends CI_Model {
     public function setcover_photo($cover_photo) { // echo"<pre>"; var_dump($profile_photo);  exit;
         $this->_cover_photo = $cover_photo;  
     }
+    public function setfavorite_charity($favorite_charity){ // echo"<pre>"; var_dump($profile_photo);  exit;
+        $this->_favorite_charity = $favorite_charity;  
+    }
     public function setVerificationCode($verificationCode) {
         $this->_verificationCode = $verificationCode;
     }
@@ -314,6 +317,7 @@ class Favoritewish_Model extends CI_Model {
             'dob' => $this->_dob,
             'profile_photo' => $this->_profile_photo,
             'cover_photo' => $this->_cover_photo,
+            'favorite_charity' => $this->_favorite_charity,
             'modified_date' => $this->_timeStamp,
         );
 
@@ -360,7 +364,7 @@ class Favoritewish_Model extends CI_Model {
 	
 	// get User Detail
     public function getUserDetails() {
-        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.profile_photo','m.cover_photo','m.dob'));
+        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.profile_photo','m.cover_photo','m.dob','m.favorite_charity'));
         $this->db->from('users as m');
         $this->db->where('m.id', $this->_userID);
         $query = $this->db->get();
@@ -456,11 +460,7 @@ class Favoritewish_Model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
    }
-   public function allWishMember(){
-        $this->db->from('family_wish_add');
-        $query = $this->db->get();
-        return $query->result();
-   }
+  
     public function getCategories() {
 
         $this->db->select('*');
