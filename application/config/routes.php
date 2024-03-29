@@ -101,6 +101,7 @@ $route['show/placeholder'] = 'favoritewish/showPlaceHolderBycatName';
 $route['show/placeholder/edit'] = 'favoritewish/showPlaceHolderBycatNameEdit';
 $route['family/wishes'] = 'favoritewish/family_wishes'; 
 $route['family/wishes/add'] = "favoritewish/addFamilyAdd"; 
+$route['google/sign-up'] = 'favoritewish/googleSignUp';
 /*
 
 

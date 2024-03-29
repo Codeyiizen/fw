@@ -5,7 +5,7 @@
 			<div class="col-lg-7 col-sm-12">
 				
 			</div>
-			<div class="col-lg-5 col-sm-12">
+			<div class="col-lg-5 col-sm-12">  
 				<div class="fav-login-panel">
 					<div id="seconds">
 						<div class="myform form background-image" data-background="<?php echo base_url(); ?>assets/images/site-image/signup-form-bg.png">
@@ -73,10 +73,14 @@
 								<div class="col-md-12 text-center mb-3">
 									<button type="submit" class="yello-shadow-btn">Sign Up</button>
 								</div>
-								<div class="social-login my-4 text-center">
+								<!-- <div class="social-login my-4 text-center">
 									<a href="#" class="social-login-btn"><img src="<?php echo base_url(); ?>assets/images/site-image/google.png" alt="google" width="22">Sign in with Google</a>
-								</div>										
-							
+								</div>										 -->
+									<div class="social-login my-4 text-center">
+										<?php if(!empty($login_button)){   ?>
+										<?php echo $login_button; ?>
+										<?php } ?>
+									</div>
 							<?php echo form_close(); ?>
 						</div>
 					</div>
