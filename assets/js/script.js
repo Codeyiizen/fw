@@ -124,7 +124,7 @@
 			}
 		});
 	})
-	$("body").on("click", ".acceptFriendRequest", function () {
+	$("body").on("click", ".acceptFriendRequest", function () {   
 		var tokenObj = $(this).data('token');
 		var params = { "token": tokenObj };
 		$.ajax({
@@ -132,10 +132,11 @@
 			type: "post",
 			data: JSON.stringify(params),
 			contentType: "application/json; charset=utf-8",
-			success: function (response) {
+			success: function (response) {     
 				var res = JSON.parse(response);
 				if (res?.code == 200) {
-					window.location.reload();
+					window.location.href =BASE_URL + "/user/friends";
+				//	window.location.reload();
 				}
 			}
 		});

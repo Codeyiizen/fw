@@ -39,6 +39,9 @@
 									<li><span>Address</span> <?php print $userInfo['address']; ?>, <?php print $userInfo['city']; ?>,
 									<?php print $userInfo['state']; ?>, <?php print $userInfo['zip']; ?></li> 
 								<?php } ?>
+								<?php if(!empty($userInfo['favorite_charity'])) { ?> 
+									<li><span>Favorite Charity</span><?php print $userInfo['favorite_charity']; ?></li> 
+								<?php } ?>
 								<?php if(!empty($userInfo['favorite_country'])) { ?> 
 									<li><span>Favorite Country</span><?php print $userInfo['favorite_country']; ?></li> 
 								<?php } ?>

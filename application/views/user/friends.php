@@ -33,11 +33,11 @@
 										<div class="card mb-4">
 											<a href="<?php echo base_url(); ?>user/friends/details/<?php echo $data->id; ?>">
 												<?php
-												$coverImage = $data->cover_photo;
-												if (file_exists(FCPATH . 'assets/uploads/cover_photo/' . $data->cover_photo) && !empty($data->cover_photo)) {  ?>
-													<img class="user-banner" src="<?php echo base_url() . 'assets/uploads/cover_photo/' . $coverImage; ?>" alt="" class="img-fluid">
+												$coverImage = $data->profile_photo;
+												if (file_exists(FCPATH . 'assets/uploads/profile_photo/' . $data->profile_photo) && !empty($data->profile_photo)) {  ?>
+													<img class="user-banner" src="<?php echo base_url() . 'assets/uploads/profile_photo/' . $coverImage; ?>" alt="" class="img-fluid">
 												<?php } else {  ?>
-													<img class="user-banner" src="<?php echo base_url(); ?>assets/images/site-image/banner-bg.png" alt="" class="img-fluid">
+													<img class="user-banner" src="<?php echo base_url(); ?>assets/images/site-image/avatar.png" alt="" class="img-fluid">
 												<?php  } ?>
 											</a>
 											<div class="card-body p-4">

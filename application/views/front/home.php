@@ -38,7 +38,7 @@ actually want.</p>
 					<h2 class="entry-title">Don’t inconvenience yourself with<br> the return instructions</h2>
 					<p>Have you ever felt odd regifting a gift, or even wasted your time and energy with a return and
 exchange process ? Sheesh, so time consuming! Favorite Wish is here to give you your time
-back, and make sure that you give and receive the right gift, at the right time, with the right Size.</p>
+back, and make sure that you give and receive the right gift, at the right time, with the right size.</p>
 				</div>
 			</div>
 		</div>
