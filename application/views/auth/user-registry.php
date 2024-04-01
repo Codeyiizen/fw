@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="profile-sidebar right">
-                    <div class="sidebar-about sidebar-widget sidebar-bg">
+                    <!-- <div class="sidebar-about sidebar-widget sidebar-bg">
                         <h3>Family</h3>
                         <div class="friends-list mb-4">
                             <?php
@@ -31,13 +31,13 @@
                         <div class="text-center common-link">
                             <a href="<?php echo base_url(); ?>user/friends">See All</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="profile-content-inner">
                     <div class="create-wish mb-4">
-                        <h3>Have a wish in a mind?</h3>
+                        <h3>Have a wish in mind?</h3>
                         <a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#createWish"><i
                                 class="fas fa-plus-circle"></i> Let's Create</a>
                         <!-- The Modal -->

@@ -6,7 +6,7 @@
         <?php $this->load->view('user/Common/mainHeader') ?>
         <div class="row">
             <div class="col-lg-3">
-                <div class="profile-sidebar right">
+                <!-- <div class="profile-sidebar right">
                     <div class="sidebar-about sidebar-widget sidebar-bg">
                         <h3>Family Members</h3>
                         <div class="friends-list mb-4">
@@ -32,7 +32,7 @@
                             <a href="<?php echo base_url(); ?>user/friends">See All</a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-6">
                 <div class="profile-content-inner">
@@ -285,7 +285,8 @@
                                             <li>Color  - <?php print_r($wishInfos->color); ?></li>
                                             <li>Size  - <?php print_r($wishInfos->size); ?></li>
                                             <li>Style  - <?php print_r($wishInfos->style); ?></li>  
-                                            <li>Created On  - <?php print_r(date("Y-m-d",strtotime($wishInfos->created_on))); ?></li>
+                                            <!-- <li>Created On  - <?php print_r(date("Y-m-d",strtotime($wishInfos->created_on))); ?></li> -->
+                                            <li>Created On  - <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?></li>
                                         </ul>
                                         <!-- <div class="d-flex justify-content-between">
                                             <a href="#" class="showRegistryCategory"
