@@ -920,6 +920,7 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			$data['genderSelect'] = $this->Favoritewish_Model->getUserDetails();
 			// echo "<pre>";var_dump($data['userInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
@@ -931,14 +932,15 @@ class Favoritewish extends CI_Controller
 
 	// action update user 
 	public function editUser()
-	{  // echo"<pre>"; var_dump($this->input->post('favorite_charity')); exit;
+	{  
+		// echo"<pre>"; var_dump($this->input->post('gender')); exit;
 	    $sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 		$userInfo = $this->Favoritewish_Model->getUserDetails(); 
       //  echo"<pre>"; var_dump($userInfo['profile_photo']); exit; 
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-		$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|regex_match[/^[0-9]{10}$/]');
+	//	$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|numeric');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->edit();
@@ -958,6 +960,7 @@ class Favoritewish extends CI_Controller
 			$favorite_music = $this->input->post('favorite_music');
 			$dob = $this->input->post('dob');
 			$favorite_charity =   $this->input->post('favorite_charity');
+			$gender =   $this->input->post('gender');
 			// Upload profile photo in folder
 			if(!empty($_FILES['profile_photo']['name'])){
 				$config['upload_path']          = './assets/uploads/profile_photo/';
@@ -1020,6 +1023,7 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setprofile_photo($profile_photo);
 			$this->Favoritewish_Model->setcover_photo($cover_photo);
 			$this->Favoritewish_Model->setfavorite_charity($favorite_charity);
+			$this->Favoritewish_Model->set_gender($gender);
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
 			$status = $this->Favoritewish_Model->update();
 			if ($status == TRUE) {
@@ -1564,6 +1568,7 @@ class Favoritewish extends CI_Controller
 						'color' => $this->input->post('color'),
 						'size' => $this->input->post('size'),
 						'style' => $this->input->post('style'),
+					    'created_on' => date('Y-m-d H:i:s')
 					);
 					$this->Favoritewish_Model->updateWishData($data);
 			$array = array(
@@ -1605,6 +1610,7 @@ class Favoritewish extends CI_Controller
 						'color' => $this->input->post('registry_color'),
 						'size' => $this->input->post('registry_size'),
 						'style' => $this->input->post('registry_style'),
+						'created_on' => date('Y-m-d H:i:s')
 					);
 					$this->Favoritewish_Model->updateRegistryData($data);
 			$array = array(

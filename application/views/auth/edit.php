@@ -100,7 +100,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="Username">Date of Birth </label>
                                     <div class="input-group">
@@ -109,7 +109,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="Username">Sex Gender</label>
+                                    <div class="input-group">
+                                    <select class="form-control" name="gender">
+                                        <option>Select Gender</option>
+                                        <option value="male" <?php if($userInfo['gender'] == 'male') echo 'selected="selected"'; ?>>male</option>
+                                        <option value="female" <?php if($userInfo['gender'] == 'female') echo 'selected="selected"'; ?>>female</option>
+                                        <option value="not applicable" <?php if($userInfo['gender'] == 'not applicable') echo 'selected="selected"'; ?>>not applicable</option>
+                                        <option value="prefer not to say" <?php if($userInfo['gender'] == 'prefer not to say') echo 'selected="selected"'; ?>>prefer not to say</option>
+                                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="Username">Favorite Charity</label>
                                     <div class="input-group">
