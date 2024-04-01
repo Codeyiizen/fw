@@ -15,7 +15,7 @@
                     <?php
                     $profileImage = $userInfo['profile_photo'];
                     if (file_exists(FCPATH . 'assets/uploads/profile_photo/' . $userInfo['profile_photo']) && !empty($userInfo['profile_photo'])) {  ?>
-                        <object class="user-thumb" type="image/svg+xml" data="<?php echo base_url() . 'assets/uploads/profile_photo/' . $profileImage; ?>"></object>
+                        <img  class="user-thumb img-thumbnail img-fluid" src="<?php echo base_url() . 'assets/uploads/profile_photo/' . $profileImage; ?>"/>
                     <?php } else {  ?>
                         <object type="image/svg+xml" type="user-thumb" data="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"></object>
                     <?php  } ?>
