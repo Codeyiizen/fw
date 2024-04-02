@@ -1,7 +1,7 @@
-<section class="fav-profile-section">
+<section class="fav-profile-section pb-0 pb-md-5">
 	<?php $this->load->view('user/Common/friend-banner', array('userInfo' => $userInfo, 'is_friend' => $is_friend, 'userLoginInfo' => $userLoginInfo)) ?>
 </section>
-<section class="section-padding profile-content">
+<section class="section-padding profile-content pt-0 pt-md-5">
 	<div class="container">
 		<?php $this->load->view('user/Common/mainHeaderFriends', array('data' => $user_profile_id, 'is_friend' => $is_friend)) ?>
 		<div class="row">

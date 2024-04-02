@@ -634,6 +634,7 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
     font-size: 16px;
     font-family: 'Gilroy-Medium';
 }
+
 .theme-btn-submit {
     color: #fff;
     background-color: #022947;
@@ -646,6 +647,7 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
     font-size: 16px;
     font-family: 'Gilroy-Medium';
 }
+
 .theme-btn:hover,
 .theme-btn:focus {
     color: #022947;
@@ -1047,6 +1049,24 @@ section.fav-profile-section .profile-picture .img-fluid {
 .profile-picture .profile-name h3,
 .profile-picture .profile-name h5 {
     color: #000;
+}
+
+
+@media screen and (max-width:767px) {
+    section.fav-profile-section .profile-picture .img-fluid {
+        top: -75px;
+    }
+}
+
+@media screen and (max-width:575px) {
+    section.fav-profile-section .profile-picture .img-fluid {
+        width: 175px;
+        height: 175px;
+    }
+
+    .profile-picture .profile-name {
+        padding-left: 200px;
+    }
 }
 
 .profile-header-tabs {

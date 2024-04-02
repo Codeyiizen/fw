@@ -1,7 +1,7 @@
-<section class="fav-profile-section">
+<section class="fav-profile-section pb-0 pb-md-5">
     <?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
 </section>
-<section class="section-padding profile-content">
+<section class="section-padding profile-content pt-0 pt-md-5">
     <div class="container">
         <?php $this->load->view('user/Common/mainHeader') ?>
         <div class="row">
@@ -9,7 +9,7 @@
             <div class="col-lg-9">
                 <form>
                     <div class="form-group searchbar">
-                        <div class="input-group">
+                    <div class="input-group justify-content-center justify-content-md-end">
                             <div class="form-outline">
                                 <input type="search" name="q" id="form1" class="form-control rounded-pill py-2 pl-4" placeholder="Search..." value="<?php echo (!empty($get['q'])) ? $get['q'] : ''; ?>" />
                             </div>
@@ -38,7 +38,7 @@
                                                 <?php  } ?>
                                             </a>
                                             <div class="card-body p-4">
-                                                <h5 class="card-title"><?php echo $data->first_name . " " . $data->last_name; ?></h5>
+                                                <h5 class="card-title text-capitalize"><?php echo $data->first_name . " " . $data->last_name; ?></h5>
                                                 <?php if ($data->from_friend == $userInfo['user_id']) {
                                                     if ($data->friends_status == 0) {
 
