@@ -1,7 +1,7 @@
-<section class="fav-profile-section">
+<section class="fav-profile-section pb-0 pb-md-5">
 <?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
 </section>
-<section class="section-padding profile-content">
+<section class="section-padding profile-content pt-0 pt-md-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
@@ -25,8 +25,8 @@
 					<span id="success_message"></span>
 				    <span id="error_message"></span>
 					<div class="profile-content-inner">
-						    <div class="create-wish border-0 p-0 mb-3">							
-                                <h3 class="mb-0">Update Your Profile</h2>
+						    <div class="create-wish border-0 p-0 d-block d-md-flex mb-3">							
+                            <h3 class="mb-3 mb-md-0 d-inline-block">Update Your Profile</h3>
 								<a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#removeAccount">Delete Account</a>
 							</div>
 							<!-- The Modal -->

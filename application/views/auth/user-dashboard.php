@@ -1,7 +1,7 @@
-<section class="fav-profile-section">
+<section class="fav-profile-section pb-0 pb-md-5">
     <?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
 </section>
-<section class="section-padding profile-content">
+<section class="section-padding profile-content pt-0 pt-md-5">
     <div class="container">
         <?php $this->load->view('user/Common/mainHeader') ?>
         <div class="row">
@@ -36,8 +36,8 @@
             </div>
             <div class="col-lg-6">
                 <div class="profile-content-inner">
-                    <div class="create-wish mb-4">
-                        <h3>Have a wish in mind?</h3>
+                    <div class="create-wish d-block d-md-flex mb-4">
+                        <h3 class="mb-3 mb-md-0 d-inline-block">Have a wish in mind?</h3>
                         <a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#createWish"><i
                                 class="fas fa-plus-circle"></i> Let's Create</a>
                         <!-- The Modal -->
@@ -176,8 +176,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-7"></div>
-                        <div class="col-5">
+                        <div class="col-md-7"></div>
+                        <div class="col-md-5">
                             <select class="form-control form-select form-select-lg mb-3 filter_by_cat"
                                 aria-label="Default select example">
                                 <option value="">Filter By Category</option>
