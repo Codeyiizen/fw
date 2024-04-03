@@ -1438,6 +1438,16 @@ section.hero-section .banner-icon-7 {
     max-width: 135px;
 }
 
+@media screen and (max-width:767px){
+    .hero-section-content{
+        padding: 5rem 1.5rem;
+    }
+    
+    section.hero-section .banner-icon-4 {
+        right: -45px;
+    }
+}
+
 .gift-items .gift-content h3 {
     font-size: 20px;
     color: #000;
