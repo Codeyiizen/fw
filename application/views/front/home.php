@@ -10,11 +10,11 @@
 		<div class="row justify-content-center">
 			<div class="col-lg-8 col-sm-12">
 				<div class="hero-section-content">
-					<h1>Discover the Joy of Surprise Gifting</h1>
+					<h1 class="position-relative">Discover the Joy of Surprise Gifting</h1>
 					<p>Favorite Wish is a gift giving platform that eliminates the guessing game, and provides
 specifics in regard to the size, color, brand, and style clothing that your family and friends
 actually want.</p>
-					<div class="btn-box">
+					<div class="btn-box position-relative">
 						<?php
 						if ($this->session->userdata('ci_session_key_generate') == FALSE) {								
 							echo '<a href="'.base_url().'sign-up" class="theme-btn yellow-bg mr-3">Join Us</a>';
@@ -43,7 +43,7 @@ back, and make sure that you give and receive the right gift, at the right time,
 			</div>
 		</div>
 		<div class="row justify-content-center">
-			<div class="col-md-4 col-sm-2 col-12">
+			<div class="col-md-4 col-sm-6 col-12">
 				<div class="gift-items text-center mt-4">
 					<div class="gift-thumb mb-4">
 						<img src="<?php echo base_url(); ?>assets/images/right_size_time_resized.jpg" alt="" class="img-fluid">
@@ -87,7 +87,7 @@ back, and make sure that you give and receive the right gift, at the right time,
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 col-sm-2 col-12">
+			<div class="col-md-4 col-sm-6 col-12">
 				<div class="gift-items text-center mt-4">
 					<div class="gift-thumb mb-4">
 						<img src="<?php echo base_url(); ?>assets/images/right_color-resized.jpg" alt="" class="img-fluid">
@@ -137,7 +137,7 @@ makes us feel good and enhances our overall look.</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 col-sm-2 col-12">
+			<div class="col-md-4 col-sm-6 col-12">
 				<div class="gift-items text-center mt-4">
 					<div class="gift-thumb mb-4">
 						<img src="<?php echo base_url(); ?>assets/images/right_brand_style.jpg" alt="" class="img-fluid">
@@ -212,7 +212,7 @@ surprises!</p>
 		</div>
 	</div>
 </section>
-<section class="third-section wishlist-section mt-5 theme-bg">
+<section class="third-section wishlist-section mt-5 theme-bg alt">
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-7">
