@@ -1397,6 +1397,11 @@ section.hero-section [class*="banner-icon-"] {
     z-index: 1;
 }
 
+section.hero-section h1.position-relative,
+section.hero-section .btn-box.position-relative{
+  z-index: 1;
+}
+
 section.hero-section .banner-icon-1 {
     left: 125px;
     top: 30px;
@@ -1456,7 +1461,15 @@ section.wishlist-section {
     border-radius: 4px;
 }
 
+@media screen and (max-width:991.99px){
+   .third-section .why-content{
+       left: auto;
+     }
 
+     section.wishlist-section.alt {
+        padding: 2rem 1rem;
+     }
+ }
 
 .main-footer {
     background-color: #fff;
