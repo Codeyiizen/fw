@@ -202,11 +202,11 @@ if (isset($this->session->userdata['logged_in'])) {
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="<?php echo base_url(); ?>admin/user/list">Users List</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                  <!-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li> -->
                 </ul>
               </div>
             </li>
-            <li class="nav-item">
+        <!--    <li class="nav-item">
               <a class="nav-link" href="pages/icons/mdi.html">
                 <span class="menu-title">Icons</span>
                 <i class="mdi mdi-contacts menu-icon"></i>
@@ -229,8 +229,8 @@ if (isset($this->session->userdata['logged_in'])) {
                 <span class="menu-title">Tables</span>
                 <i class="mdi mdi-table-large menu-icon"></i>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+          <!--  <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">Sample Pages</span>
                 <i class="menu-arrow"></i>
@@ -245,7 +245,7 @@ if (isset($this->session->userdata['logged_in'])) {
                   <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
                 </ul>
               </div>
-            </li>
+            </li> -->
           </ul>
         </nav>
         <!-- partial -->
