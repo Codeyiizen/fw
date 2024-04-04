@@ -32,6 +32,8 @@ class Favoritewish extends CI_Controller
 		$this->load->library('upload');
 		$this->load->library('encryption');
 		$this->load->helper('custom');
+		$this->load->library("pagination");
+		
 	}
 
 	public function index()
@@ -1198,7 +1200,7 @@ class Favoritewish extends CI_Controller
 
 
 	public function administrator()
-	{
+	{ 
 		$this->form_validation->set_rules('admin_email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('admin_password', 'Password', 'trim|required');
 
@@ -1924,5 +1926,53 @@ class Favoritewish extends CI_Controller
 	   echo json_encode($array);
  }
  
+ public function pageConfig(){     
+	$config = array();
+	   $config["base_url"] = base_url() . "admin/user/list/Pagination/index";
+	   $config["total_rows"] = $this->Favoritewish_Model->getCount();
+	   $config["per_page"] = 10;
+	  $config["uri_segment"] = 1;
+	  $config['full_tag_open'] = "<ul class='pagination'>";
+	  $config['full_tag_close'] = '</ul>';
+	  $config['num_tag_open'] = '<li>';
+	  $config['num_tag_close'] = '</li>';
+	  $config['cur_tag_open'] = '<li class="active"><a href="#">';
+	  $config['cur_tag_close'] = '</a></li>';
+	  $config['prev_tag_open'] = '<li>';
+	  $config['prev_tag_close'] = '</li>';
+	  $config['first_tag_open'] = '<li>';
+	  $config['first_tag_close'] = '</li>';
+	  $config['last_tag_open'] = '<li>';
+	  $config['last_tag_close'] = '</li>';
+	  $config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
+	  $config['prev_tag_open'] = '<li>';
+	  $config['prev_tag_close'] = '</li>';
+	  $config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
+	  $config['next_tag_open'] = '<li>';
+	  $config['next_tag_close'] = '</li>';
+	  $this->per_page=$config["per_page"]; 
+	  $this->pagination->initialize($config);        
+ }
+ public function adminUserList(){
+	$data['title'] = 'User List';
+//	$data['allUserList'] = $this->Favoritewish_Model->AllUserList();
+	$this->pageConfig();
+	$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+	$data["links"] = $this->pagination->create_links();
+//	echo"<pre>"; var_dump($data["links"]); exit;
+	$data['allUserList'] = $this->Favoritewish_Model->getUsers($this->per_page, $page);
+	$this->load->view('layouts/admin_header', $data);
+	$this->template->load('default_layout', 'contents', 'adminUserList', $data);
+	$this->load->view('layouts/admin_footer');
+ }
+ 
+ public function adminUserActiveStatusChange(){
+	$data = array(
+		'table_name' => 'users', 
+		'id' => $this->input->post('id'),
+		'user_active_status' => $this->input->post('status'),
+	);
+	$cehckUserid = $this->Favoritewish_Model->checkUserId($data);
+ }
 
 }

@@ -913,4 +913,25 @@ class Favoritewish_Model extends CI_Model {
         }
     }
   
+   public function AllUserList(){
+        $this->db->select('*');
+        $this->db->from('users');
+        $query = $this->db->get();
+        return $query->result();
+   }  
+   public function checkUserId($data){
+       extract($data);
+        $this->db->where('id', $id);
+        $this->db->update($table_name, array('user_active_status' => $user_active_status,
+                                         ));
+                                         return true;
+   }
+   public function getCount() {
+    return $this->db->count_all('users');
+}
+public function getUsers($limit, $start) {
+    $this->db->limit($limit, $start);
+    $query = $this->db->get('users');
+    return $query->result();
+}
 }
