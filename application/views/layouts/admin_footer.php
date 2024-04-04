@@ -15,6 +15,7 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
+   
     <script src="<?php echo base_url(); ?>assets/admin/vendors/js/vendor.bundle.base.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/vendors/chart.js/Chart.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/jquery.cookie.js" type="text/javascript"></script>
@@ -23,5 +24,6 @@
     <script src="<?php echo base_url(); ?>assets/admin/js/misc.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/dashboard.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/todolist.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/js/common.js"></script>
   </body>
 </html>

@@ -17,6 +17,7 @@ if (isset($this->session->userdata['logged_in'])) {
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/style.css">
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/admin/images/favicon.ico" />
+    <script> var BASE_URL = "<?php echo base_url() ?>"</script>
   </head>
   <body>
     <div class="container-scroller">
@@ -194,13 +195,13 @@ if (isset($this->session->userdata['logged_in'])) {
             </li>
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <span class="menu-title">Basic UI Elements</span>
+                <span class="menu-title">Users</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="<?php echo base_url(); ?>admin/user/list">Users List</a></li>
                   <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
                 </ul>
               </div>

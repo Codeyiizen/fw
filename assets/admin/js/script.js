@@ -1,7 +1,6 @@
 (function($) {
 	
 	"use strict";
-	
 	const togglePassword = document.querySelector('#togglePassword');
 	const password = document.querySelector('#password');
 
@@ -14,3 +13,4 @@
 	});
 
 })(window.jQuery);
+

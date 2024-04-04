@@ -58,6 +58,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['administrator'] = 'favoritewish/administrator';
 $route['admin_signout'] = 'favoritewish/adminSignout';
 $route['admin_fpassword'] = 'favoritewish/admin_forgot_password';
+$route['admin/user/list'] = 'favoritewish/adminUserList';
+$route['admin/user/status/change'] = 'favoritewish/adminUserActiveStatusChange';
 
 $route['sign-up'] = 'favoritewish/register';
 $route['sign-in'] = 'favoritewish/login';
