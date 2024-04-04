@@ -14,7 +14,7 @@
                             <div class="logo mb-3 form-header">
                                 <div
                                     class="d-xl-flex align-items-center justify-content-between text-md-left text-center">
-                                    <h3 class="mb-xl-0">Welcome to <span class="bg-primary text-white px-1">Favorite
+                                    <h3 class="mb-xl-0">Welcome to <span class="bg-primary text-white py-1 px-2 px-sm-1 py-sm-0">Favorite
                                             Wish</span></h3>
                                     <p>Have an Account?&nbsp;<br class="d-none d-xl-block"><a
                                             href="<?php echo base_url(); ?>sign-in" id="signins">Sign In</a></p>
