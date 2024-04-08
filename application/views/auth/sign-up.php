@@ -3,10 +3,10 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-7 col-sm-12">
+            <div class="col-lg-6 col-sm-12">
 
             </div>
-            <div class="col-lg-5 col-sm-12">
+            <div class="col-lg-6 col-sm-12">
                 <div class="fav-login-panel">
                     <div id="seconds">
                         <div class="myform form background-image"
@@ -14,7 +14,7 @@
                             <div class="logo mb-3 form-header">
                                 <div
                                     class="d-xl-flex align-items-center justify-content-between text-md-left text-center">
-                                    <h3 class="mb-xl-0">Welcome to <span class="bg-primary text-white px-1 pt-1 pt-sm-0">Favorite
+                                    <h3 class="mb-xl-0">Welcome to <span class="text-primary  px-1 pt-1 pt-sm-0">Favorite
                                             Wish</span></h3>
                                     <p>Have an Account?&nbsp;<br class="d-none d-xl-block"><a
                                             href="<?php echo base_url(); ?>sign-in" id="signins">Sign In</a></p>

@@ -591,7 +591,18 @@ class Favoritewish_Model extends CI_Model {
         $this->db->from('users');
         $this->db->join('friends', 'friends.from_friend = users.id OR friends.to_friend = users.id', 'left');
         if(!empty($search)){
-            $condition = "CONCAT(first_name,last_name,user_name,email)" . "LIKE '%" . $search . "%'";
+            $arrExplodedKeyword = explode(" ",$search);
+            $condition="";
+            foreach($arrExplodedKeyword as $key=>$value){
+                if($key > 0){
+                    $condition.= " OR CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $value . "%'";
+                } else {
+                    $condition.= "CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $value . "%'";
+                }
+                
+            }
+            //echo  $condition;exit;
+            //$condition = "CONCAT(first_names,last_name,user_name,email)" . "LIKE '%" . $search . "%'";
             $this->db->where($condition);
         }
         $this->db->where("users.id!=".$this->_userID);

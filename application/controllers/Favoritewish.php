@@ -33,7 +33,8 @@ class Favoritewish extends CI_Controller
 		$this->load->library('encryption');
 		$this->load->helper('custom');
 		$this->load->library("pagination");
-		
+		$sql = "SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));";
+    $this->db->query($sql );
 	}
 
 	public function index()
