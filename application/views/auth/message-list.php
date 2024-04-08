@@ -87,11 +87,11 @@
                             <div class="chat-messages p-4">
                                 <?php
                                 if(!empty($form_massage)){
-                                foreach ($form_massage as $object) {  ?>
+                                foreach ($form_massage as $object) {  ?> 
                                     <div class="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ?'chat-message-right':"chat-message-left" ?> pb-4">
                                         <div>
                                             <img src="<?php echo getUserProfilePhoto($object->from_photo); ?>" class="img-fluid rounded-circle profile-img mr-1" alt="Chris Wood" width="40" height="40">
-                                            <div class="text-muted small text-nowrap mt-2">2:33 am</div>
+                                            <div class="text-muted small text-nowrap mt-2"><?php echo $newDateTime = date('h:i A', strtotime($object->created_on));  ?></div>
                                         </div>
                                         <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
                                             <div class="font-weight-bold mb-1">

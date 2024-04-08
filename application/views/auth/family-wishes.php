@@ -288,14 +288,14 @@
                                             <!-- <li>Created On  - <?php print_r(date("Y-m-d",strtotime($wishInfos->created_on))); ?></li> -->
                                             <li>Created On  - <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?></li>
                                         </ul>
-                                        <!-- <div class="d-flex justify-content-between">
-                                            <a href="#" class="showRegistryCategory"
+                                        <div class="d-flex justify-content-between">
+                                            <a href="#" class="showFamilyWishesCategory"
                                                 data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal"
-                                                data-target="#editRegistry">Edit</a>
-                                            <a href="#" class="wishDeleteModel" id="Registry_delete"
+                                                data-target="#editFimalyWishes">Edit</a>
+                                            <a href="#" class="wishDeleteModel" id="familyWish_delete"
                                                 data-id="<?php print_r($wishInfos->id); ?>" data-toggle="modal"
-                                                data-target="#removeRegistryAccount">Delete</a>
-                                        </div> -->
+                                                data-target="#removeFamilyWish">Delete</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -305,7 +305,7 @@
                 </div>
             </div>
             <!-- delete conformation model start -->
-            <div class="modal" id="removeRegistryAccount">
+            <div class="modal" id="removeFamilyWish">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!-- Modal Header -->
@@ -322,7 +322,7 @@
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success registryDeleteId" data-user-id="account"
+                            <button type="button" class="btn btn-success familyWishDeleteId" data-user-id="account"
                                 data-dismiss="modal">Yes</button>
                         </div>
                     </div>
@@ -330,7 +330,7 @@
             </div>
             <!-- delete conformation model end -->
             <!-- Edit Model Start -->
-            <div class="modal" id="editRegistry">
+            <div class="modal" id="editFimalyWishes">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!-- Modal Header -->
@@ -342,11 +342,69 @@
                         <div class="modal-body">
                             <span id="success_message_registry_massage"></span>
                             <form class="wishlist-form" method="post" id="">
+                            <div class="row">
+                                <div class="col-11">
+                                    <div class="form-group form-inline">
+                                        <label for="email" class="mr-sm-2">Family member</label>
+                                        <select class="form-control family-member-edit" id="familyMamber"
+                                            name="family-mamber">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-1 pl-0 pt-2">
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                        data-placement="top" title="Family member"></i>
+                                </div>
+                            </div> 
+                            <span id="familyMember" class="text-danger text-center"></span> 
+                            <div class="row">
+                                <div class="col-11">
+                                    <div class="form-group form-inline">
+                                        <label for="email" class="mr-sm-2">Child’s Name</label>
+                                        <input type="text" class="form-control family-childname-edit" id="childName" value=""
+                                            name="occasion" placeholder="(name, nicknames or initials)">
+                                    </div>
+                                </div>
+                                <div class="col-1 pl-0 pt-2">
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                        data-placement="top" title="Child’s Name"></i>
+                                </div>
+                            </div>
+                            <span id="childname" class="text-danger text-center"></span> 
+                            <div class="row">
+                                <div class="col-11">
+                                    <div class="form-group form-inline">
+                                        <label for="email" class="mr-sm-2">Child’s Birthday</label>
+                                        <input type="date" class="form-control family-child-birthday-edit" id="childBirthday" value=""
+                                            name="child-birthday" placeholder="Child’s Birthday:">
+                                    </div>
+                                </div>
+                                <div class="col-1 pl-0 pt-2">
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                        data-placement="top" title="Child’s Birthday:"></i>
+                                </div>
+                            </div>
+                            <span id="birthday" class="text-danger text-center"></span> 
+                            <div class="row">
+                                <div class="col-11">
+                                    <div class="form-group form-inline">
+                                        <label for="email" class="mr-sm-2">Sex</label>
+                                        <select class="select-category form-control family-wish-sex" id="sex"
+                                            name="sex">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-1 pl-0 pt-2">
+                                    <i class="fa fa-question-circle" data-toggle="tooltip"
+                                        data-placement="top" title="Sex"></i>
+                                </div>
+                            </div> 
+                            <span id="editSex" class="text-danger text-center"></span> 
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Category</label>
-                                            <select class="select-category form-control category-registry-edit"
+                                            <select class="select-category form-control category-familywish-edit"
                                                 id="category_registry" name="category">
                                                 <option value="">Select Category</option>
                                             </select>
@@ -357,12 +415,12 @@
                                             title="Category"></i>
                                     </div>
                                 </div>
-                                <span id="categorys_registry" class="text-danger text-center"></span>
+                                <span id="categoryFamily" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Type</label>
-                                            <select class="select-type form-control type-registry-edit" id="type"
+                                            <select class="select-type form-control type-familywish-edit" id="type"
                                                 name="type_registry">
                                                 <option value="">Select Type</option>
                                             </select>
@@ -373,26 +431,12 @@
                                             title="Type"></i>
                                     </div>
                                 </div>
-                                <span id="type_registry" class="text-danger text-center"></span>
-                                <div class="row">
-                                    <div class="col-11">
-                                        <div class="form-group form-inline">
-                                            <label for="email" class="mr-sm-2">Occasion</label>
-                                            <input type="text" class="form-control occasion-registry-edit" value=""
-                                                name="occasion_registry" placeholder="Occasion">
-                                        </div>
-                                    </div>
-                                    <div class="col-1 pl-0 pt-2">
-                                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Occasion"></i>
-                                    </div>
-                                </div>
-                                <span id="brand_registry" class="text-danger text-center"></span>
+                                <span id="typeeee" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Brand</label>
-                                            <input type="text" class="form-control brand-registry-edit" value=""
+                                            <input type="text" class="form-control brand-familywish-edit" value=""
                                                 name="brand_registry" placeholder="Brand">
                                         </div>
                                     </div>
@@ -401,12 +445,12 @@
                                             title="Brand"></i>
                                     </div>
                                 </div>
-                                <span id="occasions_registry" class="text-danger text-center"></span>
+                                <span id="familyBranddd" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Color</label>
-                                            <input type="text" class="form-control color-registry-edit" value=""
+                                            <input type="text" class="form-control color-familywish-edit" value=""
                                                 name="color_registry" placeholder="color">
                                         </div>
                                         
@@ -416,12 +460,12 @@
                                             title="Color"></i>
                                     </div>
                                 </div>
-                                <span id="colors_registry" class="text-danger text-center"></span>
+                                <span id="familyColorrr" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Size</label>
-                                            <input type="text" class="form-control size-registry-edit" value=""
+                                            <input type="text" class="form-control size-familywish-edit" value=""
                                                 name="size_registry" placeholder="Size">
                                         </div>
                                         
@@ -431,12 +475,12 @@
                                             title="Size"></i>
                                     </div>
                                 </div>
-                                <span id="sizes_registry" class="text-danger text-center"></span>
+                                <span id="familySizeee" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Style</label>
-                                            <input type="text" class="form-control style-registry-edit" value=""
+                                            <input type="text" class="form-control style-familywish-edit" value=""
                                                 name="style_registry" placeholder="Style">
                                         </div>
                                     </div>
@@ -445,10 +489,10 @@
                                             title="Style"></i>
                                     </div>
                                 </div>
-                                <span id="styles_registry" class="text-danger text-center"></span>
-                                <input type="hidden" class="registry_id">
+                                <span id="familyStyleee" class="text-danger text-center"></span>
+                                <input type="hidden" class="familywish_id">
                                 <div class="form-group text-center">
-                                    <input type="button" name="contact" id="registry_contact_update"
+                                    <input type="button" name="contact" id="familyWishUpdate"
                                         class="theme-btn-submit yellow-bg" value="Update List">
                                 </div>
                             </form>

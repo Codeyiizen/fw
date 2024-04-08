@@ -114,6 +114,9 @@ $route['show/placeholder/edit'] = 'favoritewish/showPlaceHolderBycatNameEdit';
 $route['family/wishes'] = 'favoritewish/family_wishes'; 
 $route['family/wishes/add'] = "favoritewish/addFamilyAdd"; 
 $route['google/sign-up'] = 'favoritewish/googleSignUp';
+$route['getCategory/subcategory/family_wishid'] = 'favoritewish/getCategorySucategory_familywish_id';
+$route['familywish/update/post'] = 'favoritewish/familyWishEditPost';
+$route['familywish/delete'] = 'favoritewish/familyWishDelete';   
 /*
 
 

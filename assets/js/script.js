@@ -1025,3 +1025,157 @@ $("body").on("click", ".registryDeleteId", function (){
 	 }
 	});
  });
+
+//family Wishes Start
+$("body").on("click", ".showFamilyWishesCategory",function(){
+	$(".select-category_registry").html('Loading');  
+	var familyWishesId = $(this).attr('data-id');
+	$.ajax({
+		url: BASE_URL + "/getCategory/subcategory/family_wishid",
+		type: "post",
+		data: {familyWishesId:familyWishesId,
+			},
+		success: function (response) { // alert(response);   
+			var res = JSON.parse(response);
+			if (res?.code == 200) {
+				console.log(res);    
+				$(".family-member-edit").html(res?.htmlFamilyMember); 
+				$(".family-childname-edit").val(res?.htmlChildName); 
+				$(".family-child-birthday-edit").val(res?.htmlChildBirthDay);
+				$(".family-wish-sex").html(res?.htmlSex); 
+				$(".category-familywish-edit").html(res?.html);   
+				$(".type-familywish-edit").html(res?.htmlFamilyWishesType);
+				$(".brand-familywish-edit").val(res?.htmlFamilyWishesBrand);
+				$(".color-familywish-edit").val(res?.htmlFamilyWishesColor);
+				$(".size-familywish-edit").val(res?.htmlFamilyWishessize);
+				$(".style-familywish-edit").val(res?.htmlFamilyWishesstyle);
+				$(".familywish_id").val(res?.htmlFamilyWishesId);
+			}
+		}
+	}); 
+});
+// family Wishes End
+
+$("body").on("click", "#familyWishUpdate", function () {  
+	var familyWishId = $('.familywish_id').val();                    
+	var familyWishMember = $('.family-member-edit').val();           
+	var familyWishChildName = $('.family-childname-edit').val();      
+	var familyWishBirthday = $('.family-child-birthday-edit').val();      
+	var familyWishSex = $('.family-wish-sex').val();                  
+	var familyWishCatId = $('.category-familywish-edit').val();              
+	var familyWishTypeId = $('.type-familywish-edit').val();         
+	var familyWishBrand = $('.brand-familywish-edit').val();            
+	var familyWishColor = $('.color-familywish-edit').val();                       
+	var familyWishSize = $('.size-familywish-edit').val();                 
+	var familyWishStyle = $('.style-familywish-edit').val();               
+	$.ajax({
+		url: BASE_URL + "/familywish/update/post",
+		type: "post",
+		data: {familyWishId:familyWishId,
+				familyWishMember :familyWishMember,
+				familyWishChildName:familyWishChildName,
+				familyWishBirthday:familyWishBirthday,
+				familyWishSex:familyWishSex,
+				familyWishCatId:familyWishCatId,
+				familyWishTypeId:familyWishTypeId,
+				familyWishBrand:familyWishBrand,
+				familyWishColor:familyWishBrand,
+				familyWishSize:familyWishSize,
+				familyWishStyle:familyWishStyle,
+		      },
+		success: function (data) { 
+		var res = JSON.parse(data); 
+		if (res?.error) {
+				if (res?.familyMamber != '') {  
+					$('#familyMember').html(res?.familyMamber);
+				} else {
+					$('#familyMember').html('');
+				}
+				if (res?.childName != '') {  
+					$('#childname').html(res?.childName);
+				} else {
+					$('#childname').html('');
+				}
+				if (res?.birthday != '') {  
+					$('#birthday').html(res?.birthday);
+				} else {
+					$('#birthday').html('');
+				}
+				if (res?.sex != '') {  
+					$('#editSex').html(res?.sex);
+				} else {
+					$('#editSex').html('');
+				}
+				if (res?.category != '') {  
+					$('#categoryFamily').html(res?.category);
+				} else {
+					$('#categoryFamily').html('');
+				}
+				if (res?.type != '') {  
+					$('#typeeee').html(res?.type);
+				} else {
+					$('#typeeee').html('');
+				}
+				if (res?.brand != '') {
+					$('#familyBranddd').html(res?.brand);
+				} else {
+					$('#familyBranddd').html('');
+				}
+				if (res?.color != '') {
+					$('#familyColorrr').html(res?.color);
+				} else {
+					$('#familyColorrr').html('');
+				}
+				if (res?.size != '') {
+					$('#familySizeee').html(res?.size);
+				} else {
+					$('#familySizeee').html('');
+				}
+				if (res?.style != '') {
+					$('#familyStyleee').html(res?.style);
+				} else {
+					$('#familyStyleee').html('');
+				}	
+		}
+		if (res?.success) {
+			$('#success_message_registry_massage').html(res?.success);
+			$('#familyMember').html('');
+			$('#childname').html('');
+			$('#birthday').html('');
+			$('#editSex').html('');
+			$('#categoryFamily').html('');
+			$('#typeeee').html('');
+			$('#familyBranddd').html('');
+			$('#familyColorrr').html('');
+			$('#familySizeee').html('');
+			$('#familyStyleee').html('');
+		//	$('#contact_form_edit')[0].reset();
+			window.location.reload();
+		}
+	 }
+		
+	});
+});  
+
+
+$("body").on("click", "#familyWish_delete", function (){  
+	var familyWishId = $(this).attr('data-id');    
+	$('.familyWishDeleteId').attr('data-id',familyWishId);
+});
+
+$("body").on("click", ".familyWishDeleteId", function (){
+	var familyWishId = $('.familyWishDeleteId').attr('data-id'); 
+	  $.ajax({
+	 url: BASE_URL + "/familywish/delete",
+	 type: "post",
+	 data: {familyWishId:familyWishId},
+	 success: function (data) {
+		 var res = JSON.parse(data);   
+		 if (res?.delete) {
+			 $('#success_message_delete').html(res?.delete);
+			 window.location.reload();
+		 }
+	 }
+	 
+   });   
+  });
