@@ -2124,6 +2124,13 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
     margin-left: auto
 }
 
+
+.chat-room .chat-message-left .profile-img,
+.chat-room .chat-message-right .profile-img{
+    width: 40px;
+    height: 40px;
+}
+
 .border-top {
     border-top: 1px solid #dee2e6 !important;
 }
