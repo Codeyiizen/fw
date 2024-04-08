@@ -50,10 +50,9 @@
             </div>
         </div>
         <div class="profile-content-inner">
-            <div class="">
+            <div class="card chat-room">
                 <div class="row g-0">
-                    <div class="col-2 "></div>
-                    <div class="col-8 card chat-room">
+                    <div class="col-12">
                         <div class="py-2 px-4 border-bottom d-none">
                             <div class="d-flex align-items-center py-1">
                                 <div class="position-relative">
@@ -91,7 +90,7 @@
                                 foreach ($form_massage as $object) {  ?>
                                     <div class="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ?'chat-message-right':"chat-message-left" ?> pb-4">
                                         <div>
-                                            <img src="<?php echo getUserProfilePhoto($object->from_photo); ?>" class="rounded-circle mr-1" alt="Chris Wood" width="40" height="40">
+                                            <img src="<?php echo getUserProfilePhoto($object->from_photo); ?>" class="img-fluid rounded-circle profile-img mr-1" alt="Chris Wood" width="40" height="40">
                                             <div class="text-muted small text-nowrap mt-2">2:33 am</div>
                                         </div>
                                         <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
@@ -109,7 +108,7 @@
                                 <?php } ?>
                             </div>
                         </div>
-                        <div class="flex-grow-0 py-3 px-4 border-top">
+                        <div class="flex-grow-0 py-3 px-2 px-sm-4 border-top">
                             <?php echo form_open('favoritewish/messageFormSubmission'); ?>
                             <div class="input-group">
                                 <input type="hidden" name="friend_id" value="<?php echo $friend_id;  ?>">
