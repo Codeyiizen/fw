@@ -1030,4 +1030,39 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->where('id', $id);
         $this->db->update('admin_contact_content',$updatetData);
     }
+
+    public function getfamilyDataById($familyWishId){
+        $this->db->select('*');
+        $this->db->from('family_wish_add');
+        $this->db->where('id',$familyWishId);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+        } 
+    }
+
+    public function updateFamilyWishData($data){  //echo"<pre>"; var_dump($data);exit;
+        extract($data);
+        $this->db->where('id', $id);
+        $this->db->update($table_name, array('family_member' => $family_member,
+                                             'child_name' => $child_name,
+                                             'child_birthday' => $child_birthday,
+                                             'sex' => $sex,
+                                             'cat_id' => $cat_id,
+                                             'type_id' => $type_id,
+                                             'brand' => $brand,
+                                             'color' => $color,
+                                             'size' => $size,
+                                             'style' => $style,
+                                             'created_on' => date('Y-m-d H:i:s'),
+                                         ));
+                                         return true; 
+    }
+    public function familyWishDataDelete($familyWishId){  
+        $this->db-> where('id',$familyWishId); 
+        $this->db-> delete('family_wish_add');
+        return true;
+    }
 }

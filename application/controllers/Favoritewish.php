@@ -2050,4 +2050,139 @@ public function adminContactPageDynamicPost(){
 	}
 }
 
+public function getCategorySucategory_familywish_id(){ 
+	if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+		redirect('sign-in'); 
+	} else {
+		$data = array();
+		$familyWishId =  $this->input->post('familyWishesId');
+		if (!empty($familyWishId)){
+			$getObjWishData = $this->Favoritewish_Model->getfamilyDataById($familyWishId); 
+			$categories = $this->Favoritewish_Model->getCategories();
+			$subCategories = $this->Favoritewish_Model->getSubCat($getObjWishData->cat_id);
+			 $arrayHtml = "";
+			$arrayHtml .= "<option value=''>Select Category</option>";
+			if (!empty($categories)) {
+				foreach ($categories as $cat_data) {   
+					$selected = (!empty($getObjWishData) && ($getObjWishData->cat_id == $cat_data->id)) ? 'selected' :'';
+				$arrayHtml .= '<option value="' . $cat_data->id .'" '.$selected.'>'.$cat_data->name . '</option>';
+					
+				}
+			}
+			$arrayHtmlType = "";
+			$arrayHtmlType .= "<option value=''>Select Type</option>";
+			if (!empty($subCategories)) {
+				foreach ($subCategories as $subCatData) {  
+				$subCatId =  $subCatData['id'];
+				$subCatName =  $subCatData['name'];
+					$selected = (!empty($getObjWishData) && ($getObjWishData->type_id == $subCatData['id'])) ? 'selected' :'';
+				$arrayHtmlType .= '<option value="' . $subCatId .'" '.$selected.'>'.$subCatName . '</option>';
+					
+				}
+			}
+			if(!empty($getObjWishData->family_member)){
+				$arrayHtmlFamilyMember = "";
+				$selected1 = (!empty($getObjWishData) && ($getObjWishData->family_member =='First Born' )) ? 'selected' :'';
+				$selected2 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Second Born' )) ? 'selected' :'';
+				$selected3 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Third Born' )) ? 'selected' :'';
+				$selected4 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Forth Born' )) ? 'selected' :'';
+				$selected5 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Fifth Born' )) ? 'selected' :'';
+				$arrayHtmlFamilyMember .= "<option value=''>Select Family member</option>";
+				$arrayHtmlFamilyMember .= '<option value="First Born" '.$selected1.'>First Born</option>';
+				$arrayHtmlFamilyMember .= '<option value="Second Born" '.$selected2.'>Second Born</option>';
+				$arrayHtmlFamilyMember .= '<option value="Third Born" '.$selected3.'>Third Born</option>';
+				$arrayHtmlFamilyMember .= '<option value="Forth Born" '.$selected4.'>Forth Born</option>';
+				$arrayHtmlFamilyMember .= '<option value="Fifth Born" '.$selected5.'>Fifth Born</option>';
+			}
+			if(!empty($getObjWishData->sex)){
+				$arrayHtmlSex = "";
+				$selected1 = (!empty($getObjWishData) && ($getObjWishData->sex =='male' )) ? 'selected' :'';
+				$selected2 = (!empty($getObjWishData) && ($getObjWishData->sex =='female' )) ? 'selected' :'';
+				$selected3 = (!empty($getObjWishData) && ($getObjWishData->sex =='not applicable' )) ? 'selected' :'';
+				$selected4 = (!empty($getObjWishData) && ($getObjWishData->sex =='prefer not to say' )) ? 'selected' :'';
+				$arrayHtmlSex .= "<option value=''>Select Sex</option>";
+				$arrayHtmlSex .= '<option value="male" '.$selected1.'>male</option>';
+				$arrayHtmlSex .= '<option value="female" '.$selected2.'>female</option>';
+				$arrayHtmlSex .= '<option value="not applicable" '.$selected3.'>not applicable</option>';
+				$arrayHtmlSex .= '<option value="prefer not to say" '.$selected4.'>prefer not to say</option>';
+			}
+
+			$data['code'] = 200;
+			$data['htmlFamilyMember'] = $arrayHtmlFamilyMember;
+			$data['htmlChildName'] = $getObjWishData->child_name;
+			$data['htmlChildBirthDay'] = $getObjWishData->child_birthday;
+			$data['htmlSex'] = $arrayHtmlSex;
+			$data['html'] = $arrayHtml;
+			$data['htmlFamilyWishesType'] = $arrayHtmlType;
+			$data['htmlFamilyWishesBrand'] = $getObjWishData->brand;
+			$data['htmlFamilyWishesColor'] = $getObjWishData->color;
+			$data['htmlFamilyWishessize'] = $getObjWishData->size;
+			$data['htmlFamilyWishesstyle'] = $getObjWishData->style;
+			$data['htmlFamilyWishesId'] = $getObjWishData->id;
+			echo json_encode($data);
+		}
+	}
+}
+
+public function familyWishEditPost(){  
+	$sessionArray = $this->session->userdata('ci_seesion_key');
+	$this->load->library('form_validation');
+	$this->form_validation->set_rules('familyWishMember', 'Family Member', 'required');
+	$this->form_validation->set_rules('familyWishChildName', 'Child Name', 'required');
+	$this->form_validation->set_rules('familyWishBirthday', 'Birthday', 'required');
+	$this->form_validation->set_rules('familyWishSex', 'Sex', 'required');
+	$this->form_validation->set_rules('familyWishCatId', 'Category', 'required');
+	$this->form_validation->set_rules('familyWishTypeId', 'Type', 'required');
+	$this->form_validation->set_rules('familyWishBrand', 'Brand', 'required');
+	$this->form_validation->set_rules('familyWishColor', 'Color', 'required');
+	$this->form_validation->set_rules('familyWishSize', 'Size', 'required');
+	$this->form_validation->set_rules('familyWishStyle', 'Style', 'required');
+	if ($this->form_validation->run()) { 
+			 $data = array(
+					'table_name' => 'family_wish_add', 
+					'id' => $this->input->post('familyWishId'),
+					'family_member' => $this->input->post('familyWishMember'),
+					'child_name' => $this->input->post('familyWishChildName'),
+					'child_birthday' => $this->input->post('familyWishBirthday'),
+					'sex' => $this->input->post('familyWishSex'),
+					'cat_id' => $this->input->post('familyWishCatId'),
+					'type_id' => $this->input->post('familyWishTypeId'),
+					'brand' => $this->input->post('familyWishBrand'),
+					'color' => $this->input->post('familyWishColor'),
+					'size' => $this->input->post('familyWishSize'),
+					'style' => $this->input->post('familyWishStyle'),
+					'created_on' => date('Y-m-d H:i:s')
+				);
+				$this->Favoritewish_Model->updateFamilyWishData($data);
+		$array = array(
+			'success' => '<div class="alert alert-warning">Wish Update Successfully</div>'
+		);
+	} else { 
+		$array = array(
+			'error'   => true,
+			'familyMamber' => form_error('familyWishMember'),
+			'childName' => form_error('familyWishChildName'),
+			'birthday' => form_error('familyWishBirthday'),
+			'sex' => form_error('familyWishSex'),
+			'category' => form_error('familyWishCatId'),
+			'type' => form_error('familyWishTypeId'),
+			'brand' => form_error('familyWishBrand'),
+			'color' => form_error('familyWishColor'),
+			'size' => form_error('familyWishSize'),
+			'style' => form_error('familyWishStyle')
+
+		);
+	}
+	echo json_encode($array);
+} 
+
+public function familyWishDelete(){  
+	$familyWishId = $this->input->post('familyWishId'); 
+	$this->Favoritewish_Model->familyWishDataDelete($familyWishId);
+	$array = array(
+		'delete' => '<div class="alert alert-warning">Wish Delete Successfully</div>'
+	);
+	echo json_encode($array);
+}
+
 }

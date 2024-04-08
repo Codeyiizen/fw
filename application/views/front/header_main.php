@@ -84,9 +84,9 @@
         <div id="fs-menu" class="">
 			<nav class="fs-main-nav">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="#">About Us</a></li>
-					<li><a href="#">Contact Us</a></li>
+					<li><a href="<?php echo base_url(); ?>">Home</a></li>
+					<li><a href="<?php echo base_url('/about-us'); ?>">About Us</a></li>
+					<li><a href="<?php echo base_url('/contact-us'); ?>">Contact Us</a></li>
 					<?php
 					if ($this->session->userdata('ci_session_key_generate') == FALSE) {								
 						echo '<a href="'.base_url().'sign-in">Login/Register</a>';
