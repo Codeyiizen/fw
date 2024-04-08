@@ -1,30 +1,8 @@
-<section class="titleArea">
-    <div class="titleAreaInner">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="titleAreaContent">
-                        <h1><?php echo $title; ?></h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="aboutSection section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-header text-center mb-5">
-                    <!--<span class="transparent-text numbers">05</span>-->
-                    <span class="sub-title">Contact Us</span>
-                    <h2 class="entry-title">Leave a Message</h2>
-                    <p>We do not respond to direct messages on social media, however if you’d
-kindly leave us a message below, our operations team will respond back to you within 5-7
-business days. Thank you for understanding, and happy wish listing.</p>
-                </div>
-            </div>
-        </div>
+<?php
+    $data = html_entity_decode(!empty($contacttext->contact_content) ? $contacttext->contact_content :'');
+    echo $data;
+?>
+        
         <div class="row">
             <div class="col-md-8 col-sm-12 offset-md-2">
                 <div id="search-form">

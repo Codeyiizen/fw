@@ -1,3 +1,41 @@
+<style>
+.pagination.style2 a {
+    position: relative;
+    display: block;
+    color: #0d6efd;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: .375rem .75rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.pagination.style2 a:not(:first-child) {
+    margin-left: -1px;
+}
+
+.pagination.style2 a:first-child,
+.pagination.style2>strong:first-child{
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem;
+}
+
+.pagination.style2 a:last-child,
+.pagination.style2>strong:last-child{
+    border-top-right-radius: .2rem;
+    border-bottom-right-radius: .2rem;
+}
+
+.pagination.style2>strong {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    position: relative;
+    display: block;
+    border: 1px solid #dee2e6;
+    padding: .375rem .75rem;
+}
+</style>
 <div class="page-header">
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white me-2">
@@ -18,7 +56,7 @@
             <div class="card-body">
                 <h4 class="card-title">User List</h4>
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table mb-3">
                         <thead>
                             <tr>
                                 <th>First Name</th>
@@ -41,9 +79,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                    <?php
-                      if (!empty($allUserList)){
-                        foreach ($allUserList as $userList) { ?>
+                            <?php
+if (!empty($allUserList)) {
+    foreach ($allUserList as $userList) {?>
                             <tr>
                                 <td><?php echo $userList->first_name; ?></td>
                                 <td><?php echo $userList->last_name; ?></td>
@@ -60,24 +98,35 @@
                                 <td><?php echo $userList->favorite_music; ?></td>
                                 <td><?php echo $userList->dob; ?></td>
                                 <td><?php echo $userList->gender; ?></td>
-                               <?php $profilePhoto = $userList->profile_photo;
-                                if(!empty($profilePhoto)){  ?>
-                                    <td><img src="<?php echo base_url() . 'assets/uploads/profile_photo/' .$profilePhoto ?>" alt="" class="user-thumb img-thumbnail img-fluid"></td>
-                              <?php  }else{  ?>
-                               <td> <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg" alt="" class="user-thumb img-thumbnail img-fluid"></td>
-                                <?php  } ?>
-                                <td><div class="toggle-switch">
-                                    <input type="checkbox" class="switch_status userStatusChange switch-<?php echo $userList->id;   ?>" id="switch<?php echo $userList->id;  ?>" data-id="<?php echo $userList->id;  ?>" data-status="<?php echo $userList->user_active_status;  ?>" <?php if($userList->user_active_status == '1') echo 'checked="checked"'; ?>>
-                                    <label for="switch<?php echo $userList->id;  ?>"></label></div>
+                                <?php $profilePhoto = $userList->profile_photo;
+        if (!empty($profilePhoto)) {?>
+                                <td><img src="<?php echo base_url() . 'assets/uploads/profile_photo/' . $profilePhoto ?>"
+                                        alt="" class="user-thumb img-thumbnail img-fluid"></td>
+                                <?php } else {?>
+                                <td> <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg" alt=""
+                                        class="user-thumb img-thumbnail img-fluid"></td>
+                                <?php }?>
+                                <td>
+                                    <div class="toggle-switch">
+                                        <input type="checkbox"
+                                            class="switch_status userStatusChange switch-<?php echo $userList->id; ?>"
+                                            id="switch<?php echo $userList->id; ?>"
+                                            data-id="<?php echo $userList->id; ?>"
+                                            data-status="<?php echo $userList->user_active_status; ?>" <?php if ($userList->user_active_status == '1') {
+            echo 'checked="checked"';
+        }
+        ?>>
+                                        <label for="switch<?php echo $userList->id; ?>"></label>
+                                    </div>
                                 </td>
                             </tr>
-                            <?php }} ?>
+                            <?php }
+}?>
                         </tbody>
                     </table>
-                     <!-- <p><?php echo $links; ?></p> -->
                 </div>
+                <div class="pagination style2 justify-content-end"><?php echo $links; ?></div>
             </div>
         </div>
     </div>
 </div>
-

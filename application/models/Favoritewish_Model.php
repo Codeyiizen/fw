@@ -924,7 +924,7 @@ class Favoritewish_Model extends CI_Model {
         }
     }
   
-   public function AllUserList(){
+    public function AllUserList(){
         $this->db->select('*');
         $this->db->from('users');
         $query = $this->db->get();
@@ -945,4 +945,89 @@ public function getUsers($limit, $start) {
     $query = $this->db->get('users');
     return $query->result();
 }
+
+function InsertHomeContent($insertData){
+  $this->db->insert('admin_homepage_content', $insertData);
+  $insert_id = $this->db->insert_id();
+  return $insert_id;
+}
+public function getHomeData(){
+    $this->db->select('*');
+    $this->db->from('admin_homepage_content');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+        return $query->row();
+    } else {
+        return FALSE;
+    }
+}
+
+public function UpdateHomeContent($id,$updatetData){
+    $this->db->where('id', $id);
+     $this->db->update('admin_homepage_content',$updatetData);
+}
+ 
+    public function homeAllData(){
+        $this->db->select('*');
+        $this->db->from('admin_homepage_content');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+       }
+    }
+
+   public function InsertAboutUsContent($insertData){
+    $this->db->insert('admin_aboutus_content', $insertData);
+    return true;
+   } 
+
+   public function getAboutUsData(){
+    $this->db->select('*');
+    $this->db->from('admin_aboutus_content');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+        return $query->row();
+    } else {
+        return FALSE;
+    }
+  }
+
+  public function UpdateAboutUsContent($id,$updatetData){
+    $this->db->where('id', $id);
+     $this->db->update('admin_aboutus_content',$updatetData);
+  }
+
+  public function AboutUsData(){
+    $this->db->select('*');
+    $this->db->from('admin_aboutus_content');
+    $query = $this->db->get();
+    if ($query->num_rows() > 0) {
+        return $query->row();
+    } else {
+        return FALSE;
+   }
+}
+
+ public function InsertContactUsContent($insertData){
+    $this->db->insert('admin_contact_content', $insertData);
+    return true;
+   } 
+
+   public function contactAllData(){
+        $this->db->select('*');
+        $this->db->from('admin_contact_content');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return FALSE;
+    }
+ }
+
+    public function UpdateContactUsContent($id,$updatetData){
+        $this->db->where('id', $id);
+        $this->db->update('admin_contact_content',$updatetData);
+    }
 }

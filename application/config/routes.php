@@ -59,7 +59,17 @@ $route['administrator'] = 'favoritewish/administrator';
 $route['admin_signout'] = 'favoritewish/adminSignout';
 $route['admin_fpassword'] = 'favoritewish/admin_forgot_password';
 $route['admin/user/list'] = 'favoritewish/adminUserList';
+$route['admin/user/list/(:num)'] = 'favoritewish/adminUserList';
 $route['admin/user/status/change'] = 'favoritewish/adminUserActiveStatusChange';
+$route['admin/home/page/dynamic'] = 'favoritewish/adminHomePageDynamic';
+$route['admin/home/page/dynamic/post'] = 'favoritewish/adminHomePageDynamicPost';
+$route['admin/home/page/dynamic/post/(:num)'] = 'favoritewish/adminHomePageDynamicPost';
+$route['admin/aboutus/page/dynamic'] = 'favoritewish/adminAboutUsPageDynamic';
+$route['admin/aboutus/page/dynamic/post'] = 'favoritewish/adminAboutUsPageDynamicPost';
+$route['admin/aboutus/page/dynamic/post/(:num)'] = 'favoritewish/adminAboutUsPageDynamicPost';
+$route['admin/contact/page/dynamic'] = 'favoritewish/adminContactPageDynamic';
+$route['admin/contact/page/dynamic/post'] = 'favoritewish/adminContactPageDynamicPost';
+$route['admin/contact/page/dynamic/post/(:num)'] = 'favoritewish/adminContactPageDynamicPost';
 
 $route['sign-up'] = 'favoritewish/register';
 $route['sign-in'] = 'favoritewish/login';
