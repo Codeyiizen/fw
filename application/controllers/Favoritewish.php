@@ -45,9 +45,10 @@ class Favoritewish extends CI_Controller
 		$data['metaKeywords'] = 'Home Page Meta Title';
 		$data['title'] = "Home";
 		$data['breadcrumbs'] = array('Home' => '#');
+		$data['hometext'] = $this->Favoritewish_Model->homeAllData();
 		$this->load->view('front/header_main', $data);
 		//$this->load->view('bannerSection',$arr);
-		$this->load->view('front/home');
+		$this->load->view('front/home',$data);
 		$this->load->view('front/template/template_footer');
 		$this->load->view('front/footer_main');
 	}
@@ -60,6 +61,7 @@ class Favoritewish extends CI_Controller
 		$data['metaKeywords'] = 'About Us Page Meta Title';
 		$data['title'] = "About Us";
 		$data['breadcrumbs'] = array('About Us' => '#');
+		$data['aboutUsText'] = $this->Favoritewish_Model->AboutUsData();
 		$this->load->view('front/header_main', $data);
 		//$this->load->view('front/bannerSection',$arr);
 		$this->load->view('front/aboutus', $data);
@@ -74,6 +76,7 @@ class Favoritewish extends CI_Controller
 		$data['metaKeywords'] = 'Contact Us Page Meta Title';
 		$data['title'] = "Contact Us";
 		$data['breadcrumbs'] = array('Contact Us' => '#');
+		$data['contacttext'] = $this->Favoritewish_Model->contactAllData();
 		$this->load->view('front/header_main', $data);
 		//$this->load->view('front/bannerSection',$arr);  
 		$this->load->view('front/contactus', $data);
@@ -1927,53 +1930,124 @@ class Favoritewish extends CI_Controller
 	   echo json_encode($array);
  }
  
- public function pageConfig(){     
-	$config = array();
-	   $config["base_url"] = base_url() . "admin/user/list/Pagination/index";
-	   $config["total_rows"] = $this->Favoritewish_Model->getCount();
-	   $config["per_page"] = 10;
-	  $config["uri_segment"] = 1;
-	  $config['full_tag_open'] = "<ul class='pagination'>";
-	  $config['full_tag_close'] = '</ul>';
-	  $config['num_tag_open'] = '<li>';
-	  $config['num_tag_close'] = '</li>';
-	  $config['cur_tag_open'] = '<li class="active"><a href="#">';
-	  $config['cur_tag_close'] = '</a></li>';
-	  $config['prev_tag_open'] = '<li>';
-	  $config['prev_tag_close'] = '</li>';
-	  $config['first_tag_open'] = '<li>';
-	  $config['first_tag_close'] = '</li>';
-	  $config['last_tag_open'] = '<li>';
-	  $config['last_tag_close'] = '</li>';
-	  $config['prev_link'] = '<i class="fa fa-long-arrow-left"></i>Previous Page';
-	  $config['prev_tag_open'] = '<li>';
-	  $config['prev_tag_close'] = '</li>';
-	  $config['next_link'] = 'Next Page<i class="fa fa-long-arrow-right"></i>';
-	  $config['next_tag_open'] = '<li>';
-	  $config['next_tag_close'] = '</li>';
-	  $this->per_page=$config["per_page"]; 
-	  $this->pagination->initialize($config);        
- }
  public function adminUserList(){
-	$data['title'] = 'User List';
-//	$data['allUserList'] = $this->Favoritewish_Model->AllUserList();
-	$this->pageConfig();
-	$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+	$config = array();
+	$config["base_url"] = base_url() . "admin/user/list";
+	$config["total_rows"] = $this->Favoritewish_Model->getCount();
+	$config["per_page"] = 3;
+	$config["uri_segment"] = 4;
+	$this->pagination->initialize($config);
+	$page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
+
 	$data["links"] = $this->pagination->create_links();
-//	echo"<pre>"; var_dump($data["links"]); exit;
-	$data['allUserList'] = $this->Favoritewish_Model->getUsers($this->per_page, $page);
+	$data['title'] = 'User List';
+
+	$data['allUserList'] = $this->Favoritewish_Model->getUsers($config["per_page"], $page);
 	$this->load->view('layouts/admin_header', $data);
 	$this->template->load('default_layout', 'contents', 'adminUserList', $data);
 	$this->load->view('layouts/admin_footer');
- }
- 
- public function adminUserActiveStatusChange(){
-	$data = array(
-		'table_name' => 'users', 
-		'id' => $this->input->post('id'),
-		'user_active_status' => $this->input->post('status'),
-	);
-	$cehckUserid = $this->Favoritewish_Model->checkUserId($data);
- }
+}
+
+public function adminUserActiveStatusChange(){
+$data = array(
+	'table_name' => 'users', 
+	'id' => $this->input->post('id'),
+	'user_active_status' => $this->input->post('status'),
+);
+$cehckUserid = $this->Favoritewish_Model->checkUserId($data);
+}
+
+public function adminHomePageDynamic(){
+$data['title'] = 'User List';
+$data['homedata'] = $this->Favoritewish_Model->getHomeData();
+$this->load->view('layouts/admin_header', $data);
+$this->template->load('default_layout', 'contents', 'adminHomePageContent', $data);
+$this->load->view('layouts/admin_footer');
+}
+
+public function adminHomePageDynamicPost(){ 
+	$id = $this->input->post('updateHometext');
+	$this->form_validation->set_rules('homepagetext', 'home page text', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->adminHomePageDynamic();
+		}else{
+			$insertData = array(
+				'homepage_content' => $this->input->post('homepagetext'),
+				'created_on' => date('Y-m-d H:i:s')
+			); 
+			if(empty($id)){
+				$this->Favoritewish_Model->InsertHomeContent($insertData);
+			}else{
+				$updatetData = array(
+					'homepage_content' => $this->input->post('homepagetext'),
+					'created_on' => date('Y-m-d H:i:s')
+				); 
+				$this->Favoritewish_Model->UpdateHomeContent($id,$updatetData);
+			}
+		   redirect('admin/home/page/dynamic');
+		}
+}
+
+public function adminAboutUsPageDynamic(){
+	$data['title'] = 'About Us Page';
+	$data['aboutus'] = $this->Favoritewish_Model->getAboutUsData();
+	$this->load->view('layouts/admin_header', $data);
+	$this->template->load('default_layout', 'contents', 'adminAboutUsPageContent', $data);
+	$this->load->view('layouts/admin_footer');
+}
+
+public function adminAboutUsPageDynamicPost(){
+	$id = $this->input->post('updateaboutustext');
+	$this->form_validation->set_rules('aboutuspagetext', 'about page text', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->adminAboutUsPageDynamic();
+		}else{
+			$insertData = array(
+				'aboutus_content' => $this->input->post('aboutuspagetext'),
+				'created_on' => date('Y-m-d H:i:s')
+			); 
+			if(empty($id)){
+				$this->Favoritewish_Model->InsertAboutUsContent($insertData);
+			}else{
+				$updatetData = array(
+					'aboutus_content' => $this->input->post('aboutuspagetext'),
+					'created_on' => date('Y-m-d H:i:s')
+				); 
+				$this->Favoritewish_Model->UpdateAboutUsContent($id,$updatetData);
+			}
+		   redirect('admin/aboutus/page/dynamic');
+	}
+}
+
+public function adminContactPageDynamic(){
+	$data['title'] = 'Contact Us Page';
+	$data['contacttext'] = $this->Favoritewish_Model->contactAllData();
+	$this->load->view('layouts/admin_header', $data);
+	$this->template->load('default_layout', 'contents', 'adminContactPageContent', $data);
+	$this->load->view('layouts/admin_footer');
+}
+
+public function adminContactPageDynamicPost(){ 
+	$id = $this->input->post('updatecontactustext');
+	$this->form_validation->set_rules('contactpagetext', 'Contact page text', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->adminContactPageDynamic();
+		}else{
+			$insertData = array(
+				'contact_content ' => $this->input->post('contactpagetext'),
+				'created_on' => date('Y-m-d H:i:s')
+			); 
+			if(empty($id)){
+				$this->Favoritewish_Model->InsertContactUsContent($insertData);
+			}else{
+				$updatetData = array(
+					'contact_content ' => $this->input->post('contactpagetext'),
+					'created_on' => date('Y-m-d H:i:s')
+				); 
+				$this->Favoritewish_Model->UpdateContactUsContent($id,$updatetData);
+			}
+		   redirect('admin/contact/page/dynamic');
+	}
+}
 
 }
