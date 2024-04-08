@@ -31,18 +31,7 @@
                 <div class="update-profile text-center text-md-right">
                     <!--<a href="#" class="theme-btn yellow-bg">Edit Profile</a>-->
                     <?php $uri = uri_string(); $arrCheck = ['user-profile','user-profile/edit','setting']; ?>
-                    <?php if (empty($is_friend) && empty(in_array($uri,['user/friends']))) { ?>
-                        <button type="button" class="theme-btn yellow-bg sendFriendRequest" data-token="<?php echo (!empty($userInfo['token']))?$userInfo['token']:''; ?>">Add Friend</button>
-                        <?php } else if (!empty($is_friend) && $is_friend['status'] == 0 && empty(in_array($uri,['user/friends']))) {
-                        if ($is_friend['to_friend'] == $userLoginInfo['user_id']) {
-                        ?>
-                            <button type="button" class="theme-btn yellow-bg acceptFriendRequest bg-success" data-token="<?php (!empty($userInfo['token']))?$userInfo['token']:''; ?>">Accept</button>
-                        <?php } else { ?>
-                            <button type="button" class="theme-btn yellow-bg removeFriend bg-danger" data-token="<?php echo (!empty($userInfo['token']))?$userInfo['token']:''; ?>">Cancel</button>
-                        <?php }
-                    } else if (!empty($is_friend) && $is_friend['status'] == 1) { ?>
-                        <button type="button" class="theme-btn red-btn px-4 mr-0 bg-danger removeFriend" data-token="<?php echo (!empty($userInfo['token']))?$userInfo['token']:''; ?>">Unfriend</button>
-                    <?php }  ?>
+                    
                     <?php if(in_array($uri,$arrCheck)){ ?>
                         <a href="<?php echo base_url(); ?>user-dashboard" class="theme-btn outline-btn mb-3 mb-lg-0">Dashboard</a>
                     <?php } else { ?>

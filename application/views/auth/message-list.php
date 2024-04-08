@@ -1,5 +1,5 @@
 <section class="fav-profile-section pb-0 pb-md-5">
-    <?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
+    <?php $this->load->view('user/Common/friend-banner', array('userInfo' => $userInfo)) ?>
 </section>
 <section class="section-padding profile-content">
     <div class="container">
