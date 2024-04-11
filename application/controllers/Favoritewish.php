@@ -984,6 +984,7 @@ class Favoritewish extends CI_Controller
 					$profileImageData = array('upload_data' => $this->upload->data());
 				 } 
 				 $profile_photo = $profileImageData['upload_data']['file_name'];
+				 echo"<pre>"; var_dump($profile_photo); exit;
 			}else{
 				$profile_photo = $userInfo['profile_photo'];
 			}
@@ -1782,7 +1783,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function getMessagelist($id){
+	public function getMessagelist($id){  
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -2184,5 +2185,17 @@ public function familyWishDelete(){
 	);
 	echo json_encode($array);
 }
+
+	public function saveEmojii(){
+		$massgeId = $this->input->post('messageId');
+		if(!empty($massgeId)){
+			$updateEmojiById = array(
+				'massage_id ' => $this->input->post('messageId'),
+				'emoji ' => $this->input->post('emoji')
+			); 
+			$this->Favoritewish_Model->UpdateMassageEmoji($massgeId,$updateEmojiById); 
+		}
+		 
+	}
 
 }

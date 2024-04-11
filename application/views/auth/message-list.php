@@ -6,12 +6,14 @@
         <?php $this->load->view('user/Common/mainHeaderFriends', array('data' => $user_profile_id, 'is_friend' => $is_friend)) ?>
         <div class="profile-content-inner  d-none">
             <div class="form-group p-0 col-5">
-                <select class="form-control form-select form-select-lg mb-3 filter_by_cat_wish" data-id="<?php echo $user_profile_id;  ?>" aria-label="Default select example">
+                <select class="form-control form-select form-select-lg mb-3 filter_by_cat_wish"
+                    data-id="<?php echo $user_profile_id;  ?>" aria-label="Default select example">
                     <option value="">Filter By Category</option>
                     <?php if (!empty($categories)) {
                         foreach ($categories as $cat) {
                     ?>
-                            <option <?php echo (!empty($get['cat']) && $get['cat'] == $cat->id) ? "selected" : '' ?> value="<?php echo $cat->id ?>"><?php echo $cat->name ?></option>
+                    <option <?php echo (!empty($get['cat']) && $get['cat'] == $cat->id) ? "selected" : '' ?>
+                        value="<?php echo $cat->id ?>"><?php echo $cat->name ?></option>
                     <?php }
                     } ?>
                 </select>
@@ -27,24 +29,24 @@
                         $getObjssubCat = $CI->Favoritewish_Model->getCategoryById($wishInfos->type);
                         $subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
                     ?>
-                        <div class="col-lg-3 col-md-4">
-                            <div class="card bg-gradient-<?php echo $i; ?> border-0 mb-4">
-                                <div class="card-body">
-                                    <h5 class="mb-1"><strong>Wish - </strong>
-                                        <?php print_r($wishInfos->cat_name); ?></h5>
-                                    <p class="mb-1 font-weight-semibold font-italic">Details - </p>
-                                    <ul class="list-unstyled font-italic text-capitalize mb-0">
-                                        <?php if (!empty($subCatName)) { ?>
-                                            <li>Type - <?php echo $subCatName; ?></li>
-                                        <?php } ?>
-                                        <li>Brand - <?php print_r($wishInfos->brand); ?></li>
-                                        <li>Color - <?php print_r($wishInfos->color); ?></li>
-                                        <li>Size - <?php print_r($wishInfos->size); ?></li>
-                                        <li>Style - <?php print_r($wishInfos->style); ?></li>
-                                    </ul>
-                                </div>
+                    <div class="col-lg-3 col-md-4">
+                        <div class="card bg-gradient-<?php echo $i; ?> border-0 mb-4">
+                            <div class="card-body">
+                                <h5 class="mb-1"><strong>Wish - </strong>
+                                    <?php print_r($wishInfos->cat_name); ?></h5>
+                                <p class="mb-1 font-weight-semibold font-italic">Details - </p>
+                                <ul class="list-unstyled font-italic text-capitalize mb-0">
+                                    <?php if (!empty($subCatName)) { ?>
+                                    <li>Type - <?php echo $subCatName; ?></li>
+                                    <?php } ?>
+                                    <li>Brand - <?php print_r($wishInfos->brand); ?></li>
+                                    <li>Color - <?php print_r($wishInfos->color); ?></li>
+                                    <li>Size - <?php print_r($wishInfos->size); ?></li>
+                                    <li>Style - <?php print_r($wishInfos->style); ?></li>
+                                </ul>
                             </div>
                         </div>
+                    </div>
                     <?php } ?>
                 </div>
             </div>
@@ -56,7 +58,8 @@
                         <div class="py-2 px-4 border-bottom d-none">
                             <div class="d-flex align-items-center py-1">
                                 <div class="position-relative">
-                                    <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                                    <img src="<?php echo base_url(); ?>assets/images/site-image/user-icon.svg"
+                                        class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
                                 </div>
                                 <div class="flex-grow-1 pl-3">
                                     <strong>Sharon Lessman</strong>
@@ -70,7 +73,9 @@
                                         <i class="fa fa-video"></i>
                                     </button>
                                     <div class="dropdown d-inline-block">
-                                        <button class="btn btn-light border rounded-pill px-3 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-light border rounded-pill px-3 dropdown-toggle"
+                                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-ellipsis-v"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -82,29 +87,46 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="position-relative">
                             <div class="chat-messages p-4">
                                 <?php
-                                if(!empty($form_massage)){
-                                foreach ($form_massage as $object) {  ?> 
-                                    <div class="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ?'chat-message-right':"chat-message-left" ?> pb-4">
-                                        <div>
-                                            <img src="<?php echo getUserProfilePhoto($object->from_photo); ?>" class="img-fluid rounded-circle profile-img mr-1" alt="Chris Wood" width="40" height="40">
-                                            <div class="text-muted small text-nowrap mt-2"><?php echo $newDateTime = date('h:i A', strtotime($object->created_on));  ?></div>
-                                        </div>
-                                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-                                            <div class="font-weight-bold mb-1">
-                                               <a href="<?php echo ($userLoginInfo['user_id'] === $object->from_user)?"#":base_url("user/friends/details/".$object->from_user) ?>"> <?php echo ($userLoginInfo['user_id'] === $object->from_user) ?'You':$object->from_name; ?></a>
+                                if(!empty($form_massage)){  
+                                foreach ($form_massage as $object) {  ?>    
+                                <div
+                                    class="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ?'chat-message-right':"chat-message-left" ?> mb-4">
+
+                                    <div class="inner">
+                                        <div class="user-area">
+                                            <img src="<?php echo getUserProfilePhoto($object->from_photo); ?>"
+                                                class="img-fluid rounded-circle profile-img mr-1" alt="Chris Wood"
+                                                width="40" height="40">
+                                            <div class="text-muted small text-nowrap mt-2">
+                                                <?php echo $newDateTime = date('h:i A', strtotime($object->created_on));  ?>
                                             </div>
-
-                                            <span><?php echo $object->message   ?></span> <br>
-
+                                        </div>
+                                        <div class="flex-shrink-1 bg-light position-relative rounded py-2 px-3">
+                                            <div class="emoji-area showAction d-none"
+                                                id="showAction-<?php echo $object->id  ?>">
+                                                <input type="text" class="emojionearea" id="emojionearea" />
+                                            </div>
+                                              <div class="font-weight-bold mb-1">
+                                                <a href="<?php echo ($userLoginInfo['user_id'] === $object->from_user)?"javascript:void(0)":base_url("user/friends/details/".$object->from_user) ?>">
+                                                    <?php echo ($userLoginInfo['user_id'] === $object->from_user) ?'You':$object->from_name; ?></a>
+                                               </div>
+                                               
+                                                <div id="massage_id-<?php echo $object->id  ?>" class="massage_id"
+                                                    massage-id="<?php echo $object->id  ?>" data-massage="show" data-form-user="<?php echo $object->from_user  ?>" data-to-user="<?php echo $object->to_user  ?>">
+                                                    <?php echo $object->message  ?>
+                                               </div>
+                                            <span class="icon-emoji position-absolute"><img src="<?php echo $object->emoji ?>" alt="" class="img-fluid"></span>
                                         </div>
                                     </div>
-                                    
-                                <?php } } else { ?>
-                                <div><p class="text-center">No chat found</p></div>
+                                </div>
+
+                                <?php  } } else { ?>
+                                <div>
+                                    <p class="text-center">No chat found</p>
+                                </div>
                                 <?php } ?>
                             </div>
                         </div>
@@ -112,13 +134,13 @@
                             <?php echo form_open('favoritewish/messageFormSubmission'); ?>
                             <div class="input-group">
                                 <input type="hidden" name="friend_id" value="<?php echo $friend_id;  ?>">
-                                <input type="text" class="form-control rounded-pill" name="message" placeholder="Type your message">
+                                <input type="text" class="form-control rounded-pill" name="message"
+                                    placeholder="Type your message">
                                 <button type="submit" class="theme-btn yellow-bg ml-3">Send</button>
                             </div>
                         </div>
                         <?php echo form_close(); ?>
                     </div>
-                    <div class="col-2 "></div>
                 </div>
             </div>
         </div>
