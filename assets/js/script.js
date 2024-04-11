@@ -1179,3 +1179,43 @@ $("body").on("click", ".familyWishDeleteId", function (){
 	 
    });   
   });
+
+  $("body").on("click",".massage_id", function(){
+	var massageId = $(this).attr("massage-id");
+	var emojoUdateId = $(this).attr("data-emoji-updateid"); 
+	$(".massage_id").val(massageId);  
+	var id = $(this).attr("data-massage");        
+		if(id == 'show'){
+			$('#showAction-'+massageId).removeClass('d-none');
+			$(this).attr("data-massage",'hide'); 
+		}else{
+			$('#showAction-'+massageId).addClass('d-none');
+			$(this).attr("data-massage",'show'); 
+		}	
+  });
+ 
+  
+$("body").on("click",".emojioneemoji", function(){ 
+	var emoji = $(this).attr("data-src");     
+	var messageId = $(".massage_id").val();  
+	$.ajax({
+		url: BASE_URL + "/save/emoji", 
+		type: "post",
+		data: {emoji:emoji,
+			   messageId:messageId
+			},
+		success: function (response) {   
+			window.location.reload();
+		}
+	}); 
+});
+
+  $(document).ready(function() {
+    //Emoji on chat room
+    $(".emojionearea").emojioneArea({
+        pickerPosition: "bottom",
+        filtersPosition: "bottom",
+        tonesStyle: "checkbox",
+		recentEmojis: false
+    });
+});

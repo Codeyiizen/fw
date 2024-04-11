@@ -16,9 +16,8 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
 <!-- main-js -->
 <script src="<?php echo base_url(); ?>assets/js/script.js"></script>
-
 <script src="<?php echo base_url(); ?>resources/tinymce/tinymce.min.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/js/emojionearea.js"></script>
 
 <!-- Script -->
 <script>
@@ -35,7 +34,7 @@ $(document).ready(function() {
         event.preventDefault();
         var category = $("#category").val(); // alert(category);
         var type = $("#type").val();
-        var accessories = $("#accessories").val();  // alert(accessories);
+        var accessories = $("#accessories").val(); // alert(accessories);
         var brand = $("#brand").val(); // alert(brand);
         var color = $("#color").val(); //  alert(color);
         var size = $("#size").val(); // alert(size);
@@ -48,7 +47,7 @@ $(document).ready(function() {
             data: {
                 category: category,
                 type: type,
-                accessories:accessories,
+                accessories: accessories,
                 brand: brand,
                 color: color,
                 size: size,
@@ -108,9 +107,9 @@ $(document).ready(function() {
 });
 </script>
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
 </script>
 </body>
 

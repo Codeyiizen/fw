@@ -81,7 +81,7 @@ class Favoritewish_Model extends CI_Model {
         $this->db->where('(to_user='.$id." and from_user=".$userId.')');
         $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
         $query = $this->db->get();
-       return $query->result();
+        return $query->result();
    }
    public function getUserMessage($userId){
     $this->db->select("*");
@@ -1063,6 +1063,12 @@ public function UpdateHomeContent($id,$updatetData){
     public function familyWishDataDelete($familyWishId){  
         $this->db-> where('id',$familyWishId); 
         $this->db-> delete('family_wish_add');
+        return true;
+    }
+
+    public function UpdateMassageEmoji($massgeId,$updateEmojiById){
+        $this->db->where('id', $massgeId);
+        $this->db->update('messages',$updateEmojiById);
         return true;
     }
 }

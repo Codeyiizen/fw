@@ -2109,8 +2109,20 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
     overflow-y: scroll
 }
 
-.chat-room .chat-message-left,
-.chat-room .chat-message-right {
+.emoji-area .emojionearea.emojionearea-inline{
+   width: auto;
+   height: auto;
+   display: inline-block;
+   border: 0;
+}
+
+.emoji-area .emojionearea.emojionearea-inline > .emojionearea-button {
+    top: -4px;
+    right: auto;
+  }
+
+.chat-room .chat-message-left .inner,
+.chat-room .chat-message-right .inner{
     display: flex;
     flex-shrink: 0
 }
@@ -2119,16 +2131,72 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
     margin-right: auto
 }
 
+.chat-room .chat-message-left .emoji-area,
+.chat-room .chat-message-right .emoji-area{
+   /* text-align: right; */
+   position: absolute;
+   top: 0;
+}
+
+.chat-room .chat-message-left .emoji-area{
+    right: 0;
+}
+
+.chat-room .emoji-area .emojionearea.emojionearea-inline > .emojionearea-button{
+    top: -29px;
+    right: 0;
+}
+
+.chat-room .chat-message-right .emoji-area .emojionearea.emojionearea-inline > .emojionearea-button{
+    right: 0;
+}
+
+.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom{
+    top: 5px;
+}
+
+/* .chat-room .chat-message-left .emoji-area .emojionearea.emojionearea-inline > .emojionearea-button{
+   right: 0;
+} */
+
+.chat-room .chat-message-left .user-area{
+    margin-right: 1rem;
+}
+
 .chat-room .chat-message-right {
-    flex-direction: row-reverse;
     margin-left: auto
 }
 
+.chat-room .chat-message-right .inner{
+    flex-direction: row-reverse;
+}
+
+.chat-room .chat-message-right .user-area{
+   margin-left: 1rem;
+}
 
 .chat-room .chat-message-left .profile-img,
 .chat-room .chat-message-right .profile-img{
     width: 40px;
     height: 40px;
+}
+
+.chat-message-left .inner .icon-emoji,
+.chat-message-right .inner .icon-emoji{
+    bottom: -15px;
+}
+
+.chat-message-left .inner .icon-emoji> .img-fluid,
+.chat-message-right .inner .icon-emoji> .img-fluid{
+   max-width: 20px;
+}
+
+.chat-message-left .inner .icon-emoji{
+    left: 10px;
+}
+
+.chat-message-right .inner .icon-emoji{
+    right: 10px;
 }
 
 .border-top {
@@ -2142,4 +2210,8 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 
 .chat-room .dropdown-toggle::after {
     border: 0
+}
+
+.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block > .emojionearea-category [name="recent"]{
+  display: none;
 }
