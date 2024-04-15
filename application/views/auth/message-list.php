@@ -90,8 +90,10 @@
                         <div class="position-relative">
                             <div class="chat-messages p-4">
                                 <?php
-                                if(!empty($form_massage)){  
-                                foreach ($form_massage as $object) {  ?>    
+                                if(!empty($form_massage)){   
+                                 $i = 1;   
+                                foreach ($form_massage as $object) { 
+                                     ?>    
                                 <div
                                     class="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ?'chat-message-right':"chat-message-left" ?> mb-4">
 
@@ -105,30 +107,32 @@
                                             </div>
                                         </div>
                                         <div class="flex-shrink-1 bg-light position-relative rounded py-2 px-3">
-                                            <div class="emoji-area showAction d-none"
+                                            <div class="emoji-area  d-none"
                                                 id="showAction-<?php echo $object->id  ?>">
-                                                <input type="text" class="emojionearea" id="emojionearea" />
+                                                <input type="text" class="emojionearea"  id="emojionearea" />
                                             </div>
                                               <div class="font-weight-bold mb-1">
                                                 <a href="<?php echo ($userLoginInfo['user_id'] === $object->from_user)?"javascript:void(0)":base_url("user/friends/details/".$object->from_user) ?>">
                                                     <?php echo ($userLoginInfo['user_id'] === $object->from_user) ?'You':$object->from_name; ?></a>
                                                </div>
-                                               
-                                                <div id="massage_id-<?php echo $object->id  ?>" class="massage_id"
-                                                    massage-id="<?php echo $object->id  ?>" data-massage="show" data-form-user="<?php echo $object->from_user  ?>" data-to-user="<?php echo $object->to_user  ?>">
+                                                  
+                                                <div id="massage_id-<?php echo $object->id  ?>" class="massage_id<?php echo $i; ?> status"
+                                                    massage-id="<?php echo $object->id  ?>"  form-user="<?php echo $userLoginInfo['user_id']  ?>" to-user ="<?php echo $object->to_user  ?>"  form-userss="<?php echo $object->from_status ?>" to-userss="<?php echo $object->to_status ?>"
+                                                    from-status="<?php echo $object->from_user  ?>" to-status="<?php echo $object->to_user  ?>"  data-user-type="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ? 'from_user':'to_user'?>" >
                                                     <?php echo $object->message  ?>
-                                               </div>
-                                            <span class="icon-emoji position-absolute"><img src="<?php echo $object->emoji ?>" alt="" class="img-fluid"></span>
+                                               </div> 
+                                            <span class="icon-emoji position-absolute"><img src="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ? $object->emoji:$object->toEmoji;?>" alt="" class="img-fluid"></span>
                                         </div>
                                     </div>
                                 </div>
-
+                                <?php  $i++ ?>
                                 <?php  } } else { ?>
                                 <div>
                                     <p class="text-center">No chat found</p>
                                 </div>
                                 <?php } ?>
                             </div>
+                            <input type="hidden" class="msgid" value="">
                         </div>
                         <div class="flex-grow-0 py-3 px-2 px-sm-4 border-top">
                             <?php echo form_open('favoritewish/messageFormSubmission'); ?>

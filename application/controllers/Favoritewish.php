@@ -2186,13 +2186,24 @@ public function familyWishDelete(){
 	echo json_encode($array);
 }
 
-	public function saveEmojii(){
+	public function saveEmojii(){ 
+		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$massgeId = $this->input->post('messageId');
+		$chkTypeUser = $this->input->post('chkTypeUser');
 		if(!empty($massgeId)){
-			$updateEmojiById = array(
-				'massage_id ' => $this->input->post('messageId'),
-				'emoji ' => $this->input->post('emoji')
-			); 
+			if($chkTypeUser == 'from_user'){
+                $updateEmojiById = array(
+					'emoji ' => $this->input->post('emoji'),
+					'toEmoji ' => $this->input->post('emoji'),
+					'from_status ' => 1,
+				);
+			}else{
+				$updateEmojiById = array(
+					'emoji ' => $this->input->post('emoji'),
+					'toEmoji ' => $this->input->post('emoji'),
+					'to_status' => 1,
+				);
+			}	 
 			$this->Favoritewish_Model->UpdateMassageEmoji($massgeId,$updateEmojiById); 
 		}
 		 
