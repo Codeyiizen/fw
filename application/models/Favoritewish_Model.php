@@ -82,6 +82,7 @@ class Favoritewish_Model extends CI_Model {
         $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
         $query = $this->db->get();
         return $query->result();
+        
    }
    public function getUserMessage($userId){
     $this->db->select("*");
