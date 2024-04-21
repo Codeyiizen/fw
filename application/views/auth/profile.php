@@ -14,34 +14,30 @@
                             <h2>Overview</h2>
                             <?php print $userInfo['user_bio']; ?>
 							<ul class="list-unstyled">
-								<!-- <?php if(!empty($userInfo['email'])){ ?>
+								<?php if(!empty($userInfo['first_name'])) { ?> 
+									<li><span>Full Name</span> <?php print $userInfo['first_name']; ?>  <?php print $userInfo['last_name']; ?></li> 
+								<?php } ?> 
+								 <?php if(!empty($userInfo['email'])){ ?>
 									<li><span>Email Address</span> <?php print $userInfo['email']; ?></li> 
-								<?php } ?>
+									<?php } ?>
 								<?php if(!empty($userInfo['contact_no'])) { ?>
 									<li><span>Phone:</span> <?php print $userInfo['contact_no']; ?></li> 
 								<?php } ?>
-								<?php  if(!empty($userInfo['user_type'])) { ?> 
-									<li><span>User Type</span> <?php print $userInfo['user_type']; ?></li> 
-								<?php } ?>
-								<?php if(!empty($userInfo['company'])) { ?> 
-									<li><span>Designation</span> <?php print $userInfo['company']; ?></li> 
-								<?php } ?> -->
-								<?php if(!empty($userInfo['full_name'])) { ?> 
-									<li><span>Full Name</span> <?php print $userInfo['full_name']; ?></li> 
-								<?php } ?> 
-								<?php if(!empty($userInfo['full_name'])) { ?> 
+								<?php if(!empty($userInfo['dob'])) { ?> 
 									<li><span>Birthday </span> <?php print $userInfo['dob']; ?></li> 
 								<?php } ?>
-								<?php if(!empty($userInfo['birthday'])) { ?> 
-									<li><span>Date of Birth</span> <?php print $userInfo['birthday']; ?></li> 
-								<?php } ?> 
-								<?php if(!empty($userInfo['address'] && $userInfo['city'] &&  $userInfo['state'])){ ?>
-									<li><span>Address</span> <?php print $userInfo['address']; ?>, <?php print $userInfo['city']; ?>,
-									<?php print $userInfo['state']; ?>, <?php print $userInfo['zip']; ?></li> 
+								<?php if(!empty($userInfo['gender'])) { ?> 
+									<li><span>Gender</span> <?php print $userInfo['gender']; ?></li> 
 								<?php } ?>
 								<?php if(!empty($userInfo['favorite_charity'])) { ?> 
 									<li><span>Favorite Charity</span><?php print $userInfo['favorite_charity']; ?></li> 
 								<?php } ?>
+								
+								<?php if(!empty($userInfo['address'] && $userInfo['city'] &&  $userInfo['state'])){ ?>
+									<li><span>Address</span> <?php print $userInfo['address']; ?>, <?php print $userInfo['city']; ?>,
+									<?php print $userInfo['state']; ?>, <?php print $userInfo['zip']; ?></li> 
+								<?php } ?>
+								
 								<?php if(!empty($userInfo['favorite_country'])) { ?> 
 									<li><span>Favorite Country</span><?php print $userInfo['favorite_country']; ?></li> 
 								<?php } ?>

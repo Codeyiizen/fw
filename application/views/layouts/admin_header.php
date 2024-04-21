@@ -23,7 +23,7 @@ if (isset($this->session->userdata['logged_in'])) {
     </script>
     <script src="//cdn.ckeditor.com/4.10.0/full-all/ckeditor.js"></script>
     // <script src="<?php echo base_url(); ?>assets/admin/js/ckeditor.js"></script>
-    
+
 </head>
 
 <body>

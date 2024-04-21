@@ -1215,10 +1215,7 @@ $("body").on("click",".emojioneemoji", function(){
 		var status = $(".massage_id").attr("from-status");  
 	}else{
 		var status = $(".massage_id").attr("to-status");
-	}
-
-	// var toStatus = $(".massage_id").attr("data-user-type");
-//	var userType = $('#massage_id-'+messageId).attr("data-user-type");    
+	}   
 	$.ajax({
 		url: BASE_URL + "/save/emoji", 
 		type: "post",
@@ -1244,84 +1241,10 @@ $("body").on("click",".emojioneemoji", function(){
 
 
 //Emoji on chat room [Mobile Viewport]
-$(window).on("scroll", function () {
-	var width = $(window).width();
-	if (width <= 575) {
-	//	alert(width);
-		$(".chat-message-left .emojionearea").emojioneArea({
-			pickerPosition: "right",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-		$(".chat-message-right .emojionearea").emojioneArea({  
-			pickerPosition: "bottom",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-	}
-	else {
-	//	alert(width);
-		$(".chat-message-left .emojionearea").emojioneArea({
-			pickerPosition: "left",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-
-		$(".chat-message-right .emojionearea").emojioneArea({
-			pickerPosition: "bottom",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-	}
-});
-
-$(window).on("resize", function () {
-	var width = $(window).width();
-	if (width <= 575) {
-		$(".chat-message-left .emojionearea").emojioneArea({
-			pickerPosition: "right",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-		$(".chat-message-right .emojionearea").emojioneArea({  
-			pickerPosition: "bottom",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-	}
-	else {
-		$(".chat-message-left .emojionearea").emojioneArea({
-			pickerPosition: "left",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-
-		$(".chat-message-right .emojionearea").emojioneArea({
-			pickerPosition: "bottom",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-	}
-});
-
 $(window).on("load", function () {
 	var width = $(window).width();
 	if (width <= 575) {
-		$(".chat-message-left .emojionearea").emojioneArea({
-			pickerPosition: "right",
-			filtersPosition: "bottom",
-			tonesStyle: "checkbox",
-			recentEmojis: false
-		});
-		$(".chat-message-right .emojionearea").emojioneArea({  
+		$(".emojionearea").emojioneArea({
 			pickerPosition: "bottom",
 			filtersPosition: "bottom",
 			tonesStyle: "checkbox",
@@ -1345,3 +1268,12 @@ $(window).on("load", function () {
 	}
 });
 
+
+$("body").on("change",".fileClick", function(){ 
+    $('.messageClick').addClass('d-none');
+	$('.show').removeClass('d-none');
+	
+});
+$("body").on("click",".messageClick", function(){  
+    $('.fileHide').addClass('d-none');
+});

@@ -1,3 +1,44 @@
+<style>
+    .custom-file.chatroom-file-upload input[type="file"] {
+        display: none;
+    }
+ 
+    .chatroom-file-upload .custom-file-label {
+        cursor:pointer;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        line-height: 2.5;
+        text-align: center;
+        left: auto;
+    }
+
+    .chatroom-file-upload .custom-file-input:lang(en) ~ .custom-file-label::after{
+      display:none;
+    }
+
+    .chat-messages .img-preview,
+    .input-group .img-thumbnail{
+        max-height: 45px;
+        object-fit: contain;
+    }
+
+    .input-group .img-thumbnail{
+        margin-top: 2px;
+    }
+
+    @media screen and (max-width:575px){
+        .input-group .form-control, .chatroom-file-upload .custom-file-label{
+           height: 40px;
+        }
+
+        .chatroom-file-upload .custom-file-label{
+            width:40px;
+        line-height: 1.5;
+        }
+    }
+
+</style>
 <section class="fav-profile-section pb-0 pb-md-5">
     <?php $this->load->view('user/Common/friend-banner', array('userInfo' => $userInfo)) ?>
 </section>
@@ -119,7 +160,14 @@
                                                 <div id="massage_id-<?php echo $object->id  ?>" class="massage_id<?php echo $i; ?> status"
                                                     massage-id="<?php echo $object->id  ?>"  form-user="<?php echo $userLoginInfo['user_id']  ?>" to-user ="<?php echo $object->to_user  ?>"  form-userss="<?php echo $object->from_status ?>" to-userss="<?php echo $object->to_status ?>"
                                                     from-status="<?php echo $object->from_user  ?>" to-status="<?php echo $object->to_user  ?>"  data-user-type="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ? 'from_user':'to_user'?>" >
-                                                    <?php echo $object->message  ?>
+                                                    
+                                                    <?php if($object->msg_type == 'msg'){  ?>
+                                                       <?php echo $object->message  ?>  
+                                                   <?php    }else if($object->msg_type == 'img'){  ?>
+                                                    <a href="<?php echo base_url() . 'assets/uploads/massge_photo/' . $object->msg_image; ?>" data-fancybox data-caption="Massage image">
+                                                    <img src="<?php echo base_url() . 'assets/uploads/massge_photo/' . $object->msg_image; ?>"class="img-fluid img-preview">
+                                                            </a>
+                                                    <?php  } ?>
                                                </div> 
                                             <span class="icon-emoji position-absolute"><img src="<?php echo ($userLoginInfo['user_id'] === $object->from_user) ? $object->emoji:$object->toEmoji;?>" alt="" class="img-fluid"></span>
                                         </div>
@@ -135,12 +183,23 @@
                             <input type="hidden" class="msgid" value="">
                         </div>
                         <div class="flex-grow-0 py-3 px-2 px-sm-4 border-top">
-                            <?php echo form_open('favoritewish/messageFormSubmission'); ?>
-                            <div class="input-group">
-                                <input type="hidden" name="friend_id" value="<?php echo $friend_id;  ?>">
-                                <input type="text" class="form-control rounded-pill" name="message"
-                                    placeholder="Type your message">
-                                <button type="submit" class="theme-btn yellow-bg ml-3">Send</button>
+                            <?php echo form_open_multipart('favoritewish/messageFormSubmission'); ?>
+                            <div class="row">
+                                <div class="col-md-1 col-3 fileHide">
+                                    <div class="custom-file chatroom-file-upload">
+                                        <input type="file" name="msg_image" class="custom-file-input fileClick" id="customFile" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                                        <label class="custom-file-label" for="customFile"><i class="fa fa-upload"></i></label>
+                                    </div>
+                                </div>
+                                <div class="col-md-11 col-9 pl-0">
+                                    <div class="input-group">                                        
+                                         <img id="blah"  class="img-thumbnail img-fluid show d-none" />
+                                        <input type="hidden" name="friend_id" value="<?php echo $friend_id;  ?>">
+                                        <input type="text" class="form-control rounded-pill messageClick" name="message"
+                                            placeholder="Type your message">
+                                        <button type="submit" class="theme-btn yellow-bg ml-3 px-3 px-sm-4">Send</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <?php echo form_close(); ?>

@@ -17,18 +17,60 @@
 							<table class="table table-sm">
 								<tr>
 									<th>Full Name</th>
-									<td><?php print $userInfo['full_name']; ?></td>
+									<td><?php print $userInfo['first_name']; ?>  <?php print $userInfo['last_name']; ?></td>
 								</tr>
-								<?php if (!empty($userInfo['birthday']) && !empty($is_friend)) { ?> 
+								<?php if (!empty($userInfo['email']) && !empty($is_friend)) { ?> 
+								<tr>
+									<th>Email</th>
+									<td><?php print $userInfo['email']; ?></td>
+								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['contact_no']) && !empty($is_friend)) { ?> 
+								<tr>
+									<th>Contact No</th>
+									<td><?php print $userInfo['contact_no']; ?></td>
+								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['dob']) && !empty($is_friend)) { ?> 
 								<tr>
 									<th>Birthday</th>
-									<td><?php print $userInfo['birthday']; ?></td>
+									<td><?php print $userInfo['dob']; ?></td>
 								</tr>
 								<?php } ?>
 								<?php if (!empty($userInfo['gender']) && !empty($is_friend)) { ?>
 								<tr>
 									<th>Gender</th>
 									<td><?php print $userInfo['gender']; ?></td>
+								</tr>
+								<?php } ?>  
+								<?php if (!empty($userInfo['favorite_charity']) && !empty($is_friend)) { ?>
+								<tr>
+									<th>Favorite Charity</th>
+									<td><?php print $userInfo['favorite_charity']; ?></td>
+								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['address']) && !empty($is_friend)) { ?>
+								<tr>
+									<th>Address</th>
+									<td><?php print $userInfo['address']; ?></td>
+								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['city']) && !empty($is_friend)) { ?>
+								<tr>
+									<th>City</th>
+									<td><?php print $userInfo['city']; ?></td>
+								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['state']) && !empty($is_friend)) { ?>
+								<tr>
+									<th>State</th>
+									<td><?php print $userInfo['state']; ?></td>
+								</tr>
+								<?php } ?>
+								<?php if (!empty($userInfo['zip']) && !empty($is_friend)) { ?>
+								<tr>
+									<th>Zip</th>
+									<td><?php print $userInfo['zip']; ?></td>
 								</tr>
 								<?php } ?>
 								<?php if (!empty($userInfo['favorite_country']) && !empty($is_friend)) { ?> 

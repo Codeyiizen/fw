@@ -690,7 +690,7 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-
+          //  echo"<pre>"; var_dump($data['userInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/profile');
@@ -984,7 +984,7 @@ class Favoritewish extends CI_Controller
 					$profileImageData = array('upload_data' => $this->upload->data());
 				 } 
 				 $profile_photo = $profileImageData['upload_data']['file_name'];
-				 echo"<pre>"; var_dump($profile_photo); exit;
+				// echo"<pre>"; var_dump($profile_photo); exit;
 			}else{
 				$profile_photo = $userInfo['profile_photo'];
 			}
@@ -1217,6 +1217,10 @@ class Favoritewish extends CI_Controller
 				//$data['inquiries'] = $this->Favoritewish_Model->count_inquiries();
 				//$data['useraccounts'] = $this->Favoritewish_Model->count_user_accounts();
 				//$data['hangar_entries'] = $this->Favoritewish_Model->count_hangars();
+				$data['totalUserCount'] = $this->Favoritewish_Model->totalUserCount();
+				$data['totalWishCount'] = $this->Favoritewish_Model->totalWishCount();
+				$data['totalRegistryCount'] = $this->Favoritewish_Model->totalRegistryCount();
+				$data['totalFamilyWishCount'] = $this->Favoritewish_Model->totalFamilyWishCount();
 				$this->load->view('layouts/admin_header', $data);
 				$this->template->load('default_layout', 'contents', 'home', $data);
 				$this->load->view('layouts/admin_footer');
@@ -1248,6 +1252,10 @@ class Favoritewish extends CI_Controller
 					//$data['inquiries'] = $this->Favoritewish_Model->count_inquiries();
 					//$data['useraccounts'] = $this->Favoritewish_Model->count_user_accounts();
 					//$data['hangar_entries'] = $this->Favoritewish_Model->count_hangars();
+					$data['totalUserCount'] = $this->Favoritewish_Model->totalUserCount();
+				$data['totalWishCount'] = $this->Favoritewish_Model->totalWishCount();
+				$data['totalRegistryCount'] = $this->Favoritewish_Model->totalRegistryCount();
+				$data['totalFamilyWishCount'] = $this->Favoritewish_Model->totalFamilyWishCount();
 					$this->load->view('layouts/admin_header', $data);
 					$this->template->load('default_layout', 'contents', 'home', $data);
 					$this->load->view('layouts/admin_footer');
@@ -1823,28 +1831,63 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function messageFormSubmission(){
+	public function messageFormSubmission(){ 
+		$msg_image = $this->input->post('msg_image'); 
         $id = $this->input->post('friend_id');
+		$mag = $this->input->post('message'); 
         $sessionArray = $this->session->userdata('ci_seesion_key');
+		if(!empty($mag)){
 		$this->form_validation->set_rules('message', 'message', 'trim|required');
 		if ($this->form_validation->run() == false) {
 			$this->session->set_flashdata('errors', validation_errors());
 			header("Location: {$_SERVER['HTTP_REFERER']}");
 			//exit();
 
-		} else {
-
-			$data = array(
-				'from_user'	        =>	$sessionArray['user_id'],
-				'to_user'	        =>	$this->input->post('friend_id'),
-				'message'	        =>	$this->input->post('message'),
-				'seen'	            =>	'0',
-				'status'	        =>	'0',
-				'created_on'	    =>	date("Y-m-d H:i:s")
-			);
+		}else {    
+				$data = array(
+					'from_user'	        =>	$sessionArray['user_id'],
+					'to_user'	        =>	$this->input->post('friend_id'),
+					'message'	        =>	$this->input->post('message'),
+					'msg_type'	        =>	'msg',
+					'seen'	            =>	'0',
+					'status'	        =>	'0',
+					'created_on'	    =>	date("Y-m-d H:i:s")
+				);
+				
 		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
 		  redirect('user/friends/'.$id.'/massages');
 	}
+   }else{
+	if(!empty($_FILES['msg_image']['name'])){
+		$config['upload_path']          = './assets/uploads/massge_photo/';
+		$config['allowed_types']        = 'gif|jpg|png|jpeg';
+		$config['max_size']             = 2048;
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		 if ( ! $this->upload->do_upload('msg_image'))
+		 {
+				 $error = array('error' => $this->upload->display_errors());
+				redirect('user-profile/edit',$this->session->set_flashdata("error_msg", $error));
+		 }
+		 else
+		 {
+			$profileImageData = array('upload_data' => $this->upload->data());
+		 } 
+		 $profile_photo = $profileImageData['upload_data']['file_name'];
+	}
+		$data = array(
+			'from_user'	        =>	$sessionArray['user_id'],
+			'to_user'	        =>	$this->input->post('friend_id'),
+			'msg_image'	        =>	$profile_photo,
+			'msg_type'	        =>	'img',
+			'seen'	            =>	'0',
+			'status'	        =>	'0',
+			'created_on'	    =>	date("Y-m-d H:i:s")
+		);
+		
+		$is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
+		redirect('user/friends/'.$id.'/massages');
+   }
  }
  public function familyRequest(){
 	   $user = getUser();
@@ -1935,7 +1978,7 @@ class Favoritewish extends CI_Controller
 	$config = array();
 	$config["base_url"] = base_url() . "admin/user/list";
 	$config["total_rows"] = $this->Favoritewish_Model->getCount();
-	$config["per_page"] = 3;
+	$config["per_page"] = 10;
 	$config["uri_segment"] = 4;
 	$this->pagination->initialize($config);
 	$page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
