@@ -81,7 +81,7 @@
                         <tbody>
                             <?php
 if (!empty($allUserList)) {
-    foreach ($allUserList as $userList) {?>
+    foreach ($allUserList as $userList) {?> 
                             <tr>
                                 <td><?php echo $userList->first_name; ?></td>
                                 <td><?php echo $userList->last_name; ?></td>

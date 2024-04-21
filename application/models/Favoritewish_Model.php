@@ -276,10 +276,12 @@ class Favoritewish_Model extends CI_Model {
         $this->db->where('email', $this->_userName);
         $this->db->where('verification_code', 1);
         $this->db->where('status', 1);
+        $this->db->where('user_active_status', 1);
         //{OR}
         $this->db->or_where('user_name', $this->_userName);
         $this->db->where('verification_code', 1);
         $this->db->where('status', 1);
+        $this->db->where('user_active_status', 1);
         $this->db->limit(1);
         $query = $this->db->get();
         if ($query->num_rows() == 1) {
@@ -380,7 +382,7 @@ class Favoritewish_Model extends CI_Model {
         }
     }
     public function getFriendDetails($id){ 
-        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.token','m.cover_photo','m.profile_photo'));
+        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.token','m.cover_photo','m.profile_photo','m.dob','m.dob','m.gender','m.favorite_charity'));
         $this->db->from('users as m');
         $this->db->where('m.id',$id);
         $query = $this->db->get();
@@ -1071,5 +1073,25 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->where('id', $massgeId);
         $this->db->update('messages',$updateEmojiById);
         return true;
+    }
+
+    public function totalUserCount(){
+        $query = $this->db->query('SELECT * FROM users');
+        return  $query->num_rows();
+    }
+
+    public function totalWishCount(){
+        $query = $this->db->query('SELECT * FROM user_wish');
+        return  $query->num_rows();
+    }
+
+    public function totalRegistryCount(){
+        $query = $this->db->query('SELECT * FROM user_registry');
+        return  $query->num_rows(); 
+    }
+
+    public function totalFamilyWishCount(){
+        $query = $this->db->query('SELECT * FROM family_wish_add');
+        return  $query->num_rows();
     }
 }
