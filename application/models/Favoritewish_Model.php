@@ -1094,4 +1094,26 @@ public function UpdateHomeContent($id,$updatetData){
         $query = $this->db->query('SELECT * FROM family_wish_add');
         return  $query->num_rows();
     }
+
+    public function getAllUserEmail(){
+        $query = $this->db->query('SELECT * FROM users');
+        return  $query->result();
+    }
+
+    public function getUsersById($data){
+        extract($data);
+        $this->db->where('id', $id);
+        $this->db->update($table_name, array('isSubscribe' => '0',
+                                         ));
+                                         return true;
+    }
+
+    public function getFirstUser(){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id', '20');
+        $query = $this->db->get();
+        return  $query->result();
+    }
+
 }

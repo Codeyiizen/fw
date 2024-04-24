@@ -39,7 +39,7 @@
                             <?php } ?>
                             <?php if (!empty($this->input->get('msg')) && $this->input->get('msg') == 1) { ?>
                             <div class="alert alert-danger">
-                                Please Enter Your Valid Information.
+                                Please Enter Your Valid Information Or Connect to administrator For Active your Account
                             </div>
                             <?php } ?>
                             <?php echo form_open('favoritewish/loginSubmit'); ?>
