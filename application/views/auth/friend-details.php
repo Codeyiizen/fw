@@ -25,61 +25,61 @@
 									<td><?php print $userInfo['email']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['contact_no']) && !empty($is_friend)) { ?> 
+								<?php if (!empty($userInfo['contact_no']) && !empty($is_friend) && !empty($is_friend['status'])) { ?> 
 								<tr>
 									<th>Contact No</th>
 									<td><?php print $userInfo['contact_no']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['dob']) && !empty($is_friend)) { ?> 
+								<?php if (!empty($userInfo['dob'])) { ?> 
 								<tr>
 									<th>Birthday</th>
 									<td><?php print $userInfo['dob']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['gender']) && !empty($is_friend)) { ?>
+								<?php if (!empty($userInfo['gender']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>Gender</th>
 									<td><?php print $userInfo['gender']; ?></td>
 								</tr>
 								<?php } ?>  
-								<?php if (!empty($userInfo['favorite_charity']) && !empty($is_friend)) { ?>
+								<?php if (!empty($userInfo['favorite_charity'])) { ?>
 								<tr>
 									<th>Favorite Charity</th>
 									<td><?php print $userInfo['favorite_charity']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['address']) && !empty($is_friend)) { ?>
+								<?php if (!empty($userInfo['address']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>Address</th>
 									<td><?php print $userInfo['address']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['city']) && !empty($is_friend)) { ?>
+								<?php if (!empty($userInfo['city']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>City</th>
 									<td><?php print $userInfo['city']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['state']) && !empty($is_friend)) { ?>
+								<?php if (!empty($userInfo['state']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>State</th>
 									<td><?php print $userInfo['state']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['zip']) && !empty($is_friend)) { ?>
+								<?php if (!empty($userInfo['zip']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>Zip</th>
 									<td><?php print $userInfo['zip']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['favorite_country']) && !empty($is_friend)) { ?> 
+								<?php if (!empty($userInfo['favorite_country']) && !empty($is_friend) && !empty($is_friend['status'])) { ?> 
 								<tr>
 									<th>Favorite Country</th>
 									<td><?php print $userInfo['favorite_country']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['favoripublic_outfit_wear']) && !empty($is_friend)) { ?>
+								<?php if (!empty($userInfo['favoripublic_outfit_wear']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>Favorite public outfit to wear</th>
 									<td><?php print $userInfo['favoripublic_outfit_wear']; ?></td>
@@ -91,7 +91,7 @@
 									<td><?php print $userInfo['favorite_sports_teams']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['favorite_music']) && !empty($is_friend)) { ?>
+								<?php if (!empty($userInfo['favorite_music']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>Favorite Music</th>
 									<td><?php print $userInfo['favorite_music']; ?></td>
