@@ -549,7 +549,7 @@ class Favoritewish extends CI_Controller
 
 	// action login method
 	function loginSubmit()
-	{   
+	{     
 		// Check form  validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('user_name', 'User Name/Email', 'trim|required');
@@ -2250,6 +2250,48 @@ public function familyWishDelete(){
 			$this->Favoritewish_Model->UpdateMassageEmoji($massgeId,$updateEmojiById); 
 		}
 		 
+	}
+
+	public function sendEmail(){ 
+		$login = base_url() . 'send/email/unsubscribe';  
+		//$allUserEmail = $this->Favoritewish_Model->getAllUserEmail();
+		$allUserEmail = $this->Favoritewish_Model->getFirstUser();
+		foreach($allUserEmail as $email){ 
+		  $userEmail = $email->email;
+			if ($email->isSubscribe == '1'){
+				$this->load->library('encryption');
+				$this->load->library('email');
+				$data = array(
+					'loginlink' => $login,
+					'id'        => $email->id
+				);
+				$config['charset'] = 'iso-8859-1';
+				$config['wordwrap'] = TRUE;
+				$config['mailtype'] = 'html';
+				$this->email->initialize($config);
+				$this->email->to($userEmail);
+				$this->email->from(MAIL_FROM, FROM_TEXT);
+				$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
+				$this->email->set_newline("\r\n");
+				$this->email->message($this->load->view('email/quarterly_email', $data, true));
+				if($this->email->send()) {
+					echo 'Email sent!';
+				} else {
+					echo 'Email not sent!';
+				}
+			}
+		}
+	}
+
+	public function sendEmailStatusChange(){
+	  $id = $this->input->get('id');
+	  $data = array(
+		'table_name' =>'users', 
+		'id' => $id,
+		'isSubscribe' =>'0'
+	  );
+	  $getUserById = $this->Favoritewish_Model->getUsersById($data);
+	  redirect('user-dashboard');
 	}
 
 }

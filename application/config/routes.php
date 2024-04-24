@@ -118,6 +118,8 @@ $route['getCategory/subcategory/family_wishid'] = 'favoritewish/getCategorySucat
 $route['familywish/update/post'] = 'favoritewish/familyWishEditPost';
 $route['familywish/delete'] = 'favoritewish/familyWishDelete';  
 $route['save/emoji'] = 'favoritewish/saveEmojii'; 
+$route['send/email'] = 'favoritewish/sendEmail';
+$route['send/email/unsubscribe'] = 'favoritewish/sendEmailStatusChange';
 /*
 
 
