@@ -32,9 +32,6 @@ class Favoritewish extends CI_Controller
 		$this->load->library('upload');
 		$this->load->library('encryption');
 		$this->load->helper('custom');
-		$this->load->library("pagination");
-		$sql = "SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));";
-    $this->db->query($sql );
 	}
 
 	public function index()
@@ -45,10 +42,9 @@ class Favoritewish extends CI_Controller
 		$data['metaKeywords'] = 'Home Page Meta Title';
 		$data['title'] = "Home";
 		$data['breadcrumbs'] = array('Home' => '#');
-		$data['hometext'] = $this->Favoritewish_Model->homeAllData();
 		$this->load->view('front/header_main', $data);
 		//$this->load->view('bannerSection',$arr);
-		$this->load->view('front/home',$data);
+		$this->load->view('front/home');
 		$this->load->view('front/template/template_footer');
 		$this->load->view('front/footer_main');
 	}
@@ -61,7 +57,6 @@ class Favoritewish extends CI_Controller
 		$data['metaKeywords'] = 'About Us Page Meta Title';
 		$data['title'] = "About Us";
 		$data['breadcrumbs'] = array('About Us' => '#');
-		$data['aboutUsText'] = $this->Favoritewish_Model->AboutUsData();
 		$this->load->view('front/header_main', $data);
 		//$this->load->view('front/bannerSection',$arr);
 		$this->load->view('front/aboutus', $data);
@@ -76,9 +71,8 @@ class Favoritewish extends CI_Controller
 		$data['metaKeywords'] = 'Contact Us Page Meta Title';
 		$data['title'] = "Contact Us";
 		$data['breadcrumbs'] = array('Contact Us' => '#');
-		$data['contacttext'] = $this->Favoritewish_Model->contactAllData();
 		$this->load->view('front/header_main', $data);
-		//$this->load->view('front/bannerSection',$arr);  
+		//$this->load->view('front/bannerSection',$arr);
 		$this->load->view('front/contactus', $data);
 		$this->load->view('front/template/template_footer');
 		$this->load->view('front/footer_main');
@@ -230,124 +224,11 @@ class Favoritewish extends CI_Controller
 			$data['breadcrumbs'] = array('Registration' => '#');
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
-			$google_client = new Google_Client();
-		    $google_client->setClientId(GOOGLE_CLIENT_ID); //Define your ClientID
-	        $google_client->setClientSecret(GOOGLE_CLIENT_SECRET); //Define your Client Secret Key
-	        $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
-			$google_client->addScope('email');
-			$google_client->addScope('profile');
-			$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign up with Google</a>';	
-			$data['login_button'] = $login_button;
-			$this->template->load('default_layout', 'contents', 'auth/sign-up',$data);
+			$this->template->load('default_layout', 'contents', 'auth/sign-up');
 			$this->load->view('front/footer_main');
 		} else {
 			redirect('user-dashboard');
 		}
-	}
-    
-	public function googleSignUp(){
-		include_once "vendor/autoload.php";
-		$google_client = new Google_Client();
-		$google_client->setClientId(GOOGLE_CLIENT_ID); //Define your ClientID
-	    $google_client->setClientSecret(GOOGLE_CLIENT_SECRET); //Define your Client Secret Key
-	    $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
-	    $google_client->addScope('email');
-	    $google_client->addScope('profile');
-		$varToken = random_strings(8);
-	    if(isset($_GET["code"]))
-		{  
-		 $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
-	     if(!isset($token["error"]))
-		 {
-		  $google_client->setAccessToken($token['access_token']);
-		  $this->session->set_userdata('access_token', $token['access_token']);
-		  $google_service = new Google_Service_Oauth2($google_client);
-		  $data = $google_service->userinfo->get();
-		  $checkEmailExit = $this->Favoritewish_Model->checkEmailExit($data['email']);
-		  if(!empty($checkEmailExit)){
-		  $randam = mt_rand(10000000,99999999); 
-		  $getObjUserDataById = $this->Favoritewish_Model->getObjUserGoogleDetails($checkEmailExit['id']); 
-						if(!empty($getObjUserDataById)){
-							$updateData = array(
-								'first_name' => $checkEmailExit['first_name'],
-								'last_name'  => $checkEmailExit['last_name'],
-								'user_name'  => $checkEmailExit['first_name'].$checkEmailExit['last_name'],
-								'email' =>    $checkEmailExit['email'],
-								'password'   =>    password_hash($randam, PASSWORD_BCRYPT),
-								'login_oauth_uid' => $data['id'],
-								'status' => 1,
-								'verification_code' => 1,
-							);  
-							$this->Favoritewish_Model->Update_user_data($updateData, $getObjUserDataById->id);
-						}else{
-							$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data); 
-						}
-				}else{
-					$randam = mt_rand(10000000,99999999);
-					$user_data = array(
-						'first_name' => $data['given_name'],
-						'last_name'  => $data['family_name'],
-						'user_name'  => $data['given_name'].$data['family_name'],
-						'email' => $data['email'],
-						'password'   => password_hash($randam, PASSWORD_BCRYPT),
-						'login_oauth_uid' => $data['id'],
-						'status' => 1,
-						'verification_code' => 1,
-						'token'=>$varToken,
-						'user_active_status'=>1
-					);
-					$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data);
-				}
-			    $userId = !empty($getObjUserDataById) ? $getObjUserDataById->id : $insertUser;
-				$this->db->where('id', $userId);
-				$getFinalUserDetails =  $this->Favoritewish_Model->InsertDataById($userId);
-				$authArray = array(
-						'user_id' => $getFinalUserDetails->id,
-						'email' => $getFinalUserDetails->email,
-						'first_name' => $getFinalUserDetails->first_name,
-						'last_name' => $getFinalUserDetails->last_name,
-						'contact_no' => !empty($getFinalUserDetails->contact_no) ? $getFinalUserDetails->contact_no :'',
-						'company' => !empty($getFinalUserDetails->company) ? $getFinalUserDetails->company :'',
-						'token'=>$varToken,
-						'user_active_status'=>1
-					);
-					$this->session->set_userdata('ci_session_key_generate',TRUE);
-					$this->session->set_userdata('ci_seesion_key', $authArray);
-					$toMail = $data['email'];
-					$userName = $data['given_name'].$data['family_name'];
-				//	echo"<pre>"; var_dump($toMail); exit;
-					$this->load->library('encryption');
-					$this->load->library('email');
-					$dataEmail = array(
-						'user_name' => $userName,
-						'password' => $randam,
-					);
-					$config['charset'] = 'iso-8859-1';
-					$config['wordwrap'] = TRUE;
-					$config['mailtype'] = 'html';
-					$this->email->initialize($config);
-					$this->email->to($toMail);
-					$this->email->from(MAIL_FROM, FROM_TEXT);
-					$this->email->subject('Favorite Wish User Registeration!');
-	
-					$this->email->set_newline("\r\n");
-					$this->email->message('UserName-'.$userName.'<br> Password-'.$randam.' ');
-					$chkStatus = $this->email->send();
-                    if ($chkStatus === TRUE) {  
-						$this->session->set_flashdata('success', 'Thanks for signing up. Please verify your email which we already sent to your mail');
-						redirect('sign-in');
-					} else { 
-						echo 'Error';
-					}
-				redirect('favoritewish/logout');
-		  }else{
-			  $this->session->set_flashdata('error', 'Something wents wrong by google token!');
-			  redirect('sign-in');
-		  }
-	     }else{
-			 $this->session->set_flashdata('error', 'Something wents wrong by google code!');
-			 redirect('sign-in');
-		 }
 	}
 
 	public function registerSubmit()
@@ -442,94 +323,91 @@ class Favoritewish extends CI_Controller
 					echo 'Error';
 				}
 			} else {
-
 			}
 		}
 	}
     
-	public function googleLogin(){
-		include_once "vendor/autoload.php";
-		$google_client = new Google_Client();
-	    $google_client->setClientId(GOOGLE_CLIENT_ID); //Define your ClientID
-	    $google_client->setClientSecret(GOOGLE_CLIENT_SECRET); //Define your Client Secret Key
-	    $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
-	    $google_client->addScope('email');
-	    $google_client->addScope('profile');
-		$varToken = random_strings(8);
-	    if(isset($_GET["code"]))
-		{  
-		 $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
-	     if(!isset($token["error"]))
-		 {
-		  $google_client->setAccessToken($token['access_token']);
-		  $this->session->set_userdata('access_token', $token['access_token']);
-		  $google_service = new Google_Service_Oauth2($google_client);
-		  $data = $google_service->userinfo->get();
-		  $checkEmailExit = $this->Favoritewish_Model->checkEmailExit($data['email']);
-		  if(!empty($checkEmailExit)){
-		  $getObjUserDataById = $this->Favoritewish_Model->getObjUserGoogleDetails($checkEmailExit['id']); 
-						if(!empty($getObjUserDataById)){  
-							$updateData = array(
-								'first_name' => $checkEmailExit['first_name'],
-								'last_name'  => $checkEmailExit['last_name'],
-								'user_name'  => $checkEmailExit['first_name'].$checkEmailExit['last_name'],
-								'email' =>    $checkEmailExit['email'],
-								'login_oauth_uid' => $data['id'],
-								'status' => 1,
-								'verification_code' => 1,
-							);  
-							$this->Favoritewish_Model->Update_user_data($updateData, $getObjUserDataById->id);
-						}else{
-							$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data); 
-						}
-				}else{
-					$user_data = array(
-						'first_name' => $data['given_name'],
-						'last_name'  => $data['family_name'],
-						'user_name'  => $data['given_name'].$data['family_name'],
-						'email' => $data['email'],
-						'login_oauth_uid' => $data['id'],
-						'status' => 1,
-						'verification_code' => 1,
-						'token'=>$varToken,
-						'user_active_status'=>1
-					);
-					$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data);
-				}
-			    $userId = !empty($getObjUserDataById) ? $getObjUserDataById->id : $insertUser;
-				$this->db->where('id', $userId);
-				$getFinalUserDetails =  $this->Favoritewish_Model->InsertDataById($userId);
-				$authArray = array(
-						'user_id' => $getFinalUserDetails->id,
-						'email' => $getFinalUserDetails->email,
-						'first_name' => $getFinalUserDetails->first_name,
-						'last_name' => $getFinalUserDetails->last_name,
-						'contact_no' => !empty($getFinalUserDetails->contact_no) ? $getFinalUserDetails->contact_no :'',
-						'company' => !empty($getFinalUserDetails->company) ? $getFinalUserDetails->company :'',
-						'token'=>$varToken,
-						'user_active_status'=>1
-					);
-					$this->session->set_userdata('ci_session_key_generate', TRUE);
-					$this->session->set_userdata('ci_seesion_key', $authArray);
-				redirect('user-dashboard');
-		  }else{
-			  $this->session->set_flashdata('error', 'Something wents wrong by google token!');
-			  redirect('sign-in');
-		  }
-	     }else{
-			 $this->session->set_flashdata('error', 'Something wents wrong by google code!');
-			 redirect('sign-in');
-		 }
-		
-	}
+	// public function googleLogin(){
+	// 	include_once "vendor/autoload.php";
+	// 	$google_client = new Google_Client();
+	  
+	// 	$google_client->setClientId('303746168371-f4hvqsag3pvam7v2m5m60r8hq9kcd9hu.apps.googleusercontent.com'); //Define your ClientID
+	  
+	// 	$google_client->setClientSecret('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'); //Define your Client Secret Key
+	  
+	// 	$google_client->setRedirectUri('http://localhost/fw/google/sign-in'); //Define your Redirect Uri
+	  
+	// 	$google_client->addScope('email');
+	  
+	// 	$google_client->addScope('profile');
+	  
+	// 	if(isset($_GET["code"]))
+	// 	{  
+	// 	 $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+	  
+	// 	 if(!isset($token["error"]))
+	// 	 {
+	// 	  $google_client->setAccessToken($token['access_token']);
+	// 	  $this->session->set_userdata('access_token', $token['access_token']);
+	// 	  $google_service = new Google_Service_Oauth2($google_client);
+	// 	  $data = $google_service->userinfo->get();
+	// 	  $getObjUserDataById = $this->Favoritewish_Model->getObjUserGoogleDetails($data['id']); 
+	// 	  //echo"<pre>"; var_dump($getObjUserDataById); exit;
+	// 			//update data
+	// 			$user_data = array(
+	// 				'first_name' => $data['given_name'],
+	// 				'last_name'  => $data['family_name'],
+	// 				'email' => $data['email'],
+	// 				'login_oauth_uid' => $data['id'],
+	// 			);
+	// 			if(!empty($getObjUserDataById)){    
+	// 	               $this->Favoritewish_Model->Update_user_data($user_data, $getObjUserDataById->id);
+	// 			}else{
+	// 				$insertUser = $this->Favoritewish_Model->Insert_user_data($user_data); 
+	// 			}
+	// 			$dataUpdate = array(        
+	// 				'status' => 1,
+	// 				'verification_code' => 1,
+	// 			);
+	// 		//	echo "<pre>";var_dump($insertUser);exit;
+	// 			$userId = !empty($getObjUserDataById) ? $getObjUserDataById->id : $insertUser->id;
+	// 			$this->db->where('id', $userId);
+	// 			$msg = $this->db->update('users', $dataUpdate);
+	// 			$getFinalUserDetails =  $this->Favoritewish_Model->InsertDataById($userId);
+	// 			$this->session->set_userdata('ci_session_key_generate', TRUE);
+	// 				$authArray = array(
+	// 					'user_id' => $getFinalUserDetails->id,
+	// 					'email' => $getFinalUserDetails->email,
+	// 					'first_name' => $getFinalUserDetails->first_name,
+	// 					'last_name' => $getFinalUserDetails->last_name,
+	// 					'contact_no' => !empty($getFinalUserDetails->contact_no) ? $getFinalUserDetails->contact_no :'',
+	// 					'company' => !empty($getFinalUserDetails->company) ? $getFinalUserDetails->company :'',
+	// 				);
+	// 				$this->session->set_userdata('ci_session_key_generate', TRUE);
+	// 				$this->session->set_userdata('ci_seesion_key', $authArray);
+				
+	// 			$this->session->set_userdata('ci_seesion_key',$authArray); 
+	// 			redirect('user-dashboard');
+	// 	  }
+	//      }
+	// 	$login_button = '';
+	// 	if ($this->session->userdata('ci_session_key_generate') != FALSE) 
+	// 	{ 
+		    
+	// 	 	redirect('user-dashboard');
+	// 	}else{
+	// 		$login_button = '<a href="'.$google_client->createAuthUrl().'"><img src="'.base_url().'asset/sign-in-with-google.png" /></a>';
+	// 		$data['login_button'] = $login_button;
+	// 		$this->load->view('auth/sign-in', $data);
+	// 	// $this->load->view('auth/sign-in', $data);
+	// 	}
+	// }
 	public function login() // Login Controller for users
 	{  
-	   //	echo"<pre>"; var_dump($timeStamp = time();); exit;
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			if (!empty($this->input->get('usid'))) {
 				$verificationCode = urldecode(base64_decode($this->input->get('usid')));
 				$this->Favoritewish_Model->setVerificationCode($verificationCode);
-                $this->Favoritewish_Model->setVerificationCode($verificationCode);
 				$this->Favoritewish_Model->activate();
 				$this->session->set_flashdata('success', 'Your email verified successfully!');
 				redirect('sign-in');
@@ -541,18 +419,33 @@ class Favoritewish extends CI_Controller
 			$data['title'] = "Login";
 			$data['breadcrumbs'] = array('Login' => '#');
 			$this->load->view('front/header_inner', $data);
-			   include_once "vendor/autoload.php";
-			    $google_client = new Google_Client();
-                 $google_client->setClientId(GOOGLE_CLIENT_ID); //Define your ClientID
-	             $google_client->setClientSecret(GOOGLE_CLIENT_SECRET); //Define your Client Secret Key
-	             $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
-                $google_client->addScope('email');
-                $google_client->addScope('profile');
-				$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';	
-				$data['login_button'] = $login_button;
-				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
+			//    include_once "vendor/autoload.php";
+			// 	$google_client = new Google_Client();
+
+			// 	$google_client->setClientId('303746168371-f4hvqsag3pvam7v2m5m60r8hq9kcd9hu.apps.googleusercontent.com'); //Define your ClientID
+
+			// 	$google_client->setClientSecret('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'); //Define your Client Secret Key
+
+			// 	$google_client->setRedirectUri('http://localhost/fw/google/sign-in'); //Define your Redirect Uri
+
+			// 	$google_client->addScope('email');
+
+			// 	$google_client->addScope('profile');
+			// 	$login_button = '';
+				if(!$this->session->userdata('access_token'))
+				{  
+				// $login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';
+				// $data['login_button'] = $login_button;
+				$this->template->load('default_layout', 'contents', 'auth/sign-in');
 			    $this->load->view('front/footer_main');
-				
+				}
+				else
+				{
+				// $login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';	
+				// $data['login_button'] = $login_button;
+				$this->template->load('default_layout', 'contents', 'auth/sign-in');
+			    $this->load->view('front/footer_main');
+				}
 		}else{
 			redirect('user-dashboard');
 		}
@@ -616,11 +509,11 @@ class Favoritewish extends CI_Controller
 			$data['title'] = "User Dashboard";
 			$data['breadcrumbs'] = array('User Dashboard' => '#');
 			$sessionArray = $this->session->userdata('ci_seesion_key');
-		  //	echo"<pre>"; var_dump($sessionArray); exit;
+		  //	echo"<pre>"; var_dump($sessionArray->user_id); exit;
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 		//	echo"<pre>"; var_dump($data['userInfo']); exit;
-			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
+		//	$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo($get);
 			$data['get'] = $get;
@@ -659,32 +552,6 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
-   
-	public function family_wishes(){
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			redirect('sign-in'); // the user is not logged in, redirect them!
-		} else {
-			 $get = $this->input->get();  
-			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
-			$data = array();
-			$data['metaDescription'] = 'User Family Wish';
-			$data['metaKeywords'] = 'User Dashboard';
-			$data['title'] = "User Family Wish";
-			$data['breadcrumbs'] = array('User Dashboard' => '#');
-			$sessionArray = $this->session->userdata('ci_seesion_key');
-			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
-			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
-			$data['categories'] = $this->Favoritewish_Model->getCategories();
-			$data['wishInfo'] = $this->Favoritewish_Model->getFamilyWishInfo($get);
-			$data['get'] = $get;
-			$this->load->view('front/header_inner', $data);
-			$this->template->load('default_layout', 'contents', 'auth/family-wishes');
-			$this->load->view('front/template/template_footer');
-			$this->load->view('front/footer_main');
-		}
-	}
-
 
 	// user profile
 	public function user_profile()
@@ -701,7 +568,7 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-          //  echo"<pre>"; var_dump($data['userInfo']); exit;
+
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/profile');
@@ -806,8 +673,7 @@ class Favoritewish extends CI_Controller
 		//	echo"<pre>"; var_dump($cat_id);exit;
 			if (!empty($wishId)){
 				$getObjWishData = $this->Favoritewish_Model->getWishListById($wishId);
-				$categories = $this->Favoritewish_Model->getCategories_Wish_Edit();
-			//	echo"<pre>"; var_dump($categories);exit;
+				$categories = $this->Favoritewish_Model->getCategories();
 				$subCategories = $this->Favoritewish_Model->getSubCat($getObjWishData->categories_id);
 				//echo"<pre>"; var_dump($subCategories);exit;
 		     	$arrayHtml = "";
@@ -832,11 +698,9 @@ class Favoritewish extends CI_Controller
 						
 					}
 				}
-			//	echo"<pre>"; var_dump($getObjWishData->other_accessories); exit;
 				$data['code'] = 200;
 				$data['html'] = $arrayHtml;
 				$data['htmlType'] = $arrayHtmlType;
-				$data['htmlotherAccessories'] = $getObjWishData->other_accessories;
 				$data['htmlBrand'] = $getObjWishData->brand;
 				$data['htmlColor'] = $getObjWishData->color;
 				$data['htmlsize'] = $getObjWishData->size;
@@ -890,38 +754,8 @@ class Favoritewish extends CI_Controller
 			}
 		}
 	}
+ 
 	// edit method
-
-	public function showPlaceHolderBycatName(){
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			redirect('sign-in'); 
-		} else {
-			$data = array();
-			$catId =  $this->input->post('catId');
-			$getCategory = $this->Favoritewish_Model->getcatById($catId); 
-			$categoryName = !empty($getCategory->name) ? $getCategory->name :'NULL';
-			if (!empty($categoryName)){
-				$data['code'] = 200;
-				$data['category'] = $categoryName;
-				echo json_encode($data);
-			}
-		}
-	}
-    public function showPlaceHolderBycatNameEdit(){
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			redirect('sign-in'); 
-		} else {
-			$data = array();
-			$cat_id =  $this->input->post('cat_id');
-			$getCategory = $this->Favoritewish_Model->getcatByIdEdit($cat_id); 
-			$categoryNameEdit = !empty($getCategory->name) ? $getCategory->name :'NULL';
-			if (!empty($categoryNameEdit)){
-				$data['code'] = 200;
-				$data['category'] = $categoryNameEdit;
-				echo json_encode($data);
-			}
-		}
-	}
 	public function edit()
 	{
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
@@ -937,7 +771,6 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['genderSelect'] = $this->Favoritewish_Model->getUserDetails();
 			// echo "<pre>";var_dump($data['userInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
@@ -949,15 +782,15 @@ class Favoritewish extends CI_Controller
 
 	// action update user 
 	public function editUser()
-	{  
-		// echo"<pre>"; var_dump($this->input->post('gender')); exit;
+	{
+     
 	    $sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 		$userInfo = $this->Favoritewish_Model->getUserDetails(); 
       //  echo"<pre>"; var_dump($userInfo['profile_photo']); exit; 
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-	//	$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|numeric');
+		$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|regex_match[/^[0-9]{10}$/]');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->edit();
@@ -975,9 +808,6 @@ class Favoritewish extends CI_Controller
 			$favorite_public_outfit_wear = $this->input->post('favorite_p_wear');
 			$favorite_s_team = $this->input->post('favorite_s_team');
 			$favorite_music = $this->input->post('favorite_music');
-			$dob = $this->input->post('dob');
-			$favorite_charity =   $this->input->post('favorite_charity');
-			$gender =   $this->input->post('gender');
 			// Upload profile photo in folder
 			if(!empty($_FILES['profile_photo']['name'])){
 				$config['upload_path']          = './assets/uploads/profile_photo/';
@@ -995,7 +825,6 @@ class Favoritewish extends CI_Controller
 					$profileImageData = array('upload_data' => $this->upload->data());
 				 } 
 				 $profile_photo = $profileImageData['upload_data']['file_name'];
-				// echo"<pre>"; var_dump($profile_photo); exit;
 			}else{
 				$profile_photo = $userInfo['profile_photo'];
 			}
@@ -1037,11 +866,8 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setfavoripublic_outfit_wear($favorite_public_outfit_wear);
 			$this->Favoritewish_Model->setfavorite_sports_teams($favorite_s_team);
 			$this->Favoritewish_Model->setfavorite_music($favorite_music);
-			$this->Favoritewish_Model->set_dob($dob);
 			$this->Favoritewish_Model->setprofile_photo($profile_photo);
 			$this->Favoritewish_Model->setcover_photo($cover_photo);
-			$this->Favoritewish_Model->setfavorite_charity($favorite_charity);
-			$this->Favoritewish_Model->set_gender($gender);
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
 			$status = $this->Favoritewish_Model->update();
 			if ($status == TRUE) {
@@ -1216,7 +1042,7 @@ class Favoritewish extends CI_Controller
 
 
 	public function administrator()
-	{ 
+	{
 		$this->form_validation->set_rules('admin_email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('admin_password', 'Password', 'trim|required');
 
@@ -1228,10 +1054,6 @@ class Favoritewish extends CI_Controller
 				//$data['inquiries'] = $this->Favoritewish_Model->count_inquiries();
 				//$data['useraccounts'] = $this->Favoritewish_Model->count_user_accounts();
 				//$data['hangar_entries'] = $this->Favoritewish_Model->count_hangars();
-				$data['totalUserCount'] = $this->Favoritewish_Model->totalUserCount();
-				$data['totalWishCount'] = $this->Favoritewish_Model->totalWishCount();
-				$data['totalRegistryCount'] = $this->Favoritewish_Model->totalRegistryCount();
-				$data['totalFamilyWishCount'] = $this->Favoritewish_Model->totalFamilyWishCount();
 				$this->load->view('layouts/admin_header', $data);
 				$this->template->load('default_layout', 'contents', 'home', $data);
 				$this->load->view('layouts/admin_footer');
@@ -1263,10 +1085,6 @@ class Favoritewish extends CI_Controller
 					//$data['inquiries'] = $this->Favoritewish_Model->count_inquiries();
 					//$data['useraccounts'] = $this->Favoritewish_Model->count_user_accounts();
 					//$data['hangar_entries'] = $this->Favoritewish_Model->count_hangars();
-					$data['totalUserCount'] = $this->Favoritewish_Model->totalUserCount();
-				$data['totalWishCount'] = $this->Favoritewish_Model->totalWishCount();
-				$data['totalRegistryCount'] = $this->Favoritewish_Model->totalRegistryCount();
-				$data['totalFamilyWishCount'] = $this->Favoritewish_Model->totalFamilyWishCount();
 					$this->load->view('layouts/admin_header', $data);
 					$this->template->load('default_layout', 'contents', 'home', $data);
 					$this->load->view('layouts/admin_footer');
@@ -1345,7 +1163,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 	public function getUserProfile()
-	{   
+	{
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -1397,7 +1215,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-  
+
 
 	public function getUserFriendsSearch()
 	{
@@ -1484,17 +1302,12 @@ class Favoritewish extends CI_Controller
 				if (!empty($objUser)) {
 					if (!empty($objPost['type']) && $objPost['type'] == 'cancel') {
 						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
-						$this->db->where($arrCheck);
 					} else if (!empty($objPost['type']) && $objPost['type'] == 'decline') {
 						$arrCheck = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id']);
-						$this->db->where($arrCheck);
 					} else if (!empty($objPost['type']) && $objPost['type'] == 'remove') {
 						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
-						$arrCheckOr = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id']);
-						$this->db->where($arrCheck);
-						$this->db->or_where($arrCheckOr);
 					}
-					
+					$this->db->where($arrCheck);
 					if ($this->db->delete('friends')) {
 						echo returnSuccessResponse([]);
 					} else {
@@ -1536,8 +1349,7 @@ class Favoritewish extends CI_Controller
 	}
 
 	public function addYourWish()
-	{   
-		
+	{
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('category', 'category', 'required');
@@ -1546,17 +1358,16 @@ class Favoritewish extends CI_Controller
 		$this->form_validation->set_rules('color', 'color', 'required');
 		$this->form_validation->set_rules('size', 'size', 'required');
 		$this->form_validation->set_rules('style', 'style', 'required');
-		if ($this->form_validation->run()){
+		if ($this->form_validation->run()) {
 			$array = array(
 				'categories_id'     => $this->input->post('category'),
 				'type'  => $this->input->post('type'),
-				'other_accessories'  => $this->input->post('accessories'),
 				'brand'   => $this->input->post('brand'),
 				'color' => $this->input->post('color'),
 				'size' => $this->input->post('size'),
 				'style' => $this->input->post('style'),
 				'user_id' => $sessionArray['user_id'],
-				'created_on' => date('Y-m-d H:i:s')
+				'created_on' => date("y/m/d")
 			);
 			//	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert(' user_wish', $array);
@@ -1579,7 +1390,6 @@ class Favoritewish extends CI_Controller
 	}
   
 	public function wishEditPost(){   
-		//echo"<pre>"; var_dump($this->input->post('accessories')); exit;
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');
 	 //	$this->form_validation->set_rules('category', 'category', 'required');
@@ -1594,12 +1404,10 @@ class Favoritewish extends CI_Controller
 						'id' => $this->input->post('wish_id'),
 						'categories_id' => $this->input->post('cat_id'),
 						'type' => $this->input->post('type_id'),
-						'other_accessories' => $this->input->post('accessories'),
 						'brand' => $this->input->post('brand'),
 						'color' => $this->input->post('color'),
 						'size' => $this->input->post('size'),
 						'style' => $this->input->post('style'),
-					    'created_on' => date('Y-m-d H:i:s')
 					);
 					$this->Favoritewish_Model->updateWishData($data);
 			$array = array(
@@ -1619,7 +1427,7 @@ class Favoritewish extends CI_Controller
 		}
 		echo json_encode($array);
 	}
-
+   
 	public function registryEditPost(){ 
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');
@@ -1641,7 +1449,6 @@ class Favoritewish extends CI_Controller
 						'color' => $this->input->post('registry_color'),
 						'size' => $this->input->post('registry_size'),
 						'style' => $this->input->post('registry_style'),
-						'created_on' => date('Y-m-d H:i:s')
 					);
 					$this->Favoritewish_Model->updateRegistryData($data);
 			$array = array(
@@ -1700,7 +1507,7 @@ class Favoritewish extends CI_Controller
 				'size' => $this->input->post('size'),
 				'style' => $this->input->post('style'),
 				'user_id' => $sessionArray['user_id'],
-				'created_on' => date('Y-m-d H:i:s')
+				'created_on' => date("y/m/d")
 			);
 			//	echo"<pre>"; var_dump($array); exit;
 			$this->db->insert('user_registry', $array);
@@ -1717,58 +1524,6 @@ class Favoritewish extends CI_Controller
 				'color' => form_error('color'),
 				'size' => form_error('size'),
 				'style' => form_error('style')
-			);
-		//	echo"<pre>"; var_dump($array);exit;
-		}
-		echo json_encode($array);
-	}
-
-	public function addFamilyAdd(){ 
-		$sessionArray = $this->session->userdata('ci_seesion_key');
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('familyMamber', 'Family Member', 'required');
-		$this->form_validation->set_rules('childName', 'Child Name', 'required');
-		$this->form_validation->set_rules('childBirthday','Child Birthday', 'required');
-		$this->form_validation->set_rules('sex','sex', 'required');
-		$this->form_validation->set_rules('familyCategory', 'Category', 'required');
-		$this->form_validation->set_rules('familyType', 'Type', 'required');
-		$this->form_validation->set_rules('familyBrand', 'Brand', 'required');
-		$this->form_validation->set_rules('familyColor', 'Color', 'required');
-		$this->form_validation->set_rules('familySize', 'Size', 'required');
-		$this->form_validation->set_rules('familyStyle', 'Style', 'required');
-		if ($this->form_validation->run()) {  
-			$array = array(
-				'family_member'     => $this->input->post('familyMamber'),
-				'child_name'     => $this->input->post('childName'),
-				'child_birthday'     => $this->input->post('childBirthday'),
-				'sex'     => $this->input->post('sex'),
-				'cat_id'     => $this->input->post('familyCategory'),
-				'type_id'  => $this->input->post('familyType'),
-				'brand'   => $this->input->post('familyBrand'),
-				'color'   => $this->input->post('familyColor'),
-				'size' => $this->input->post('familySize'),
-				'style' => $this->input->post('familyStyle'),
-				'user_id' => $sessionArray['user_id'],
-				'created_on' => date('Y-m-d H:i:s')
-			);
-			//	echo"<pre>"; var_dump($array); exit;
-			$this->db->insert('family_wish_add', $array);
-			$array = array(
-				'success' => '<div class="alert alert-warning">Family Wish Added Successfully</div>'
-			);
-		} else {
-			$array = array(
-				'error'   => true,
-				'family_member' => form_error('familyMamber'),
-				'child_name' => form_error('childName'),
-				'child_birthday' => form_error('childBirthday'),
-				'sex' => form_error('sex'),
-				'cat_id' => form_error('familyCategory'),
-				'type_id' => form_error('familyType'),
-				'brand' => form_error('familyBrand'),
-				'color' => form_error('familyColor'),
-				'size' => form_error('familySize'),
-				'style' => form_error('familyStyle')
 			);
 		//	echo"<pre>"; var_dump($array);exit;
 		}
@@ -1807,7 +1562,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function getMessagelist($id){  
+	public function getMessagelist($id){
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -1847,63 +1602,28 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function messageFormSubmission(){ 
-		$msg_image = $this->input->post('msg_image'); 
+	public function messageFormSubmission(){
         $id = $this->input->post('friend_id');
-		$mag = $this->input->post('message'); 
         $sessionArray = $this->session->userdata('ci_seesion_key');
-		if(!empty($mag)){
 		$this->form_validation->set_rules('message', 'message', 'trim|required');
 		if ($this->form_validation->run() == false) {
 			$this->session->set_flashdata('errors', validation_errors());
 			header("Location: {$_SERVER['HTTP_REFERER']}");
 			//exit();
 
-		}else {    
-				$data = array(
-					'from_user'	        =>	$sessionArray['user_id'],
-					'to_user'	        =>	$this->input->post('friend_id'),
-					'message'	        =>	$this->input->post('message'),
-					'msg_type'	        =>	'msg',
-					'seen'	            =>	'0',
-					'status'	        =>	'0',
-					'created_on'	    =>	date("Y-m-d H:i:s")
-				);
-				
+		} else {
+
+			$data = array(
+				'from_user'	        =>	$sessionArray['user_id'],
+				'to_user'	        =>	$this->input->post('friend_id'),
+				'message'	        =>	$this->input->post('message'),
+				'seen'	            =>	'0',
+				'status'	        =>	'0',
+				'created_on'	    =>	date("Y-m-d H:i:s")
+			);
 		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
 		  redirect('user/friends/'.$id.'/massages');
 	}
-   }else{
-	if(!empty($_FILES['msg_image']['name'])){
-		$config['upload_path']          = './assets/uploads/massge_photo/';
-		$config['allowed_types']        = 'gif|jpg|png|jpeg';
-		$config['max_size']             = 2048;
-		$this->load->library('upload', $config);
-		$this->upload->initialize($config);
-		 if ( ! $this->upload->do_upload('msg_image'))
-		 {
-				 $error = array('error' => $this->upload->display_errors());
-				redirect('user-profile/edit',$this->session->set_flashdata("error_msg", $error));
-		 }
-		 else
-		 {
-			$profileImageData = array('upload_data' => $this->upload->data());
-		 } 
-		 $profile_photo = $profileImageData['upload_data']['file_name'];
-	}
-		$data = array(
-			'from_user'	        =>	$sessionArray['user_id'],
-			'to_user'	        =>	$this->input->post('friend_id'),
-			'msg_image'	        =>	$profile_photo,
-			'msg_type'	        =>	'img',
-			'seen'	            =>	'0',
-			'status'	        =>	'0',
-			'created_on'	    =>	date("Y-m-d H:i:s")
-		);
-		
-		$is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
-		redirect('user/friends/'.$id.'/massages');
-   }
  }
  public function familyRequest(){
 	   $user = getUser();
@@ -1990,324 +1710,5 @@ class Favoritewish extends CI_Controller
 	   echo json_encode($array);
  }
  
- public function adminUserList(){
-	$config = array();
-	$config["base_url"] = base_url() . "admin/user/list";
-	$config["total_rows"] = $this->Favoritewish_Model->getCount();
-	$config["per_page"] = 10;
-	$config["uri_segment"] = 4;
-	$this->pagination->initialize($config);
-	$page = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
-
-	$data["links"] = $this->pagination->create_links();
-	$data['title'] = 'User List';
-
-	$data['allUserList'] = $this->Favoritewish_Model->getUsers($config["per_page"], $page);
-	$this->load->view('layouts/admin_header', $data);
-	$this->template->load('default_layout', 'contents', 'adminUserList', $data);
-	$this->load->view('layouts/admin_footer');
-}
-
-public function adminUserActiveStatusChange(){
-$data = array(
-	'table_name' => 'users', 
-	'id' => $this->input->post('id'),
-	'user_active_status' => $this->input->post('status'),
-);
-$cehckUserid = $this->Favoritewish_Model->checkUserId($data);
-}
-
-public function adminHomePageDynamic(){
-$data['title'] = 'User List';
-$data['homedata'] = $this->Favoritewish_Model->getHomeData();
-$this->load->view('layouts/admin_header', $data);
-$this->template->load('default_layout', 'contents', 'adminHomePageContent', $data);
-$this->load->view('layouts/admin_footer');
-}
-
-public function adminHomePageDynamicPost(){ 
-	$id = $this->input->post('updateHometext');
-	$this->form_validation->set_rules('homepagetext', 'home page text', 'required');
-		if ($this->form_validation->run() == FALSE) {
-			$this->adminHomePageDynamic();
-		}else{
-			$insertData = array(
-				'homepage_content' => $this->input->post('homepagetext'),
-				'created_on' => date('Y-m-d H:i:s')
-			); 
-			if(empty($id)){
-				$this->Favoritewish_Model->InsertHomeContent($insertData);
-			}else{
-				$updatetData = array(
-					'homepage_content' => $this->input->post('homepagetext'),
-					'created_on' => date('Y-m-d H:i:s')
-				); 
-				$this->Favoritewish_Model->UpdateHomeContent($id,$updatetData);
-			}
-		   redirect('admin/home/page/dynamic');
-		}
-}
-
-public function adminAboutUsPageDynamic(){
-	$data['title'] = 'About Us Page';
-	$data['aboutus'] = $this->Favoritewish_Model->getAboutUsData();
-	$this->load->view('layouts/admin_header', $data);
-	$this->template->load('default_layout', 'contents', 'adminAboutUsPageContent', $data);
-	$this->load->view('layouts/admin_footer');
-}
-
-public function adminAboutUsPageDynamicPost(){
-	$id = $this->input->post('updateaboutustext');
-	$this->form_validation->set_rules('aboutuspagetext', 'about page text', 'required');
-		if ($this->form_validation->run() == FALSE) {
-			$this->adminAboutUsPageDynamic();
-		}else{
-			$insertData = array(
-				'aboutus_content' => $this->input->post('aboutuspagetext'),
-				'created_on' => date('Y-m-d H:i:s')
-			); 
-			if(empty($id)){
-				$this->Favoritewish_Model->InsertAboutUsContent($insertData);
-			}else{
-				$updatetData = array(
-					'aboutus_content' => $this->input->post('aboutuspagetext'),
-					'created_on' => date('Y-m-d H:i:s')
-				); 
-				$this->Favoritewish_Model->UpdateAboutUsContent($id,$updatetData);
-			}
-		   redirect('admin/aboutus/page/dynamic');
-	}
-}
-
-public function adminContactPageDynamic(){
-	$data['title'] = 'Contact Us Page';
-	$data['contacttext'] = $this->Favoritewish_Model->contactAllData();
-	$this->load->view('layouts/admin_header', $data);
-	$this->template->load('default_layout', 'contents', 'adminContactPageContent', $data);
-	$this->load->view('layouts/admin_footer');
-}
-
-public function adminContactPageDynamicPost(){ 
-	$id = $this->input->post('updatecontactustext');
-	$this->form_validation->set_rules('contactpagetext', 'Contact page text', 'required');
-		if ($this->form_validation->run() == FALSE) {
-			$this->adminContactPageDynamic();
-		}else{
-			$insertData = array(
-				'contact_content ' => $this->input->post('contactpagetext'),
-				'created_on' => date('Y-m-d H:i:s')
-			); 
-			if(empty($id)){
-				$this->Favoritewish_Model->InsertContactUsContent($insertData);
-			}else{
-				$updatetData = array(
-					'contact_content ' => $this->input->post('contactpagetext'),
-					'created_on' => date('Y-m-d H:i:s')
-				); 
-				$this->Favoritewish_Model->UpdateContactUsContent($id,$updatetData);
-			}
-		   redirect('admin/contact/page/dynamic');
-	}
-}
-
-public function getCategorySucategory_familywish_id(){ 
-	if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-		redirect('sign-in'); 
-	} else {
-		$data = array();
-		$familyWishId =  $this->input->post('familyWishesId');
-		if (!empty($familyWishId)){
-			$getObjWishData = $this->Favoritewish_Model->getfamilyDataById($familyWishId); 
-			$categories = $this->Favoritewish_Model->getCategories();
-			$subCategories = $this->Favoritewish_Model->getSubCat($getObjWishData->cat_id);
-			 $arrayHtml = "";
-			$arrayHtml .= "<option value=''>Select Category</option>";
-			if (!empty($categories)) {
-				foreach ($categories as $cat_data) {   
-					$selected = (!empty($getObjWishData) && ($getObjWishData->cat_id == $cat_data->id)) ? 'selected' :'';
-				$arrayHtml .= '<option value="' . $cat_data->id .'" '.$selected.'>'.$cat_data->name . '</option>';
-					
-				}
-			}
-			$arrayHtmlType = "";
-			$arrayHtmlType .= "<option value=''>Select Type</option>";
-			if (!empty($subCategories)) {
-				foreach ($subCategories as $subCatData) {  
-				$subCatId =  $subCatData['id'];
-				$subCatName =  $subCatData['name'];
-					$selected = (!empty($getObjWishData) && ($getObjWishData->type_id == $subCatData['id'])) ? 'selected' :'';
-				$arrayHtmlType .= '<option value="' . $subCatId .'" '.$selected.'>'.$subCatName . '</option>';
-					
-				}
-			}
-			if(!empty($getObjWishData->family_member)){
-				$arrayHtmlFamilyMember = "";
-				$selected1 = (!empty($getObjWishData) && ($getObjWishData->family_member =='First Born' )) ? 'selected' :'';
-				$selected2 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Second Born' )) ? 'selected' :'';
-				$selected3 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Third Born' )) ? 'selected' :'';
-				$selected4 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Forth Born' )) ? 'selected' :'';
-				$selected5 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Fifth Born' )) ? 'selected' :'';
-				$arrayHtmlFamilyMember .= "<option value=''>Select Family member</option>";
-				$arrayHtmlFamilyMember .= '<option value="First Born" '.$selected1.'>First Born</option>';
-				$arrayHtmlFamilyMember .= '<option value="Second Born" '.$selected2.'>Second Born</option>';
-				$arrayHtmlFamilyMember .= '<option value="Third Born" '.$selected3.'>Third Born</option>';
-				$arrayHtmlFamilyMember .= '<option value="Forth Born" '.$selected4.'>Forth Born</option>';
-				$arrayHtmlFamilyMember .= '<option value="Fifth Born" '.$selected5.'>Fifth Born</option>';
-			}
-			if(!empty($getObjWishData->sex)){
-				$arrayHtmlSex = "";
-				$selected1 = (!empty($getObjWishData) && ($getObjWishData->sex =='male' )) ? 'selected' :'';
-				$selected2 = (!empty($getObjWishData) && ($getObjWishData->sex =='female' )) ? 'selected' :'';
-				$selected3 = (!empty($getObjWishData) && ($getObjWishData->sex =='not applicable' )) ? 'selected' :'';
-				$selected4 = (!empty($getObjWishData) && ($getObjWishData->sex =='prefer not to say' )) ? 'selected' :'';
-				$arrayHtmlSex .= "<option value=''>Select Sex</option>";
-				$arrayHtmlSex .= '<option value="male" '.$selected1.'>male</option>';
-				$arrayHtmlSex .= '<option value="female" '.$selected2.'>female</option>';
-				$arrayHtmlSex .= '<option value="not applicable" '.$selected3.'>not applicable</option>';
-				$arrayHtmlSex .= '<option value="prefer not to say" '.$selected4.'>prefer not to say</option>';
-			}
-
-			$data['code'] = 200;
-			$data['htmlFamilyMember'] = $arrayHtmlFamilyMember;
-			$data['htmlChildName'] = $getObjWishData->child_name;
-			$data['htmlChildBirthDay'] = $getObjWishData->child_birthday;
-			$data['htmlSex'] = $arrayHtmlSex;
-			$data['html'] = $arrayHtml;
-			$data['htmlFamilyWishesType'] = $arrayHtmlType;
-			$data['htmlFamilyWishesBrand'] = $getObjWishData->brand;
-			$data['htmlFamilyWishesColor'] = $getObjWishData->color;
-			$data['htmlFamilyWishessize'] = $getObjWishData->size;
-			$data['htmlFamilyWishesstyle'] = $getObjWishData->style;
-			$data['htmlFamilyWishesId'] = $getObjWishData->id;
-			echo json_encode($data);
-		}
-	}
-}
-
-public function familyWishEditPost(){  
-	$sessionArray = $this->session->userdata('ci_seesion_key');
-	$this->load->library('form_validation');
-	$this->form_validation->set_rules('familyWishMember', 'Family Member', 'required');
-	$this->form_validation->set_rules('familyWishChildName', 'Child Name', 'required');
-	$this->form_validation->set_rules('familyWishBirthday', 'Birthday', 'required');
-	$this->form_validation->set_rules('familyWishSex', 'Sex', 'required');
-	$this->form_validation->set_rules('familyWishCatId', 'Category', 'required');
-	$this->form_validation->set_rules('familyWishTypeId', 'Type', 'required');
-	$this->form_validation->set_rules('familyWishBrand', 'Brand', 'required');
-	$this->form_validation->set_rules('familyWishColor', 'Color', 'required');
-	$this->form_validation->set_rules('familyWishSize', 'Size', 'required');
-	$this->form_validation->set_rules('familyWishStyle', 'Style', 'required');
-	if ($this->form_validation->run()) { 
-			 $data = array(
-					'table_name' => 'family_wish_add', 
-					'id' => $this->input->post('familyWishId'),
-					'family_member' => $this->input->post('familyWishMember'),
-					'child_name' => $this->input->post('familyWishChildName'),
-					'child_birthday' => $this->input->post('familyWishBirthday'),
-					'sex' => $this->input->post('familyWishSex'),
-					'cat_id' => $this->input->post('familyWishCatId'),
-					'type_id' => $this->input->post('familyWishTypeId'),
-					'brand' => $this->input->post('familyWishBrand'),
-					'color' => $this->input->post('familyWishColor'),
-					'size' => $this->input->post('familyWishSize'),
-					'style' => $this->input->post('familyWishStyle'),
-					'created_on' => date('Y-m-d H:i:s')
-				);
-				$this->Favoritewish_Model->updateFamilyWishData($data);
-		$array = array(
-			'success' => '<div class="alert alert-warning">Wish Update Successfully</div>'
-		);
-	} else { 
-		$array = array(
-			'error'   => true,
-			'familyMamber' => form_error('familyWishMember'),
-			'childName' => form_error('familyWishChildName'),
-			'birthday' => form_error('familyWishBirthday'),
-			'sex' => form_error('familyWishSex'),
-			'category' => form_error('familyWishCatId'),
-			'type' => form_error('familyWishTypeId'),
-			'brand' => form_error('familyWishBrand'),
-			'color' => form_error('familyWishColor'),
-			'size' => form_error('familyWishSize'),
-			'style' => form_error('familyWishStyle')
-
-		);
-	}
-	echo json_encode($array);
-} 
-
-public function familyWishDelete(){  
-	$familyWishId = $this->input->post('familyWishId'); 
-	$this->Favoritewish_Model->familyWishDataDelete($familyWishId);
-	$array = array(
-		'delete' => '<div class="alert alert-warning">Wish Delete Successfully</div>'
-	);
-	echo json_encode($array);
-}
-
-	public function saveEmojii(){ 
-		$sessionArray = $this->session->userdata('ci_seesion_key');
-		$massgeId = $this->input->post('messageId');
-		$chkTypeUser = $this->input->post('chkTypeUser');
-		if(!empty($massgeId)){
-			if($chkTypeUser == 'from_user'){
-                $updateEmojiById = array(
-					'emoji ' => $this->input->post('emoji'),
-					'toEmoji ' => $this->input->post('emoji'),
-					'from_status ' => 1,
-				);
-			}else{
-				$updateEmojiById = array(
-					'emoji ' => $this->input->post('emoji'),
-					'toEmoji ' => $this->input->post('emoji'),
-					'to_status' => 1,
-				);
-			}	 
-			$this->Favoritewish_Model->UpdateMassageEmoji($massgeId,$updateEmojiById); 
-		}
-		 
-	}
-
-	public function sendEmail(){ 
-		$login = base_url() . 'send/email/unsubscribe';  
-		//$allUserEmail = $this->Favoritewish_Model->getAllUserEmail();
-		$allUserEmail = $this->Favoritewish_Model->getFirstUser();
-		foreach($allUserEmail as $email){ 
-		  $userEmail = $email->email;
-			if ($email->isSubscribe == '1'){
-				$this->load->library('encryption');
-				$this->load->library('email');
-				$data = array(
-					'loginlink' => $login,
-					'id'        => $email->id
-				);
-				$config['charset'] = 'iso-8859-1';
-				$config['wordwrap'] = TRUE;
-				$config['mailtype'] = 'html';
-				$this->email->initialize($config);
-				$this->email->to($userEmail);
-				$this->email->from(MAIL_FROM, FROM_TEXT);
-				$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
-				$this->email->set_newline("\r\n");
-				$this->email->message($this->load->view('email/quarterly_email', $data, true));
-				if($this->email->send()) {
-					echo 'Email sent!';
-				} else {
-					echo 'Email not sent!';
-				}
-			}
-		}
-	}
-
-	public function sendEmailStatusChange(){
-	  $id = $this->input->get('id');
-	  $data = array(
-		'table_name' =>'users', 
-		'id' => $id,
-		'isSubscribe' =>'0'
-	  );
-	  $getUserById = $this->Favoritewish_Model->getUsersById($data);
-	  redirect('user-dashboard');
-	}
 
 }

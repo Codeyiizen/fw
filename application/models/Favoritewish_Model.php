@@ -116,7 +116,7 @@ class Favoritewish_Model extends CI_Model {
 	private $_airportIdentifier;
 	private $_alertPeriodFrom;
 	private $_alertPeriodTo;
-
+    private $_userActiveStatus;
 	//Declaration of a methods
     public function setUserID($userID) {
         $this->_userID = $userID;
@@ -203,7 +203,9 @@ class Favoritewish_Model extends CI_Model {
     public function setVerificationCode($verificationCode) {
         $this->_verificationCode = $verificationCode;
     }
- 
+ public function setUserActiveStatus($status) {
+        $this->_userActiveStatus = $status;
+    }
     public function setTimeStamp($timeStamp) {
         $this->_timeStamp = $timeStamp;
     }
@@ -397,6 +399,7 @@ class Favoritewish_Model extends CI_Model {
     public function activate() {
         $data = array(        
             'status' => 1,
+            'user_active_status' => 1,
             'verification_code' => 1,
         );
         $this->db->where('verification_code', $this->_verificationCode);

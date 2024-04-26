@@ -467,7 +467,7 @@
                                         </tr>
                                         <tr>
                                           <td align="center" class="es-m-txt-c" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px">
-                                            <h1 style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:36px;font-style:normal;font-weight:800;color:#062e47;">Thanks for joining us!</h1>
+                                            <h1 style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:36px;font-style:normal;font-weight:800;color:#C11E1A;">Thanks for joining us!</h1>
                                           </td>
                                         </tr>
                                         <tr>
@@ -588,7 +588,7 @@
                                         <tr>
                                           <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px">
                                             <span class="es-button-border msohide" style="display:inline-block;border-radius:6px;width:auto;mso-hide:all">
-                                              <a href="<?php echo $varificationlink; ?>" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#062e47;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">Activate Now</a>
+                                              <a href="<?php echo $varificationlink; ?>" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#C11E1A;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">Activate Now</a>
                                             </span><!--<![endif]-->
                                           </td>
                                         </tr>

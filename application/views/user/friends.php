@@ -30,7 +30,7 @@
 									
 							?>
 									<div class="col-md-6 col-lg-4">
-										<div class="card mb-4">
+										<div class="card mb-4 text-center">
 											<a href="<?php echo base_url(); ?>user/friends/details/<?php echo $data->id; ?>">
 												<?php
 												$coverImage = $data->profile_photo;
