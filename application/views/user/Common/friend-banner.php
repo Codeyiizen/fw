@@ -36,7 +36,7 @@
                         <?php } else if (!empty($is_friend) && $is_friend['status'] == 0 && empty(in_array($uri,['user/friends']))) {
                         if ($is_friend['to_friend'] == $userLoginInfo['user_id']) {
                         ?>
-                            <button type="button" class="theme-btn yellow-bg acceptFriendRequest bg-success" data-token="<?php (!empty($userInfo['token']))?$userInfo['token']:''; ?>">Accept</button>
+                            <button type="button" class="theme-btn yellow-bg acceptFriendRequest bg-success" data-token="<?php echo (!empty($userInfo['token']))?$userInfo['token']:''; ?>">Accept</button>
                         <?php } else { ?>
                             <button type="button" class="theme-btn yellow-bg removeFriend bg-danger" data-token="<?php echo (!empty($userInfo['token']))?$userInfo['token']:''; ?>">Cancel</button>
                         <?php }

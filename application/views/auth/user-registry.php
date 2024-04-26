@@ -409,11 +409,17 @@
 							if (!empty($frienddetails)) {
 								foreach ($frienddetails as $friend) { ?>
                             <div class="media align-items-center">
-                                <img src="<?php echo base_url(); ?>assets/images/site-image/avatar.png" alt=""
-                                    class="img-fluid">
+                            <?php
+                                $profileImage = $friend->profile_photo;
+                                if (file_exists(FCPATH . 'assets/uploads/profile_photo/' . $friend->profile_photo) && !empty($friend->profile_photo)) {  ?>
+                                <img src="<?php echo base_url() . 'assets/uploads/profile_photo/' . $profileImage; ?>" alt="" class="user-thumb img-thumbnail img-fluid">
+                                <?php } else {  ?>
+                                    <img src="<?php echo base_url(); ?>assets/images/site-image/avatar.png" alt="" class="user-thumb img-thumbnail img-fluid">
+                                <?php  } ?>
+                                <!-- <img src="<?php echo base_url(); ?>assets/images/site-image/avatar.png" alt="" class="img-fluid"> -->
                                 <div class="media-body">
                                     <h5><a
-                                            href="<?php echo base_url(); ?>user/friends"><?php echo $friend->first_name; ?></a>
+                                            href="<?php echo base_url(); ?>user/friends/details/<?php echo $friend->id; ?>"><?php echo $friend->first_name; ?></a>
                                     </h5>
                                     <p>NYC, USA</p>
                                 </div>
