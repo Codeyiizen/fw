@@ -249,7 +249,7 @@
 		}
 		
 	})
-   
+	
 	$("body").on("change",".filter_by_cat_registry_list",function(){ 
 		var dataId = $(this).attr('data-id'); 
 		if($(this).val()!==""){
@@ -260,6 +260,16 @@
 		
 	})
 	
+	$("body").on("change",".filter_by_cat_family_wish_list",function(){ 
+		var dataId = $(this).attr('data-id');    
+		if($(this).val()!==""){
+			window.location.replace(BASE_URL+'/user/friends/'+dataId+'/familywish/?cat='+$(this).val())
+		} else {
+			window.location.replace(BASE_URL+'/user/friends'+dataId+'/familywish')
+		}
+		
+	})
+
 	$("body").on("change",".select-family",function(){
 		var famliyId = $(this).val();
 		if(famliyId!=''){
@@ -1277,3 +1287,64 @@ $("body").on("change",".fileClick", function(){
 $("body").on("click",".messageClick", function(){  
     $('.fileHide').addClass('d-none');
 });
+
+
+
+jQuery(function ($) {
+    $("ul a")
+        .click(function(e) {
+            var link = $(this);
+
+            var item = link.parent("li");
+            
+            if (item.hasClass("active")) {
+                item.removeClass("active").children("a").removeClass("active");
+            } else {
+                item.addClass("active").children("a").addClass("active");
+            }
+
+            if (item.children("ul").length > 0) {
+                var href = link.attr("href");
+                link.attr("href", "#");
+                setTimeout(function () { 
+                    link.attr("href", href);
+                }, 300);
+                e.preventDefault();
+            }
+        })
+        .each(function() {
+            var link = $(this);
+            if (link.get(0).href === location.href) {
+                link.addClass("active").parents("li").addClass("active");
+                return false;
+            }
+        });
+});
+
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("childBirthday").setAttribute("max", today);
+
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("childBirthdayEdit").setAttribute("max", today);

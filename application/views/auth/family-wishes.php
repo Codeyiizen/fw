@@ -92,7 +92,7 @@
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Child’s Birthday</label>
-                                                        <input type="date" class="form-control" id="childBirthday" value=""
+                                                        <input type="date" class="form-control" min='1899-01-01' max='2000-13-13' id="childBirthday" value=""
                                                             name="child-birthday" placeholder="Child’s Birthday:">
                                                     </div>
                                                 </div>
@@ -375,7 +375,7 @@
                                 <div class="col-11">
                                     <div class="form-group form-inline">
                                         <label for="email" class="mr-sm-2">Child’s Birthday</label>
-                                        <input type="date" class="form-control family-child-birthday-edit" id="childBirthday" value=""
+                                        <input type="date" class="form-control family-child-birthday-edit" min='1899-01-01' max='2000-13-13' id="childBirthdayEdit" value=""
                                             name="child-birthday" placeholder="Child’s Birthday:">
                                     </div>
                                 </div>
