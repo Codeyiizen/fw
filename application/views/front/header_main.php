@@ -52,9 +52,9 @@
 					<div class="menu-area d-flex align-items-center">
 						<nav class="main-menu mr-5">
 							<ul class="navigation">
-								<li class="active"><a href="<?php echo base_url(); ?>">Home</a></li>
-								<li><a href="<?php echo base_url('/about-us'); ?>">About Us</a></li>                           
-								<li><a href="<?php echo base_url('/contact-us'); ?>">Contact Us</a></li>
+								<li class="home"><a href="<?php echo base_url(); ?>">Home</a></li>
+								<li class="about"><a href="<?php echo base_url('/about-us'); ?>">About Us</a></li>                           
+								<li class="contact"><a href="<?php echo base_url('/contact-us'); ?>">Contact Us</a></li>
 							</ul>
 						</nav>
 						<div class="header-btn d-none d-xl-block">

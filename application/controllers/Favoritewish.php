@@ -328,7 +328,7 @@ class Favoritewish extends CI_Controller
 					$this->email->initialize($config);
 					$this->email->to($toMail);
 					$this->email->from(MAIL_FROM, FROM_TEXT);
-					$this->email->subject('Favorite Wish User Registeration!');
+					$this->email->subject('Favorite Wish User Registration!');
 	
 					$this->email->set_newline("\r\n");
 					$this->email->message('UserName-'.$userName.'<br> Password-'.$randam.' ');
@@ -355,7 +355,8 @@ class Favoritewish extends CI_Controller
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]',array('is_unique'=>'This email has been already used!'));
-		$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|regex_match[/^[0-9]{10}$/]');
+		$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|required|min_length[8]|max_length[20]');
+	//	$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|numeric');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
 		$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
 		$this->form_validation->set_rules('terms', 'Terms and Conditions', 'required');
@@ -429,7 +430,7 @@ class Favoritewish extends CI_Controller
 
 				$this->email->to($email);
 				$this->email->from(MAIL_FROM, FROM_TEXT);
-				$this->email->subject('Favorite Wish User Registeration!');
+				$this->email->subject('Favorite Wish User Registration!');
 
 				$this->email->set_newline("\r\n");
 				$this->email->message($this->load->view('email/user_registration', $data, true));
@@ -1723,7 +1724,7 @@ class Favoritewish extends CI_Controller
 		echo json_encode($array);
 	}
 
-	public function addFamilyAdd(){ 
+	public function addFamilyAdd(){   
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('familyMamber', 'Family Member', 'required');
@@ -1807,6 +1808,38 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
+	public function getFamilyWish($id){ 
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); // the user is not logged in, redirect them!
+		} else {
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
+			$data = array();
+			$get = $this->input->get();
+			$data['metaDescription'] = 'User Profile';
+			$data['metaKeywords'] = 'UUser Profile';
+			$data['title'] = "User Profile";
+			$data['breadcrumbs'] = array('User Profile' => '#');
+			$data['user_profile_id'] = $id;
+			$sessionArray = $this->session->userdata('ci_seesion_key');
+			$this->Favoritewish_Model->setUserID($id);
+			$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
+			$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
+			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id, $sessionArray['user_id']);
+			$data['is_friend'] = $isFriend;
+			//	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			if (!empty($id)) {
+				$data['wishInfo'] = $this->Favoritewish_Model->getFamilyWishInfoByUser($id,$get);
+				// echo"<pre>"; var_dump($data['wishInfo']);exit;
+			}
+			$data['categories'] = $this->Favoritewish_Model->getCategories();
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents', 'auth/familywish-list');
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+		}
+	}
+
 	public function getMessagelist($id){  
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
@@ -1846,6 +1879,7 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
+    
 
 	public function messageFormSubmission(){ 
 		$msg_image = $this->input->post('msg_image'); 

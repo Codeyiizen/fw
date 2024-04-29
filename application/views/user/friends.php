@@ -9,7 +9,7 @@
 			<div class="col-lg-9">
 				<form>
 					<div class="form-group searchbar">
-						<div class="input-group justify-content-center justify-content-md-end">
+						<div class="input-group">
 							<div class="form-outline">
 								<input type="search" name="q" id="form1" class="form-control rounded-pill py-2 pl-4" placeholder="Search..." value="<?php echo (!empty($get['q'])) ? $get['q'] : ''; ?>" />
 							</div>
