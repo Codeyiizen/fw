@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'favoritewish/index';
+$route['default_controller'] = 'favoritewish/login';
 //$route['^(?!other|controller).*'] = 'favoritewish/$0'; // To remove "welcome" default controller name from url
 $route['404_override'] = 'favoritewish';
 $route['translate_uri_dashes'] = FALSE;
@@ -121,6 +121,7 @@ $route['familywish/delete'] = 'favoritewish/familyWishDelete';
 $route['save/emoji'] = 'favoritewish/saveEmojii'; 
 $route['send/email'] = 'favoritewish/sendEmail';
 $route['send/email/unsubscribe'] = 'favoritewish/sendEmailStatusChange';
+$route['home/page'] = 'favoritewish/index';
 /*
 
 

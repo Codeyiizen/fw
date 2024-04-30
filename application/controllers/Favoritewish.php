@@ -236,6 +236,7 @@ class Favoritewish extends CI_Controller
 	        $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
 			$google_client->addScope('email');
 			$google_client->addScope('profile');
+			$google_client->setApprovalPrompt('force');
 			$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign up with Google</a>';	
 			$data['login_button'] = $login_button;
 			$this->template->load('default_layout', 'contents', 'auth/sign-up',$data);
@@ -253,6 +254,7 @@ class Favoritewish extends CI_Controller
 	    $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
 	    $google_client->addScope('email');
 	    $google_client->addScope('profile');
+		$google_client->setApprovalPrompt('force');
 		$varToken = random_strings(8);
 	    if(isset($_GET["code"]))
 		{  
@@ -334,7 +336,9 @@ class Favoritewish extends CI_Controller
 					$this->email->message('UserName-'.$userName.'<br> Password-'.$randam.' ');
 					$chkStatus = $this->email->send();
                     if ($chkStatus === TRUE) {  
-						$this->session->set_flashdata('success', 'Thanks for signing up. Please verify your email which we already sent to your mail');
+						$this->session->set_flashdata('success', ' Complete one last action to enhance security and safeguard your
+						identity. Please activate your account in the email message we’ve sent. We appreciate
+						your decision to become part of Favorite Wish');
 						redirect('sign-in');
 					} else { 
 						echo 'Error';
@@ -351,7 +355,7 @@ class Favoritewish extends CI_Controller
 	}
 
 	public function registerSubmit()
-	{
+	{  
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]',array('is_unique'=>'This email has been already used!'));
@@ -437,7 +441,9 @@ class Favoritewish extends CI_Controller
 				$chkStatus = $this->email->send();
 
 				if ($chkStatus === TRUE) {
-					$this->session->set_flashdata('success', 'Thanks for signing up. Please verify your email which we already sent to your mail');
+					$this->session->set_flashdata('success', ' Complete one last action to enhance security and safeguard your
+					identity. Please activate your account in the email message we’ve sent. We appreciate
+					your decision to become part of Favorite Wish');
 					redirect('sign-in');
 				} else {
 					echo 'Error';
@@ -456,6 +462,7 @@ class Favoritewish extends CI_Controller
 	    $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
 	    $google_client->addScope('email');
 	    $google_client->addScope('profile');
+		$google_client->setApprovalPrompt('force');
 		$varToken = random_strings(8);
 	    if(isset($_GET["code"]))
 		{  
@@ -549,6 +556,7 @@ class Favoritewish extends CI_Controller
 	             $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
                 $google_client->addScope('email');
                 $google_client->addScope('profile');
+				$google_client->setApprovalPrompt('force');
 				$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';	
 				$data['login_button'] = $login_button;
 				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
@@ -2179,13 +2187,13 @@ public function getCategorySucategory_familywish_id(){
 				$selected1 = (!empty($getObjWishData) && ($getObjWishData->family_member =='First Born' )) ? 'selected' :'';
 				$selected2 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Second Born' )) ? 'selected' :'';
 				$selected3 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Third Born' )) ? 'selected' :'';
-				$selected4 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Forth Born' )) ? 'selected' :'';
+				$selected4 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Fourth Born' )) ? 'selected' :'';
 				$selected5 = (!empty($getObjWishData) && ($getObjWishData->family_member =='Fifth Born' )) ? 'selected' :'';
 				$arrayHtmlFamilyMember .= "<option value=''>Select Family member</option>";
 				$arrayHtmlFamilyMember .= '<option value="First Born" '.$selected1.'>First Born</option>';
 				$arrayHtmlFamilyMember .= '<option value="Second Born" '.$selected2.'>Second Born</option>';
 				$arrayHtmlFamilyMember .= '<option value="Third Born" '.$selected3.'>Third Born</option>';
-				$arrayHtmlFamilyMember .= '<option value="Forth Born" '.$selected4.'>Forth Born</option>';
+				$arrayHtmlFamilyMember .= '<option value="Fourth Born" '.$selected4.'>Fourth Born</option>';
 				$arrayHtmlFamilyMember .= '<option value="Fifth Born" '.$selected5.'>Fifth Born</option>';
 			}
 			if(!empty($getObjWishData->sex)){

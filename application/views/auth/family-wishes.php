@@ -37,7 +37,7 @@
             <div class="col-lg-6">
                 <div class="profile-content-inner">
                 <div class="create-wish d-block d-md-flex mb-4">
-                    <h3 class="mb-3 mb-md-0 d-inline-block">Have a wish in mind ?</h3>
+                    <h3 class="mb-3 mb-md-0 d-inline-block">Have a wish in mind?</h3>
                         <a href="#" class="theme-btn yellow-bg" data-toggle="modal" data-target="#createFamilyWish"><i
                                 class="fas fa-plus-circle"></i> Let's Create</a>
                         <!-- The Modal -->
@@ -63,7 +63,7 @@
                                                             <option value="First Born">First Born</option>
                                                             <option value="Second Born">Second Born</option>
                                                             <option value="Third Born">Third Born</option>
-                                                            <option value="Forth Born">Forth Born</option>
+                                                            <option value="Fourth Born">Fourth Born</option>
                                                             <option value="Fifth Born">Fifth Born</option>
                                                         </select>
                                                     </div>
@@ -278,7 +278,7 @@
                                         <ul class="list-unstyled font-italic text-capitalize mb-0">
                                             <li>Family Member - <?php print_r($wishInfos->family_member); ?></li>
                                             <li>Child’s birthday - <?php print_r($wishInfos->child_birthday); ?></li> 
-                                            <li>Gender - <?php print_r($wishInfos->sex); ?></li>
+                                            <li>Sex - <?php print_r($wishInfos->sex); ?></li>
                                             <li>Wish - <?php print_r($wishInfos->cat_name); ?></li> 
                                             <li>Type - <?php print_r($subCatName); ?></li> 
                                             <li>Brand - <?php print_r($wishInfos->brand); ?></li>
