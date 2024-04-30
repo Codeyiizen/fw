@@ -38,7 +38,7 @@
                                         <?php } ?>
                                         <li>Family Member - <?php print_r($wishInfos->family_member); ?></li>
                                         <li>Child’s birthday - <?php print_r($wishInfos->child_birthday); ?></li>
-                                        <li>Gender  - <?php print_r($wishInfos->sex); ?></li>
+                                        <li>Sex  - <?php print_r($wishInfos->sex); ?></li>
                                         <li>Wish  - <?php print_r($wishInfos->cat_name); ?></li>
                                         <?php if (!empty($subCatName)) { ?>
                                             <li>Type - <?php echo $subCatName; ?></li> 
