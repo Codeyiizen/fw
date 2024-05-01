@@ -5,7 +5,7 @@
   <meta name="x-apple-disable-message-reformatting">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="telephone=no" name="format-detection">
-  <title>Quarterly Notifications</title><!--[if (mso 16)]>
+  <title>Reset Your Password</title><!--[if (mso 16)]>
     <style type="text/css">
     a {text-decoration: none;}
     </style>
@@ -69,15 +69,13 @@ a[x-apple-data-detectors] {
                       <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px"><img src="<?php echo base_url('assets') ?>/images/site-image/logo1.png" alt="" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic" width="100"></td>
                      </tr>
                      <tr>
-                      <td align="center" class="es-m-txt-c" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px"><h3 style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:36px;font-style:normal;font-weight:800;color:#C11E1A;">Quarterly Notification</h3></td>
+                      <td align="center" class="es-m-txt-c" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px"><h1 style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:36px;font-style:normal;font-weight:800;color:#C11E1A;">Reset Password</h1></td>
                      </tr>
                      <tr>
                       <td align="left" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px">
-						<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#333333;font-size:16px;margin-bottom:20px;">Dear Valued User!</p>
-						<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#333333;font-size:16px;margin-bottom:20px;">At Favorite Wish, we strive to make every gifting experience as seamless and enjoyable as
-                                                                                                                                                                                                                                                                possible. To ensure that you receive gifts that truly resonate with you, we kindly remind you to
-                                                                                                                                                                                                                                                                update your wish list in its entirety that you have registered with us.
-                                                                                                                                                                                                                                                                </p>
+						<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#333333;font-size:16px;margin-bottom:20px;">Dear Member!</p>
+						<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#333333;font-size:16px;margin-bottom:20px;"><strong>Congratulations,</strong> Your password has been reset successfully!.</p>
+						<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#333333;font-size:16px;margin-bottom:20px;">Find the details given below and click on the button to login to your account.</p>
 					  </td>
                      </tr>
                    </tbody></table></td>
@@ -105,36 +103,36 @@ a[x-apple-data-detectors] {
                       <td align="left" style="padding:0;Margin:0;width:121px">
                        <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#e8eafb" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#e8eafb;border-radius:10px 0 0 10px" role="presentation">
                          <tbody><tr>
-                          <!-- <td align="right" style="padding:0;Margin:0;padding-top:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Username:</p></td> -->
+                          <td align="right" style="padding:0;Margin:0;padding-top:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Username:</p></td>
                          </tr>
                          <tr>
-                          <!-- <td align="right" style="padding:0;Margin:0;padding-bottom:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Password:</p></td> -->
+                          <td align="right" style="padding:0;Margin:0;padding-bottom:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Password:</p></td>
                          </tr>
                        </tbody></table></td>
                      </tr>
                    </tbody></table></td>
-                  <!-- <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
+                  <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
                    <table cellpadding="0" cellspacing="0" class="es-left" align="left" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
-                     <tbody>
-                    <tr>
+                     <tbody><tr>
                       <td align="left" style="padding:0;Margin:0;width:185px">
                        <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#e8eafb" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;background-color:#e8eafb;border-radius:0 10px 10px 0" role="presentation">
-                         <tbody>
-                        <tr>
-                          <td align="left" style="padding:0;Margin:0;padding-top:10px;padding-left:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><strong>Mahendra</strong></p></td>
+                         <tbody><tr>
+                          <td align="left" style="padding:0;Margin:0;padding-top:10px;padding-left:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><strong><?php echo $username; ?></strong></p></td>
                          </tr>
                          <tr>
-                          <td align="left" style="padding:0;Margin:0;padding-bottom:10px;padding-left:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><strong>123456</strong></p></td>
+                          <td align="left" style="padding:0;Margin:0;padding-bottom:10px;padding-left:10px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><strong><?php echo $password; ?></strong></p></td>
                          </tr>
                        </tbody></table></td>
                      </tr>
-                   </tbody></table></td> -->
+                   </tbody></table></td>
                   <td class="esdev-mso-td" valign="top" style="padding:0;Margin:0">
                    <table cellpadding="0" cellspacing="0" class="es-right" align="right" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
                      <tbody><tr class="es-mobile-hidden">
                       <td align="left" style="padding:0;Margin:0;width:138px">
                        <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                         <tbody>
+                         <tbody><tr>
+                          <td align="center" height="40" style="padding:0;Margin:0"></td>
+                         </tr>
                        </tbody></table></td>
                      </tr>
                    </tbody></table></td>
@@ -150,14 +148,11 @@ a[x-apple-data-detectors] {
                      <tbody><tr>
                       <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px">
 						<span class="es-button-border msohide" style="display:inline-block;border-radius:6px;width:auto;mso-hide:all">
-							<a href="" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#C11E1A;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">UnSubscribe</a>
+							<a href="<?php echo $loginlink; ?>" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#C11E1A;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">Login Here</a>
 						</span><!--<![endif]--></td>
                      </tr>
                      <tr>
-                       <td align="left" style="padding:0;Margin:0;padding-bottom:10px;padding-top:20px"> <!--<p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Got a question? Email us at&nbsp;<a target="_blank" href="mailto:operations@favoritewish.com" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#5C68E2;font-size:14px">operations@favoritewish.com</a>.</p> -->
-                      <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><br>Warm regards,</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
-                            Favorite Wish Ltd Co,<br>
-                            Right Size, Right Time</p></td>
+                      <td align="left" style="padding:0;Margin:0;padding-bottom:10px;padding-top:20px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Got a question? Email us at&nbsp;<a target="_blank" href="mailto:operations@favoritewish.com" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#5C68E2;font-size:14px">operations@favoritewish.com</a>.</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><br>Thanks,</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">The Favorite Wish Team!</p></td>
                      </tr>
                    </tbody></table></td>
                  </tr>

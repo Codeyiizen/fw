@@ -237,6 +237,7 @@ class Favoritewish extends CI_Controller
 			$google_client->addScope('email');
 			$google_client->addScope('profile');
 			$google_client->setApprovalPrompt('force');
+			$google_client->setPrompt('consent');
 			$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign up with Google</a>';	
 			$data['login_button'] = $login_button;
 			$this->template->load('default_layout', 'contents', 'auth/sign-up',$data);
@@ -255,6 +256,7 @@ class Favoritewish extends CI_Controller
 	    $google_client->addScope('email');
 	    $google_client->addScope('profile');
 		$google_client->setApprovalPrompt('force');
+		$google_client->setPrompt('consent');
 		$varToken = random_strings(8);
 	    if(isset($_GET["code"]))
 		{  
@@ -463,6 +465,7 @@ class Favoritewish extends CI_Controller
 	    $google_client->addScope('email');
 	    $google_client->addScope('profile');
 		$google_client->setApprovalPrompt('force');
+		$google_client->setPrompt('consent');
 		$varToken = random_strings(8);
 	    if(isset($_GET["code"]))
 		{  
@@ -556,7 +559,7 @@ class Favoritewish extends CI_Controller
 	             $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
                 $google_client->addScope('email');
                 $google_client->addScope('profile');
-				$google_client->setApprovalPrompt('force');
+                $google_client->setPrompt('consent');
 				$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';	
 				$data['login_button'] = $login_button;
 				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
@@ -2311,35 +2314,34 @@ public function familyWishDelete(){
 	}
 
 	public function sendEmail(){ 
-		$this->load->view('email/quarterly_email');
-		// $login = base_url() . 'send/email/unsubscribe';  
-		// //$allUserEmail = $this->Favoritewish_Model->getAllUserEmail();
-		// $allUserEmail = $this->Favoritewish_Model->getFirstUser();
-		// foreach($allUserEmail as $email){ 
-		//   $userEmail = $email->email;
-		// 	if ($email->isSubscribe == '1'){
-		// 		$this->load->library('encryption');
-		// 		$this->load->library('email');
-		// 		$data = array(
-		// 			'loginlink' => $login,
-		// 			'id'        => $email->id
-		// 		);
-		// 		$config['charset'] = 'iso-8859-1';
-		// 		$config['wordwrap'] = TRUE;
-		// 		$config['mailtype'] = 'html';
-		// 		$this->email->initialize($config);
-		// 		$this->email->to($userEmail);
-		// 		$this->email->from(MAIL_FROM, FROM_TEXT);
-		// 		$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
-		// 		$this->email->set_newline("\r\n");
-		// 		$this->email->message($this->load->view('email/quarterly_email', $data, true));
-		// 		if($this->email->send()) {
-		// 			echo 'Email sent!';
-		// 		} else {
-		// 			echo 'Email not sent!';
-		// 		}
-		// 	}
-		// }
+		$login = base_url() . 'send/email/unsubscribe';  
+		//$allUserEmail = $this->Favoritewish_Model->getAllUserEmail();
+		$allUserEmail = $this->Favoritewish_Model->getFirstUser();
+		foreach($allUserEmail as $email){ 
+		  $userEmail = $email->email;
+			if ($email->isSubscribe == '1'){
+				$this->load->library('encryption');
+				$this->load->library('email');
+				$data = array(
+					'loginlink' => $login,
+					'id'        => $email->id
+				);
+				$config['charset'] = 'iso-8859-1';
+				$config['wordwrap'] = TRUE;
+				$config['mailtype'] = 'html';
+				$this->email->initialize($config);
+				$this->email->to($userEmail);
+				$this->email->from(MAIL_FROM, FROM_TEXT);
+				$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
+				$this->email->set_newline("\r\n");
+				$this->email->message($this->load->view('email/quarterly_email', $data, true));
+				if($this->email->send()) {
+					echo 'Email sent!';
+				} else {
+					echo 'Email not sent!';
+				}
+			}
+		}
 	}
 
 	public function sendEmailStatusChange(){

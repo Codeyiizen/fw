@@ -1126,7 +1126,7 @@ public function UpdateHomeContent($id,$updatetData){
     public function getFirstUser(){
         $this->db->select('*');
         $this->db->from('users');
-       // $this->db->where('id', '20');
+        $this->db->where('id', '20');
         $query = $this->db->get();
         return  $query->result();
     }
