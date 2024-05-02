@@ -674,26 +674,10 @@
                                                                                             decision is irreversible.
                                                                                             This action is in
                                                                                             accordance with Favorite
-                                                                                            Wish’s commitment to
+                                                                                            Wishs commitment to
                                                                                             adhering to email
                                                                                             regulations and respecting
                                                                                             your privacy choices.
-                                                                                        </p>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <p
-                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#333333;font-size:16px; margin-bottom:0px;">
-                                                                                            * Options: unsubscribe, stay
-                                                                                            subscribed
-                                                                                        </p>
-                                                                                        <p
-                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:24px;color:#333333;font-size:16px; margin-bottom:10px;">
-                                                                                            **include attached logo, and
-                                                                                            social media icons/links
-                                                                                            that are already in the
-                                                                                            website**
                                                                                         </p>
                                                                                     </td>
                                                                                 </tr>
