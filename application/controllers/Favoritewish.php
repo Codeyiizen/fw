@@ -2311,35 +2311,32 @@ public function familyWishDelete(){
 	}
 
 	public function sendEmail(){ 
-		$this->load->view('email/quarterly_email');
-		// $login = base_url() . 'send/email/unsubscribe';  
-		// //$allUserEmail = $this->Favoritewish_Model->getAllUserEmail();
-		// $allUserEmail = $this->Favoritewish_Model->getFirstUser();
-		// foreach($allUserEmail as $email){ 
-		//   $userEmail = $email->email;
-		// 	if ($email->isSubscribe == '1'){
-		// 		$this->load->library('encryption');
-		// 		$this->load->library('email');
-		// 		$data = array(
-		// 			'loginlink' => $login,
-		// 			'id'        => $email->id
-		// 		);
-		// 		$config['charset'] = 'iso-8859-1';
-		// 		$config['wordwrap'] = TRUE;
-		// 		$config['mailtype'] = 'html';
-		// 		$this->email->initialize($config);
-		// 		$this->email->to($userEmail);
-		// 		$this->email->from(MAIL_FROM, FROM_TEXT);
-		// 		$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
-		// 		$this->email->set_newline("\r\n");
-		// 		$this->email->message($this->load->view('email/quarterly_email', $data, true));
-		// 		if($this->email->send()) {
-		// 			echo 'Email sent!';
-		// 		} else {
-		// 			echo 'Email not sent!';
-		// 		}
-		// 	}
-		// }
+	  //	$this->load->view('email/quarterly_email');
+		$login = base_url() . 'send/email/unsubscribe';  
+		//$allUserEmail = $this->Favoritewish_Model->getAllUserEmail();
+		$allUserEmail = $this->Favoritewish_Model->getFirstUser();
+		foreach($allUserEmail as $email){ 
+		  $userEmail = $email->email;
+			if ($email->isSubscribe == '1'){
+				$this->load->library('encryption');
+				$this->load->library('email');
+				$data = array(
+					'loginlink' => $login,
+					'id'        => $email->id
+				);
+				$config['charset'] = 'iso-8859-1';
+				$config['wordwrap'] = TRUE;
+				$config['mailtype'] = 'html';
+				$this->email->initialize($config);
+				$this->email->to($userEmail);
+				$this->email->from(MAIL_FROM, FROM_TEXT);
+				$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
+				$this->email->set_newline("\r\n");
+				$this->email->message($this->load->view('email/quarterly_email', $data, true));
+				$this->email->send();
+			}
+		}
+		echo 'Email sent!';
 	}
 
 	public function sendEmailStatusChange(){
