@@ -122,6 +122,7 @@ $route['save/emoji'] = 'favoritewish/saveEmojii';
 $route['send/email'] = 'favoritewish/sendEmail';
 $route['send/email/unsubscribe'] = 'favoritewish/sendEmailStatusChange';
 $route['home/page'] = 'favoritewish/index';
+$route['privacy/Policy'] = 'favoritewish/privacyPolicy';
 /*
 
 

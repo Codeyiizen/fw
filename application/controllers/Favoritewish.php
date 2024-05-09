@@ -237,6 +237,7 @@ class Favoritewish extends CI_Controller
 			$google_client->addScope('email');
 			$google_client->addScope('profile');
 			$google_client->setApprovalPrompt('force');
+			$google_client->setPrompt('consent');
 			$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign up with Google</a>';	
 			$data['login_button'] = $login_button;
 			$this->template->load('default_layout', 'contents', 'auth/sign-up',$data);
@@ -255,6 +256,7 @@ class Favoritewish extends CI_Controller
 	    $google_client->addScope('email');
 	    $google_client->addScope('profile');
 		$google_client->setApprovalPrompt('force');
+		$google_client->setPrompt('consent');
 		$varToken = random_strings(8);
 	    if(isset($_GET["code"]))
 		{  
@@ -463,6 +465,7 @@ class Favoritewish extends CI_Controller
 	    $google_client->addScope('email');
 	    $google_client->addScope('profile');
 		$google_client->setApprovalPrompt('force');
+		$google_client->setPrompt('consent');
 		$varToken = random_strings(8);
 	    if(isset($_GET["code"]))
 		{  
@@ -556,7 +559,7 @@ class Favoritewish extends CI_Controller
 	             $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
                 $google_client->addScope('email');
                 $google_client->addScope('profile');
-				$google_client->setApprovalPrompt('force');
+                $google_client->setPrompt('consent');
 				$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign in with Google</a>';	
 				$data['login_button'] = $login_button;
 				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
@@ -603,7 +606,7 @@ class Favoritewish extends CI_Controller
 					$this->session->set_userdata('ci_session_key_generate', TRUE);
 					$this->session->set_userdata('ci_seesion_key', $authArray);
 				}
-				redirect('user-dashboard');
+				redirect('home/page');
 			} else {
 				redirect('sign-in?msg=1');
 			}
@@ -2311,10 +2314,10 @@ public function familyWishDelete(){
 	}
 
 	public function sendEmail(){ 
-	  //	$this->load->view('email/quarterly_email');
+	//	$this->load->view('email/quarterly_email');
 		$login = base_url() . 'send/email/unsubscribe';  
-		//$allUserEmail = $this->Favoritewish_Model->getAllUserEmail();
 		$allUserEmail = $this->Favoritewish_Model->getFirstUser();
+	//	echo"<pre>"; var_dump($allUserEmail); exit;
 		foreach($allUserEmail as $email){ 
 		  $userEmail = $email->email;
 			if ($email->isSubscribe == '1'){
@@ -2350,4 +2353,22 @@ public function familyWishDelete(){
 	  redirect('user-dashboard');
 	}
 
+	public function privacyPolicy()
+	{
+	
+		$arr['data'] = $this->Favoritewish_Model->bannerSection('termsandconditions'); // Calling model function defined in Favoritewish_Model.php
+		$data = array();
+		$data['metaDescription'] = 'Privacy Policy Page Meta Description';
+		$data['metaKeywords'] = 'Privacy Policy Page Meta Title';
+		$data['title'] = "Privacy Policy";
+		$data['breadcrumbs'] = array('Terms and Conditions' => '#');
+		$this->load->view('front/header_main', $data);
+		//$this->load->view('front/bannerSection',$arr);
+		$this->load->view('front/privacyPolicy', $data);
+		$this->load->view('front/template/template_footer');
+		$this->load->view('front/footer_main');
+	}
+
 }
+
+

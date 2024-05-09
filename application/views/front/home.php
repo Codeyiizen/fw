@@ -18,6 +18,7 @@
 								echo '<a href="'.base_url().'sign-up" class="theme-btn yellow-bg mr-3">Join Us</a>';
 								echo '<a href="'.base_url().'sign-in" class="theme-btn outline-btn">Sign In</a>';
 							} else {
+								
 								echo '<a href="'.base_url().'user-dashboard" class="theme-btn yellow-bg mr-3">My Account</a>';
 								echo '<a href="'.base_url().'favoritewish/logout" class="theme-btn dark-btn">Logout</a>';
 							}

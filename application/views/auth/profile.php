@@ -27,7 +27,7 @@
 									<li><span>Birthday </span> <?php print $userInfo['dob']; ?></li> 
 								<?php } ?>
 								<?php if(!empty($userInfo['gender'])) { ?> 
-									<li><span>Gender</span> <?php print $userInfo['gender']; ?></li> 
+									<li><span>Sex</span> <?php print $userInfo['gender']; ?></li> 
 								<?php } ?>
 								<?php if(!empty($userInfo['favorite_charity'])) { ?> 
 									<li><span>Favorite Charity</span><?php print $userInfo['favorite_charity']; ?></li> 
