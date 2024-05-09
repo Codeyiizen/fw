@@ -111,10 +111,10 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="Username">Sex Gender</label>
+                                    <label for="Username">Sex</label>
                                     <div class="input-group">
                                     <select class="form-control" name="gender">
-                                        <option>Select Gender</option>
+                                        <option>Select Sex</option>
                                         <option value="male" <?php if($userInfo['gender'] == 'male') echo 'selected="selected"'; ?>>male</option>
                                         <option value="female" <?php if($userInfo['gender'] == 'female') echo 'selected="selected"'; ?>>female</option>
                                         <option value="not applicable" <?php if($userInfo['gender'] == 'not applicable') echo 'selected="selected"'; ?>>not applicable</option>
