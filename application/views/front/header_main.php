@@ -44,7 +44,7 @@
 				<div class="outer-box">
 					<div class="logo-box">
 						<figure class="logo">
-							<a href="<?php echo base_url(); ?>">
+							<a href="<?php echo base_url('home/page'); ?>">
 								<img src="<?php echo base_url(); ?>assets/images/site-image/logo.png" alt="Favorite Wish" class="img-fluid">
 							</a>
 						</figure>
@@ -52,7 +52,7 @@
 					<div class="menu-area d-flex align-items-center">
 						<nav class="main-menu mr-5">
 							<ul class="navigation">
-								<li class="home"><a href="<?php echo base_url(); ?>">Home</a></li>
+								<li class="home"><a href="<?php echo base_url('home/page'); ?>">Home</a></li>
 								<li class="about"><a href="<?php echo base_url('/about-us'); ?>">About Us</a></li>                           
 								<li class="contact"><a href="<?php echo base_url('/contact-us'); ?>">Contact Us</a></li>
 							</ul>
