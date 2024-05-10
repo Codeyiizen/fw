@@ -79,7 +79,7 @@
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Child’s Name</label>
                                                         <input type="text" class="form-control" id="childName" value=""
-                                                            name="occasion" placeholder="(name, nicknames or initials)">
+                                                            name="occasion" placeholder="(Or nickname/initials)">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
@@ -362,7 +362,7 @@
                                     <div class="form-group form-inline">
                                         <label for="email" class="mr-sm-2">Child’s Name</label>
                                         <input type="text" class="form-control family-childname-edit" id="childName" value=""
-                                            name="occasion" placeholder="(name, nicknames or initials)">
+                                            name="occasion" placeholder="(Or nickname/initials)">
                                     </div>
                                 </div>
                                 <div class="col-1 pl-0 pt-2">

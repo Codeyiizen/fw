@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="titleAreaContent">
-                        <h1>test</h1>
+                        <h1>Privacy Policy</h1>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,9 @@
         <p>We use Your Personal data to provide and improve the Service. By using
             the Service, You agree to the collection and use of information in
             accordance with this Privacy Policy. This Privacy Policy has been
-            created with the help of the Privacy Policy Generator.</p>
+            created with the help of the <a target="_blank"
+                href="https://www.termsfeed.com/privacy-policy-generator/">Privacy Policy Generator.</a></li>
+        </p>
         <h2>Interpretation and Definitions</h2>
         <h4>Interpretation</h4>
         <p>The words of which the initial letter is capitalized have meanings
@@ -140,7 +142,9 @@
             <p>Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies
                 remain on Your personal computer or mobile device when You go
                 offline, while Session Cookies are deleted as soon as You close Your
-                web browser. You can learn more about cookies on <a href="https://favoritewish.com/">TermsFeed website</a>
+                web browser. You can learn more about cookies on <a
+                    href="https://www.termsfeed.com/blog/cookies/#What_Are_Cookies">TermsFeed
+                    website</a>
                 article.</p>
             <p>We use both Session and Persistent Cookies for the purposes set out
                 below:</p>
@@ -153,7 +157,7 @@
                     of user accounts. Without these Cookies, the services that You have
                     asked for cannot be provided, and We only use these Cookies to
                     provide You with those services.</li>
-                <li><strong> Cookies Policy / Notice Acceptance Cookies </strong><br>Type: Persistent Cookies<br />
+                <li><strong> Cookies Policy / Notice Acceptance Cookies </strong><br>Administered by: Us<br />
                     Type: Persistent Cookies<br />
                     Purpose: These Cookies identify if users have accepted the use of
                     cookies on the Website.</li>
