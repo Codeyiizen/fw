@@ -21,19 +21,22 @@
     font-weight: 700;
 }
 </style>
-<section class="titleArea">
-    <div class="titleAreaInner">
+<!-- <section class="titleAread">
+    <div class="titleAreaInnerd">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="titleAreaContent">
-                        <h1>Privacy Policy</h1>
+                    <div class="titleAreaContentd">
+                    <img src="<?php echo base_url(); ?>assets/images/site-image/privacypolicyimage.jpeg" class="img-fluid" width="800" height="100" >
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section> -->
+<div class="profile-banner">
+                <img  src="<?php echo base_url(); ?>assets/images/site-image/privacypolicyimage.jpeg" alt="" style="width:100%; height:400px;">
+</div>
 <section class="aboutSection section-padding">
     <div class="container">
         <p>This Privacy Policy describes Our policies and procedures on the
