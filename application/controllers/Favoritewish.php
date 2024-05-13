@@ -565,8 +565,8 @@ class Favoritewish extends CI_Controller
 				$this->template->load('default_layout', 'contents', 'auth/sign-in',$data);
 			    $this->load->view('front/footer_main');
 				
-		}else{
-			redirect('user-dashboard');
+		}else{ 
+			redirect('home/page');
 		}
 	}
 
@@ -645,6 +645,9 @@ class Favoritewish extends CI_Controller
 			$this->load->view('front/footer_main');
 		}
 	}
+    
+	
+
 	public function user_registry()
 	{ 
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
