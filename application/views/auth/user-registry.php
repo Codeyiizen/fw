@@ -46,7 +46,7 @@
                                 <div class="modal-content">
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Create your Wish</h4>
+                                        <h4 class="modal-title">Create Your Wish</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
 
@@ -151,7 +151,7 @@
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Color</label>
                                                         <input type="text" class="form-control" id="color" value=""
-                                                            name="color" placeholder="color">
+                                                            name="color" placeholder="Color">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">

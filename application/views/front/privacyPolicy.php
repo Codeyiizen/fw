@@ -35,7 +35,7 @@
     </div>
 </section> -->
 <div class="profile-banner">
-                <img  src="<?php echo base_url(); ?>assets/images/site-image/privacypolicyimage.jpeg" alt="" style="width:100%; height:400px;">
+                <img  src="<?php echo base_url(); ?>assets/images/site-image/PrivacyPolicy1.jpg" alt="">
 </div>
 <section class="aboutSection section-padding">
     <div class="container">
@@ -45,9 +45,7 @@
             You.</p>
         <p>We use Your Personal data to provide and improve the Service. By using
             the Service, You agree to the collection and use of information in
-            accordance with this Privacy Policy. This Privacy Policy has been
-            created with the help of the <a target="_blank"
-                href="https://www.termsfeed.com/privacy-policy-generator/">Privacy Policy Generator.</a></li>
+            accordance with this Privacy Policy.</li>
         </p>
         <h2>Interpretation and Definitions</h2>
         <h4>Interpretation</h4>
