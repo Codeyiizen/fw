@@ -46,7 +46,7 @@
                                 <div class="modal-content">
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Create your Family Wish</h4>
+                                        <h4 class="modal-title">Create Your Family Wish</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <!-- Modal body -->
@@ -56,10 +56,10 @@
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Family member</label>
+                                                        <label for="email" class="mr-sm-2">Family Member</label>
                                                         <select class="form-control" id="familyMamber"
                                                             name="family-mamber">
-                                                            <option value="">Select Family member</option>
+                                                            <option value="">Select Family Member</option>
                                                             <option value="First Born">First Born</option>
                                                             <option value="Second Born">Second Born</option>
                                                             <option value="Third Born">Third Born</option>
@@ -176,7 +176,7 @@
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Color</label>
                                                         <input type="text" class="form-control" id="familyColor" value=""
-                                                            name="familyColor" placeholder="color">
+                                                            name="familyColor" placeholder="Color">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
@@ -235,7 +235,7 @@
                         <div class="col-6">
                             <select class="form-control form-select form-select-lg mb-3 filter_by_familymember_wish"
                                 aria-label="Default select example">
-                                <option value="">Filter by family member</option>
+                                <option value="">Filter By Family Member</option>
                                 <option value="First Born" <?php echo (!empty($get['family']) && $get['family']=='First Born')?"selected":'' ?>>First Born</option>
                                 <option value="Second Born" <?php echo (!empty($get['family']) && $get['family']=='Second Born')?"selected":'' ?>>Second Born</option>
                                 <option value="Third Born" <?php echo (!empty($get['family']) && $get['family']=='Third Born')?"selected":'' ?>>Third Born</option>
@@ -345,7 +345,7 @@
                             <div class="row">
                                 <div class="col-11">
                                     <div class="form-group form-inline">
-                                        <label for="email" class="mr-sm-2">Family member</label>
+                                        <label for="email" class="mr-sm-2">Family Member</label>
                                         <select class="form-control family-member-edit" id="familyMamber"
                                             name="family-mamber">
                                         </select>
@@ -353,7 +353,7 @@
                                 </div>
                                 <div class="col-1 pl-0 pt-2">
                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                        data-placement="top" title="Family member"></i>
+                                        data-placement="top" title="Family Member"></i>
                                 </div>
                             </div> 
                             <span id="familyMember" class="text-danger text-center"></span> 
