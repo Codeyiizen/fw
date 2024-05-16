@@ -1089,7 +1089,7 @@ $("body").on("click", "#familyWishUpdate", function () {
 				familyWishCatId:familyWishCatId,
 				familyWishTypeId:familyWishTypeId,
 				familyWishBrand:familyWishBrand,
-				familyWishColor:familyWishBrand,
+				familyWishColor:familyWishColor,
 				familyWishSize:familyWishSize,
 				familyWishStyle:familyWishStyle,
 		      },
