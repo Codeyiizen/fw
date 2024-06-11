@@ -895,6 +895,7 @@ class Favoritewish extends CI_Controller
 				$data['code'] = 200;
 				$data['html'] = $arrayHtml;
 				$data['htmlRegistryType'] = $arrayHtmlType;
+				$data['htmlOtherAsseccores'] = $getObjWishData->other_accessories;
 				$data['htmlRegistryOccasionType'] =  $getObjWishData->occasion;
 				$data['htmlRegistryBrand'] = $getObjWishData->brand;
 				$data['htmlRegistryColor'] = $getObjWishData->color;
@@ -1655,6 +1656,7 @@ class Favoritewish extends CI_Controller
 						'id' => $this->input->post('registryId'),
 						'cat_id' => $this->input->post('registry_catId'),
 						'type' => $this->input->post('registry_typeId'),
+						'other_accessories' => !empty($this->input->post('accessories')) ? $this->input->post('accessories') :NULL,
 						'occasion' => $this->input->post('registry_occasion'),
 						'brand' => $this->input->post('registry_brand'),
 						'color' => $this->input->post('registry_color'),
@@ -1713,6 +1715,7 @@ class Favoritewish extends CI_Controller
 			$array = array(
 				'cat_id'     => $this->input->post('category'),
 				'type'  => $this->input->post('type'),
+				'other_accessories'  => $this->input->post('accessories'),
 				'occasion'   => $this->input->post('occasion'),
 				'brand'   => $this->input->post('brand'),
 				'color' => $this->input->post('color'),
@@ -1763,6 +1766,7 @@ class Favoritewish extends CI_Controller
 				'sex'     => $this->input->post('sex'),
 				'cat_id'     => $this->input->post('familyCategory'),
 				'type_id'  => $this->input->post('familyType'),
+				'other_accessories'  => $this->input->post('accessories'),
 				'brand'   => $this->input->post('familyBrand'),
 				'color'   => $this->input->post('familyColor'),
 				'size' => $this->input->post('familySize'),
@@ -2226,6 +2230,7 @@ public function getCategorySucategory_familywish_id(){
 			$data['htmlSex'] = $arrayHtmlSex;
 			$data['html'] = $arrayHtml;
 			$data['htmlFamilyWishesType'] = $arrayHtmlType;
+			$data['otherAssecceries'] = $getObjWishData->other_accessories;
 			$data['htmlFamilyWishesBrand'] = $getObjWishData->brand;
 			$data['htmlFamilyWishesColor'] = $getObjWishData->color;
 			$data['htmlFamilyWishessize'] = $getObjWishData->size;
@@ -2259,6 +2264,7 @@ public function familyWishEditPost(){
 					'sex' => $this->input->post('familyWishSex'),
 					'cat_id' => $this->input->post('familyWishCatId'),
 					'type_id' => $this->input->post('familyWishTypeId'),
+					'other_accessories' => !empty($this->input->post('accessories')) ? $this->input->post('accessories') :NULL,
 					'brand' => $this->input->post('familyWishBrand'),
 					'color' => $this->input->post('familyWishColor'),
 					'size' => $this->input->post('familyWishSize'),

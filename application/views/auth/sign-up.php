@@ -49,7 +49,7 @@
                                     <div class="form-group">
                                         <label for="Last Name">Last name</label>
                                         <input type="text" name="last_name" class="form-control" id="last_name"
-                                            aria-describedby="emailHelp" placeholder="First Name">
+                                            aria-describedby="emailHelp" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-12">

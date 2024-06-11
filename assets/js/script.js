@@ -408,9 +408,10 @@
 
 
 $(document).ready(function() {
-	$('#registry_form').on('submit', function(event){    
+	$('#registry_form').on('submit', function(event){     
 		event.preventDefault();
 		var category = $("#category").val(); // alert(category);
+		var accessories = $("#accessories").val(); // alert(accessories); 
 		var type = $("#type").val();       // alert(type); 
 		var brand = $("#brand").val();    // alert(brand);
 		var occasion = $("#occasion").val();  //  alert(occasion);
@@ -424,6 +425,7 @@ $(document).ready(function() {
 			dataType: "json",
 			data: {
 				category: category,
+				accessories:accessories,
 				type: type,
 				brand: brand,
 				occasion: occasion,
@@ -500,6 +502,7 @@ $(document).ready(function() {
 		var sex           = $("#sex").val();              // alert(sex);
 		var familyCategory = $("#familyCategory").val();  // alert(familyCategory); 
 		var familyType     = $("#familyType").val();      //  alert(familyType);
+		var accessories = $("#accessories").val();        // alert(accessories); 
 		var familyBrand    = $("#familyBrand").val();     //  alert(familyBrand);
 		var familyColor    = $("#familyColor").val();     //  alert(familyColor);
 		var familySize     = $("#familySize").val();      //  alert(familySize);
@@ -515,6 +518,7 @@ $(document).ready(function() {
 				sex: sex,
 				familyCategory: familyCategory,
 				familyType:familyType,
+				accessories:accessories,
 				familyBrand:familyBrand,
 				familyColor:familyColor,
 				familySize:familySize,
@@ -684,7 +688,7 @@ $("body").on("click", "#contact_form_edit", function () {
 	var wish_id = $('.wish_id').val();            // alert(wish_id);
 	var cat_id = $('.category-edit').val();         //    alert(cat_id);
 	var type_id = $('.type-edit').val(); 
-	var accessories = $('.accessories_edit').val();          // alert(type_id);    
+	var accessories = $('.accessories_edit').val();          // alert(accessories);    
 	var brand = $('.brand-edit').val();             //    alert(brand); 
 	var color = $('.color-edit').val();            //   alert(color);       
 	var size = $('.size-edit').val();              // alert(size);
@@ -786,9 +790,15 @@ $("body").on("click", ".wishDeleteId", function (){
 			success: function (response) { // alert(response);
 				var res = JSON.parse(response);
 				if (res?.code == 200) {
-					console.log(res);    
+					var accessories = res?.htmlOtherAsseccores;    
 					$(".category-registry-edit").html(res?.html);   
 					$(".type-registry-edit").html(res?.htmlRegistryType);
+					if(accessories == null){  
+						$('.otherAccessories_edit').addClass('d-none');
+					}else{ 
+						$(".accessories_edit").val(accessories);
+						$('.otherAccessories_edit').removeClass('d-none');
+					}
 					$(".occasion-registry-edit").val(res?.htmlRegistryOccasionType);
 					$(".brand-registry-edit").val(res?.htmlRegistryBrand);
 					$(".color-registry-edit").val(res?.htmlRegistryColor);
@@ -803,7 +813,8 @@ $("body").on("click", ".wishDeleteId", function (){
  $("body").on("click", "#registry_contact_update", function () {  
 	var registryId = $('.registry_id').val();                   
 	var registry_catId = $('.category-registry-edit').val();         
-	var registry_typeId = $('.type-registry-edit').val();             
+	var registry_typeId = $('.type-registry-edit').val();  
+	var accessories = $('.accessories_edit').val();               
 	var registry_occasion = $('.occasion-registry-edit').val();          
 	var registry_brand = $('.brand-registry-edit').val();              
 	var registry_color = $('.color-registry-edit').val();                       
@@ -813,6 +824,7 @@ $("body").on("click", ".wishDeleteId", function (){
 		url: BASE_URL + "/registry/update/post",
 		type: "post",
 		data: {registryId:registryId,
+			   accessories:accessories,
 			   registry_catId :registry_catId,
 			   registry_typeId:registry_typeId,
 			   registry_occasion:registry_occasion,
@@ -898,21 +910,39 @@ $("body").on("click", ".registryDeleteId", function (){
    });   
   });
 
-  $("body").on("click",".otherAccessories", function(){  
-     var otherAccessoriesId = $(this).val(); // alert(otherAccessoriesId);
-	 if(otherAccessoriesId == 24){
+  $("body").on("change",".otherAccessories", function(){  
+     var otherAccessoriesId = $(this).val();
+	 if(otherAccessoriesId == 31){
 	  $('.otherAccessories_inputbox').removeClass('d-none');
-	 }else{
+	 }else if(otherAccessoriesId == 32){
+	   $('.otherAccessories_inputbox').removeClass('d-none');
+	 }else if(otherAccessoriesId == 33){
+		$('.otherAccessories_inputbox').removeClass('d-none');
+	 }else if(otherAccessoriesId == 34){
+		$('.otherAccessories_inputbox').removeClass('d-none');
+	 }else if(otherAccessoriesId == 35){
+		$('.otherAccessories_inputbox').removeClass('d-none');
+	 }
+	 else{
 		$('.otherAccessories_inputbox').addClass('d-none');
 	 }
   });
 
-  $("body").on("click",".accessoriesEdit", function(){   
-	var otherAccessoriesId = $(this).val();   
-	if(otherAccessoriesId == 24){
+  $("body").on("change",".accessoriesEdit", function(){   
+	var otherAccessoriesId = $(this).val();    
+	if(otherAccessoriesId == 31){
 	 $('.otherAccessories_edit').removeClass('d-none');
+	}else if(otherAccessoriesId == 32){
+		$('.otherAccessories_edit').removeClass('d-none');
+	}else if(otherAccessoriesId == 33){
+		$('.otherAccessories_edit').removeClass('d-none');
+	}else if(otherAccessoriesId == 34){
+		$('.otherAccessories_edit').removeClass('d-none');
+	}else if(otherAccessoriesId == 35){
+		$('.otherAccessories_edit').removeClass('d-none');
 	}else{
 	   $('.otherAccessories_edit').addClass('d-none');
+	   $('.accessories_edit').val('');
 	}
  });
 
@@ -1047,14 +1077,20 @@ $("body").on("click", ".showFamilyWishesCategory",function(){
 			},
 		success: function (response) { // alert(response);   
 			var res = JSON.parse(response);
-			if (res?.code == 200) {
-				console.log(res);    
+			if (res?.code == 200){   
+				var accessories = res?.otherAssecceries;   
 				$(".family-member-edit").html(res?.htmlFamilyMember); 
 				$(".family-childname-edit").val(res?.htmlChildName); 
 				$(".family-child-birthday-edit").val(res?.htmlChildBirthDay);
 				$(".family-wish-sex").html(res?.htmlSex); 
 				$(".category-familywish-edit").html(res?.html);   
 				$(".type-familywish-edit").html(res?.htmlFamilyWishesType);
+				if(accessories == null){   
+					$('.otherAccessories_edit').addClass('d-none');
+				}else{ 
+					$(".accessories_edit").val(accessories);
+					$('.otherAccessories_edit').removeClass('d-none');
+				}
 				$(".brand-familywish-edit").val(res?.htmlFamilyWishesBrand);
 				$(".color-familywish-edit").val(res?.htmlFamilyWishesColor);
 				$(".size-familywish-edit").val(res?.htmlFamilyWishessize);
@@ -1072,7 +1108,8 @@ $("body").on("click", "#familyWishUpdate", function () {
 	var familyWishChildName = $('.family-childname-edit').val();      
 	var familyWishBirthday = $('.family-child-birthday-edit').val();      
 	var familyWishSex = $('.family-wish-sex').val();                  
-	var familyWishCatId = $('.category-familywish-edit').val();              
+	var familyWishCatId = $('.category-familywish-edit').val(); 
+	var accessories = $('.accessories_edit').val();                            
 	var familyWishTypeId = $('.type-familywish-edit').val();         
 	var familyWishBrand = $('.brand-familywish-edit').val();            
 	var familyWishColor = $('.color-familywish-edit').val();                       
@@ -1087,6 +1124,7 @@ $("body").on("click", "#familyWishUpdate", function () {
 				familyWishBirthday:familyWishBirthday,
 				familyWishSex:familyWishSex,
 				familyWishCatId:familyWishCatId,
+				accessories:accessories,
 				familyWishTypeId:familyWishTypeId,
 				familyWishBrand:familyWishBrand,
 				familyWishColor:familyWishColor,
