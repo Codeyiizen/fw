@@ -1068,7 +1068,7 @@ class Favoritewish extends CI_Controller
 
 	//forgot password method
 	public function forgotpassword()
-	{
+	{  
 		if ($this->session->userdata('ci_session_key_generate') == TRUE) {
 			redirect('user-dashboard'); // the user is logged in, redirect them!
 		} else {
@@ -1089,20 +1089,19 @@ class Favoritewish extends CI_Controller
 
 	//action forgot password method
 	public function actionForgotPassword()
-	{
+	{    
 		$this->form_validation->set_rules('forgot_email', 'Your Email', 'trim|required|valid_email');
 		if ($this->form_validation->run() == FALSE) {
 			//Field validation failed.  User redirected to Forgot Password page
 			$this->forgotpassword();
 		} else {
-
 			$login = base_url() . 'sign-in';
 			$email = $this->input->post('forgot_email');
 			$this->Favoritewish_Model->setEmail($email);
 			$pass = $this->generateRandomPassword(8);
 			$this->Favoritewish_Model->setPassword($pass);
 			$status = $this->Favoritewish_Model->updateForgotPassword();
-
+            $checkEmailExit =  $this->Favoritewish_Model->checkEmailExit($email);
 			if ($status == TRUE) {
 
 				$this->load->library('encryption');
@@ -1126,7 +1125,12 @@ class Favoritewish extends CI_Controller
 				$this->email->set_newline("\r\n");
 				$this->email->message($this->load->view('email/forgot_password', $data, true));
 				$chkStatus = $this->email->send();
-
+                
+                if($checkEmailExit == TRUE){
+					redirect('forgot-password?msg=3');
+				}else{
+					redirect('forgot-password?msg=4');
+				}
 				if ($chkStatus === TRUE) {
 					redirect('forgot-password?msg=2');
 				} else {

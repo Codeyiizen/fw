@@ -32,12 +32,12 @@ tinymce.init({
 $(document).ready(function() {
     $('#contact_form').on('submit', function(event) {
         event.preventDefault();
-        var category = $("#category").val(); // alert(category);
-        var type = $("#type").val();
-        var accessories = $("#accessories").val(); // alert(accessories);
-        var brand = $("#brand").val(); // alert(brand);
-        var color = $("#color").val(); //  alert(color);
-        var size = $("#size").val(); // alert(size);
+        var category = $("#category").val();  // alert(category);
+        var type = $("#type").val();          // alert(type);
+        var accessories = $("#accessories").val();  // alert(accessories);
+        var brand = $("#brand").val();  // alert(brand);
+        var color = $("#color").val();  //  alert(color);
+        var size = $("#size").val();  // alert(size);
         var style = $("#style").val(); // alert(style);
 
         $.ajax({
