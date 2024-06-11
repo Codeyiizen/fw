@@ -40,9 +40,16 @@
                                 Your password has been reset successfully. Please check your email.
                             </div>
                             <?php } ?>
-
+                            <?php if (!empty($this->input->get('msg')) && $this->input->get('msg') == 3) { ?>
+                            <div class="alert alert-danger">
+                            Your password has been reset successfully. Please check your email.
+                            </div>
+                            <?php } elseif (!empty($this->input->get('msg')) && $this->input->get('msg') == 4) { ?>
+                            <div class="alert alert-danger">
+                               User Email Isn't Registered.
+                            </div>
+                            <?php } ?>
                             <?php echo form_open('favoritewish/actionForgotPassword'); ?>
-
                             <div class="form-group">
                                 <label for="Username">Email address</label>
                                 <input type="text" name="forgot_email" class="form-control" id="username"
@@ -51,7 +58,6 @@
                             <div class="col-md-12 text-center ">
                                 <button type="submit" class="yello-shadow-btn">Reset Password</button>
                             </div>
-
                             <?php echo form_close(); ?>
                         </div>
                     </div>
@@ -60,3 +66,20 @@
         </div>
     </div>
 </section>
+<footer>
+	<div class="bottom-footer background-image p-3" data-background="<?php echo base_url(); ?>assets/images/site-image/footer-bg.png">
+		<div class="container">
+			<div class="row">
+				<!-- <div class="col-md-6 col-sm-12 text-center text-md-left">
+					<div class="footer-menu-list">
+						<a href="<?php echo base_url('/terms-and-conditions'); ?>">Terms and Conditions</a>
+						<a href="<?php echo base_url(); ?>privacy/Policy">Privacy Policy</a>
+					</div>
+				</div> -->
+				<div class="col-md-6 offset-md-6 text-center text-md-right">
+					<p>Designed by <a href="https://www.kurieta.com">Kurieta.com</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
