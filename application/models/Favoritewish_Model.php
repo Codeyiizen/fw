@@ -741,6 +741,7 @@ class Favoritewish_Model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update($table_name, array('cat_id' => $cat_id,
                                              'type' => $type,
+                                             'other_accessories' => $other_accessories,
                                              'brand' => $brand,
                                              'occasion' => $occasion,
                                              'color' => $color,
@@ -1070,6 +1071,7 @@ public function UpdateHomeContent($id,$updatetData){
                                              'sex' => $sex,
                                              'cat_id' => $cat_id,
                                              'type_id' => $type_id,
+                                             'other_accessories' => $other_accessories,
                                              'brand' => $brand,
                                              'color' => $color,
                                              'size' => $size,

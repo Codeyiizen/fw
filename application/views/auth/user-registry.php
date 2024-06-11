@@ -78,7 +78,7 @@
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Type</label>
-                                                        <select class="select-type form-control" id="type" name="type">
+                                                        <select class="select-type form-control otherAccessories" id="type" name="type">
                                                             <option value="">Select Type</option>
                                                         </select>
                                                     </div>
@@ -89,6 +89,19 @@
                                                 </div>
                                             </div>
                                             <span id="types" class="text-danger text-center"></span>
+                                            <div class="row otherAccessories_inputbox d-none">
+                                                <div class="col-11">
+                                                    <div class="form-group form-inline">
+                                                        <label for="email" class="mr-sm-2">Accessories</label>
+                                                        <input type="text" class="form-control" id="accessories" value=""
+                                                            name="accessories" placeholder="Accessories">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1 pl-0 pt-2">
+                                                    <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                                        title="Accessories"></i>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
@@ -215,6 +228,9 @@
                                             <?php if (!empty($subCatName)) { ?>
                                             <li>Type - <?php echo $subCatName; ?></li>
                                             <?php } ?>
+                                            <?php  if(!empty($wishInfos->other_accessories)){  ?>
+                                            <li>Other Accessories - <?php print_r($wishInfos->other_accessories); ?></li>
+                                            <?php  } ?>
                                             <li>Brand - <?php print_r($wishInfos->brand); ?></li>
                                             <li>Occasion - <?php print_r($wishInfos->occasion); ?></li>
                                             <li>Color - <?php print_r($wishInfos->color); ?></li>
@@ -299,7 +315,7 @@
                                     <div class="col-11">
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Type</label>
-                                            <select class="select-type form-control type-registry-edit" id="type"
+                                            <select class="select-type form-control type-registry-edit accessoriesEdit" id="type"
                                                 name="type_registry">
                                                 <option value="">Select Type</option>
                                             </select>
@@ -311,6 +327,19 @@
                                     </div>
                                 </div>
                                 <span id="type_registry" class="text-danger text-center"></span>
+                                <div class="row otherAccessories_edit d-none">
+                                    <div class="col-11">
+                                        <div class="form-group form-inline">
+                                            <label for="email" class="mr-sm-2">Accessories</label>
+                                            <input type="text" class="form-control accessories_edit accessoriesPlaceHolderEdit" id="accessoriesEdit" value=""
+                                                name="accessories" placeholder="Accessories">
+                                        </div>
+                                    </div>
+                                    <div class="col-1 pl-0 pt-2">
+                                        <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
+                                            title="Accessories"></i>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
