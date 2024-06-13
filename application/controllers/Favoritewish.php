@@ -966,7 +966,7 @@ class Favoritewish extends CI_Controller
 	// action update user 
 	public function editUser()
 	{  
-		// echo"<pre>"; var_dump($this->input->post('gender')); exit;
+		// echo"<pre>"; var_dump($this->input->post('dob')); exit;
 	    $sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 		$userInfo = $this->Favoritewish_Model->getUserDetails(); 
@@ -977,7 +977,7 @@ class Favoritewish extends CI_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->edit();
-		} else {
+		} else {    
 			$firstName = $this->input->post('first_name');
 			$lastName = $this->input->post('last_name');
 			$contactNo = $this->input->post('contact_no');
@@ -986,12 +986,13 @@ class Favoritewish extends CI_Controller
 			$address = $this->input->post('address');
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
+			$user_bio = $this->input->post('user_bio');
 			$zip = $this->input->post('zip');
 			$favorite_country = $this->input->post('favorite_country');
 			$favorite_public_outfit_wear = $this->input->post('favorite_p_wear');
 			$favorite_s_team = $this->input->post('favorite_s_team');
 			$favorite_music = $this->input->post('favorite_music');
-			$dob = $this->input->post('dob');
+			$dob = !empty($this->input->post('dob')) ? $this->input->post('dob') : NULL;
 			$favorite_charity =   $this->input->post('favorite_charity');
 			$gender =   $this->input->post('gender');
 			// Upload profile photo in folder
@@ -1045,6 +1046,7 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setContactNo($contactNo);
 			$this->Favoritewish_Model->setUserType($userType);
 			$this->Favoritewish_Model->setCompany($company);
+			$this->Favoritewish_Model->setUserBio($user_bio);
 			$this->Favoritewish_Model->setAddress($address);
 			$this->Favoritewish_Model->setCity($city);
 			$this->Favoritewish_Model->setState($state);
