@@ -154,6 +154,10 @@ class Favoritewish_Model extends CI_Model {
         $this->_company = $company;
     }
  
+    public function setUserBio($user_bio) {
+        $this->_user_bio = $user_bio;
+    }
+
     public function setAddress($address) {
         $this->_address = $address;
     }
@@ -250,6 +254,7 @@ class Favoritewish_Model extends CI_Model {
             'user_type' => $this->_userType,
 			'company' => $this->_company,
             'address' => $this->_address,
+            'user_bio' => $this->_user_bio,
 			'city' => $this->_city,
 			'state' => $this->_state,
 			'zip' => $this->_zip,
@@ -315,6 +320,7 @@ class Favoritewish_Model extends CI_Model {
 			'user_type' => $this->_userType,
 			'company' => $this->_company,
             'address' => $this->_address,
+            'user_bio' => $this->_user_bio,
             'city' => $this->_city,
 			'state' => $this->_state,
 			'zip' => $this->_zip,
