@@ -95,7 +95,7 @@
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Other</label>
                                                         <input type="text" class="form-control" id="accessories" value=""
-                                                            name="accessories" placeholder="Accessories">
+                                                            name="accessories" placeholder="Type here">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
@@ -294,7 +294,7 @@
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Other</label>
                                             <input type="text" class="form-control accessories_edit accessoriesPlaceHolderEdit" id="accessoriesEdit" value=""
-                                                name="personalize" placeholder="Accessories">
+                                                name="personalize" placeholder="Type here">
                                         </div>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
