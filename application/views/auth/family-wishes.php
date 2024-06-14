@@ -160,9 +160,9 @@
                                             <div class="row otherAccessories_inputbox d-none">
                                                 <div class="col-11">
                                                     <div class="form-group form-inline">
-                                                        <label for="email" class="mr-sm-2">Accessories</label>
+                                                        <label for="email" class="mr-sm-2">Other</label>
                                                         <input type="text" class="form-control" id="accessories" value=""
-                                                            name="accessories" placeholder="Accessories">
+                                                            name="personalize" placeholder="Accessories">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
@@ -295,7 +295,7 @@
                                             <li>Wish - <?php print_r($wishInfos->cat_name); ?></li>
                                             <li>Type - <?php print_r($subCatName); ?></li>
                                             <?php  if(!empty($wishInfos->other_accessories)){   ?> 
-                                            <li>Other Accessories - <?php print_r($wishInfos->other_accessories); ?></li>
+                                            <li>Other - <?php print_r($wishInfos->other_accessories); ?></li>
                                             <?php  }  ?>
                                             <li>Brand - <?php print_r($wishInfos->brand); ?></li>
                                             <li>Color  - <?php print_r($wishInfos->color); ?></li>
@@ -451,9 +451,9 @@
                                 <div class="row otherAccessories_edit d-none">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
-                                            <label for="email" class="mr-sm-2">Accessories</label>
+                                            <label for="email" class="mr-sm-2">Other</label>
                                             <input type="text" class="form-control accessories_edit accessoriesPlaceHolderEdit" id="accessoriesEdit" value=""
-                                                name="accessories" placeholder="Accessories">
+                                                name="personalize" placeholder="Accessories">
                                         </div>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
