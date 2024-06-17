@@ -94,12 +94,12 @@
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Other</label>
                                                         <input type="text" class="form-control" id="accessories" value=""
-                                                            name="personalize" placeholder="Type here">
+                                                            name="accessories" placeholder="Type here">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                                        title="Accessories"></i>
+                                                        title="personalize"></i>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -332,12 +332,12 @@
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Other</label>
                                             <input type="text" class="form-control accessories_edit accessoriesPlaceHolderEdit" id="accessoriesEdit" value=""
-                                                name="personalize" placeholder="Type here">
+                                                name="accessories" placeholder="Type here">
                                         </div>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Accessories"></i>
+                                            title="personalize"></i>
                                     </div>
                                 </div>
                                 <div class="row">

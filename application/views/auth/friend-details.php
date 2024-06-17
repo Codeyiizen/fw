@@ -96,7 +96,7 @@
                                 <?php } ?>
                                 <?php if (!empty($userInfo['favorite_country']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
                                 <tr>
-                                    <th>Favorite Country</th>
+                                    <th>Favorite Gift Cards</th>
                                     <td><?php print $userInfo['favorite_country']; ?></td>
                                 </tr>
                                 <?php } ?>
