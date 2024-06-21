@@ -443,9 +443,7 @@ class Favoritewish extends CI_Controller
 				$chkStatus = $this->email->send();
 
 				if ($chkStatus === TRUE) {
-					$this->session->set_flashdata('success', ' Complete one last action to enhance security and safeguard your
-					identity. Please activate your account in the email message we’ve sent. We appreciate
-					your decision to become part of Favorite Wish');
+					$this->session->set_flashdata('success', 'Please activate your account from the link that has been sent to you on your email');
 					redirect('sign-in');
 				} else {
 					echo 'Error';
@@ -542,7 +540,7 @@ class Favoritewish extends CI_Controller
 				$this->Favoritewish_Model->setVerificationCode($verificationCode);
                 $this->Favoritewish_Model->setVerificationCode($verificationCode);
 				$this->Favoritewish_Model->activate();
-				$this->session->set_flashdata('success', 'Your email verified successfully!');
+				$this->session->set_flashdata('successemail', 'Your email verified successfully!');
 				redirect('sign-in');
 			}
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('login'); // Calling model function defined in Favoritewish_Model.php

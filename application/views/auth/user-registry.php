@@ -236,10 +236,10 @@
                                             <li>Color - <?php print_r($wishInfos->color); ?></li>
                                             <li>Size - <?php print_r($wishInfos->size); ?></li>
                                             <li>Style - <?php print_r($wishInfos->style); ?></li>
-                                            <li>Created on -
+                                            <li><b>Created on -
                                                 <!-- <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?> -->
                                                 <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?>
-                                            </li>
+                                            </li></b>
                                         </ul>
                                         <div class="d-flex justify-content-between">
                                             <a href="#" class="showRegistryCategory"
@@ -307,7 +307,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Category"></i>
+                                            title="select a clothing category that interest you—this will subsequently refine the options in the following dropdown menu"></i>
                                     </div>
                                 </div>
                                 <span id="categorys_registry" class="text-danger text-center"></span>
@@ -323,7 +323,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Type"></i>
+                                            title="select a type that fits your appearance"></i>
                                     </div>
                                 </div>
                                 <span id="type_registry" class="text-danger text-center"></span>
@@ -364,7 +364,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Brand"></i>
+                                            title="list a brand that appeals to you"></i>
                                     </div>
                                 </div>
                                 <span id="occasions_registry" class="text-danger text-center"></span>
@@ -379,7 +379,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Color"></i>
+                                            title="pick a color that reflects your individuality"></i>
                                     </div>
                                 </div>
                                 <span id="colors_registry" class="text-danger text-center"></span>
@@ -394,7 +394,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Size"></i>
+                                            title="provide an exact size that fits you just right"></i>
                                     </div>
                                 </div>
                                 <span id="sizes_registry" class="text-danger text-center"></span>
@@ -408,7 +408,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Style"></i>
+                                            title="list a style that suits your taste"></i>
                                     </div>
                                 </div>
                                 <span id="styles_registry" class="text-danger text-center"></span>

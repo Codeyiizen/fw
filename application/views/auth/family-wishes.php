@@ -302,7 +302,7 @@
                                             <li>Size  - <?php print_r($wishInfos->size); ?></li>
                                             <li>Style  - <?php print_r($wishInfos->style); ?></li>  
                                             <!-- <li>Created On  - <?php print_r(date("Y-m-d",strtotime($wishInfos->created_on))); ?></li> -->
-                                            <li>Created On  - <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?></li>
+                                            <li><b>Created On  - <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?></li></ul></b></li>
                                         </ul>
                                         <div class="d-flex justify-content-between">
                                             <a href="#" class="showFamilyWishesCategory"
@@ -428,7 +428,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Category"></i>
+                                            title="select a clothing category that interest you—this will subsequently refine the options in the following dropdown menu"></i>
                                     </div>
                                 </div>
                                 <span id="categoryFamily" class="text-danger text-center"></span>
@@ -444,7 +444,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Type"></i>
+                                            title="select a type that fits your appearance"></i>
                                     </div>
                                 </div>
                                 <span id="typeeee" class="text-danger text-center"></span>
@@ -471,7 +471,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Brand"></i>
+                                            title="list a brand that appeals to you"></i>
                                     </div>
                                 </div>
                                 <span id="familyBranddd" class="text-danger text-center"></span>
@@ -486,7 +486,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Color"></i>
+                                            title="pick a color that reflects your individuality"></i>
                                     </div>
                                 </div>
                                 <span id="familyColorrr" class="text-danger text-center"></span>
@@ -501,7 +501,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Size"></i>
+                                            title="provide an exact size that fits you just right"></i>
                                     </div>
                                 </div>
                                 <span id="familySizeee" class="text-danger text-center"></span>
@@ -515,7 +515,7 @@
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Style"></i>
+                                            title="list a style that suits your taste"></i>
                                     </div>
                                 </div>
                                 <span id="familyStyleee" class="text-danger text-center"></span>
