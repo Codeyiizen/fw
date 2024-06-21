@@ -25,15 +25,20 @@
                                     <?php echo $login_button; ?>
                                     <?php } ?>
                                 </div>
-
-                            </div>
+ 
+                            </div>   
                             <?php if (validation_errors()) { ?>
                             <div class="alert alert-danger">
                                 <?php echo validation_errors(); ?>
                             </div>
                             <?php } ?>
-                            <?php if (!empty($this->session->flashdata('success'))) { ?>
+                            <?php if (!empty($this->session->flashdata('successemail'))) { ?>
                             <div class="alert alert-success">
+                                <?php echo $this->session->flashdata('successemail') ?>
+                            </div>
+                            <?php } ?>
+                            <?php if (!empty($this->session->flashdata('success'))) { ?>
+                            <div class="alert alert-danger">
                                 <?php echo $this->session->flashdata('success') ?>
                             </div>
                             <?php } ?>
