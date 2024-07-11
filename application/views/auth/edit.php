@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="Email Address">Email</label>
                                     <div class="input-group">
@@ -91,12 +91,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="Username">Phone</label>
                                     <div class="input-group">
                                         <input type="text" name="contact_no" class="form-control" id="user_phone"
                                             value="<?php print $userInfo['contact_no']; ?>">
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="Username">Friend Request Notification</label>
+                                    <div class="input-group">
+                                    <select class="form-control" name="friend_request_notify">
+                                        <option value="">Select Notification</option>
+                                        <option value="1" <?php if($userInfo['friend_request_notify'] == '1') echo 'selected="selected"'; ?>>Active</option>
+                                        <option value="0" <?php if($userInfo['friend_request_notify'] == '0') echo 'selected="selected"'; ?>>InActive</option>
+                                    </select>
                                     </div>
                                 </div>
                             </div>

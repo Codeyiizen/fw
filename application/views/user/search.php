@@ -39,18 +39,18 @@
                                             </a>
                                             <div class="card-body p-4">
                                                 <h5 class="card-title text-capitalize"><?php echo $data->first_name . " " . $data->last_name; ?></h5>
-                                                <?php if ($data->from_friend == $userInfo['user_id']) {
-                                                    if ($data->friends_status == 0) {
+                                                <?php if ($data->check_from_friend == $userInfo['user_id']) { 
+                                                    if ($data->check_status == 0) {
 
                                                 ?>
                                                         <button type="button" class="theme-btn red-btn px-4 mr-0 bg-danger cancelFriend" data-token="<?php echo $data->token; ?>">Cancel Request</button>
                                                     <?php }
-                                                    if ($data->friends_status == 1) {
+                                                    if ($data->check_status == 1) {
                                                     ?>
                                                         <button type="button" class="theme-btn red-btn px-4 mr-0 bg-danger removeFriend" data-token="<?php echo $data->token; ?>">Unfriend</button>
                                                     <?php }
-                                                } else if ($data->to_friend == $userInfo['user_id']) {
-                                                    if ($data->friends_status == 0) {
+                                                } else if ($data->check_to_friend == $userInfo['user_id']) { 
+                                                    if ($data->check_status == 0) {      
 
                                                     ?>
                                                         <div class="btn-group w-100">
@@ -58,7 +58,7 @@
                                                             <button type="button" class="theme-btn yellow-bg px-3 mr-0 declineFriend bg-danger w-50" data-token="<?php echo $data->token; ?>">Delete</button>
                                                         </div>
                                                     <?php }
-                                                    if ($data->friends_status == 1) { ?>
+                                                    if ($data->check_status == 1) { ?>  
                                                         <button type="button" class="theme-btn red-btn px-4 mr-0 bg-danger removeFriend" data-token="<?php echo $data->token; ?>">Unfriend</button>
                                                     <?php }
                                                 } else {  ?>

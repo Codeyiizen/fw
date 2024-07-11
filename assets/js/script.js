@@ -104,7 +104,8 @@
 		$(this).toggleClass('active');
 		$('#fs-menu').toggleClass('open');
 	});
-	$("body").on("click", ".sendFriendRequest", function () {
+	$("body").on("click", ".sendFriendRequest", function () {  
+		$(this).attr('disabled', 'true');	
 		var tokenObj = $(this).data('token');
 		var params = { "token": tokenObj };
 		$.ajax({
@@ -112,9 +113,10 @@
 			type: "post",
 			data: JSON.stringify(params),
 			contentType: "application/json; charset=utf-8",
-			success: function (response) {    
+			success: function (response) {   
 				var res = JSON.parse(response); 
 				if (res?.code == 200) {
+					$('.sendFriendRequest').attr('disabled', 'false');
 				  $('#success_message').html(res.success);
 				  setTimeout(function () {
 					window.location.reload(1);
@@ -140,9 +142,10 @@
 				}
 			}
 		});
-	})
+	})   
+
 	$("body").on("click", ".removeFriend", function () {
-		var tokenObj = $(this).data('token');
+		var tokenObj = $(this).data('token');   
 		var params = { "token": tokenObj,type:'remove' };
 		$.ajax({
 			url: BASE_URL + "/user/friends/remove",
@@ -269,6 +272,30 @@
 		}
 		
 	})
+   
+	$("body").on("click",".updateFromFriendBirthday", function(){  
+	   var id = $(this).attr('id');  
+		$.ajax({
+			url: BASE_URL + "/user/birthday/status/update",
+			type: "post",
+			data: {id:id},
+			success: function(data) {
+				window.location.reload();
+			}
+		}); 
+	});
+
+	$("body").on("click",".updateToFriendBirthday", function(){  
+		var id = $(this).attr('id'); 
+		 $.ajax({
+			 url: BASE_URL + "/user/birthday/status/toupdate",
+			 type: "post",
+			 data: {id:id},
+			 success: function(data) {
+				 window.location.reload();
+			 }
+		 }); 
+	 });
 
 	$("body").on("change",".select-family",function(){
 		var famliyId = $(this).val();
@@ -401,7 +428,7 @@
 		handlePreloader();
 	});
 
-
+ 
 
 })(window.jQuery);
 
@@ -1386,3 +1413,11 @@ var yyyy = today.getFullYear();
     } 
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("childBirthdayEdit").setAttribute("max", today);
+
+
+
+
+
+
+
+
