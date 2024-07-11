@@ -1881,6 +1881,18 @@ nav.fullscreen-nav .user-account:hover {
     color: var(--secondary);
 }
 
+nav.fullscreen-nav .notification{
+  position: relative;
+}
+
+nav.fullscreen-nav .notification .icon{
+    position: absolute;
+    top: -4px;
+    right: -3px;
+    font-size: .625rem;
+    color: var(--danger);
+}
+
 .myaccountForm-inner>div.card>h2 {
     color: #212227;
     font-size: 22px;

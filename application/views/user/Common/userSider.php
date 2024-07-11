@@ -18,6 +18,11 @@
                         <h5><a class="<?php echo checkMenuActive('user/friends/search'); ?>" href="<?php echo base_url('user/friends/search') ?>">Search Friends</a></h5>
                     </div>
                 </div>
+                <div class="media align-items-center">
+                    <div class="media-body">
+                        <h5><a class="<?php echo checkMenuActive('user/friends/birthday'); ?>" href="<?php echo base_url('user/friends/birthday') ?>">Birthdays</a></h5>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

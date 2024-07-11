@@ -118,7 +118,7 @@ class Favoritewish_Model extends CI_Model {
 	private $_alertPeriodTo;
     private $_userActiveStatus;
 	//Declaration of a methods
-    public function setUserID($userID) {
+    public function setUserID($userID) { 
         $this->_userID = $userID;
     }
 	
@@ -203,6 +203,10 @@ class Favoritewish_Model extends CI_Model {
     }
     public function set_gender($gender){
         $this->_gender = $gender;  
+    }
+
+    public function set_frienf_Request_Notify($friendRequestNotify){
+        $this->_friendRequestNotify = $friendRequestNotify;  
     }
     public function setVerificationCode($verificationCode) {
         $this->_verificationCode = $verificationCode;
@@ -333,6 +337,7 @@ class Favoritewish_Model extends CI_Model {
             'cover_photo' => $this->_cover_photo,  
             'favorite_charity' => $this->_favorite_charity,
             'gender' => $this->_gender,
+            'friend_request_notify' => $this->_friendRequestNotify,
             'modified_date' => $this->_timeStamp,
         );
 
@@ -379,7 +384,7 @@ class Favoritewish_Model extends CI_Model {
 	
 	// get User Detail
     public function getUserDetails() {
-        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.profile_photo','m.cover_photo','m.dob','m.favorite_charity','m.gender'));
+        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.profile_photo','m.cover_photo','m.dob','m.favorite_charity','m.gender','m.friend_request_notify'));
         $this->db->from('users as m');
         $this->db->where('m.id', $this->_userID);
         $query = $this->db->get();
@@ -596,36 +601,96 @@ class Favoritewish_Model extends CI_Model {
         	return false;
         }
     }
-    public function getUsersList($params){ 
-        $search = (!empty($params['q']))?$params['q']:'';
+    // public function getUsersList($params){ 
+    //     $search = (!empty($params['q']))?$params['q']:'';
         
-        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
-        $this->db->from('users');
-        $this->db->join('friends', 'friends.from_friend = users.id OR friends.to_friend = users.id', 'left');
-        if(!empty($search)){
-            $arrExplodedKeyword = explode(" ",$search);
-            $condition="";
-            foreach($arrExplodedKeyword as $key=>$value){
-                if($key > 0){
-                    $condition.= " OR CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $value . "%'";
-                } else {
-                    $condition.= "CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $value . "%'";
-                }
+    //     $this->db->select('userss.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
+    //     $this->db->from('users');
+    //     $this->db->join('friends', 'friends.from_friend = users.id OR friends.to_friend = users.id', 'left');
+    //     if(!empty($search)){
+    //         $arrExplodedKeyword = explode(" ",$search);
+    //         $condition="";
+    //         foreach($arrExplodedKeyword as $key=>$value){
+    //             if($key > 0){
+    //                 $condition.= " OR CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $value . "%'";
+    //             } else {
+    //                 $condition.= "CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $value . "%'";
+    //             }
                 
+    //         }
+    //         //echo  $condition;exit;
+    //         //$condition = "CONCAT(first_names,last_name,user_name,email)" . "LIKE '%" . $search . "%'";
+    //         $this->db->where($condition);
+    //     }
+    //     $this->db->where("users.id!=".$this->_userID);
+    //     $this->db->group_by('users.id'); 
+    //     $query = $this->db->get();
+    //     if ($query->num_rows() > 0) {
+    //     	return $query->result();
+    //     } else {
+    //     	return false;
+    //     }
+    // }
+    
+    public function getUsersList($params){
+        $search = (!empty($params['q']))?$params['q']:'';
+        $sql ='SELECT
+        `users`.*,
+        `friends`.`status` AS `friends_status`,
+        `friends`.`to_friend`,
+        `friends`.`from_friend`,
+        (
+        SELECT
+            (friends.to_friend) FROM friends WHERE
+            (
+                users.id = friends.to_friend OR users.id = friends.from_friend
+            ) AND (
+                friends.to_friend = '.$this->_userID.' OR friends.from_friend = '.$this->_userID.'
+            )
+    ) AS check_to_friend,
+    (
+        SELECT
+            (friends.from_friend)
+        FROM
+            friends
+        WHERE
+            (
+                users.id = friends.to_friend OR users.id = friends.from_friend
+            ) AND (
+                friends.to_friend = '.$this->_userID.' OR friends.from_friend = '.$this->_userID.'
+            )
+    ) AS check_from_friend,
+     (SELECT (friends.status) FROM friends WHERE (
+                            users.id = friends.to_friend OR users.id = friends.from_friend
+                           ) AND (
+                           friends.to_friend = ' .$this->_userID.' OR friends.from_friend = '.$this->_userID.'
+                          )
+    ) AS check_status
+    FROM
+        `users`
+    LEFT JOIN `friends` ON `friends`.`from_friend` = `users`.`id` OR `friends`.`to_friend` = `users`.`id`
+    WHERE
+        `users`.`id` != '.$this->_userID;
+
+         if(!empty($search)){
+            $arrExplodedKeyword = explode(" ",$search);  
+            foreach($arrExplodedKeyword as $key=>$value){
+                if($key > 0){  
+                    $sql.= " OR CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $value . "%'";
+                } else { 
+                    $sql.= " AND CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $value . "%'";
+                    
+                }
             }
-            //echo  $condition;exit;
-            //$condition = "CONCAT(first_names,last_name,user_name,email)" . "LIKE '%" . $search . "%'";
-            $this->db->where($condition);
+        }else{
+            $sql.= " AND CONCAT(first_name,last_name,user_name,email)" . " LIKE '%" . $search. "%'";   
         }
-        $this->db->where("users.id!=".$this->_userID);
-        $this->db->group_by('users.id'); 
-        $query = $this->db->get();
-        if ($query->num_rows() > 0) {
-        	return $query->result();
-        } else {
-        	return false;
-        }
+        $sql.= ' GROUP BY `users`.`id`';
+        $condition = "";
+        return $this->db->query($sql, $condition)->result();
+
     }
+
 
 
     public function getUserByToken($token) {
@@ -652,7 +717,7 @@ class Favoritewish_Model extends CI_Model {
         }
         $this->db->where("(friends.from_friend=".$this->_userID." OR friends.to_friend=".$this->_userID.")");
         $this->db->where("friends.status",1);
-        $this->db->where("users.id!=".$this->_userID);
+        $this->db->where("users.id!=",$this->_userID);
         $this->db->group_by('users.id'); 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -1137,6 +1202,100 @@ public function UpdateHomeContent($id,$updatetData){
       //  $this->db->where('id', '107');
         $query = $this->db->get();
         return  $query->result();
+    }
+
+    public function getNotification($userid){ 
+        $this->db->select('*');
+        $this->db->from('notification');
+        $this->db->join('users', 'notification.from_friend = users.id');
+        $this->db->where('notification.to_friend', $userid);
+        $query = $this->db->get();
+       // echo"<pre>"; var_dump($query->result()); exit;
+        return  $query->result();
+    }
+
+    public function UpdateNotyfyData($id,$updatetNotyfyData){
+        $this->db->where('from_friend', $id);
+        $this->db->update('notification',$updatetNotyfyData);
+    }
+
+    public function getFriendRequestCount(){
+        $this->db->select('*');
+        $this->db->from('notification');
+        $this->db->where('notyfy_status', 0);
+        $this->db->where('to_friend', $this->_userID);
+        $query = $this->db->get();
+        $rowcount = $query->num_rows();
+        return $rowcount;
+    } 
+    public function getNotyfyAllData(){
+        $this->db->select('*');
+        $this->db->from('notification');
+        $query = $this->db->get();
+        return  $query->result();
+    } 
+
+    public function getDataFromFriend($id,$loginId){
+        $this->db->select('*');
+        $this->db->from('notification');
+        $this->db->join('users', 'notification.to_friend = users.id');
+        $this->db->where('notification.to_friend', $id);
+        $this->db->where('notification.from_friend', $loginId);
+        $query = $this->db->get();
+        return  $query->row(); 
+    }
+   
+    public function getDataToFriend($id,$loginId){ 
+        $this->db->select('*');
+        $this->db->from('notification');
+        $this->db->join('users','notification.from_friend = users.id');  
+        $this->db->where('notification.from_friend', $id);
+        $this->db->where('notification.to_friend', $loginId);
+        $query = $this->db->get();
+      //  echo"<pre>"; var_dump($query->row()); exit;
+        return  $query->row(); 
+    }
+    
+    public function UpdateBirthdayStatus($id,$updateFromFriendtBirthday){
+        $this->db->where('from_friend', $id);
+        $this->db->update('notification',$updateFromFriendtBirthday);  
+    }
+    
+    public function getFriendBirthdayNotify(){
+        $this->db->select('users.*, notification.notyfy_status as friends_status,notification.to_friend,notification.from_friend,notification.friend_birthday_notify,notification.to_friend_birthday_notify');
+        $this->db->from('notification');
+        $this->db->join('users', '(notification.from_friend = users.id OR notification.to_friend = users.id) AND notification.notyfy_status=1');
+        $this->db->where("(notification.from_friend=".$this->_userID." OR notification.to_friend=".$this->_userID.")");
+      //  $this->db->where("notification.notyfy_status",1);
+        $this->db->where("users.id!=",$this->_userID);
+        $this->db->group_by('users.id'); 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+        	return $query->result();
+        } else {
+        	return false;
+        }
+    }
+
+    public function UpdateToBirthdayStatus($id,$updateToFriendtBirthday){
+        $this->db->where('to_friend', $id);
+        $this->db->update('notification',$updateToFriendtBirthday); 
+    }
+
+    public function getObjUserDetailsById($userId){
+        $this->db->select('friend_request_notify');
+        $this->db->from('users');
+        $this->db->where('id',$userId);
+        $query = $this->db->get();
+        return  $query->row(); 
+    }
+
+    public function getFormFriendBirthay($userId){
+        $this->db->select('dob');
+        $this->db->from('users');
+        $this->db->where('id',$userId);
+        $query = $this->db->get();
+        return  $query->row();
     }
 
 }

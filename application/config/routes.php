@@ -123,6 +123,10 @@ $route['send/email'] = 'favoritewish/sendEmail';
 $route['send/email/unsubscribe'] = 'favoritewish/sendEmailStatusChange';
 $route['home/page'] = 'favoritewish/index';
 $route['privacy/Policy'] = 'favoritewish/privacyPolicy';
+$route['user/friends/notyfy/read'] = 'favoritewish/friendNotyfyRead';
+$route['user/birthday/status/update'] = 'favoritewish/birthdayStateUpdate';
+$route['user/birthday/status/toupdate'] = 'favoritewish/birthdayTOStateUpdate';
+$route['user/friends/birthday'] = 'favoritewish/userFriendsBirthday';
 /*
 
 
