@@ -1298,4 +1298,58 @@ public function UpdateHomeContent($id,$updatetData){
         return  $query->row();
     }
 
+    public function getFirstMonthFirthday($firstMonth){
+        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
+        $this->db->from('friends');
+        $this->db->join('users', '(friends.from_friend = users.id OR friends.to_friend = users.id) AND friends.status=1');
+        $this->db->where("(friends.from_friend=".$this->_userID." OR friends.to_friend=".$this->_userID.")");
+        $this->db->where("friends.status",1);
+        $this->db->where("users.id!=",$this->_userID);
+        $this->db->where('MONTH(users.dob)', $firstMonth);
+        $this->db->where('YEAR(users.dob)', date('Y'));
+        $this->db->group_by('users.id'); 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+        	return $query->result();
+        } else {
+        	return false;
+        }
+
+    }
+
+    public function getTodayBirthday(){
+        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
+        $this->db->from('friends');
+        $this->db->join('users', '(friends.from_friend = users.id OR friends.to_friend = users.id) AND friends.status=1');
+        $this->db->where("(friends.from_friend=".$this->_userID." OR friends.to_friend=".$this->_userID.")");
+        $this->db->where("friends.status",1);
+        $this->db->where("users.id!=",$this->_userID);
+        $this->db->where("date(users.dob)",date("Y-m-d"));
+        $this->db->group_by('users.id'); 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+        	return $query->result();
+        } else {
+        	return false;
+        } 
+    }
+
+    public function getSecoundMonthFirthday($nextMonth){
+        $this->db->select('users.*, friends.status as friends_status,friends.to_friend,friends.from_friend');
+        $this->db->from('friends');
+        $this->db->join('users', '(friends.from_friend = users.id OR friends.to_friend = users.id) AND friends.status=1');
+        $this->db->where("(friends.from_friend=".$this->_userID." OR friends.to_friend=".$this->_userID.")");
+        $this->db->where("friends.status",1);
+        $this->db->where("users.id!=",$this->_userID);
+        $this->db->where('MONTH(users.dob)', $nextMonth);
+        $this->db->where('YEAR(users.dob)', date('Y'));
+        $this->db->group_by('users.id'); 
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+        	return $query->result();
+        } else {
+        	return false;
+        }
+    }
+
 }

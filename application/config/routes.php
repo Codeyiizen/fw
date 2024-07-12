@@ -76,6 +76,7 @@ $route['sign-in'] = 'favoritewish/login';
 $route['user-dashboard'] = 'favoritewish/user_dashboard';
 $route['user-profile'] = 'favoritewish/user_profile';
 $route['setting'] = 'favoritewish/changepwd';
+$route['notification'] = 'favoritewish/notification';
 $route['user-profile/edit'] = 'favoritewish/edit';
 $route['forgot-password'] = 'favoritewish/forgotpassword';
 $route['profile/postyourads'] = 'favoritewish/postyourads';
