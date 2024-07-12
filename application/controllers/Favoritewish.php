@@ -2512,15 +2512,41 @@ public function familyWishDelete(){
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['categories'] = $this->Favoritewish_Model->getCategories();
-			$data['get'] = $get;
-			$data['userData'] = $this->Favoritewish_Model->getUsersList($get);
-			$data['notification'] = $this->Favoritewish_Model->getNotification($sessionArray['user_id']);
+			$data['get'] = $get;$data['userData'] = $this->Favoritewish_Model->getUserFriendsList($get);
+			$data['toDayBirthday'] = $this->Favoritewish_Model->getTodayBirthday();
+			$firstMonth = date('m');
+			$data['firstMonthBirthday'] = $this->Favoritewish_Model->getFirstMonthFirthday($firstMonth);
+			$nextMonth = date('m', strtotime('+1 month')); 
+			$data['secoundMonthBirthday'] = $this->Favoritewish_Model->getSecoundMonthFirthday($nextMonth);
+		//	echo"<pre>"; var_dump($data['secoundMonthBirthday']); exit;
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents', 'user/userFrindsBirthday', $data);
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+		}
+	}
+
+	public function notification()
+	{
+		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('signin'); // the user is not logged in, redirect them!
+		} else {
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('changepassword'); // Calling model function defined in Favoritewish_Model.php
+			$data = array();
+			$data['metaDescription'] = 'Password Setting';
+			$data['metaKeywords'] = 'Password Setting';
+			$data['title'] = "Change Password";
+			$data['breadcrumbs'] = array('Change Password' => '#');
+			$sessionArray = $this->session->userdata('ci_seesion_key');
+			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+            $data['notification'] = $this->Favoritewish_Model->getNotification($sessionArray['user_id']);
 			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			$data['friendRequestCount'] = $this->Favoritewish_Model->getFriendRequestCount();
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
-			$this->template->load('default_layout', 'contents', 'user/userFrindsBirthday', $data);
+			$this->template->load('default_layout', 'contents', 'auth/notification-setting');
 			$this->load->view('front/template/template_footer');
 			$this->load->view('front/footer_main');
 		}

@@ -4,6 +4,7 @@
 		<ul class="profile-navigations">
 			<li><a href="<?php echo base_url(); ?>user-profile/edit">Edit Profile</a></li>
 			<li><a href="<?php echo base_url(); ?>setting">Change Password</a></li>
+			<li><a href="<?php echo base_url(); ?>notification">Notification</a></li>
 			<li><a href="<?php echo base_url(); ?>favoritewish/logout">Logout</a></li>
 		</ul>
 	</div>
