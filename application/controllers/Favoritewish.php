@@ -2534,22 +2534,43 @@ public function familyWishDelete(){
 		} else {
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('changepassword'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
-			$data['metaDescription'] = 'Password Setting';
-			$data['metaKeywords'] = 'Password Setting';
-			$data['title'] = "Change Password";
+			$data['metaDescription'] = 'Notificartion Setting';
+			$data['metaKeywords'] = 'Notificartion Setting';
+			$data['title'] = "Notificartion Setting";
 			$data['breadcrumbs'] = array('Change Password' => '#');
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-            $data['notification'] = $this->Favoritewish_Model->getNotification($sessionArray['user_id']);
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
-			$data['friendRequestCount'] = $this->Favoritewish_Model->getFriendRequestCount();
+			$data['userDataById'] = $this->Favoritewish_Model->getUserDataById($sessionArray['user_id']);
+		//	echo"<pre>"; var_dump($data['userDataById']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/notification-setting');
 			$this->load->view('front/template/template_footer');
 			$this->load->view('front/footer_main');
 		}
+	}
+
+	public function notificationSettingUpdate()
+	{   
+	    $sessionArray = $this->session->userdata('ci_seesion_key');
+		$inbox_massage = isset($_POST['inbox_massage']) ? 1 : 0;
+		$friend_request = isset($_POST['friend_request']) ? 1 : 0;
+		$upComming_birthday = isset($_POST['upcomming_birthday']) ? 1 : 0;
+		$id = $sessionArray['user_id'];
+		$updateInboxMassage = array(
+			'Inbox_message' => $inbox_massage,
+			); 
+		$updateFriendRequest = array(
+			'friend_request' => $friend_request,
+			);	
+		$updateBirthday = array(
+			'upcoming_birthday' => $upComming_birthday,
+			);	
+		$this->Favoritewish_Model->updateInBoxMassage($id,$updateInboxMassage);
+		$this->Favoritewish_Model->updateFriendRequest($id,$updateFriendRequest);
+		$this->Favoritewish_Model->updateUpcommingBirthday($id,$updateBirthday);
+	    redirect('notification');
 	}
 
 }

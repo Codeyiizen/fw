@@ -60,7 +60,7 @@
                                                 <h5 class="h5">
                                                     <?php echo $thisMonthBirthday->first_name . '  ' . $thisMonthBirthday->last_name ?>
                                                 </h5>
-                                                <p><?php echo date('M') ?> <?php echo date('d');  ?>, <?php  echo date('D'); ?></p>
+                                                <p><?php echo date('M', strtotime($thisMonthBirthday->dob)) ?> <?php echo date('d', strtotime($thisMonthBirthday->dob)) ?>, <?php  echo date('D', strtotime($thisMonthBirthday->dob)) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                                     <div class="card mb-4 mb-md-0">
                                         <div class="card-body">
                                             <h5 class="h5"><?php echo $secoundBirthday->first_name . '  ' . $secoundBirthday->last_name ?></h5>
-                                            <p><?php echo date('M') ?> <?php echo date('d');  ?>, <?php  echo date('D'); ?></p>
+                                            <p><?php echo date('M', strtotime($secoundBirthday->dob)) ?> <?php echo date('d', strtotime($secoundBirthday->dob)) ?>, <?php  echo date('D', strtotime($secoundBirthday->dob)) ?></p>
                                         </div>
                                     </div>
                                 </div>

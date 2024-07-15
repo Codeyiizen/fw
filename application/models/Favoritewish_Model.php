@@ -1352,4 +1352,27 @@ public function UpdateHomeContent($id,$updatetData){
         }
     }
 
+    public function getUserDataById($userId){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('id',$userId);
+        $query = $this->db->get();
+        return  $query->row();
+    }
+
+    public function updateInBoxMassage($id,$updateInboxMassage){ 
+        $this->db->where('id', $id);
+        $this->db->update('users',$updateInboxMassage); 
+    }
+
+    public function updateFriendRequest($id,$updateFriendRequest){
+        $this->db->where('id', $id);
+        $this->db->update('users',$updateFriendRequest);   
+    }
+
+    public function updateUpcommingBirthday($id,$upComming_birthday){
+        $this->db->where('id', $id);
+        $this->db->update('users',$upComming_birthday); 
+    }
+
 }
