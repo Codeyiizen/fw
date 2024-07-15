@@ -22,12 +22,13 @@
                                         <h6>Type</h6>
                                         <h6>Email</h6>
                                     </div>
+                                <?php echo form_open_multipart('favoritewish/notificationSettingUpdate'); ?>    
                                     <div class="d-flex align-items-top justify-content-between mb-2">
                                         <div class="mail-notification-settings mr-3">
                                             <p class="mb-0">Inbox Message</p>
                                         </div>
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="inbox-message">
+                                            <input type="checkbox" class="form-check-input" name="inbox_massage" value="<?php !empty($userDataById->Inbox_message) ? $userDataById->Inbox_message :'0' ?>" <?php echo ($userDataById->Inbox_message == 1 ? 'checked' : null); ?>>
                                             <label class="form-check-label" for="inbox-message">&nbsp;</label>
                                         </div>
                                     </div>
@@ -36,7 +37,7 @@
                                             <p class="mb-0">Friend Request</p>
                                         </div>
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="friend-request">
+                                            <input type="checkbox" class="form-check-input" name="friend_request" value="<?php echo $userDataById->friend_request ?>" <?php echo ($userDataById->friend_request == 1 ? 'checked' : null); ?>>
                                             <label class="form-check-label" for="friend-request">&nbsp;</label>
                                         </div>
                                     </div>
@@ -45,10 +46,14 @@
                                             <p class="mb-0">Upcoming birthday alert</p>
                                         </div>
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="birthday-alert">
+                                            <input type="checkbox" class="form-check-input" name="upcomming_birthday" value="<?php echo $userDataById->upcoming_birthday ?>" <?php echo ($userDataById->upcoming_birthday == 1 ? 'checked' : null); ?>>
                                             <label class="form-check-label" for="birthday-alert">&nbsp;</label>
                                         </div>
                                     </div>
+                                    <div class="form-group pull-right mb-0 mt-4">
+                                       <button type="submit" class="theme-btn yellow-bg">Submit</button>
+                                    </div>
+                                <?php echo form_close(); ?>
                                 </div>
                             </div>
                         </div>
