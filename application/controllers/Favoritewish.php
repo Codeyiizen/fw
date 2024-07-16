@@ -1485,6 +1485,7 @@ class Favoritewish extends CI_Controller
 	public function sendFriendsRequest()
 	{  
 		$user = getUser();
+		$arrData = array();
 		$stream = $this->security->xss_clean($this->input->raw_input_stream);
 		if (!empty($stream)) {
 			$objPost = json_decode(trim($stream), true);
@@ -1496,6 +1497,35 @@ class Favoritewish extends CI_Controller
 					
 					$arrInsertNotification = array('to_friend' => $objUser['id'],'from_friend' => $user['user_id'], 'notyfy_status' =>0,'created_on' => date('Y-m-d H:i:s'));
 					$this->db->insert('notification', $arrInsertNotification);
+					if($objUser['friend_request'] == 1){
+						$sessionArray = $this->session->userdata('ci_seesion_key');
+						$formUser = $this->Favoritewish_Model->getFromUser($sessionArray['user_id']);
+						$arrData['firstName'] =$formUser->first_name;
+						$arrData['lastName'] =$formUser->last_name;
+						$arrData['url'] ='<a href="'.base_url('user/friends/requests').'">Frend Request</a>';
+						$config = array(
+							'protocol'  => 'smtp',
+							'smtp_host' => 'smtp.gmail.com',
+							'smtp_port' => 587, //if 80 dosenot work use 24 or 21
+							'smtp_user'  => 'codeyiizen.test@gmail.com',  
+							'smtp_pass'  => 'wdxdkwcbygukszqv',
+							'smtp_crypto' => 'tls',
+							'charset' => 'iso-8859-1',
+							'wordwrap' => TRUE
+						);
+						$this->load->library('encryption');
+						$this->load->library('email');
+						$config['charset'] = 'iso-8859-1';
+						$config['wordwrap'] = TRUE;
+						$config['mailtype'] = 'html';
+						$this->email->initialize($config);
+						$this->email->to($objUser['email']);
+						$this->email->from(MAIL_FROM, FROM_TEXT);
+						$this->email->subject('FavoriteWish New Friend Request');
+						$this->email->set_newline("\r\n");
+						$this->email->message($this->load->view('email/friendRequestNotify',$arrData, true));
+						$this->email->send();
+				   }
 					if(!empty($this->db->insert_id()) && $this->db->insert_id() > 0) {
 						echo returnSuccessResponse($arrInsert);
 					} else {
@@ -1605,7 +1635,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 	public function getUserPendingFriends()
-	{
+	{    
 		checkMenuActive(true);
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
