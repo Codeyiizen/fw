@@ -1375,4 +1375,12 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->update('users',$upComming_birthday); 
     }
 
+    public function getFromUser($userId){
+        $this->db->select('first_name,last_name');
+        $this->db->from('users');
+        $this->db->where('id',$userId);
+        $query = $this->db->get();
+        return  $query->row();
+    }
+
 }
