@@ -1977,7 +1977,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function getMessagelist($id){  
+	public function getMessagelist($id){   
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -1995,23 +1995,19 @@ class Favoritewish extends CI_Controller
 			$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
 			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id, $sessionArray['user_id']);
 			$data['is_friend'] = $isFriend;
-			//	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			if (!empty($id)) {
 				$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfoBtUser($id,$get);
-				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['friend_id'] = $id;
 			if($id){
 			  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id,$sessionArray['user_id']);
-			//   echo "<pre>";
-			//   var_dump($data['form_massage']);exit;
+			  $sendMail = $this->Favoritewish_Model->sendMail($id,$sessionArray['user_id']);
 			}
 			$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
 			$data['notification'] = $this->Favoritewish_Model->getNotification($sessionArray['user_id']);
 			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			$data['friendRequestCount'] = $this->Favoritewish_Model->getFriendRequestCount();
-			 // echo"<pre>"; var_dump($data['user_massage']);exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/message-list');
@@ -2601,6 +2597,65 @@ public function familyWishDelete(){
 		$this->Favoritewish_Model->updateFriendRequest($id,$updateFriendRequest);
 		$this->Favoritewish_Model->updateUpcommingBirthday($id,$updateBirthday);
 	    redirect('notification');
+	}
+
+	public function userBirthdayAlert(){  
+	    if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+			redirect('sign-in'); 
+		}else{
+			$get = $this->input->get();
+			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); 
+			$data = array();
+			$data['metaDescription'] = 'Search Friends';
+			$data['metaKeywords'] = 'Search Friends';
+			$data['title'] = "Search Friends";
+			$data['breadcrumbs'] = array('User Friends' => '#');
+			$sessionArray = $this->session->userdata('ci_seesion_key');
+			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
+			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
+			$data['get'] = $get;$data['userData'] = $this->Favoritewish_Model->getUserFriendsList($get);
+			$getFromUser = $this->Favoritewish_Model->getFromUserDetailsById($sessionArray['user_id']);
+			$toDayBirthday = $this->Favoritewish_Model->getTodayBirthday();
+			foreach($toDayBirthday as $toDayBirthdays){
+				$arrData[] =$toDayBirthdays->first_name.' '.$toDayBirthdays->last_name;
+			}
+			$dataMsg['name'] = $arrData;
+			if($getFromUser->upcoming_birthday == 1){  
+					$sessionArray = $this->session->userdata('ci_seesion_key');
+					$config = array(
+						'protocol'  => 'smtp',
+						'smtp_host' => 'smtp.gmail.com',
+						'smtp_port' => 587, //if 80 dosenot work use 24 or 21
+						'smtp_user'  => 'codeyiizen.test@gmail.com',  
+						'smtp_pass'  => 'wdxdkwcbygukszqv',
+						'smtp_crypto' => 'tls',
+						'charset' => 'iso-8859-1',
+						'wordwrap' => TRUE
+					);
+					$this->load->library('encryption');
+					$this->load->library('email');
+					$config['charset'] = 'iso-8859-1';
+					$config['wordwrap'] = TRUE;
+					$config['mailtype'] = 'html';
+					$this->email->initialize($config);
+					$this->email->to($getFromUser->email);
+					$this->email->from(MAIL_FROM, FROM_TEXT);
+					$this->email->subject('FavoriteWish Today Birthday Notification');
+					$this->email->set_newline("\r\n");
+					$this->email->message($this->load->view('email/todayBithdayNotify',$dataMsg, true));
+					$this->email->send();
+			}
+			$firstMonth = date('m');
+			$data['firstMonthBirthday'] = $this->Favoritewish_Model->getFirstMonthFirthday($firstMonth);
+			$nextMonth = date('m', strtotime('+1 month')); 
+			$data['secoundMonthBirthday'] = $this->Favoritewish_Model->getSecoundMonthFirthday($nextMonth);
+		//	echo"<pre>"; var_dump($data['secoundMonthBirthday']); exit;
+			$this->load->view('front/header_inner', $data);
+			//$this->load->view('front/bannerSection',$arr);
+			$this->template->load('default_layout', 'contents', 'user/userFrindsBirthday', $data);
+			$this->load->view('front/template/template_footer');
+			$this->load->view('front/footer_main');
+		}
 	}
 
 }
