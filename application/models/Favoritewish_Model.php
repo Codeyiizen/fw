@@ -1383,4 +1383,23 @@ public function UpdateHomeContent($id,$updatetData){
         return  $query->row();
     }
 
+    public function sendMail($id,$userId){
+        $this->db->select("messages.*,CONCAT(from.first_name,' ',from.last_name) as from_name,CONCAT(from.Inbox_message) as from_notify_email,CONCAT(to.first_name,' ',to.last_name) as to_name,CONCAT(to.Inbox_message) as to_notify_email,from.profile_photo as from_photo,to.profile_photo as to_photo");
+        $this->db->from("messages");
+        $this->db->join('users as from','from.id=messages.from_user','left');
+        $this->db->join('users as to','to.id=messages.to_user','left');
+        $this->db->where('(to_user='.$id." and from_user=".$userId.')');
+        $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
+        $query = $this->db->get();
+        return $query->result();
+   }
+
+   public function getFromUserDetailsById($userId){
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('id',$userId);
+    $query = $this->db->get();
+    return  $query->row();
+   }
+
 }
