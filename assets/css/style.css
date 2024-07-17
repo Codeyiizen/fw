@@ -1860,6 +1860,25 @@ nav.fullscreen-nav .notification {
 	position: relative;
 }
 
+.list-notification li a{
+	background-color: #ebf2f5;
+	padding-top: .5rem;
+	padding-bottom: .5rem;
+}
+
+.list-notification li a small{
+   color: #6c757d;
+}
+
+.list-notification li a.active small,
+.list-notification li a:active small{
+  color: #fff;
+}
+
+.list-notification li:not(:last-child){
+	border-bottom: 1px solid #cccccc;
+}
+
 nav.fullscreen-nav .notification .icon {
 	position: absolute;
 	top: -4px;
@@ -2036,6 +2055,10 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	-webkit-box-shadow: 0px 0px 8px 0px rgba(209, 209, 209, 1);
 	-moz-box-shadow: 0px 0px 8px 0px rgba(209, 209, 209, 1);
 	box-shadow: 0px 0px 8px 0px rgba(209, 209, 209, 1);
+}
+
+.bg-light{
+	background-color: #ced4da !important;
 }
 
 .bg-gradient-1 {

@@ -74,18 +74,20 @@
                     </div>
                     <nav class="fullscreen-nav">
 
-                <?php  
+                        <?php  
+                    
                     $sessionArray = $this->session->userdata('ci_seesion_key');
                     $CI =& get_instance(); 
                     $CI->load->model('Favoritewish_Model');
                     $notifyAllData = $CI->Favoritewish_Model->getNotyfyAllData();
-                    $notification = $CI->Favoritewish_Model->getNotification($sessionArray['user_id']);
+                  // $notification = $CI->Favoritewish_Model->getNotification($sessionArray['user_id']);
                 ?>
-                    <?php
+                        <?php
                       if(!empty($notifyAllData)){
                           $varNotification = array();
                           $addClass = array();
                           $addBorderClass = 'border-0';
+                          if($sessionArray !=''){
                           foreach($notifyAllData as $allData){  
                             if($allData->from_friend == $sessionArray['user_id']){
                                  $fromData = $CI->Favoritewish_Model->getDataFromFriend($allData->to_friend,$sessionArray['user_id']);
@@ -115,12 +117,13 @@
                             }
                         
                         }
+                    }
                     }else{
                         $varNotification = array();
                         $addClass = array();
                     }
 				?>
-             <?php
+                        <?php
                 
                 $sessionArray = $this->session->userdata('ci_seesion_key');
                 $CI =& get_instance(); 
@@ -150,24 +153,99 @@
                          }
                      }
                  }
-              ?>  
-              
-             <a href="javacript:void()" class="dropdown">
-                 <a href="javacript:void()" class="dropdown-toggle user-account notification mr-4"
-                     id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                     aria-expanded="false">
-                     <i class="fas fa-bell fa-lg"></i>
-                     <span class="<?php echo !empty($addClass) ? $addClass :'' ?><?php echo !empty($showBirthdayClass) ? $showBirthdayClass :'' ;?>"></span>
-                 </a> 
-             </a>
-             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                 <?php
+              ?>
+
+                        <a href="javacript:void()" class="dropdown">
+                            <a href="javacript:void()" class="dropdown-toggle user-account notification mr-4"
+                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="fas fa-bell fa-lg"></i>
+                                <span
+                                    class="<?php echo !empty($addClass) ? $addClass :'' ?><?php echo !empty($showBirthdayClass) ? $showBirthdayClass :'' ;?>"></span>
+                            </a>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <div
+                                class="dropdown-header d-flex justify-content-between align-items-center text-dark fs_16">
+                                <span><i class="icon icon-15 mr-2"></i>Notifications</span>
+                                <button type="button" class="btn btn-link text-dark p-0"><i
+                                        class="fas fa-cog"></i></button>
+                            </div>
+                            <ul class="list-unstyled list-notification">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
+                                        <div class="d-flex align-items-start mr-2">
+                                            <span
+                                                class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
+                                                <i class="icon icon-36 fs_15"></i>
+                                            </span>
+                                            <div>
+                                                <p class="fs_14 mb-0 lh_20 font-weight-semibold">Moo boo had send you a
+                                                    friend
+                                                    request.</p>
+                                                <small>1d</small>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="button"
+                                                class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle"><i
+                                                    class="fa fa-times fs_10"></i></button>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
+                                        <div class="d-flex align-items-start mr-2">
+                                            <span
+                                                class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
+                                                <i class="icon icon-36 fs_15"></i>
+                                            </span>
+                                            <div>
+                                                <p class="fs_14 mb-0 lh_20 font-weight-semibold">Wish thomas a happy
+                                                    birthday, it's his birthday today.</p>
+                                                <small>3d</small>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="button"
+                                                class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle"><i
+                                                    class="fa fa-times fs_10"></i></button>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
+                                        <div class="d-flex align-items-start mr-2">
+                                            <span
+                                                class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
+                                                <i class="icon icon-36 fs_15"></i>
+                                            </span>
+                                            <div>
+                                                <p class="fs_14 mb-0 lh_20 font-weight-semibold">Vik has send a message.
+                                                    Reply him now.</p>
+                                                <small>3d</small>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button type="button"
+                                                class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle"><i
+                                                    class="fa fa-times fs_10"></i></button>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="dropdown-footer text-center">
+                                <button type="button" class="btn btn-link text-dark fs_14 p-0">Read all</button>
+                            </div>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-right d-none" aria-labelledby="dropdownMenuButton">
+                            <?php
                  foreach($varNotification as $fri){ echo $fri; } 
              ?>
-             <?php if(!empty($getBirthday)){   ?>
-                 <?php  foreach($getBirthday as $friends){  ?>
-                     
-                 <?php 
+                            <?php if(!empty($getBirthday)){   ?>
+                            <?php  foreach($getBirthday as $friends){  ?>
+
+                            <?php 
                   $bday = ''; 
                    if($friends->from_friend == $sessionArray['user_id']){
                      if($friends->friend_birthday_notify == 0){ 
@@ -188,10 +266,10 @@
                    }
                      
                  ?>
-                 <?php echo $bday   ?>
-                 <?php } } ?>
-             </div>
-             </a>
+                            <?php echo $bday   ?>
+                            <?php } } ?>
+                        </div>
+                        </a>
 
 
                         <?php
