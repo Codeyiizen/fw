@@ -144,7 +144,7 @@
 		});
 	})   
 
-	$("body").on("click", ".removeFriend", function () {
+	$("body").on("click", ".removeFriend", function () {  
 		var tokenObj = $(this).data('token');   
 		var params = { "token": tokenObj,type:'remove' };
 		$.ajax({
@@ -286,7 +286,7 @@
 	});
 
 	$("body").on("click",".updateToFriendBirthday", function(){  
-		var id = $(this).attr('id'); 
+		var id = $(this).attr('id');   
 		 $.ajax({
 			 url: BASE_URL + "/user/birthday/status/toupdate",
 			 type: "post",

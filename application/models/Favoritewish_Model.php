@@ -69,8 +69,11 @@ class Favoritewish_Model extends CI_Model {
         $this->db->insert('contact', $data);
         return $this->db->insert_id();
     }
-   public function messageFrmSubmit($data){
+   public function messageFrmSubmit($data,$msgStatus){  
     $this->db->insert('messages', $data);
+    if($msgStatus == 0){
+     $this->db->insert('msg_notification', $data);
+    }
    } 
    
    public function getMessage($id,$userId){
@@ -282,7 +285,7 @@ class Favoritewish_Model extends CI_Model {
     // login method and password verify
     function userLogin() 
 	{
-        $this->db->select('id as user_id, user_name, email, password, contact_no, first_name, last_name, company');
+        $this->db->select('id as user_id, user_name, email, password, contact_no, first_name, last_name, company,msg_notify_status');
         $this->db->from('users');
         $this->db->where('email', $this->_userName);
         $this->db->where('verification_code', 1);
@@ -1401,5 +1404,63 @@ public function UpdateHomeContent($id,$updatetData){
     $query = $this->db->get();
     return  $query->row();
    }
+
+   public function updateMsgStatus($id,$updateMassageStatus){ 
+    $this->db->where('id', $id);
+    $this->db->update('users',$updateMassageStatus); 
+   }
+
+   public function updateMassageStatus($id,$updateMsgStatus){ 
+    $this->db->where('id', $id);
+    $this->db->update('users',$updateMsgStatus); 
+   }
+
+   public function getMsgTableData(){
+    $this->db->select('*');
+    $this->db->from('msg_notification');
+    $query = $this->db->get();
+    return  $query->result();
+   }
+
+   public function getDataFromMsg($id,$loginId){  
+    $this->db->select('*');
+    $this->db->from('msg_notification');
+    $this->db->join('users', 'msg_notification.to_user = users.id');
+    $this->db->where('msg_notification.to_user', $id);
+    $this->db->where('msg_notification.from_user', $loginId);
+    $query = $this->db->get();
+    return  $query->row(); 
+  }
+
+  public function getDataToMsg($id,$loginId){
+    $this->db->select('*');
+    $this->db->from('msg_notification');
+    $this->db->join('users', 'msg_notification.from_user = users.id');
+    $this->db->where('msg_notification.from_user', $id);
+   $this->db->where('msg_notification.to_user', $loginId);
+    $query = $this->db->get();
+    return  $query->row(); 
+  }
+
+  public function getObjMsgUser($userId){
+    $this->db->select('check_msg_status');
+    $this->db->from('users');
+    $this->db->where('id',$userId);
+    $query = $this->db->get();
+    return  $query->row(); 
+}
+
+public function checkUserLoginStatus($id){
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('id',$id);
+    $query = $this->db->get();
+    return  $query->row();
+}
+
+public function UpdateMsgStatusById($id,$updatetMsgStatus){
+    $this->db->where('id', $id);
+    $this->db->update('users',$updatetMsgStatus);
+}
 
 }
