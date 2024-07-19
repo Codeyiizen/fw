@@ -429,8 +429,7 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	font-size: 13px;
 }
 
-@media (min-width: 992px) {
-}
+@media (min-width: 992px) {}
 
 @media (min-width: 1400px) {
 	.header-lower {
@@ -458,7 +457,7 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	margin: 0px;
 }
 
-.main-menu .navigation > li {
+.main-menu .navigation>li {
 	position: relative;
 	display: inline-block;
 	margin: 0px 20px;
@@ -469,15 +468,15 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	transition: all 300ms ease;
 }
 
-.main-menu .navigation > li:last-child {
+.main-menu .navigation>li:last-child {
 	margin-right: 0px !important;
 }
 
-.main-menu .navigation > li:first-child {
+.main-menu .navigation>li:first-child {
 	margin-left: 0px !important;
 }
 
-.main-menu .navigation > li > a {
+.main-menu .navigation>li>a {
 	position: relative;
 	display: block;
 	text-align: center;
@@ -496,12 +495,12 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	transition: all 500ms ease;
 }
 
-.main-menu .navigation > li > a:hover,
-.main-menu .navigation > li.active > a {
+.main-menu .navigation>li>a:hover,
+.main-menu .navigation>li.active>a {
 	color: var(--secondary);
 }
 
-.main-menu .navigation > li.menu-item-has-children > .sub-menu {
+.main-menu .navigation>li.menu-item-has-children>.sub-menu {
 	background: #fff;
 	/*box-shadow: 0 6px 12px rgba(0,0,0,.176);*/
 	left: -80px;
@@ -520,8 +519,8 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	border-radius: 5px;
 }
 
-.main-menu .navigation > li.menu-item-has-children > .sub-menu:after,
-.main-menu .navigation > li.menu-item-has-children > .sub-menu:before {
+.main-menu .navigation>li.menu-item-has-children>.sub-menu:after,
+.main-menu .navigation>li.menu-item-has-children>.sub-menu:before {
 	bottom: 100%;
 	left: 50%;
 	border: solid transparent;
@@ -532,45 +531,45 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	pointer-events: none;
 }
 
-.main-menu .navigation > li.menu-item-has-children > .sub-menu:after {
+.main-menu .navigation>li.menu-item-has-children>.sub-menu:after {
 	border-color: rgba(136, 183, 213, 0);
 	border-bottom-color: #fff;
 	border-width: 10px;
 	margin-left: -10px;
 }
 
-.main-menu .navigation > li.menu-item-has-children > .sub-menu:before {
+.main-menu .navigation>li.menu-item-has-children>.sub-menu:before {
 	border-color: rgba(194, 225, 245, 0);
 	border-bottom-color: #fff;
 	border-width: 10px;
 	margin-left: -10px;
 }
 
-.main-menu .navigation > li.menu-item-has-children > a::after {
+.main-menu .navigation>li.menu-item-has-children>a::after {
 	content: "";
 	margin-left: 5px;
 	font-family: Font Awesome\5 Pro;
 	font-size: 14px;
 }
 
-.main-menu .navigation > li.menu-item-has-children:hover > .sub-menu {
+.main-menu .navigation>li.menu-item-has-children:hover>.sub-menu {
 	opacity: 1;
 	visibility: visible;
 	transform: scaleY(1);
 }
 
-.main-menu .navigation > li.menu-item-has-children > .sub-menu > li {
+.main-menu .navigation>li.menu-item-has-children>.sub-menu>li {
 	display: block;
 	margin-bottom: 15px;
 	padding: 0 20px;
 	margin-right: 0;
 }
 
-.main-menu .navigation > li.menu-item-has-children > .sub-menu > li:last-child {
+.main-menu .navigation>li.menu-item-has-children>.sub-menu>li:last-child {
 	margin-bottom: 0px;
 }
 
-.main-menu .navigation > li.menu-item-has-children > .sub-menu > li > a {
+.main-menu .navigation>li.menu-item-has-children>.sub-menu>li>a {
 	display: block;
 	font-size: 16px;
 	color: #333;
@@ -584,7 +583,7 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	padding: 19px 35px;
 }
 
-.main-header .sticky-header .main-menu .navigation > li > a:after {
+.main-header .sticky-header .main-menu .navigation>li>a:after {
 	display: none;
 }
 
@@ -594,8 +593,8 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	background-size: cover;
 }
 
-.equal > div,
-.equal > [class*="col-"] {
+.equal>div,
+.equal>[class*="col-"] {
 	display: flex;
 	flex-direction: column;
 }
@@ -621,7 +620,7 @@ header.main-header.fixed-header .outer-box .header-btn .theme-btn:hover {
 	line-height: 1.5;
 	font-size: 16px;
 	font-family: "Gilroy-Medium";
-    text-align: center;
+	text-align: center;
 }
 
 .theme-btn-submit {
@@ -712,7 +711,7 @@ span.user-info {
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
-.show > .btn-primary.dropdown-toggle {
+.show>.btn-primary.dropdown-toggle {
 	color: #fff;
 	background-color: #022947;
 	border-color: #022947;
@@ -888,12 +887,12 @@ form .error {
 	border-radius: 30px;
 }
 
-.searchbar:hover > .search_input {
+.searchbar:hover>.search_input {
 	caret-color: red;
 	transition: width 0.4s linear;
 }
 
-.searchbar:hover > .search_icon {
+.searchbar:hover>.search_icon {
 	background: var(--primary);
 	color: #fff;
 }
@@ -1095,7 +1094,7 @@ section.profile-content .profile-header-tabs ul li.active a {
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.bg-gray {
+.bg-gray-1 {
 	background-color: var(--gray);
 }
 
@@ -1860,22 +1859,22 @@ nav.fullscreen-nav .notification {
 	position: relative;
 }
 
-.list-notification li a{
+.list-notification li a {
 	background-color: #ebf2f5;
 	padding-top: .5rem;
 	padding-bottom: .5rem;
 }
 
-.list-notification li a small{
-   color: #6c757d;
+.list-notification li a small {
+	color: #6c757d;
 }
 
 .list-notification li a.active small,
-.list-notification li a:active small{
-  color: #fff;
+.list-notification li a:active small {
+	color: #fff;
 }
 
-.list-notification li:not(:last-child){
+.list-notification li:not(:last-child) {
 	border-bottom: 1px solid #cccccc;
 }
 
@@ -1887,7 +1886,7 @@ nav.fullscreen-nav .notification .icon {
 	color: var(--danger);
 }
 
-.myaccountForm-inner > div.card > h2 {
+.myaccountForm-inner>div.card>h2 {
 	color: #212227;
 	font-size: 22px;
 	font-family: var(--body-heading);
@@ -2024,8 +2023,8 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 /*
 * Custom css
 */
-.card{
-    border-radius: 1rem;
+.card {
+	border-radius: 1rem;
 }
 
 .card-image {
@@ -2057,7 +2056,12 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	box-shadow: 0px 0px 8px 0px rgba(209, 209, 209, 1);
 }
 
-.bg-light{
+.rounded-top {
+	border-top-left-radius: 1rem !important;
+	border-top-right-radius: 1rem !important;
+}
+
+.bg-light-1 {
 	background-color: #ced4da !important;
 }
 
@@ -2107,6 +2111,38 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 /* ==========================================================================
     Message List Page
 ========================================================================== */
+.chat-room .card {
+	border-radius: .625rem;
+	border-color: #e8e9ff;
+	background-color: #fdfdff;
+}
+
+.chat-room .card .card-header:first-child {
+	border-radius: calc(0.625rem - 1px) calc(0.625rem - 1px) 0 0;
+}
+
+.chat-room .card .card-header {
+	border-bottom-color: #e8e9ff;
+}
+
+.chat-room .card .message-box {
+	border-radius: .625rem;
+	border: 1px solid #a5a6f6;
+}
+
+.chat-room .message-box .dropdown-menu {
+	background-color: #3c3c3c;
+}
+
+.chat-room .message-box .dropdown-menu ul li:not(:last-child) {
+	border-bottom: 1px solid #000;
+}
+
+.chat-room .message-box .dropdown-menu ul li a:not(:hover) {
+	color: #fff;
+}
+
+
 .chat-room .chat-online {
 	color: #34ce57;
 }
@@ -2120,6 +2156,7 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	flex-direction: column;
 	max-height: 800px;
 	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .emoji-area .emojionearea.emojionearea-inline {
@@ -2129,7 +2166,7 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	border: 0;
 }
 
-.emoji-area .emojionearea.emojionearea-inline > .emojionearea-button {
+.emoji-area .emojionearea.emojionearea-inline>.emojionearea-button {
 	top: -4px;
 	right: auto;
 }
@@ -2156,19 +2193,12 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	right: 0;
 }
 
-.chat-room
-	.emoji-area
-	.emojionearea.emojionearea-inline
-	> .emojionearea-button {
+.chat-room .emoji-area .emojionearea.emojionearea-inline>.emojionearea-button {
 	top: -29px;
 	right: 0;
 }
 
-.chat-room
-	.chat-message-right
-	.emoji-area
-	.emojionearea.emojionearea-inline
-	> .emojionearea-button {
+.chat-room .chat-message-right .emoji-area .emojionearea.emojionearea-inline>.emojionearea-button {
 	right: 0;
 }
 
@@ -2180,9 +2210,7 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
    right: 0;
 } */
 
-.chat-message-left
-	.emojionearea
-	.emojionearea-picker.emojionearea-picker-position-left {
+.chat-message-left .emojionearea .emojionearea-picker.emojionearea-picker-position-left {
 	top: -35px;
 }
 
@@ -2190,12 +2218,34 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	right: -10px;
 }
 
+.chat-room .user-area {
+	min-width: 40px;
+}
+
 .chat-room .chat-message-left .user-area {
 	margin-right: 1rem;
 }
 
+.chat-room .chat-message-left .user-message {
+	width: calc(100% - 56px)
+}
+
 .chat-room .chat-message-right {
 	margin-left: auto;
+}
+
+.chat-room .chat-message-right .message-box {
+	border: 1px solid transparent;
+	background-color: #479cd5;
+}
+
+.chat-room .chat-message-right .message-box p {
+	color: #fff
+}
+
+
+.chat-room .chat-message-right .meta-info {
+	text-align: right;
 }
 
 .chat-room .chat-message-right .inner {
@@ -2217,8 +2267,8 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	bottom: -15px;
 }
 
-.chat-message-left .inner .icon-emoji > .img-fluid,
-.chat-message-right .inner .icon-emoji > .img-fluid {
+.chat-message-left .inner .icon-emoji>.img-fluid,
+.chat-message-right .inner .icon-emoji>.img-fluid {
 	max-width: 20px;
 }
 
@@ -2235,7 +2285,7 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	border-top: 1px solid #dee2e6 !important;
 }
 
-.chat-room .dropdown-toggle {
+.chat-room .btn.dropdown-toggle {
 	width: 41px;
 	height: 41px;
 }
@@ -2244,16 +2294,31 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 	border: 0;
 }
 
-.emojionearea
-	.emojionearea-picker
-	.emojionearea-scroll-area
-	.emojionearea-category-block
-	> .emojionearea-category
-	[name="recent"] {
+.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-block>.emojionearea-category [name="recent"] {
 	display: none;
 }
 
+@media screen and (min-width:768px) {
+	.modal.style2 .modal-content {
+		padding-left: 4rem;
+		padding-right: 4rem;
+		border-radius: 0.625rem;
+	}
+
+	.modal.style2 .btn-light {
+		background-color: #c8c8c8;
+	}
+
+	.modal.style2 .btn-light:hover,
+	.modal.style2 .btn-light:focus,
+	.modal.style2 .btn-light:active {
+		background-color: var(--gray-dark);
+		color:#fff;
+	}
+}
+
 @media screen and (min-width: 992px) {
+
 	.chat-room .chat-message-left,
 	.chat-room .chat-message-right {
 		max-width: 75%;
@@ -2261,33 +2326,23 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 }
 
 @media screen and (max-width: 575px) {
-	.chat-message-right
-		.emojionearea
-		.emojionearea-picker.emojionearea-picker-position-bottom {
+	.chat-message-right .emojionearea .emojionearea-picker.emojionearea-picker-position-bottom {
 		margin: 0;
 		left: auto;
 		right: calc(100% - 79px);
 	}
 
-	.chat-message-right
-		.emojionearea
-		.emojionearea-picker.emojionearea-picker-position-bottom
-		.emojionearea-wrapper:after {
+	.chat-message-right .emojionearea .emojionearea-picker.emojionearea-picker-position-bottom .emojionearea-wrapper:after {
 		right: 80px;
 	}
 
-	.chat-message-left
-		.emojionearea
-		.emojionearea-picker.emojionearea-picker-position-bottom {
+	.chat-message-left .emojionearea .emojionearea-picker.emojionearea-picker-position-bottom {
 		margin: 0;
 		right: auto;
 		left: calc(100% - 95px);
 	}
 
-	.chat-message-left
-		.emojionearea
-		.emojionearea-picker.emojionearea-picker-position-bottom
-		.emojionearea-wrapper:after {
+	.chat-message-left .emojionearea .emojionearea-picker.emojionearea-picker-position-bottom .emojionearea-wrapper:after {
 		left: 80px;
 	}
 }
@@ -2299,12 +2354,12 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 /* ==========================================================================
     Friends Birthday Page
 ========================================================================== */
-.card.card-birthday-today{
-  border-color: rgba(51, 51, 51, 0.4);
+.card.card-birthday-today {
+	border-color: rgba(51, 51, 51, 0.4);
 }
 
-.card.card-birthday-today .card-title{
-   text-transform: capitalize;
+.card.card-birthday-today .card-title {
+	text-transform: capitalize;
 }
 
 .card.card-birthday-today .img-fluid {
