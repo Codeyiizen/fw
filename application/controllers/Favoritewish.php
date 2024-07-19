@@ -589,9 +589,13 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setPassword($password);
 			//query the database
 			$result = $this->Favoritewish_Model->userLogin();
-
 			if (!empty($result) && count($result) > 0) {
-				foreach ($result as $row) {
+				foreach ($result as $row) {  
+					    $id = $row->user_id;
+						$updateMassageStatus = array(
+						'msg_notify_status' => 1,
+				   ); 
+			      $updateMassageStatus = $this->Favoritewish_Model->updateMsgStatus($id,$updateMassageStatus);   		
 					$authArray = array(
 						'user_id' => $row->user_id,
 						'user_name' => $row->user_name,
@@ -1230,6 +1234,12 @@ class Favoritewish extends CI_Controller
 	//logout method
 	public function logout()
 	{
+		$sessionArray = $this->session->userdata('ci_seesion_key');
+		$id = $sessionArray['user_id'];
+		 $updateMsgStatus = array(
+			'msg_notify_status' => 0,
+		); 
+		$this->Favoritewish_Model->updateMassageStatus($id,$updateMsgStatus);
 		$this->session->unset_userdata('ci_seesion_key');
 		$this->session->unset_userdata('ci_session_key_generate');
 		$this->session->sess_destroy();
@@ -2000,7 +2010,7 @@ class Favoritewish extends CI_Controller
 			}
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['friend_id'] = $id;
-			if($id){
+			if($id){  
 			  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id,$sessionArray['user_id']);
 			  $sendMail = $this->Favoritewish_Model->sendMail($id,$sessionArray['user_id']);
 			}
@@ -2020,6 +2030,14 @@ class Favoritewish extends CI_Controller
 	public function messageFormSubmission(){ 
 		$msg_image = $this->input->post('msg_image'); 
         $id = $this->input->post('friend_id');
+		$checkUserLoginStatus = $this->Favoritewish_Model->checkUserLoginStatus($id);
+		$msgStatus = $checkUserLoginStatus->msg_notify_status;
+		$id = $id;
+		$updatetMsgStatus = array(
+			'check_msg_status' => $checkUserLoginStatus->msg_notify_status,
+		); 
+		$this->Favoritewish_Model->UpdateMsgStatusById($id,$updatetMsgStatus); 
+
 		$mag = $this->input->post('message'); 
         $sessionArray = $this->session->userdata('ci_seesion_key');
 		if(!empty($mag)){
@@ -2038,9 +2056,9 @@ class Favoritewish extends CI_Controller
 					'seen'	            =>	'0',
 					'status'	        =>	'0',
 					'created_on'	    =>	date("Y-m-d H:i:s")
-				);
-				
-		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
+				);	
+
+		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data,$msgStatus);
 		  redirect('user/friends/'.$id.'/massages');
 	}
    }else{
@@ -2070,8 +2088,7 @@ class Favoritewish extends CI_Controller
 			'status'	        =>	'0',
 			'created_on'	    =>	date("Y-m-d H:i:s")
 		);
-		
-		$is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
+		$is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data,$msgStatus);
 		redirect('user/friends/'.$id.'/massages');
    }
  }
