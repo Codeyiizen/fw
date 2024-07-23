@@ -1502,7 +1502,7 @@ class Favoritewish extends CI_Controller
 			if (!empty($objPost['token'])) {
 				$objUser = $this->Favoritewish_Model->getUserByToken($objPost['token']);
 				if (!empty($objUser)) {
-					$arrInsert = array('to_friend' => $objUser['id'], 'from_friend' => $user['user_id'], 'status' => 0);
+					$arrInsert = array('to_friend' => $objUser['id'], 'from_friend' => $user['user_id'], 'status' => 0 , 'created_on' => date('Y-m-d H:i:s'));
 					$this->db->insert('friends', $arrInsert);
 					
 					$arrInsertNotification = array('to_friend' => $objUser['id'],'from_friend' => $user['user_id'], 'notyfy_status' =>0,'created_on' => date('Y-m-d H:i:s'));
@@ -2524,12 +2524,11 @@ public function familyWishDelete(){
 	}
 
 	public function birthdayStateUpdate(){
-	    $id = $this->input->post('id');
+	    $id = $this->input->post('id'); 
 	    $updateFromFriendtBirthday = array(
 		'friend_birthday_notify' => 1,
 		); 
 		$this->Favoritewish_Model->UpdateBirthdayStatus($id,$updateFromFriendtBirthday);
-		redirect('user/friends');
 	}
 
 	public function birthdayTOStateUpdate(){
@@ -2673,6 +2672,19 @@ public function familyWishDelete(){
 			$this->load->view('front/template/template_footer');
 			$this->load->view('front/footer_main');
 		}
+	}
+
+	public function updateMassageStatusById(){
+	   $msgId = $this->input->post('msgId');   // echo"<pre>"; var_dump($msgId); exit;
+	   $id = $this->input->post('id');
+	    $updateMassageUserId = array(
+		'check_msg_status' => 1,
+		); 
+		$updateMassageId = array(
+			'msg_status' => 1,
+	    );
+		$this->Favoritewish_Model->UpdateMassageUserId($id,$updateMassageUserId);
+		$this->Favoritewish_Model->UpdateMassgeById($msgId,$updateMassageId);
 	}
 
 }

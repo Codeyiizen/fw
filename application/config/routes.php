@@ -129,6 +129,7 @@ $route['user/birthday/status/update'] = 'favoritewish/birthdayStateUpdate';
 $route['user/birthday/status/toupdate'] = 'favoritewish/birthdayTOStateUpdate';
 $route['user/friends/birthday'] = 'favoritewish/userFriendsBirthday';
 $route['user/birthday/alert'] = 'favoritewish/userBirthdayAlert';
+$route['update/massage/status'] = 'favoritewish/updateMassageStatusById';
 /*
 
 
