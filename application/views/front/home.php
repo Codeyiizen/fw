@@ -40,3 +40,41 @@
     $data = html_entity_decode(!empty($hometext->homepage_content) ? $hometext->homepage_content : '' );
     echo $data;
 ?>
+
+<section class="third-section wishlist-section mt-5 theme-bg alt">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="wishlist text-center">
+                    <h2 class="entry-title">Create your Wishlist Here and Now!</h2>
+                    <p>Let’s bring back the art of surprise gifting together</p>
+                    <div class="gift-btn-box">
+                        <a href="http://localhost/fw/sign-in" class="theme-btn yellow-bg">Join us</a>
+                        <div class="theme-btn yellow-bg addSrc" data-toggle="modal" data-target="#myModal" >Explainer video
+                        </div>
+                        <div id="myModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <iframe width="460" height="315" id="close" src="https://www.youtube.com/embed/wb_jZlwcmdo" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default closeButton" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section></main>
+
+<script>
+ 
+
+</script>

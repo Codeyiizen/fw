@@ -126,6 +126,15 @@
 			}
 		});
 	})
+   
+	$("body").on("click", ".closeButton", function () {    
+       $('#close').attr("src","")
+	});
+
+	$("body").on("click", ".addSrc", function () {    
+		$('#close').attr("src","https://www.youtube.com/embed/wb_jZlwcmdo")
+	 });
+
 	$("body").on("click", ".acceptFriendRequest", function () {   
 		var tokenObj = $(this).data('token');
 		var params = { "token": tokenObj };
@@ -186,7 +195,7 @@
 			url: BASE_URL + "/user/friends/remove",
 			type: "post",
 			data: JSON.stringify(params),
-			contentType: "application/json; charset=utf-8",
+			contentType: "application/json; charset=utf-8",       
 			success: function (response) {
 				var res = JSON.parse(response);
 				if (res?.code == 200) {
@@ -195,6 +204,26 @@
 			}
 		});
 	})
+    
+
+
+
+	$("body").on("click", ".upDateMassageStatus", function (){
+	   var id = $(this).data('id');    
+	   var msgId = $('.upDateMassageStatus').attr('msg-id'); 
+	   $.ajax({
+		url: BASE_URL + "/update/massage/status",
+		type: "post",
+		data: {
+			id:id,
+			msgId:msgId  
+		},       
+		success: function (response){
+		   window.location.reload();
+		}
+	  });	 
+	})
+
 	$("body").on("change",".select-category",function(){
 		var params = { "id": $(this).val()}; 
 		$.ajax({

@@ -1418,6 +1418,7 @@ public function UpdateHomeContent($id,$updatetData){
    public function getMsgTableData(){
     $this->db->select('*');
     $this->db->from('msg_notification');
+    $this->db->where('msg_notification.msg_status', 0);
     $query = $this->db->get();
     return  $query->result();
    }
@@ -1436,14 +1437,17 @@ public function UpdateHomeContent($id,$updatetData){
     $this->db->select('*');
     $this->db->from('msg_notification');
     $this->db->join('users', 'msg_notification.from_user = users.id');
+    $this->db->where('msg_notification.msg_status', 0);
     $this->db->where('msg_notification.from_user', $id);
-   $this->db->where('msg_notification.to_user', $loginId);
+    $this->db->where('msg_notification.to_user', $loginId);
+    $this->db->order_by('msg_notification.id','desc');
+    $this->db->limit(15); 
     $query = $this->db->get();
     return  $query->row(); 
   }
 
   public function getObjMsgUser($userId){
-    $this->db->select('check_msg_status');
+    $this->db->select('check_msg_status,id');
     $this->db->from('users');
     $this->db->where('id',$userId);
     $query = $this->db->get();
@@ -1461,6 +1465,16 @@ public function checkUserLoginStatus($id){
 public function UpdateMsgStatusById($id,$updatetMsgStatus){
     $this->db->where('id', $id);
     $this->db->update('users',$updatetMsgStatus);
+}
+
+public function UpdateMassageUserId($id,$updateMassageUserId){
+    $this->db->where('id', $id);
+    $this->db->update('users',$updateMassageUserId); 
+}
+
+public function UpdateMassgeById($msgId,$updateMassageId){
+    $this->db->where('from_user', $msgId);
+    $this->db->update('msg_notification',$updateMassageId);
 }
 
 }

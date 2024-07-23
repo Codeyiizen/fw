@@ -74,14 +74,14 @@
                     </div>
                     <nav class="fullscreen-nav">
 
-                        <?php
+            <?php
                 $sessionArray = $this->session->userdata('ci_seesion_key');
                 $CI = &get_instance();
                 $CI->load->model('Favoritewish_Model');
                 $notifyAllData = $CI->Favoritewish_Model->getNotyfyAllData();
                 // $notification = $CI->Favoritewish_Model->getNotification($sessionArray['user_id']);
-                ?>
-                        <?php
+            ?>
+        <?php
   if (!empty($notifyAllData)) {
     $varNotification = array();
     $addClass = array();
@@ -104,6 +104,12 @@
                                                                 <div>
                                                                     <p class="fs_14 mb-0 lh_20 font-weight-semibold text-success">Friend request Accpted By' . '   ' . $fromData->first_name . ' !</p>                                                                                        </p>
                                                                 </div>
+                                                                <div>
+                                                                  <button type="button"
+                                                                           class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle"><i
+                                                                    class="fa fa-times fs_10"></i>
+                                                                </button>
+                                                        </div>
                                                         </a>
                                                      </li>';
                                 $addClass = 'fa fa-circle icon';
@@ -114,6 +120,11 @@
             } else if ($allData->to_friend == $sessionArray['user_id']) {
                 $toData = $CI->Favoritewish_Model->getDataToFriend($allData->from_friend, $sessionArray['user_id']);
                 $getObjToUser = $CI->Favoritewish_Model->getObjUserDetailsById($sessionArray['user_id']);
+                $dateStr  = $toData->created_on;
+                $test =  \DateTime::createFromFormat('Y-m-d H:i:s', $dateStr)->getTimestamp();
+                $post_date = $test;
+                $now = time();
+                $daatTime = timespan($post_date, $now) . ' ago';
                 if (!empty($toData)) {
                     if ($toData->notyfy_status == 0) {
                         if (!empty($getObjToUser) && $getObjToUser->friend_request_notify == 1) {
@@ -129,7 +140,7 @@
                                                                     <button type="button" class="btn btn-primary btn-sm acceptFriendRequest" data-token=' . $toData->token . '>Accept</button>
                                                                     <button type="button" class="btn btn-danger btn-sm removeFriend" data-token=' . $toData->token . '>Reject</button>
                                                                 </p>
-                                                                <small>'. date('D', strtotime($toData->created_on)).'</small>
+                                                                <small> '.$daatTime .'</small>
                                                             </div>
                                                         </div>
                                                         <div>
@@ -190,71 +201,256 @@
                            $CI->load->model('Favoritewish_Model');
                            $sessionArray = $this->session->userdata('ci_seesion_key');
                            $msgNotify= array();
-                           $msg = $CI->Favoritewish_Model->getMsgTableData();  
+                           $msg = $CI->Favoritewish_Model->getMsgTableData(); 
                             foreach($msg as $msgData){ 
                                if ($msgData->from_user == $sessionArray['user_id']){  
                                  $fromMsg = $CI->Favoritewish_Model->getDataFromMsg($msgData->to_user,$sessionArray['user_id']);
                                  $getObjFromUser = $CI->Favoritewish_Model->getObjMsgUser($sessionArray['user_id']);
                                 if($getObjFromUser->check_msg_status == 0){ 
-                                //  $msgNotify[] ='<li>
-                                //                     <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
-                                //                         <div class="d-flex align-items-start mr-2">
-                                //                             <span
-                                //                                 class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
-                                //                                 <i class="icon icon-36 fs_15"></i>
-                                //                             </span>
-                                //                             <div>
-                                //                                 <p class="fs_14 mb-0 lh_20 font-weight-semibold">'.$fromMsg->first_name.' send a message.
-                                //                                     Reply him now.</p>
-                                //                                 <small>3d</small>
-                                //                             </div>
-                                //                         </div>
-                                //                         <div>
-                                //                             <button type="button"
-                                //                                 class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle"><i
-                                //                                     class="fa fa-times fs_10"></i></button>
-                                //                         </div>
-                                //                     </a>
-                                //             </li>';
+                                  $msgNotify[] ='';
                                }
                                }else if ($msgData->to_user == $sessionArray['user_id']){   
                                  $toMsg = $CI->Favoritewish_Model->getDataToMsg($msgData->from_user,$sessionArray['user_id']);
                                  $getObjtoUser = $CI->Favoritewish_Model->getObjMsgUser($sessionArray['user_id']);
-                                 if($getObjtoUser->check_msg_status == 0){
-                                   $msgNotify[] ='<li>
-                                                    <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
-                                                        <div class="d-flex align-items-start mr-2">
-                                                            <span
-                                                                class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
-                                                                <i class="icon icon-36 fs_15"></i>
-                                                            </span>
-                                                            <div>
-                                                                <p class="fs_14 mb-0 lh_20 font-weight-semibold">'.$toMsg->first_name.' send a message.
-                                                                    Reply him now.</p>
-                                                                <small>3d</small>
-                                                            </div>
-                                                        </div>
-                                                        <div>
+                                if(!empty($toMsg)){
+                                    $dateStr  = $toMsg->created_on;
+                                    $test =  \DateTime::createFromFormat('Y-m-d H:i:s', $dateStr)->getTimestamp();
+                                    $post_date = $test;
+                                    $now = time();
+                                    $msgDate = timespan($post_date, $now) . ' ago';
+                                    $msgNotify[] ='<li>
+                                                    <a class="dropdown-item d-flex align-items-start justify-content-between" href="'.base_url('/user/friends/'.$toMsg->id.'/massages').'">
+                                                        <span
+                                                            class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
+                                                            <i class="icon icon-36 fs_15 text-dark"></i>
+                                                        </span>
+                                                        <span>
+                                                            <p  class="fs_14 mb-0 lh_20 font-weight-semibold">'.$toMsg->first_name.' send a message.
+                                                                Reply him now.</p>
+                                                            <small>'.$msgDate.'</small>
+                                                        </span>
                                                             <button type="button"
-                                                                class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle"><i
-                                                                    class="fa fa-times fs_10"></i></button>
-                                                        </div>
+                                                            class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle ml-2 upDateMassageStatus" data-id="'.$getObjtoUser->id.'" msg-id="'.$toMsg->id.'"><i
+                                                                class="fa fa-times fs_10"></i></button>                                                        
                                                     </a>
-                                              </li>';
-                                  }
+                                             </li>';
+                                      $msNotifyClass = 'fa fa-circle icon';
+                                 }
                                 }
                             }
-                        
                         ?>
+
                         <a href="javacript:void()" class="dropdown">
                             <a href="javacript:void()" class="dropdown-toggle user-account notification mr-4"
                                 id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                                 <i class="fas fa-bell fa-lg"></i>
                                 <span
-                                    class="<?php echo !empty($addClass) ? $addClass : '' ?><?php echo !empty($showBirthdayClass) ? $showBirthdayClass : ''; ?>"></span>
+                                    class="<?php echo !empty($addClass) ? $addClass : '' ?><?php echo !empty($showBirthdayClass) ? $showBirthdayClass : ''; ?> <?php echo !empty($msNotifyClass) ? $msNotifyClass : ''; ?> "></span>
                             </a>
-                        </a>     
+                        </a>   
+                      <?php  
+                      foreach ($varNotification as $fri){
+                         if($fri != ''){ 
+                         }
+                       ?>    
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <div
+                                class="dropdown-header d-flex justify-content-between align-items-center text-dark fs_16">
+                                <span><i class="icon icon-15 mr-2"></i>Notifications</span>
+                                <button type="button" class="btn btn-link text-dark p-0"><i
+                                        class="fas fa-cog"></i></button>
+                            </div>
+                            <ul class="list-unstyled list-notification">
+                                <?php if (!empty($varNotification)) {?>
+                                    <?php foreach ($varNotification as $fri) {
+                                            echo $fri;
+                                       }?>
+                                <?php }?>
+                                 
+                                <?php if (!empty($getBirthday)) {?>
+                                <?php foreach ($getBirthday as $friends) {?>
+
+                                    <?php
+                                 $bday = '';
+                                    if ($friends->from_friend == $sessionArray['user_id']) {
+                                        if ($friends->friend_birthday_notify == 0) {
+                                            $currentYear = date("Y-m-d");
+                                            $dob = $friends->dob;
+                                            if ($currentYear == $dob){
+                                               $bday = '<li>
+                                                            <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
+                                                                <div class="d-flex align-items-start mr-2">
+                                                                    <span
+                                                                        class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
+                                                                        <i class="icon icon-36 fs_15"></i>
+                                                                    </span>
+                                                                    <div>
+                                                                        <p class="fs_14 mb-0 lh_20 font-weight-semibold updateFromFriendBirthday" id="' . $friends->from_friend . '">'.$friends->first_name . ' ' . $friends->last_name . ' ' . 'a happy birthday, it s his birthday today</p>
+                                                                        <small>Today</small>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <button type="button"
+                                                                        class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle updateFromFriendBirthday" id="' . $friends->from_friend . '"><i
+                                                                            class="fa fa-times fs_10"></i></button>
+                                                                </div>
+                                                            </a>
+                                                        </li>';
+                                            }
+                                        }
+                                    } else if ($friends->to_friend == $sessionArray['user_id']) {
+                                        if ($friends->to_friend_birthday_notify == 0) {
+                                            $currentYear = date("Y-m-d");
+                                            $dob = $friends->dob;
+                                            if ($currentYear == $dob) {
+                                               $bday = '<li>
+                                                            <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
+                                                                <div class="d-flex align-items-start mr-2">
+                                                                    <span
+                                                                        class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
+                                                                        <i class="icon icon-36 fs_15"></i>
+                                                                    </span>
+                                                                    <div>
+                                                                        <p class="fs_14 mb-0 lh_20 font-weight-semibold updateToFriendBirthday" id="' . $friends->to_friend . '">'.$friends->first_name . ' ' . $friends->last_name . ' ' . 'a happy birthday, it s his birthday today</p>
+                                                                        <small>Today</small>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <button type="button"
+                                                                        class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle updateToFriendBirthday" id="' . $friends->to_friend . '"><i
+                                                                            class="fa fa-times fs_10"></i></button>
+                                                                </div>
+                                                            </a>
+                                                 </li>';
+                                            }
+                                        }
+                                    }
+
+                                    ?>
+                                  <?php echo $bday ?>
+                                <?php } }?>
+
+                            </ul>
+                            <div class="dropdown-footer text-center">
+                                <button type="button" class="btn btn-link text-dark fs_14 p-0">Read all</button>
+                            </div>
+                        </div>
+               <?php  } ?> 
+               
+                <?php if (!empty($getBirthday)) {?>
+                        <?php foreach ($getBirthday as $friends) {?>
+                            <?php
+                            $bday = '';
+                            if ($friends->from_friend == $sessionArray['user_id']) {
+                                if ($friends->friend_birthday_notify == 0) {
+                                    $currentYear = date("Y-m-d");
+                                    $dob = $friends->dob;
+                                    if ($currentYear == $dob){
+                                        $bday = $friends->first_name;
+                                    }
+                                }
+                            } else if ($friends->to_friend == $sessionArray['user_id']) {
+                                if ($friends->to_friend_birthday_notify == 0) {
+                                    $currentYear = date("Y-m-d");
+                                    $dob = $friends->dob;
+                                    if ($currentYear == $dob) {
+                                        $bday = $friends->first_name;
+                                    }
+                                }
+                            }
+
+                            ?>
+                    <?php if($bday != ''){  ?>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <div
+                                class="dropdown-header d-flex justify-content-between align-items-center text-dark fs_16">
+                                <span><i class="icon icon-15 mr-2"></i>Notifications</span>
+                                <button type="button" class="btn btn-link text-dark p-0"><i
+                                        class="fas fa-cog"></i></button>
+                            </div>
+                            <ul class="list-unstyled list-notification">
+                                <?php if (!empty($varNotification)) {?>
+                                    <?php foreach ($varNotification as $fri) {
+                                            echo $fri;
+                                       }?>
+                                <?php }?>
+                                 
+                                <?php if (!empty($getBirthday)) {?>
+                                <?php foreach ($getBirthday as $friends) {?>
+
+                                    <?php
+                                 $bday = '';
+                                    if ($friends->from_friend == $sessionArray['user_id']) {
+                                        if ($friends->friend_birthday_notify == 0) {
+                                            $currentYear = date("Y-m-d");
+                                            $dob = $friends->dob;
+                                            if ($currentYear == $dob){
+                                               $bday = '<li>
+                                                            <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
+                                                                <div class="d-flex align-items-start mr-2">
+                                                                    <span
+                                                                        class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
+                                                                        <i class="icon icon-36 fs_15"></i>
+                                                                    </span>
+                                                                    <div>
+                                                                        <p class="fs_14 mb-0 lh_20 font-weight-semibold updateFromFriendBirthday" id="' . $friends->from_friend . '">'.$friends->first_name . ' ' . $friends->last_name . ' ' . 'a happy birthday, it s his birthday today</p>
+                                                                        <small>Today</small>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <button type="button"
+                                                                        class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle updateFromFriendBirthday" id="' . $friends->from_friend . '"><i
+                                                                            class="fa fa-times fs_10"></i></button>
+                                                                </div>
+                                                            </a>
+                                                        </li>';
+                                            }
+                                        }
+                                    } else if ($friends->to_friend == $sessionArray['user_id']) {
+                                        if ($friends->to_friend_birthday_notify == 0) {
+                                            $currentYear = date("Y-m-d");
+                                            $dob = $friends->dob;
+                                            if ($currentYear == $dob) {
+                                               $bday = '<li>
+                                                            <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
+                                                                <div class="d-flex align-items-start mr-2">
+                                                                    <span
+                                                                        class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
+                                                                        <i class="icon icon-36 fs_15"></i>
+                                                                    </span>
+                                                                    <div>
+                                                                        <p class="fs_14 mb-0 lh_20 font-weight-semibold updateToFriendBirthday" id="' . $friends->to_friend . '">'.$friends->first_name . ' ' . $friends->last_name . ' ' . 'a happy birthday, it s his birthday today</p>
+                                                                        <small>Today</small>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <button type="button"
+                                                                        class="btn btn-outline-dark d-flex justify-content-center align-items-center py-0 px-2 p-0 w_20 h_20 rounded-circle updateToFriendBirthday" id="' . $friends->to_friend . '"><i
+                                                                            class="fa fa-times fs_10"></i></button>
+                                                                </div>
+                                                            </a>
+                                                 </li>';
+                                            }
+                                        }
+                                    }
+
+                                    ?>
+                                  <?php echo $bday ?>
+                                <?php } }?>
+                                
+
+                            </ul>
+                            <div class="dropdown-footer text-center">
+                                <button type="button" class="btn btn-link text-dark fs_14 p-0">Read all</button>
+                            </div>
+                        </div> 
+                    <?php } ?>
+                <?php } }?>
+                
+                <?php if (!empty($msgNotify)) {?>
+                    <?php foreach ($msgNotify as $fri) {   ?>
+                      <?php if($fri != ''){  ?>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                             <div
                                 class="dropdown-header d-flex justify-content-between align-items-center text-dark fs_16">
@@ -335,16 +531,15 @@
                                <?php if (!empty($msgNotify)) {?>
                                     <?php foreach ($msgNotify as $fri) {
                                             echo $fri;
-                                       } }?>
+                               } }?>
 
                             </ul>
                             <div class="dropdown-footer text-center">
                                 <button type="button" class="btn btn-link text-dark fs_14 p-0">Read all</button>
                             </div>
-                        </div>
-                        
-                
-
+                        </div> 
+              <?php  } } }?>
+            
 
         <?php
 if ($this->session->userdata('ci_session_key_generate') == false) {
