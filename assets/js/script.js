@@ -104,8 +104,11 @@
 		$(this).toggleClass('active');
 		$('#fs-menu').toggleClass('open');
 	});
+
 	$("body").on("click", ".sendFriendRequest", function () {  
-		$(this).attr('disabled', 'true');	
+		var $this = $(this);
+	  	$($this).text('Please Wait');
+		$($this).attr('disabled', 'true');	
 		var tokenObj = $(this).data('token');
 		var params = { "token": tokenObj };
 		$.ajax({
@@ -152,6 +155,12 @@
 			}
 		});
 	})   
+    
+	$("body").on("click", ".showAllNotify", function (event) {  
+		event.stopPropagation(); 
+		$("#removeClass").toggleClass('showmore-message');
+	}) 
+
 
 	$("body").on("click", ".removeFriend", function () {  
 		var tokenObj = $(this).data('token');   
@@ -205,7 +214,37 @@
 		});
 	})
     
+	$("body").on("click", ".readMsg", function (){ 
+		var userId = $('.readMsg').attr('msg-id');     
+		$.ajax({
+		 url: BASE_URL + "/user/notification/read",
+		 type: "post",
+		 data: {
+			userId:userId
+		 },       
+		 success: function (response){
+		//	window.location.reload();
+		 }
+	   });	 
+	 })
+    
+	 $("body").on("click", ".deleteToNotify", function (){ 
+			var msgId = $('.deleteToNotify').attr('id'); 
+			if (confirm('Are you sure you want to delete this item?')){      
+			$.ajax({
+			url: BASE_URL + "/user/notification/delete",
+			type: "post",
+			data: {
+				msgId:msgId
+			},       
+			success: function (response){
+				window.location.reload();
+			}
+		});
+	 }	   
+   })
 
+	 
 
 
 	$("body").on("click", ".upDateMassageStatus", function (){

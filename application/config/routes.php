@@ -128,8 +128,14 @@ $route['user/friends/notyfy/read'] = 'favoritewish/friendNotyfyRead';
 $route['user/birthday/status/update'] = 'favoritewish/birthdayStateUpdate';
 $route['user/birthday/status/toupdate'] = 'favoritewish/birthdayTOStateUpdate';
 $route['user/friends/birthday'] = 'favoritewish/userFriendsBirthday';
-$route['user/birthday/alert'] = 'favoritewish/userBirthdayAlert';
 $route['update/massage/status'] = 'favoritewish/updateMassageStatusById';
+$route['user/notification/realall'] = 'favoritewish/userNotifiReadAll';
+
+$route['user/notification/read'] = 'favoritewish/userNotifyRead';
+$route['user/notification/delete'] = 'favoritewish/userNotifyDelete';
+$route['check/friend/birthday'] = 'favoritewish/checkFriendBirthday';
+
+
 /*
 
 
