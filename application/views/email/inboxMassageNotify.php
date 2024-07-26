@@ -8,7 +8,7 @@
     <meta name="x-apple-disable-message-reformatting">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="telephone=no" name="format-detection">
-    <title>Friend Request</title>
+    <title>Inbox Massage Notification</title>
     <!--[if (mso 16)]>
     <style type="text/css">
     a {text-decoration: none;}
@@ -483,7 +483,7 @@
                                                                                 <tr>
                                                                                     <td align="center"
                                                                                         style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px">
-                                                                                        <img src="<?php echo base_url('assets') ?>/images/site-image/logo1.png"
+                                                                                        <img src="http://localhost/fw/assets/images/site-image/logo1.png"
                                                                                             alt=""
                                                                                             style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
                                                                                             width="180"></td>
@@ -494,8 +494,8 @@
                                                                                         style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 30px;">
                                                                                         <h1
                                                                                             style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47;">
-                                                                                            You have received a friend
-                                                                                            request</h1>
+                                                                                            you have a message Reply him
+                                                                                            now</h1>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
@@ -576,7 +576,8 @@
                                                                                                                                                         style="padding:0;Margin:0;padding-top:10px">
                                                                                                                                                         <p
                                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
-                                                                                                                                                            Friend Name:
+                                                                                                                                                            Frend
+                                                                                                                                                            Name:
                                                                                                                                                         </p>
                                                                                                                                                     </td>
                                                                                                                                                 </tr>
@@ -613,7 +614,7 @@
                                                                                                                                                         style="padding:0;Margin:0;padding-top:10px;padding-left:10px">
                                                                                                                                                         <p
                                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
-                                                                                                                                                            <strong><?php echo $firstName.' '.$lastName ?></strong>
+                                                                                                                                                            <strong><?php echo $name ?></strong>
                                                                                                                                                         </p>
                                                                                                                                                     </td>
                                                                                                                                                 </tr>
@@ -679,12 +680,10 @@
                                                                                                                                     <span
                                                                                                                                         class="es-button-border msohide"
                                                                                                                                         style="display:inline-block;border-radius:6px;width:auto;mso-hide:all">
-                                                                                                                                        <a href="<?php echo $url; ?>"
+                                                                                                                                        <a href="<?php echo $link ?>"
                                                                                                                                             class="es-button"
                                                                                                                                             target="_blank"
-                                                                                                                                            style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#C11E1A;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">Accept
-                                                                                                                                            Friebd
-                                                                                                                                            Request</a>
+                                                                                                                                            style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#C11E1A;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">Reply</a>
                                                                                                                                     </span>
                                                                                                                                     <!--<![endif]-->
                                                                                                                                 </td>

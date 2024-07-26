@@ -62,7 +62,7 @@
                                                         <button type="button" class="theme-btn red-btn px-4 mr-0 bg-danger removeFriend" data-token="<?php echo $data->token; ?>">Unfriend</button>
                                                     <?php }
                                                 } else {  ?>
-                                                    <button type="button" class="theme-btn yellow-bg px-4 mr-0 sendFriendRequest" data-token="<?php echo $data->token; ?>">Add Friend</button>
+                                                    <button type="button" class="buttonLoad theme-btn yellow-bg px-4 mr-0 sendFriendRequest" data-token="<?php echo $data->token; ?>" id="buttonLoad">Add Friend</button>
                                                 <?php } ?>
                                             </div>
                                         </div>
