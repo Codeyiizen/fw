@@ -135,6 +135,9 @@ $route['user/notification/read'] = 'favoritewish/userNotifyRead';
 $route['user/notification/delete'] = 'favoritewish/userNotifyDelete';
 $route['check/friend/birthday'] = 'favoritewish/checkFriendBirthday';
 
+$route['update/massage'] = 'favoritewish/massageUpdate';
+$route['massage/delete/both'] = 'favoritewish/massageDeleteBoth';
+$route['massage/delete/me'] = 'favoritewish/massageDeleteMe';
 
 /*
 
