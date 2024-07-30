@@ -1967,15 +1967,17 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function getMessagelist($id){   
+	public function getMessagelist($id){    
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
+			$search_query = $this->input->get('q');  // Get the search query from GET parameter
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
 			$get = $this->input->get();
+			
 			$data['metaDescription'] = 'User Profile';
-			$data['metaKeywords'] = 'UUser Profile';
+			$data['metaKeywords'] = 'User Profile';
 			$data['title'] = "User Profile";
 			$data['breadcrumbs'] = array('User Profile' => '#');
 			$data['user_profile_id'] = $id;
@@ -1993,6 +1995,14 @@ class Favoritewish extends CI_Controller
 			if($id){  
 			  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id,$sessionArray['user_id']);
 			  $sendMail = $this->Favoritewish_Model->sendMail($id,$sessionArray['user_id']);
+			  $data['showFriendMassage'] = $this->Favoritewish_Model->get_user_friends_messages($sessionArray['user_id'],$search_query);
+			//  echo"<pre>"; var_dump($data['showFriendMassage']); exit;
+			  $data['friendName'] = $this->Favoritewish_Model->getObjFriendName($id);
+				$updateSeenStatus = array(
+				'seen_class' => '',
+				); 
+			$this->Favoritewish_Model->updateSeenStatus($id,$updateSeenStatus);
+			 // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
 			}
 			$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
 			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
@@ -2072,6 +2082,7 @@ class Favoritewish extends CI_Controller
 					'from_user'	        =>	$sessionArray['user_id'],
 					'to_user'	        =>	$this->input->post('friend_id'),
 					'message'	        =>	$this->input->post('message'),
+					'seen_class'	    =>	'fas fa-circle text-danger',
 					'msg_type'	        =>	'msg',
 					'seen'	            =>	'0',
 					'status'	        =>	'0',
@@ -2747,7 +2758,29 @@ public function familyWishDelete(){
            die('ok');
 
 	}
-  }
+}
+
+public function massageUpdate(){
+	$id = $this->input->post('id');
+	$msg = $this->input->post('msg'); 
+	$updatemassage = array(
+	'message' => $msg,
+	); 
+	$this->Favoritewish_Model->updateMassage($id,$updatemassage);
+}
+
+public function massageDeleteBoth(){
+	$id = $this->input->post('id');
+	$this->Favoritewish_Model->massageDelete($id);
+}
+
+public function massageDeleteMe(){  
+	$id = $this->input->post('id');
+	$deleteme = array(
+	'delete_status' => 1,
+	); 
+	$this->Favoritewish_Model->deleteMe($id,$deleteme);
+}
 
 }
 

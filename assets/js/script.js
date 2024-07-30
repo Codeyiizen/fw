@@ -242,10 +242,62 @@
 			}
 		});
 	 }	   
+   }) 
+   
+//    $("body").on("click", ".testone", function (){
+//       alert('ok');
+//    })
+
+   $("body").on("click", ".form_massage_edit", function (e){
+	e.preventDefault();  
+     var msg = $(this).text().replace(/\s+/g, ' ');     
+	 var id = $(this).attr('id');
+	 $('.deleteMeBoth').attr('id',id);
+	 $('.deleteMe').attr('id',id);
    })
 
-	 
+   $("body").on("click", ".massage", function (){   
+      var massage = $(this).attr('data-msg');    
+	  var id = $(this).attr('data-id');               
+	  $('#show_msg').attr('value',massage); 
+	  $('#show_msg').attr('data-id',id);
+	  $('.removeClass').removeClass('d-none');
+	  $('.addClass').addClass('d-none');
+   })  
+   
+   $("body").on("click", ".updateMassage", function (){   
+		var msg = $("#show_msg").val();  
+		var id = $("#show_msg").attr("data-id"); 
+		$.ajax({
+			url: BASE_URL + "/update/massage",
+			type: "post",
+			data: {
+				msg:msg,
+				id:id 
+			},       
+			success: function (response){
+			   window.location.reload();
+			}
+		  });
+   })  
+   $("body").on("click", ".deleteMeBoth", function (){  
+	  var id = $(this).attr('id'); 
+	  $('#show_delete_id').attr('data-id',id);
+   })
 
+	$("body").on("click", ".deleteMassageForBoth", function (){ 
+		var id = $("#show_delete_id").attr("data-id"); 
+		$.ajax({
+			url: BASE_URL + "/massage/delete/both",
+			type: "post",
+			data: {
+				id:id 
+			},       
+			success: function (response){
+			  window.location.reload();
+			}
+		});
+	})
 
 	$("body").on("click", ".upDateMassageStatus", function (){
 	   var id = $(this).data('id');    
@@ -262,6 +314,25 @@
 		}
 	  });	 
 	})
+    
+	$("body").on("click", ".deleteMe", function (){    
+		var id = $(this).attr('id'); 
+		$('#show_deleteme_id').attr('data-id',id);
+	})  
+     
+	$("body").on("click", ".deleteMeMassage", function (){  
+        var id = $("#show_deleteme_id").attr("data-id");   
+		$.ajax({
+			url: BASE_URL + "/massage/delete/me",
+			type: "post",
+			data: {
+				id:id 
+			},       
+			success: function (response){
+			   window.location.reload();
+			}
+		  }); 
+	})		
 
 	$("body").on("change",".select-category",function(){
 		var params = { "id": $(this).val()}; 

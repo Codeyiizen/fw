@@ -1234,7 +1234,7 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->from('notification');
         $this->db->where('to_id', $id);
         $this->db->order_by('id','desc');
-        $this->db->limit(5);
+        $this->db->limit(15);
         $query = $this->db->get();
         return  $query->result();
     } 
@@ -1595,5 +1595,67 @@ public function checkUserFriend($id){
     return  $query->row();
  } 
 
+ public function get_user_friends_messages($user_id,$search_query){ 
+    $this->db->select('u.id AS user_id, u.first_name AS user_first_name, u.last_name AS user_last_name, u.user_name AS user_user_name, 
+    f.to_friend, f.from_friend, m.id AS message_id, m.message, m.created_on, m.read_status,m.seen_class,
+    friend.first_name AS friend_first_name,friend.profile_photo AS friend_profile_photo, friend.last_name AS friend_last_name, friend.user_name AS friend_user_name,friend.id AS friend_user_id');
+$this->db->from('users u');
+$this->db->join('friends f', 'u.id = f.from_friend OR u.id = f.to_friend');
+$this->db->join('(SELECT m1.* 
+   FROM messages m1 
+   JOIN (SELECT from_user, to_user, MAX(created_on) AS max_created_on 
+         FROM messages 
+         WHERE read_status = 0 
+         GROUP BY from_user, to_user) m2 
+   ON m1.from_user = m2.from_user AND m1.to_user = m2.to_user AND m1.created_on = m2.max_created_on) m', 
+ '((f.from_friend = m.from_user AND f.to_friend = m.to_user) OR (f.from_friend = m.to_user AND f.to_friend = m.from_user))', 
+ 'left');
+$this->db->join('users friend', '(friend.id = f.from_friend AND friend.id != u.id) OR (friend.id = f.to_friend AND friend.id != u.id)', 'left');
+$this->db->where('u.id', $user_id);
+$this->db->where('m.read_status', 0);
+$this->db->where('m.to_user', $user_id);
+
+if (!empty($search_query)) {
+    $this->db->group_start();  // Open bracket for the WHERE clause grouping
+        $this->db->like('friend.first_name', $search_query);
+        $this->db->or_like('friend.last_name', $search_query);
+        $this->db->or_like('friend.user_name', $search_query);
+        $this->db->or_like('m.message', $search_query);
+        $this->db->group_end();  // Close bracket for the WHERE clause grouping
+}
+
+$this->db->order_by('m.created_on', 'DESC');
+
+$query = $this->db->get();
+return $query->result();
+ }
+
+public function getObjFriendName($friendId){
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('id',$friendId);
+    $query = $this->db->get();
+    return  $query->row(); 
+}
+
+public function updateMassage($id,$updatemassage){
+    $this->db->where('id', $id);
+    $this->db->update('messages',$updatemassage); 
+}
+
+public function massageDelete($id){
+    $this->db->where('id', $id);
+    $this->db->delete('messages'); 
+}
+
+public function deleteMe($id,$deleteme){
+    $this->db->where('id', $id);
+    $this->db->update('messages',$deleteme);  
+}
+
+public function updateSeenStatus($id,$updateSeenStatus){
+    $this->db->where('from_user', $id);
+    $this->db->update('messages',$updateSeenStatus); 
+}
 
 }
