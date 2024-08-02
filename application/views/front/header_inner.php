@@ -269,8 +269,8 @@
                             <div
                                 class="dropdown-header d-flex justify-content-between align-items-center text-dark fs_16">
                                 <span><i class="icon icon-15 mr-2"></i>Notifications</span>
-                                <button type="button" class="btn btn-link text-dark p-0"><i
-                                        class="fas fa-cog"></i></button>
+                                <a href="<?php echo base_url('notification') ?>" class="btn btn-link text-dark p-0"><i
+                                        class="fas fa-cog"></i></a>
                             </div> 
                             <div class="scrollbar-vertical" id="removeClass">    
                             <?php if (!empty($varFriendRequestNotify)) {?>

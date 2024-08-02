@@ -1596,24 +1596,48 @@ public function checkUserFriend($id){
  } 
 
  public function get_user_friends_messages($user_id,$search_query){ 
-    $this->db->select('u.id AS user_id, u.first_name AS user_first_name, u.last_name AS user_last_name, u.user_name AS user_user_name, 
-    f.to_friend, f.from_friend, m.id AS message_id, m.message, m.created_on, m.read_status,m.seen_class,
-    friend.first_name AS friend_first_name,friend.profile_photo AS friend_profile_photo, friend.last_name AS friend_last_name, friend.user_name AS friend_user_name,friend.id AS friend_user_id');
+    $this->db->select('
+    u.id AS user_id, 
+    u.first_name AS user_first_name, 
+    u.last_name AS user_last_name, 
+    u.user_name AS user_user_name, 
+    f.to_friend, 
+    f.from_friend, 
+    m.id AS message_id, 
+    m.message, 
+    m.created_on, 
+    m.read_status, 
+    m.seen_class,
+    m.from_user,
+    m.to_user,
+    friend.first_name AS friend_first_name,
+    friend.profile_photo AS friend_profile_photo, 
+    friend.last_name AS friend_last_name, 
+    friend.user_name AS friend_user_name,
+    friend.id AS friend_user_id
+');
 $this->db->from('users u');
 $this->db->join('friends f', 'u.id = f.from_friend OR u.id = f.to_friend');
-$this->db->join('(SELECT m1.* 
-   FROM messages m1 
-   JOIN (SELECT from_user, to_user, MAX(created_on) AS max_created_on 
-         FROM messages 
-         WHERE read_status = 0 
-         GROUP BY from_user, to_user) m2 
-   ON m1.from_user = m2.from_user AND m1.to_user = m2.to_user AND m1.created_on = m2.max_created_on) m', 
- '((f.from_friend = m.from_user AND f.to_friend = m.to_user) OR (f.from_friend = m.to_user AND f.to_friend = m.from_user))', 
- 'left');
+
+// Subquery to get the latest message for each friend
+$this->db->join('(SELECT 
+                    CASE 
+                      WHEN from_user = '.$user_id.' THEN to_user 
+                      ELSE from_user 
+                    END AS friend_id,
+                    MAX(created_on) AS max_created_on
+                  FROM messages
+                  WHERE from_user = '.$user_id.' OR to_user = '.$user_id.'
+                  GROUP BY friend_id) latest',
+    '((f.from_friend = latest.friend_id AND f.to_friend = '.$user_id.') OR (f.to_friend = latest.friend_id AND f.from_friend = '.$user_id.'))', 
+    'left');
+
+// Join the messages table with the latest messages
+$this->db->join('messages m', 'm.from_user = latest.friend_id AND m.to_user = '.$user_id.' AND m.created_on = latest.max_created_on OR
+                           m.from_user = '.$user_id.' AND m.to_user = latest.friend_id AND m.created_on = latest.max_created_on', 'left');
+
 $this->db->join('users friend', '(friend.id = f.from_friend AND friend.id != u.id) OR (friend.id = f.to_friend AND friend.id != u.id)', 'left');
 $this->db->where('u.id', $user_id);
-$this->db->where('m.read_status', 0);
-$this->db->where('m.to_user', $user_id);
 
 if (!empty($search_query)) {
     $this->db->group_start();  // Open bracket for the WHERE clause grouping
@@ -1624,8 +1648,7 @@ if (!empty($search_query)) {
         $this->db->group_end();  // Close bracket for the WHERE clause grouping
 }
 
-$this->db->order_by('m.created_on', 'DESC');
-
+$this->db->order_by('m.created_on', 'DESC'); // Ensure latest message comes first
 $query = $this->db->get();
 return $query->result();
  }
@@ -1654,7 +1677,7 @@ public function deleteMe($id,$deleteme){
 }
 
 public function updateSeenStatus($id,$updateSeenStatus){
-    $this->db->where('from_user', $id);
+    $this->db->where('from_user', $id); 
     $this->db->update('messages',$updateSeenStatus); 
 }
 

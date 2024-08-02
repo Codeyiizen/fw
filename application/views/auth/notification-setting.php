@@ -10,17 +10,17 @@
             <div class="col-lg-9">
                 <div class="myaccountForm-inner">
                     <h4>Notification Setting</h4>
-                    <div class="card">
+                    <div class="card notification-setting">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4 mb-4 mb-md-0">
-                                    <h6>Notification</h6>
+                                    <h5>Notification</h5>
                                     <p>For important updates, certain notification cannot be disabled</p>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="d-flex align-items-top justify-content-between">
-                                        <h6>Type</h6>
-                                        <h6>Email</h6>
+                                    <div class="d-flex align-items-top justify-content-between" style="margin-right: 3px;">
+                                        <h5>Type</h5>
+                                        <h5>Email</h5>
                                     </div>
                                 <?php echo form_open_multipart('favoritewish/notificationSettingUpdate'); ?>    
                                     <div class="d-flex align-items-top justify-content-between mb-2">
@@ -50,12 +50,12 @@
                                             <label class="form-check-label" for="birthday-alert">&nbsp;</label>
                                         </div>
                                     </div>
-                                    <div class="form-group pull-right mb-0 mt-4">
-                                       <button type="submit" class="theme-btn yellow-bg">Submit</button>
-                                    </div>
-                                <?php echo form_close(); ?>
                                 </div>
+                            </div>                            
+                            <div class="text-center mb-0 mt-4">
+                                <button type="submit" class="theme-btn yellow-bg">Submit</button>
                             </div>
+                        <?php echo form_close(); ?>
                         </div>
                     </div>
                 </div>

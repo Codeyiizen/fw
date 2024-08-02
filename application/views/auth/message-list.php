@@ -195,8 +195,13 @@
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <p class="fs_14 lh_16 mb-0"><?php echo $showMassage->message ?></p>
-                                                <small class="mt-1 ml-3"><i
+                                                <?php  if($userLoginInfo['user_id'] != $showMassage->from_user){  ?>
+                                                 <small class="mt-1 ml-3"><i
                                                         class="<?php echo $showMassage->seen_class ?>"></i></small>
+                                                <?php  }else if($userLoginInfo['user_id'] == $showMassage->to_user){ ?>  
+                                                    <small class="mt-1 ml-3"><i
+                                                    class="<?php echo $showMassage->seen_class ?>"></i></small> 
+                                                <?php  } ?>    
                                             </div>
                                         </div>
                                     </div>
@@ -235,7 +240,7 @@
                                         <button class="btn btn-info rounded-pill py-2 mr-1  d-none d-md-inline-block">
                                             <i class="fa fa-video"></i>
                                         </button> -->
-                                        <d iv class="dropdown d-inline-block">
+                                        <div class="dropdown d-inline-block">
                                             <button
                                                 class="btn btn-warning btn-sm border-0 rounded-pill px-3 dropdown-toggle"
                                                 type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -248,7 +253,7 @@
                                                 <a class="dropdown-item" href="#">Another action</a>
                                                 <a class="dropdown-item" href="#">Something else here</a>
                                             </div>
-                                        </div>
+                                        </di>
 
                                     </div>
                                 </div>
