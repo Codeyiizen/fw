@@ -38,16 +38,23 @@
                                 <?php }
                             }else { ?>
                                 <div class="col-md-6">
-                                        <div class="card mb-4">
+                                        <div class="card mb-4 box-shadow2 card-birthday-today">
                                             <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <p class="card-title">Today is not any friend's birthday found</p>
+                                                <div class="row align-items-center text-center text-sm-left">
+                                                    <div class="col-sm-7 pr-md-0 mb-4 mb-md-0">
+                                                        <h6>No birthdays today</h6>
+                                                        <p>Add friends to know their birthday</p>
+                                                        <a href="<?php echo base_url('user/friends/search') ?>"
+                                                            class="theme-btn yellow-bg px-3 px-md-4">Search for friends</a>
+                                                    </div>
+                                                    <div class="col-sm-5 pl-md-4 text-md-right">
+                                                            <img src="<?php echo base_url('assets/uploads/profile_photo/no-birthday.png') ?>"
+                                                                alt="" class="No Birthday">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
+                                </div>
                            <?php  } ?>         
                         </div>
                         <?php if (!empty($firstMonthBirthday)) { ?>
@@ -71,7 +78,9 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <p class="card-title">Month of <?php echo date('M') ?> is not any friend's birthday found</p>
+                                                    <!-- <p class="card-title">Month of <?php echo date('M') ?> is not any friend's birthday found</p> -->
+                                                     <p>No birthdays this month. Add friends and check back for more
+                                                     celebrations!</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,7 +106,9 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <p class="card-title">Month of <?php echo date('M', strtotime('+1 month')); ?> is not any friend's birthday found</p>
+                                                    <!-- <p class="card-title">Month of <?php echo date('M', strtotime('+1 month')); ?> is not any friend's birthday found</p> -->
+                                                     <p>No birthdays this month. Add friends and check back for more
+                                                     celebrations!</p>
                                                 </div>
                                             </div>
                                         </div>

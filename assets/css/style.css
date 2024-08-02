@@ -2417,3 +2417,11 @@ section.titleArea .titleAreaInner .titleAreaContent h1 {
 .card.card-birthday-today .img-fluid {
 	max-height: 130px;
 }
+
+
+/* ==========================================================================
+    Notification Setting Page
+========================================================================== */
+.notification-setting p{
+   font-size: 15px;
+}

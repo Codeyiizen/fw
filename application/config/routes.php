@@ -138,6 +138,7 @@ $route['check/friend/birthday'] = 'favoritewish/checkFriendBirthday';
 $route['update/massage'] = 'favoritewish/massageUpdate';
 $route['massage/delete/both'] = 'favoritewish/massageDeleteBoth';
 $route['massage/delete/me'] = 'favoritewish/massageDeleteMe';
+$route['massage/list'] = 'favoritewish/massageList';
 
 /*
 
