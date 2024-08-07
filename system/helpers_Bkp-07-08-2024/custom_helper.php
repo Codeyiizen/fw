@@ -104,7 +104,7 @@ if (!function_exists('getUserProfilePhoto')) {
 		if(!empty($photo) && file_exists(FCPATH . 'assets/uploads/profile_photo/' . $photo) && !empty($photo)){
 			return base_url() . 'assets/uploads/profile_photo/' . $photo;
 		} else {
-			return base_url() . 'assets/uploads/profile_photo/avatar.png';
+			return base_url() . 'assets/upload/profile_photo/avtar.png';
 		}
 	}
 }
