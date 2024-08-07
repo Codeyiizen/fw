@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="Email Address">Email</label>
                                     <div class="input-group">
@@ -91,24 +91,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="Username">Phone</label>
                                     <div class="input-group">
                                         <input type="text" name="contact_no" class="form-control" id="user_phone"
                                             value="<?php print $userInfo['contact_no']; ?>">
-                                    </div>
-                                </div>
-                            </div> 
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label for="Username">Friend Request Notification</label>
-                                    <div class="input-group">
-                                    <select class="form-control" name="friend_request_notify">
-                                        <option value="">Select Notification</option>
-                                        <option value="1" <?php if($userInfo['friend_request_notify'] == '1') echo 'selected="selected"'; ?>>Active</option>
-                                        <option value="0" <?php if($userInfo['friend_request_notify'] == '0') echo 'selected="selected"'; ?>>InActive</option>
-                                    </select>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +105,7 @@
                                     <label for="Username">Date of Birth </label>
                                     <div class="input-group">
                                         <input type="date" name="dob" min="1-01-01" max="2024-12-31" class="form-control" id="user_phone"
-                                            value="<?php print $userInfo['dob']; ?>">
+                                            value="<?php print !empty($userInfo['dob']) ? $userInfo['dob'] :''; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +198,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="Company">Favorite Country</label>
+                                    <label for="Company">Favorite Gift Cards</label>
                                     <div class="input-group">
                                         <input type="text" name="favorite_country" class="form-control"
                                             id="favorite_country" value="<?php print $userInfo['favorite_country']; ?>">
@@ -219,7 +207,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="Company">Favorite public outfit to wear</label>
+                                    <label for="Company">Favorite Public Outfit To Wear</label>
                                     <div class="input-group">
                                         <input type="text" name="favorite_p_wear" class="form-control"
                                             id="favorite_p_wear"
@@ -239,7 +227,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label for="Company">Favorite Music</label>
+                                    <label for="Company">Favorite Jewelry</label>
                                     <div class="input-group">
                                         <input type="text" name="favorite_music" class="form-control"
                                             id="favorite_music" value="<?php print $userInfo['favorite_music']; ?>">

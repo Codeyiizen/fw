@@ -152,11 +152,20 @@
 }
 </style>
 <section class="fav-profile-section pb-0 pb-md-5">
-    <?php $this->load->view('user/Common/friend-banner', array('userInfo' => $userInfo))?>
+<?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
 </section>
 <section class="section-padding profile-content">
     <div class="container">
-        <?php $this->load->view('user/Common/mainHeaderFriends', array('data' => $user_profile_id, 'is_friend' => $is_friend))?>
+    
+        <?php 
+        //var_dump($freind_profile_id_from_url);exit;
+        if(!empty($freind_profile_id)){
+            $this->load->view('user/Common/mainHeaderFriends', array('data' => $user_profile_id, 'is_friend' => $is_friend));   
+        }else{
+            $this->load->view('user/Common/mainHeader');     
+        }
+        ?>
+
         <div class="profile-content-inner">
             <div class="chat-room">
                 <div class="row g-0">
@@ -166,7 +175,7 @@
                                 <div class="px-4 pt-3">
                                     <h5>Messages</h5>
                                     <form method="get"
-                                        action="<?php echo base_url(); ?>user/friends/<?php echo $friendName->id ?>/massages">
+                                        action="<?php echo base_url(); ?>user/friends/<?php echo !empty($friendName->id) ?  $friendName->id :'' ?>/massages">
                                         <div class="search-form">
                                             <!-- <i class="fa fa-search search-icon"></i> -->
                                             <input type="text" class="form-control my-3 test" name="q"
@@ -179,7 +188,7 @@
                                 
                                 <?php if (!empty($showFriendMassage)) { ?>
                                 <?php foreach ($showFriendMassage as $showMassage) {?> 
-                                <a href="<?php echo base_url(); ?>user/friends/<?php echo $showMassage->friend_user_id ?>/massages"
+                                <a href="<?php echo base_url(); ?>/massage/list?f_id=<?php echo $showMassage->friend_user_id ?>"
                                     class="list-group-item list-group-item-action border-0 selected">
                                     <!-- <div class="badge bg-success text-white float-right">5</div> -->
                                     <div class="d-flex align-items-center">
@@ -194,7 +203,13 @@
                                                     class="time mt-1 ml-3"><?php echo $newDateTime = date('h:i A', strtotime($showMassage->created_on)); ?></small>
                                             </div>
                                             <div class="d-flex justify-content-between">
-                                                <p class="fs_14 lh_16 mb-0"><?php echo $showMassage->message ?></p>
+                                                <p class="fs_14 lh_16 mb-0">
+                                                      <?php 
+                                                        if($showMassage->delete_status == 0){
+                                                         echo $showMassage->message;
+                                                        }
+                                                      ?>
+                                                </p>
                                                 <?php  if($userLoginInfo['user_id'] != $showMassage->from_user){  ?>
                                                  <small class="mt-1 ml-3"><i
                                                         class="<?php echo $showMassage->seen_class ?>"></i></small>
@@ -224,12 +239,14 @@
                             <div class="card-header bg-white">
                                 <div class="d-flex align-items-center py-1">
                                     <div class="position-relative">  
+                                    <?php  if(!empty($friendName->id)){ ?>  
                                         <img src="<?php echo base_url(); ?>assets/uploads/profile_photo/<?php echo !empty($friendName->profile_photo) ? $friendName->profile_photo :'avatar.png'?>"
                                             class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                                            <?php } ?>
                                     </div>
                                     <div class="flex-grow-1 pl-3">
                                         <strong>
-                                            <?php echo $friendName->first_name . ' ' . $friendName->last_name ?>
+                                            <?php echo !empty($friendName->first_name) ? $friendName->first_name. ' ' . $friendName->last_name:''; ?>
                                         </strong>
                                         <!-- <div class="text-muted small"><em>Typing...</em></div> -->
                                     </div>
@@ -240,6 +257,8 @@
                                         <button class="btn btn-info rounded-pill py-2 mr-1  d-none d-md-inline-block">
                                             <i class="fa fa-video"></i>
                                         </button> -->
+
+                                    <?php  if(!empty($friendName->id)){ ?>  
                                         <div class="dropdown d-inline-block">
                                             <button
                                                 class="btn btn-warning btn-sm border-0 rounded-pill px-3 dropdown-toggle"
@@ -249,18 +268,21 @@
                                             </button>
                                             <div class="dropdown-menu dropdown-menu-right"
                                                 aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <a class="dropdown-item deleteForMeAllMsg" href="javascript:void(0)" data-id="<?php echo (!empty($friendName->id))?$friendName->id:'' ?>"  data-toggle="modal"
+                                                                        data-target="#delete-all-msg">Delete For me</a>
+                                                <a class="dropdown-item deleteForBothAllMsg" href="javascript:void(0)" data-id="<?php echo (!empty($friendName->id))?$friendName->id:'' ?>"  data-toggle="modal"
+                                                data-target="#delete-both-all-msg">Delete For both</a>
+                                                <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                                             </div>
                                         </di>
 
                                     </div>
+                                   <?php  } ?> 
                                 </div>
                             </div>
                             <div class="card-body p-4">
                                 <div class="chat-messages position-relative">
-                                    <?php
+                                    <?php   
 if (!empty($form_massage)) {
     $i = 1;
     foreach ($form_massage as $object) {
@@ -314,6 +336,7 @@ if (!empty($form_massage)) {
                                                             </a>
                                                             <?php }?>
                                                         </div>
+                                                        
                                                         <div class="dropdown-menu dropdown-menu-right bg-dark"
                                                             aria-labelledby="massage_id-<?php echo $object->id ?>">
                                                             <ul class="list-unstyled">
@@ -378,7 +401,7 @@ if (!empty($form_massage)) {
                                                             aria-expanded="false">
 
                                                             <?php if ($object->msg_type == 'msg') {?>
-                                                              <p class="mb-0 fs_14 lh_20  <?php echo ($userLoginInfo['user_id'] === $object->from_user) ? 'form_massage_editv' : "to_massage_edit"?>" <?php echo ($userLoginInfo['user_id'] === $object->from_user) ? 'id='.$object->id.'' : "to_massage_edit"?> >
+                                                              <p class="mb-0 fs_14 lh_20 <?php echo ($userLoginInfo['user_id'] === $object->from_user) ? 'form_massage_edit' : "to_massage_edit"?>" <?php echo ($userLoginInfo['user_id'] === $object->from_user) ? 'id='.$object->id.'' : "msg-id='$object->id'"?> >
                                                                 <?php if($userLoginInfo['user_id'] === $object->from_user){  ?>
                                                                    <?php if($object->delete_status == 0){  ?>
 
@@ -440,6 +463,7 @@ if (!empty($form_massage)) {
                                     <?php }?>
                                 </div>
                                 <input type="hidden" class="msgid" value="">
+                            <?php  if(!empty($friendName->id)){ ?> 
                                 <div class="flex-grow-0 pt-4 file-upload-area">
                                     <?php echo form_open_multipart('favoritewish/messageFormSubmission'); ?>
                                     <div class="position-relative addClass">
@@ -450,16 +474,19 @@ if (!empty($form_massage)) {
                                             <label class="custom-file-label" for="customFile"><i
                                                     class="fa fa-paperclip"></i></label>
                                         </div>
+                                       
                                         <div class="input-box">
                                             <img id="blah" class="img-thumbnail img-fluid show d-none" />
-                                            <input type="hidden" name="friend_id" value="<?php echo $friend_id; ?>">
+                                            <input type="hidden" name="friend_id" value="<?php echo (!empty($friendName->id))?$friendName->id:'' ?>">
                                             <input type="text" class="form-control messageClick px-5" name="message"
                                                 placeholder="Type your message">
                                         </div>
+                                       
                                         <button type="submit" class="theme-btn yellow-bg"><i
                                                 class="fa fa-paper-plane"></i></button>
                                                 
                                     </div>
+                                    <?php  } ?> 
                                     <?php echo form_close(); ?>
                                     
                                     <div class="position-relative removeClass d-none">
@@ -512,7 +539,7 @@ if (!empty($form_massage)) {
                     <i class="fa fa-trash-alt text-white fs_25"></i>
                 </div>
                 <h5 class="mb-0">Delete the conversation</h5>
-                <p>Are you sure want to delete this conversation?dddd</p>
+                <p>Are you sure want to delete this conversation?</p>
             </div>
             <div class="modal-footer border-0 justify-content-center pb-4">
                 <button type="button" class="btn btn-danger px-4 px-md-5 deleteMassageForBoth" id="show_delete_id">Yes</button>
@@ -521,7 +548,49 @@ if (!empty($form_massage)) {
         </div>
     </div>
 </div>
-
-
 <!-- /Delete Conversation -->
+
+<!-- Delete Me All Conversation -->
+<div class="modal style2 fade" id="delete-all-msg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body pt-4 pb-0 text-center">
+                <div
+                    class="icon-container w_60 h_60 rounded-circle bg-danger d-flex justify-content-center align-items-center mx-auto mb-3">
+                    <i class="fa fa-trash-alt text-white fs_25"></i>
+                </div>
+                <h5 class="mb-0">Delete the conversation</h5>
+                <p>Are you sure want to delete this conversation?</p>
+            </div>
+            <div class="modal-footer border-0 justify-content-center pb-4">
+                <button type="button" class="btn btn-danger px-4 px-md-5 deleteAllMsg" id="show_deleteAll_id">Yes</button>
+                <button type="button" class="btn btn-light px-4 px-md-5" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Me All Conversation -->
+
+<!-- Delete Me All Conversation -->
+<div class="modal style2 fade" id="delete-both-all-msg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body pt-4 pb-0 text-center">
+                <div
+                    class="icon-container w_60 h_60 rounded-circle bg-danger d-flex justify-content-center align-items-center mx-auto mb-3">
+                    <i class="fa fa-trash-alt text-white fs_25"></i>
+                </div>
+                <h5 class="mb-0">Delete the conversation</h5>
+                <p>Are you sure want to delete this conversation?</p>
+            </div>
+            <div class="modal-footer border-0 justify-content-center pb-4">
+                <button type="button" class="btn btn-danger px-4 px-md-5 deleteBothMsg" id="show_deleteBoth_id">Yes</button>
+                <button type="button" class="btn btn-light px-4 px-md-5" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Me All Conversation -->
 

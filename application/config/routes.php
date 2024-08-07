@@ -140,6 +140,10 @@ $route['massage/delete/both'] = 'favoritewish/massageDeleteBoth';
 $route['massage/delete/me'] = 'favoritewish/massageDeleteMe';
 $route['massage/list'] = 'favoritewish/massageList';
 
+$route['delete/me/allmsg'] = 'favoritewish/deleteMeAllMsg';
+$route['delete/both/allmsg'] = 'favoritewish/deleteBothAllMsg';
+
+
 /*
 
 

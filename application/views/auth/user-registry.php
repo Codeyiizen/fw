@@ -107,12 +107,12 @@
                                                     <div class="form-group form-inline">
                                                         <label for="email" class="mr-sm-2">Occasion</label>
                                                         <input type="text" class="form-control" id="occasion" value=""
-                                                            name="occasion" placeholder="Occasion">
+                                                            name="occasion" placeholder="occasion">
                                                     </div>
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Occasion"></i>
+                                                        data-placement="top" title="occasion"></i>
                                                 </div>
                                             </div>
                                             <span id="occasions" class="text-danger text-center"></span>
@@ -238,8 +238,8 @@
                                             <li>Style - <?php print_r($wishInfos->style); ?></li>
                                             <li><b>Created on -
                                                 <!-- <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?> -->
-                                                <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?>
-                                            </li></b>
+                                                <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?></b>
+                                            </li>
                                         </ul>
                                         <div class="d-flex justify-content-between">
                                             <a href="#" class="showRegistryCategory"
@@ -345,12 +345,12 @@
                                         <div class="form-group form-inline">
                                             <label for="email" class="mr-sm-2">Occasion</label>
                                             <input type="text" class="form-control occasion-registry-edit" value=""
-                                                name="occasion_registry" placeholder="Occasion">
+                                                name="occasion_registry" placeholder="occasion">
                                         </div>
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="Occasion"></i>
+                                            title="occasion"></i>
                                     </div>
                                 </div>
                                 <span id="brand_registry" class="text-danger text-center"></span>
@@ -371,18 +371,17 @@
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
-                                            <label for="email" class="mr-sm-2">Color</label>
-                                            <input type="text" class="form-control color-registry-edit" value=""
-                                                name="color_registry" placeholder="color">
+                                            <label for="email" class="mr-sm-2">Style</label>
+                                            <input type="text" class="form-control style-registry-edit" value=""
+                                                name="style_registry" placeholder="Style">
                                         </div>
-                                        
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="pick a color that reflects your individuality"></i>
+                                            title="list a style that suits your taste"></i>
                                     </div>
                                 </div>
-                                <span id="colors_registry" class="text-danger text-center"></span>
+                                <span id="styles_registry" class="text-danger text-center"></span>
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
@@ -401,17 +400,19 @@
                                 <div class="row">
                                     <div class="col-11">
                                         <div class="form-group form-inline">
-                                            <label for="email" class="mr-sm-2">Style</label>
-                                            <input type="text" class="form-control style-registry-edit" value=""
-                                                name="style_registry" placeholder="Style">
+                                            <label for="email" class="mr-sm-2">Color</label>
+                                            <input type="text" class="form-control color-registry-edit" value=""
+                                                name="color_registry" placeholder="color">
                                         </div>
+                                        
                                     </div>
                                     <div class="col-1 pl-0 pt-2">
                                         <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top"
-                                            title="list a style that suits your taste"></i>
+                                            title="pick a color that reflects your individuality"></i>
                                     </div>
                                 </div>
-                                <span id="styles_registry" class="text-danger text-center"></span>
+                                <span id="colors_registry" class="text-danger text-center"></span>
+                                
                                 <input type="hidden" class="registry_id">
                                 <div class="form-group text-center">
                                     <input type="button" name="contact" id="registry_contact_update"
