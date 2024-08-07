@@ -103,7 +103,7 @@ if (!function_exists('getUserProfilePhoto')) {
 		if(!empty($photo) && file_exists(FCPATH . 'assets/uploads/profile_photo/' . $photo) && !empty($photo)){
 			return base_url() . 'assets/uploads/profile_photo/' . $photo;
 		} else {
-			return base_url() . 'assets/images/site-image/user-icon.svg';
+			return base_url() . 'assets/upload/profile_photo/avtar.png';
 		}
 	}
 }

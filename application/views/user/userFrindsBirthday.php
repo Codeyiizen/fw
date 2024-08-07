@@ -14,7 +14,7 @@
                         <div class="row">
                                 <?php foreach ($toDayBirthday as $birthday) { ?>
                                     <div class="col-md-6">
-                                        <div class="card mb-4 box-shadow2 card-birthday-today">
+                                        <div class="card mb-5 box-shadow2 card-birthday-today">
                                             <div class="card-body">
                                                 <div class="row align-items-center text-center text-sm-left">
                                                     <div class="col-sm-7 pr-md-0 mb-4 mb-md-0">
@@ -22,23 +22,22 @@
                                                             <?php echo $birthday->first_name . '  ' . $birthday->last_name ?>
                                                         </h5>
                                                         <p>Let's surprise her with a birthday gift.</p>
-                                                        <a href="<?php echo base_url('user-dashboard') ?>"
-                                                            class="theme-btn yellow-bg px-3 px-md-4">Chek her Wish List</a>
+                                                        <a href="<?php echo base_url('user/friends/details/'.$birthday->id) ?>"
+                                                            class="theme-btn yellow-bg px-3 px-md-4">View Wish List</a>
                                                     </div>
-                                                    <?php if (!empty($birthday->profile_photo)) { ?>
-                                                        <div class="col-sm-5 pl-md-4 text-md-right">
-                                                            <img src="<?php echo base_url() . 'assets/uploads/profile_photo/' . $birthday->profile_photo; ?>"
+                                                    <div class="col-sm-5 pl-md-4 text-md-right">
+                                                            <img src="<?php echo base_url() . 'assets/uploads/profile_photo/no-birthday.png'; ?>"
                                                                 alt="" class="img-fluid" height="100px" ; width="100px">
                                                         </div>
-                                                    <?php } ?>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 <?php }
                             }else { ?>
+                               <div class="row">
                                 <div class="col-md-6">
-                                        <div class="card mb-4 box-shadow2 card-birthday-today">
+                                        <div class="card mb-5 box-shadow2 card-birthday-today">
                                             <div class="card-body">
                                                 <div class="row align-items-center text-center text-sm-left">
                                                     <div class="col-sm-7 pr-md-0 mb-4 mb-md-0">
@@ -54,6 +53,7 @@
                                                 </div>
                                             </div>
                                     </div>
+                                    </div>
                                 </div>
                            <?php  } ?>         
                         </div>
@@ -62,7 +62,7 @@
                         <div class="row">
                                 <?php foreach ($firstMonthBirthday as $thisMonthBirthday) { ?>
                                     <div class="col-md-4 pr-md-4">
-                                        <div class="card mb-4">
+                                        <div class="card mb-5">
                                             <div class="card-body">
                                                 <h5 class="h5">
                                                     <?php echo $thisMonthBirthday->first_name . '  ' . $thisMonthBirthday->last_name ?>
@@ -73,8 +73,10 @@
                                     </div>
                                 <?php }
                             }else{ ?>
+                            <h4>Month of <?php echo date('M') ?>, <?php echo date('Y'); ?></h4>
+                            <div class="row">
                               <div class="col-md-6">
-                                    <div class="card mb-4">
+                                    <div class="card mb-5">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -85,14 +87,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>  </div>
                         <?php } ?>
                         </div>
                         <?php if(!empty($secoundMonthBirthday)){  ?>
                         <h4>Month of <?php echo date('M', strtotime('+1 month')); ?>, <?php echo date('Y'); ?> </h4>
                         <div class="row mb-4">
                             <?php  foreach($secoundMonthBirthday as $secoundBirthday){ ?>
-                                <div class="col-md-4 pr-md-4">
+                                <div class="col-md-4 pr-md-5">
                                     <div class="card mb-4 mb-md-0">
                                         <div class="card-body">
                                             <h5 class="h5"><?php echo $secoundBirthday->first_name . '  ' . $secoundBirthday->last_name ?></h5>
@@ -101,8 +103,10 @@
                                     </div>
                                 </div>
                         <?php }  }else{?>
-                            <div class="col-md-6">
-                                    <div class="card mb-4">
+                        <h4>Month of <?php echo date('M', strtotime('+1 month')); ?>, <?php echo date('Y'); ?> </h4>
+                        <div class="row">
+                        <div class="col-md-6">
+                                    <div class="card mb-5">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-sm-12">
@@ -114,6 +118,7 @@
                                         </div>
                                     </div>
                                 </div>
+                           </div>
                             <?php  } ?>
                         </div>
                     </div>

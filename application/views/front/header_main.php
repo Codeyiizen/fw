@@ -31,18 +31,22 @@
 <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
 <link href="<?php echo base_url(); ?>assets/css/responsive.css" rel="stylesheet">
 <script> var BASE_URL = "<?php echo base_url() ?>"</script>
+<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5SL7X9WR');</script>
+<!-- End Google Tag Manager →
+
 
 </head>
 <!-- page wrapper -->
 <body>
+<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SL7X9WR"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
+<!-- End Google Tag Manager (noscript) -->
 
     <div class="boxed_wrapper">
         <!-- main header -->
@@ -92,7 +96,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div id="fs-menu" class="">
 			<nav class="fs-main-nav">
 				<ul>
-					<li><a href="<?php echo base_url(); ?>">Home</a></li>
+					<li><a href="<?php echo base_url('home/page'); ?>">Home</a></li>
 					<li><a href="<?php echo base_url('/about-us'); ?>">About Us</a></li>
 					<li><a href="<?php echo base_url('/contact-us'); ?>">Contact Us</a></li>
 					<?php

@@ -28,7 +28,7 @@
                         $subCatName = !empty($getObjssubCat->name) ? $getObjssubCat->name : '';
                     ?>
                         <div class="col-lg-3 col-md-4">
-                            <div class="card bg-gradient-<?php echo $i; ?> border-0 mb-4">
+                            <div class="card bg-gradient-1 border-0 mb-4">
                                 <div class="card-body">
                                     <h5 class="mb-1"><strong><?php print_r($wishInfos->occasion); ?> - </strong>
                                         <?php print_r($wishInfos->cat_name); ?></h5>
@@ -37,14 +37,15 @@
                                         <?php if (!empty($subCatName)) { ?>
                                             <li>Type - <?php echo $subCatName; ?></li>
                                         <?php } ?>
+                                        <?php  if(!empty($wishInfos->other_accessories)){  ?>
+                                        <li>Other - <?php print_r($wishInfos->other_accessories); ?></li>
+                                        <?php  } ?>
                                         <li>Brand - <?php print_r($wishInfos->brand); ?></li>
                                         <li>Occasion - <?php print_r($wishInfos->occasion); ?></li>
                                         <li>Color - <?php print_r($wishInfos->color); ?></li>
                                         <li>Size - <?php print_r($wishInfos->size); ?></li>
                                         <li>Style - <?php print_r($wishInfos->style); ?></li>
-                                        <?php if(!empty($wishInfos->created_on)){   ?>
-                                            <li><b>Created on - <?php print_r(date("D m M Y",strtotime($wishInfos->created_on))); ?></b></li>
-                                         <?php  } ?>
+                                        <li><b>Created on - <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?></b></li>
                                     </ul>
                                 </div>
                             </div>

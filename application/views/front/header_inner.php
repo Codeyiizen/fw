@@ -75,9 +75,11 @@
                     <nav class="fullscreen-nav">
                     <?php
                         $sessionArray = $this->session->userdata('ci_seesion_key');
+                        if ($sessionArray != '') {
                         $CI = &get_instance();
                         $CI->load->model('Favoritewish_Model');
                         $notifyAllData = $CI->Favoritewish_Model->getNotyfyAllData($sessionArray['user_id']);
+                        }
                        // echo"<pre>"; var_dump($notifyAllData); exit;
                      ?>
                      
@@ -100,18 +102,17 @@
                                        $addReqAcceptButton = '<button type="button" class="btn btn-primary btn-sm acceptFriendRequest" data-token=' . $getObjtoken->token . '>Accept</button>
                                                              <button type="button" class="btn btn-danger btn-sm removeFriend" data-token='.$getObjtoken->token.'>Reject</button>';
                                      } 
-                                     $message_time = new DateTime($Notify->created_on);  // Assume 'created_at' is the column name
-                                     
-                                     $current_time = new DateTime();
-                                     $interval = $current_time->diff($message_time);
-                                     if ($interval->d >= 1) {
-                                         $day = $interval->d . ' days ago';
-                                     } elseif ($interval->h >= 1) {
-                                         $day = $interval->h . ' hours ago';
-                                     } else {
-                                         $day = $interval->i . ' minutes ago';
-                                     }
-                                      $varFriendRequestNotify[] ='
+                                    $message_time = new DateTime($Notify->created_on);  // Assume 'created_at' is the column name
+                                    $current_time = new DateTime();
+                                    $interval = $current_time->diff($message_time);
+                                    if ($interval->d >= 1) {
+                                        $day = $interval->d . ' days ago';
+                                    } elseif ($interval->h >= 1) {
+                                        $day = $interval->h . ' hours ago';
+                                    } else {
+                                        $day = $interval->i . ' minutes ago';
+                                    }
+                                      $varFriendRequest ='
                                                                     <li>
                                                                         <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
                                                                             <div class="d-flex align-items-start mr-2">
@@ -121,9 +122,12 @@
                                                                                 </span>
                                                                                 <div class="message-content">  
                                                                                     <p class="fs_14 mb-0 lh_20 font-weight-semibold">'.$Notify->notification_massage.'</p>
-                                                                                    <small>'.$day.'</small>
-                                                                                    '.$addReqAcceptButton.'
-                                                                                </div>
+                                                                                    <small>'.$day.'</small>';
+                                                                                if($Notify->req_accept == 0){    
+                                                                                $varFriendRequest .='<button type="button" class="btn btn-primary btn-sm acceptFriendRequest" data-token=' . $getObjtoken->token . '>Accept</button>
+                                                                                    <button type="button" class="btn btn-danger btn-sm removeFriend" data-token='.$getObjtoken->token.'>Reject</button>';
+                                                                                }    
+                                                                                $varFriendRequest .= '</div>
                                                                             </div>
                                                                             <div>
                                                                                 <button type="button"
@@ -133,12 +137,12 @@
                                                                             </div>
                                                                         </a>
                                                                     </li>'; 
+                              $varFriendRequestNotify[]  = $varFriendRequest;
                                 ?>  
                      <?php }else if($Notify->notification_type == 'friend_request_Accept'){ 
                                     if($Notify->read_status == 0){
                                         $addClass = 'fa fa-circle icon';
                                     }
-                                
                                 $message_time = new DateTime($Notify->created_on);  // Assume 'created_at' is the column name
                                 $current_time = new DateTime();
                                 $interval = $current_time->diff($message_time);
@@ -148,7 +152,7 @@
                                     $day = $interval->h . ' hours ago';
                                 } else {
                                     $day = $interval->i . ' minutes ago';
-                                }
+                                } 
                                  $varFriendRequestNotify[] ='
                                  <li>
                                      <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
@@ -184,7 +188,7 @@
                             $day = $interval->h . ' hours ago';
                         } else {
                             $day = $interval->i . ' minutes ago';
-                        }
+                        } 
                         $varFriendRequestNotify[] ='
                                  <li>
                                      <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
@@ -219,7 +223,7 @@
                             $day = $interval->h . ' hours ago';
                         } else {
                             $day = $interval->i . ' minutes ago';
-                        }
+                        } 
                         $varFriendRequestNotify[] ='
                                  <li>
                                      <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
@@ -269,7 +273,7 @@
                             <div
                                 class="dropdown-header d-flex justify-content-between align-items-center text-dark fs_16">
                                 <span><i class="icon icon-15 mr-2"></i>Notifications</span>
-                                <a href="<?php echo base_url('notification') ?>" class="btn btn-link text-dark p-0"><i
+                                 <a href="<?php echo base_url('notification') ?>" class="btn btn-link text-dark p-0"><i
                                         class="fas fa-cog"></i></a>
                             </div> 
                             <div class="scrollbar-vertical" id="removeClass">    

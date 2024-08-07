@@ -40,6 +40,7 @@
                                 Your password has been reset successfully. Please check your email.
                             </div>
                             <?php } ?>
+                            
                             <?php if (!empty($this->input->get('msg')) && $this->input->get('msg') == 3) { ?>
                             <div class="alert alert-danger">
                             Your password has been reset successfully. Please check your email.
@@ -49,7 +50,9 @@
                                User Email Isn't Registered.
                             </div>
                             <?php } ?>
+
                             <?php echo form_open('favoritewish/actionForgotPassword'); ?>
+
                             <div class="form-group">
                                 <label for="Username">Email address</label>
                                 <input type="text" name="forgot_email" class="form-control" id="username"
@@ -58,6 +61,7 @@
                             <div class="col-md-12 text-center ">
                                 <button type="submit" class="yello-shadow-btn">Reset Password</button>
                             </div>
+
                             <?php echo form_close(); ?>
                         </div>
                     </div>

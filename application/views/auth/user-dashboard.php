@@ -225,9 +225,9 @@
                                                 <?php print_r($wishInfos->size); ?></li>
                                             <li class="style" data-style="<?php print_r($wishInfos->style); ?>">Style -
                                                 <?php print_r($wishInfos->style); ?></li>
-                                            <li>Created on -
+                                            <li><b>Created on -
                                                 <!-- <?php print_r(date("D d M Y",strtotime($wishInfos->created_on))); ?> -->
-                                                <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?> 
+                                                <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?> </b>
                                             </li>
                                         </ul>
                                         <div class="d-flex justify-content-between">

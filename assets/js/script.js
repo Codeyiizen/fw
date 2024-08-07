@@ -242,13 +242,9 @@
 			}
 		});
 	 }	   
-   }) 
-   
-//    $("body").on("click", ".testone", function (){
-//       alert('ok');
-//    })
+   })     
 
-   $("body").on("click", ".form_massage_edit", function (e){
+ $("body").on("click", ".form_massage_edit", function (e){
 	e.preventDefault();  
      var msg = $(this).text().replace(/\s+/g, ' ');     
 	 var id = $(this).attr('id');
@@ -263,7 +259,7 @@
 	  $('#show_msg').attr('data-id',id);
 	  $('.removeClass').removeClass('d-none');
 	  $('.addClass').addClass('d-none');
-   })  
+   }) 
    
    $("body").on("click", ".updateMassage", function (){   
 		var msg = $("#show_msg").val();  
@@ -351,6 +347,50 @@
 			}
 		});
 	});
+	
+	
+	$("body").on("click", ".deleteForMeAllMsg", function (){ 
+		var id = $(this).attr('data-id');  
+		$('#show_deleteAll_id').attr('data-id',id);
+	})  
+
+	$("body").on("click", ".deleteAllMsg", function (){ 
+		var id = $("#show_deleteAll_id").attr("data-id");
+		$.ajax({
+			url: BASE_URL + "/delete/me/allmsg",
+			type: "post",
+			data: {
+				id:id 
+			},       
+			success: function (response){
+			  window.location.reload();
+			}
+		});
+    })   
+
+	$("body").on("click", ".deleteForBothAllMsg", function (){ 
+		var id = $(this).attr('data-id');     
+		$('#show_deleteBoth_id').attr('data-id',id);
+	})  
+
+	$("body").on("click", ".deleteBothMsg", function (){
+		var id = $(this).attr('data-id');  alert(id);
+		// var selectedIds = [];
+		// $('.to_massage_edit').each(function(){
+		// 	selectedIds.push($(this).attr('msg-id'));
+		// }); 
+		$.ajax({
+			url: BASE_URL + "/delete/both/allmsg",
+			type: "post",
+			data: {
+				id:id
+			},       
+			success: function (response){
+			//  window.location.reload();
+			}
+		});
+    })
+	
 	$("body").on("change",".filter_by_cat",function(){
 		if($(this).val()!==""){
 			window.location.replace(BASE_URL+'/user-dashboard?cat='+$(this).val())
@@ -1077,16 +1117,16 @@ $("body").on("click", ".registryDeleteId", function (){
   });
 
   $("body").on("change",".otherAccessories", function(){  
-     var otherAccessoriesId = $(this).val();
-	 if(otherAccessoriesId == 31){
+     var otherAccessoriesId = $(this).val(); 
+	 if(otherAccessoriesId == 54){
 	  $('.otherAccessories_inputbox').removeClass('d-none');
-	 }else if(otherAccessoriesId == 32){
+	 }else if(otherAccessoriesId == 55){
 	   $('.otherAccessories_inputbox').removeClass('d-none');
-	 }else if(otherAccessoriesId == 33){
+	 }else if(otherAccessoriesId == 56){
 		$('.otherAccessories_inputbox').removeClass('d-none');
-	 }else if(otherAccessoriesId == 34){
+	 }else if(otherAccessoriesId == 57){
 		$('.otherAccessories_inputbox').removeClass('d-none');
-	 }else if(otherAccessoriesId == 35){
+	 }else if(otherAccessoriesId == 58){
 		$('.otherAccessories_inputbox').removeClass('d-none');
 	 }
 	 else{
@@ -1096,15 +1136,15 @@ $("body").on("click", ".registryDeleteId", function (){
 
   $("body").on("change",".accessoriesEdit", function(){   
 	var otherAccessoriesId = $(this).val();    
-	if(otherAccessoriesId == 31){
+	if(otherAccessoriesId == 54){
 	 $('.otherAccessories_edit').removeClass('d-none');
-	}else if(otherAccessoriesId == 32){
+	}else if(otherAccessoriesId == 55){
 		$('.otherAccessories_edit').removeClass('d-none');
-	}else if(otherAccessoriesId == 33){
+	}else if(otherAccessoriesId == 56){
 		$('.otherAccessories_edit').removeClass('d-none');
-	}else if(otherAccessoriesId == 34){
+	}else if(otherAccessoriesId == 57){
 		$('.otherAccessories_edit').removeClass('d-none');
-	}else if(otherAccessoriesId == 35){
+	}else if(otherAccessoriesId == 58){
 		$('.otherAccessories_edit').removeClass('d-none');
 	}else{
 	   $('.otherAccessories_edit').addClass('d-none');
@@ -1537,7 +1577,9 @@ var yyyy = today.getFullYear();
         mm='0'+mm
     } 
 today = yyyy+'-'+mm+'-'+dd;
+if(document.getElementById("childBirthday")){
 document.getElementById("childBirthday").setAttribute("max", today);
+}
 
 
 var today = new Date();
@@ -1551,7 +1593,9 @@ var yyyy = today.getFullYear();
         mm='0'+mm
     } 
 today = yyyy+'-'+mm+'-'+dd;
+if(document.getElementById("childBirthdayEdit")){
 document.getElementById("childBirthdayEdit").setAttribute("max", today);
+}
 
 
 

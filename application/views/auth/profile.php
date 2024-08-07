@@ -9,7 +9,7 @@
 
 </style>
 <section class="fav-profile-section pb-0 pb-md-5">
-    <?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
+<?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
 </section>
 <section class="section-padding profile-content pt-0 pt-md-5">
     <div class="container">
@@ -57,7 +57,7 @@
                                 <?php } ?>
 
                                 <?php if(!empty($userInfo['favorite_country'])) { ?>
-                                <li><span>Favorite Country</span><span class="font-weight-normal mr-0"><?php print $userInfo['favorite_country']; ?></span></li>
+                                <li><span>Favorite Gift Cards</span><span class="font-weight-normal mr-0"><?php print $userInfo['favorite_country']; ?></span></li>
                                 <?php } ?>
                                 <?php if(!empty($userInfo['favoripublic_outfit_wear'])){ ?>
                                 <li><span>Favorite Public Outfit

@@ -76,7 +76,7 @@
                                 <div class="col-lg-12 col-sm-12">
                                     <div class="form-group custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="terms" name="terms">
-                                        <label class="custom-control-label" for="terms">By signing up i agree to all the
+                                        <label class="custom-control-label" for="terms">By signing up I agree to all the
                                             <a href="<?php echo base_url('/terms-and-conditions'); ?>">terms and
                                                 conditions</a></label>
                                     </div>

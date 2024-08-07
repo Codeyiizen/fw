@@ -70,7 +70,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Family member"></i>
+                                                        data-placement="top" title="family member"></i>
                                                 </div>
                                            </div> 
                                            <span id="family_member" class="text-danger text-center"></span> 
@@ -84,7 +84,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Child’s Name"></i>
+                                                        data-placement="top" title="child’s Name"></i>
                                                 </div>
                                             </div>
                                             <span id="child_name" class="text-danger text-center"></span> 
@@ -98,7 +98,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Child’s Birthday:"></i>
+                                                        data-placement="top" title="child’s Birthday:"></i>
                                                 </div>
                                             </div>
                                             <span id="child_birthday" class="text-danger text-center"></span> 
@@ -118,7 +118,7 @@
                                                 </div>
                                                 <div class="col-1 pl-0 pt-2">
                                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                                        data-placement="top" title="Sex"></i>
+                                                        data-placement="top" title="sex"></i>
                                                 </div>
                                            </div> 
                                            <span id="sexsss" class="text-danger text-center"></span> 
@@ -302,7 +302,7 @@
                                             <li>Size  - <?php print_r($wishInfos->size); ?></li>
                                             <li>Style  - <?php print_r($wishInfos->style); ?></li>  
                                             <!-- <li>Created On  - <?php print_r(date("Y-m-d",strtotime($wishInfos->created_on))); ?></li> -->
-                                            <li><b>Created On  - <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?></li></ul></b></li>
+                                            <li><b>Created On  - <?php print_r(date("m/d/Y",strtotime($wishInfos->created_on))); ?></b></li>
                                         </ul>
                                         <div class="d-flex justify-content-between">
                                             <a href="#" class="showFamilyWishesCategory"
@@ -369,7 +369,7 @@
                                 </div>
                                 <div class="col-1 pl-0 pt-2">
                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                        data-placement="top" title="Family Member"></i>
+                                        data-placement="top" title="family Member"></i>
                                 </div>
                             </div> 
                             <span id="familyMember" class="text-danger text-center"></span> 
@@ -383,7 +383,7 @@
                                 </div>
                                 <div class="col-1 pl-0 pt-2">
                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                        data-placement="top" title="Child’s Name"></i>
+                                        data-placement="top" title="child’s Name"></i>
                                 </div>
                             </div>
                             <span id="childname" class="text-danger text-center"></span> 
@@ -397,7 +397,7 @@
                                 </div>
                                 <div class="col-1 pl-0 pt-2">
                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                        data-placement="top" title="Child’s Birthday:"></i>
+                                        data-placement="top" title="child’s Birthday:"></i>
                                 </div>
                             </div>
                             <span id="birthday" class="text-danger text-center"></span> 
@@ -412,7 +412,7 @@
                                 </div>
                                 <div class="col-1 pl-0 pt-2">
                                     <i class="fa fa-question-circle" data-toggle="tooltip"
-                                        data-placement="top" title="Sex"></i>
+                                        data-placement="top" title="sex"></i>
                                 </div>
                             </div> 
                             <span id="editSex" class="text-danger text-center"></span> 
