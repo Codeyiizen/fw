@@ -2024,7 +2024,7 @@ class Favoritewish extends CI_Controller
 				'to_id' => $checkUserLoginStatus->id,
 				'from_id' => $user['user_id'],
 				'notification_type' =>'inbox_massage',
-				'notification_massage' =>''.$user['first_name'].'  has send a message. Reply him now',
+				'notification_massage' =>''.$user['user_name'].'  has send a message. Reply him now',
 				'created_on'	    =>	date("Y-m-d H:i:s")
 			);
         $this->db->insert('notification', $arrInsertNotification);
