@@ -374,7 +374,7 @@
 	})  
 
 	$("body").on("click", ".deleteBothMsg", function (){
-		var id = $(this).attr('data-id');  alert(id);
+		var id = $(this).attr('data-id');  
 		// var selectedIds = [];
 		// $('.to_massage_edit').each(function(){
 		// 	selectedIds.push($(this).attr('msg-id'));
@@ -386,7 +386,7 @@
 				id:id
 			},       
 			success: function (response){
-			//  window.location.reload();
+			  window.location.reload();
 			}
 		});
     })
