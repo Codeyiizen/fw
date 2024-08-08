@@ -2084,7 +2084,7 @@ class Favoritewish extends CI_Controller
 					'msg_type'	        =>	'msg',
 					'seen'	            =>	'0',
 					'status'	        =>	'0',
-					'created_on'	    =>	date("Y-m-d H:i:s")
+					'created_on'	    =>	date("Y-m-d H:i:s"),
 				);	
           // echo"<pre>"; var_dump($this->input->post('friend_id')); exit;
 		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data,$msgStatus);
@@ -2780,7 +2780,7 @@ public function massageDeleteMe(){
 	$this->Favoritewish_Model->deleteMe($id,$deleteme);
 }
 
- public function massageList(){  
+ public function massageList(){   
 	if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 		redirect('sign-in'); // the user is not logged in, redirect them!
 	}else{
@@ -2797,6 +2797,10 @@ public function massageDeleteMe(){
 		$data['title'] = "User Profile";
 		$data['breadcrumbs'] = array('User Profile' => '#');
 		$data['user_profile_id'] = $id;
+		
+		//$data['latestMassage'] = $this->Favoritewish_Model->getLatestMassage($get['f_id'],$sessionArray['user_id']);
+
+
 		$this->Favoritewish_Model->setUserID($id);
 		$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
 		$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
@@ -2848,13 +2852,11 @@ public function massageDeleteMe(){
 		$toId =  $msg->to_user;
 		if($formId == $sessionArray['user_id']){
 		    $deletemeallmsg = array(
-				'delete_to' => 0,
 				'delete_form' => $formId,
 			);
 		}else if($toId == $sessionArray['user_id']){
 			$deletemeallmsg = array(
-				'delete_to' =>$toId,
-				'delete_form' => 0 ,
+				'delete_to' =>$toId, 
 			);
 		}
 		$this->Favoritewish_Model->deleteMeAllMsg($formId,$toId,$deletemeallmsg);
@@ -2874,6 +2876,7 @@ public function massageDeleteMe(){
 		$toId =  $msg->to_user;
         $deletemeallmsg = array(
 			'delete_to' =>$toId,
+			'display_to_status' => $msg->from_user,
 		);
 
 	//	$this->Favoritewish_Model->deleteMeAllMsg($formId,$toId,$deletemeallmsg);
@@ -2885,14 +2888,12 @@ public function massageDeleteMe(){
         $deletemeallmsg = array(
 			'delete_to' =>$toId,
 			'delete_form' =>  $formId,
+			'display_to_status' => $msg->from_user,
 		);
 
 	//	$this->Favoritewish_Model->deleteMeAllMsg($formId,$toId,$deletemeallmsg);
 		$this->Favoritewish_Model->deleteBothAllMsg($formId,$toId,$deletemeallmsg);
 	}
-
-
-	
  }
 
 }

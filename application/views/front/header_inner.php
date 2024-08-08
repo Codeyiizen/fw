@@ -80,7 +80,6 @@
                         $CI->load->model('Favoritewish_Model');
                         $notifyAllData = $CI->Favoritewish_Model->getNotyfyAllData($sessionArray['user_id']);
                         }
-                       // echo"<pre>"; var_dump($notifyAllData); exit;
                      ?>
                      
                      <?php if(!empty($notifyAllData)){  ?>
@@ -297,9 +296,12 @@
                             </ul>
                          <?php   } ?>
 
+                        <?php if(!empty($notifyAllData) && count($notifyAllData) > 5){ ?>  
+
                             <div class="dropdown-footer text-center">
                                 <button type="button" class="btn btn-link text-dark fs_14 p-0 showAllNotify">Read all</button>
                             </div>
+                            <?php } ?>
                         </div>
                         </div>
                         <?php

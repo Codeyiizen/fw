@@ -1673,6 +1673,8 @@ public function checkUserFriend($id){
     m.seen_class,
     m.from_user,
     m.to_user,
+    m.display_to_status,
+    m.display_form_status,
     m.delete_status,
     friend.first_name AS friend_first_name,
     friend.profile_photo AS friend_profile_photo, 
@@ -1682,8 +1684,6 @@ public function checkUserFriend($id){
 ');
 $this->db->from('users u');
 $this->db->join('friends f', 'u.id = f.from_friend OR u.id = f.to_friend');
-
-// Subquery to get the latest message for each friend
 $this->db->join('(SELECT 
                     CASE 
                       WHEN from_user = '.$user_id.' THEN to_user 
@@ -1696,23 +1696,22 @@ $this->db->join('(SELECT
     '((f.from_friend = latest.friend_id AND f.to_friend = '.$user_id.') OR (f.to_friend = latest.friend_id AND f.from_friend = '.$user_id.'))', 
     'left');
 
-// Join the messages table with the latest messages
+
 $this->db->join('messages m', 'm.from_user = latest.friend_id AND m.to_user = '.$user_id.' AND m.created_on = latest.max_created_on OR
                            m.from_user = '.$user_id.' AND m.to_user = latest.friend_id AND m.created_on = latest.max_created_on', 'left');
 
 $this->db->join('users friend', '(friend.id = f.from_friend AND friend.id != u.id) OR (friend.id = f.to_friend AND friend.id != u.id)', 'left');
 $this->db->where('u.id', $user_id);
-
 if (!empty($search_query)) {
-    $this->db->group_start();  // Open bracket for the WHERE clause grouping
+    $this->db->group_start();  
         $this->db->like('friend.first_name', $search_query);
         $this->db->or_like('friend.last_name', $search_query);
         $this->db->or_like('friend.user_name', $search_query);
         $this->db->or_like('m.message', $search_query);
-        $this->db->group_end();  // Close bracket for the WHERE clause grouping
+        $this->db->group_end();  
 }
 
-$this->db->order_by('m.created_on', 'DESC'); // Ensure latest message comes first
+$this->db->order_by('m.created_on', 'DESC'); 
 $query = $this->db->get();
 return $query->result();
  }
@@ -1775,6 +1774,15 @@ public function getMsgForMe($id){
     $query = $this->db->get();
     return $query->result();
    // echo"<pre>"; var_dump($query->result()); exit;
+}
+
+public function getLatestMassage($f_id,$u_id){ 
+    $this->db->from("messages");
+    $this->db->where('(delete_form!='.$f_id.' AND delete_to!='.$f_id.')');
+    $this->db->where('((to_user='.$f_id." and from_user=".$u_id.') OR (to_user='.$u_id." and from_user=".$f_id.'))');
+    $this->db->order_by('created_on','DESC');
+    $query = $this->db->get();
+    return $query->row();
 }
 
 }

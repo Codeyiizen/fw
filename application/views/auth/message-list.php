@@ -187,12 +187,16 @@
                                 </div>
                                 
                                 <?php if (!empty($showFriendMassage)) { ?>
+                                 <?php
+                                   $CI = &get_instance();
+                                   $CI->load->model('Favoritewish_Model');
+                                 ?>
                                 <?php foreach ($showFriendMassage as $showMassage) {?> 
                                 <a href="<?php echo base_url(); ?>/massage/list?f_id=<?php echo $showMassage->friend_user_id ?>"
                                     class="list-group-item list-group-item-action border-0 selected">
                                     <!-- <div class="badge bg-success text-white float-right">5</div> -->
-                                    <div class="d-flex align-items-center">
-                                        <img src="<?php echo base_url(); ?>assets/uploads/profile_photo/<?php echo !empty($showMassage->friend_profile_photo) ? $showMassage->friend_profile_photo :'avatar.png' ?>"
+                                    <div class="d-flex align-items-start">
+                                        <img class="img-fluid w_40 h_40 rounded-circle" src="<?php echo base_url(); ?>assets/uploads/profile_photo/<?php echo !empty($showMassage->friend_profile_photo) ? $showMassage->friend_profile_photo :'avatar.png' ?>"
                                             class="rounded-circle mr-1" alt="Image" width="40" height="40">
                                         <div class="flex-grow-1 ml-3">
                                             <div class="d-flex justify-content-between">
@@ -202,14 +206,19 @@
                                                 <small
                                                     class="time mt-1 ml-3"><?php echo $newDateTime = date('h:i A', strtotime($showMassage->created_on)); ?></small>
                                             </div>
-                                            <div class="d-flex justify-content-between">
-                                                <p class="fs_14 lh_16 mb-0">
+                                            <div class="d-flex justify-content-between">  
+                                                <p class="fs_14 lh_16 mb-0" user-id="<?php echo $showMassage->user_id ?>" friend-id="<?php echo $showMassage->friend_user_id ?>">
+                                                    <?php  
+                                                      $latestMassage = $CI->Favoritewish_Model->getLatestMassage($showMassage->user_id,$showMassage->friend_user_id);
+                                                      //echo"<pre>"; var_dump($latestMassage);
+                                                    ?>
                                                       <?php 
                                                         if($showMassage->delete_status == 0){
-                                                         echo $showMassage->message;
-                                                        }
+                                                            //echo $showMassage->user_id;
+                                                              echo (!empty($latestMassage->message))?$latestMassage->message:'';
+                                                            }
                                                       ?>
-                                                </p>
+                                                </p>  
                                                 <?php  if($userLoginInfo['user_id'] != $showMassage->from_user){  ?>
                                                  <small class="mt-1 ml-3"><i
                                                         class="<?php echo $showMassage->seen_class ?>"></i></small>
@@ -266,6 +275,7 @@
                                                 aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-info text-white fs_16"></i>
                                             </button>
+                                          <?php  if(!empty($form_massage)){ ?>  
                                             <div class="dropdown-menu dropdown-menu-right"
                                                 aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item deleteForMeAllMsg" href="javascript:void(0)" data-id="<?php echo (!empty($friendName->id))?$friendName->id:'' ?>"  data-toggle="modal"
@@ -274,8 +284,8 @@
                                                 data-target="#delete-both-all-msg">Delete For both</a>
                                                 <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                                             </div>
-                                        </di>
-
+                                        <?php } ?>      
+                                        </div>
                                     </div>
                                    <?php  } ?> 
                                 </div>
