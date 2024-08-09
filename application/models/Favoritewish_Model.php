@@ -1785,4 +1785,6 @@ public function getLatestMassage($f_id,$u_id){
     return $query->row();
 }
 
+
+
 }

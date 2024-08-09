@@ -11,8 +11,12 @@
     color: #334e68;
 }
 
-.list-group-item.selected * {
+.list-group-item{
     font-weight: 700;
+}
+
+.list-group-item span.selected{
+    font-family: "Gilroy-Bold";
 }
 
 .search-form {
@@ -193,39 +197,36 @@
                                  ?>
                                 <?php foreach ($showFriendMassage as $showMassage) {?> 
                                 <a href="<?php echo base_url(); ?>/massage/list?f_id=<?php echo $showMassage->friend_user_id ?>"
-                                    class="list-group-item list-group-item-action border-0 selected">
+                                    class="list-group-item list-group-item-action border-0">
                                     <!-- <div class="badge bg-success text-white float-right">5</div> -->
-                                    <div class="d-flex align-items-start">
+                                    <div class="d-flex align-items-center">
                                         <img class="img-fluid w_40 h_40 rounded-circle" src="<?php echo base_url(); ?>assets/uploads/profile_photo/<?php echo !empty($showMassage->friend_profile_photo) ? $showMassage->friend_profile_photo :'avatar.png' ?>"
                                             class="rounded-circle mr-1" alt="Image" width="40" height="40">
                                         <div class="flex-grow-1 ml-3">
                                             <div class="d-flex justify-content-between">
-                                                <h6 class="mb-0">
+                                                <h6 class="mb-0 text-capitalize">
                                                     <?php echo $showMassage->friend_first_name . ' ' . $showMassage->friend_last_name ?>
                                                 </h6>
                                                 <small
                                                     class="time mt-1 ml-3"><?php echo $newDateTime = date('h:i A', strtotime($showMassage->created_on)); ?></small>
                                             </div>
                                             <div class="d-flex justify-content-between">  
-                                                <p class="fs_14 lh_16 mb-0" user-id="<?php echo $showMassage->user_id ?>" friend-id="<?php echo $showMassage->friend_user_id ?>">
+                                                <p class="fs_14 lh_16 mb-0">
                                                     <?php  
                                                       $latestMassage = $CI->Favoritewish_Model->getLatestMassage($showMassage->user_id,$showMassage->friend_user_id);
-                                                      //echo"<pre>"; var_dump($latestMassage);
+                                                     if(($showMassage->user_id == $showMassage->to_user) && (!empty($showMassage->seen_class))){
+                                                        $addCClass= 'selected';
+                                                        $addSeenClass= $showMassage->seen_class;
+                                                     }else{
+                                                        $addCClass= '';
+                                                        $addSeenClass = "";
+                                                     }
                                                     ?>
-                                                      <?php 
-                                                        if($showMassage->delete_status == 0){
-                                                            //echo $showMassage->user_id;
-                                                              echo (!empty($latestMassage->message))?$latestMassage->message:'';
-                                                            }
-                                                      ?>
-                                                </p>  
-                                                <?php  if($userLoginInfo['user_id'] != $showMassage->from_user){  ?>
-                                                 <small class="mt-1 ml-3"><i
-                                                        class="<?php echo $showMassage->seen_class ?>"></i></small>
-                                                <?php  }else if($userLoginInfo['user_id'] == $showMassage->to_user){ ?>  
-                                                    <small class="mt-1 ml-3"><i
-                                                    class="<?php echo $showMassage->seen_class ?>"></i></small> 
-                                                <?php  } ?>    
+                                                      
+                                                    <span class="<?php echo $addCClass   ?>"> <?php  echo (!empty($latestMassage->message))?$latestMassage->message:''; ?> </span>   
+                                                </p> 
+                                                <small class="mt-1 ml-3"><i class="<?php echo $addSeenClass ?>"></i></small> 
+                                                    
                                             </div>
                                         </div>
                                     </div>
