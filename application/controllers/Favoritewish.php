@@ -2000,7 +2000,7 @@ class Favoritewish extends CI_Controller
 				'seen_class' => '',
 				); 
 			$this->Favoritewish_Model->updateSeenStatus($id,$updateSeenStatus);
-			 // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
+			//echo"<pre>"; var_dump($data['showFriendMassage']); exit;
 			}
 			$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
 			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
