@@ -469,7 +469,7 @@
                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color: #f1f2f7;width: 640px;">
                                             <tbody>
                                                 <tr>
-                                                    <td align="left" style="padding-top:20px;padding-bottom:20px;padding-left:20px;Margin:0;padding-bottom: 0;">
+                                                    <td align="left" style="padding: 30px;Margin:0;padding-bottom: 0;">
                                                         <table cellpadding="0" cellspacing="0" width="100%"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tbody>
@@ -483,7 +483,7 @@
                                                                                 <tr>
                                                                                     <td align="center"
                                                                                         style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px">
-                                                                                        <img src="https://favoritewish.com/assets/images/site-image/logo1.png"
+                                                                                        <img src="http://localhost/fw/assets/images/site-image/logo1.png"
                                                                                             alt=""
                                                                                             style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
                                                                                             width="180">
@@ -494,8 +494,8 @@
                                                                                         class="es-m-txt-c"
                                                                                         style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 10px;">
                                                                                         <h1
-                                                                                            style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47; ">
-                                                                                            You have a message reply
+                                                                                            style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47; text-transform: uppercase;">
+                                                                                            you have a message Reply him
                                                                                             now</h1>
                                                                                     </td>
                                                                                 </tr>
@@ -565,7 +565,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" style="padding-top: 30px; padding-bottom: 30px; padding-left: 20px; padding-right: 20px;Margin:0;padding-top: 0;">
+                                                    <td align="left" style="padding: 30px;Margin:0;padding-top: 0;">
                                                         <table cellpadding="0" cellspacing="0" width="100%"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tbody>
@@ -602,12 +602,12 @@
                             </tbody>
                         </table>
                         <table cellpadding="0" cellspacing="0" class="es-footer" align="center"
-                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;background-repeat:repeat;background-position:center top">
+                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
                             <tbody>
                                 <tr>
                                     <td align="center" style="padding:0;Margin:0">
                                         <table class="es-footer-body" align="center" cellpadding="0" cellspacing="0"
-                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;">
+                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:640px">
                                             <tbody>
                                                 <tr>
                                                     <td align="left" bgcolor="#c11e1a"
@@ -721,7 +721,7 @@
                                                                                                         width="33.33%"
                                                                                                         style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0">
                                                                                                         <a target="_blank"
-                                                                                                            href="https://favoritewish.com"
+                                                                                                            href="https://fw.kurieta.ca"
                                                                                                             style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Visit
                                                                                                             Us </a>
                                                                                                     </td>

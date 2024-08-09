@@ -2000,7 +2000,7 @@ class Favoritewish extends CI_Controller
 				'seen_class' => '',
 				); 
 			$this->Favoritewish_Model->updateSeenStatus($id,$updateSeenStatus);
-			 // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
+			//echo"<pre>"; var_dump($data['showFriendMassage']); exit;
 			}
 			$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
 			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
@@ -2024,7 +2024,7 @@ class Favoritewish extends CI_Controller
 				'to_id' => $checkUserLoginStatus->id,
 				'from_id' => $user['user_id'],
 				'notification_type' =>'inbox_massage',
-				'notification_massage' =>''.$user['first_name'].'  has send a message. Reply now',
+				'notification_massage' =>''.$user['first_name'].'  has send a message. Reply him now',
 				'created_on'	    =>	date("Y-m-d H:i:s")
 			);
         $this->db->insert('notification', $arrInsertNotification);
