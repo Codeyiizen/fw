@@ -8,7 +8,7 @@
     <meta name="x-apple-disable-message-reformatting">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="telephone=no" name="format-detection">
-    <title>Inbox Massage Notification</title>
+    <title>Friend Request</title>
     <!--[if (mso 16)]>
     <style type="text/css">
     a {text-decoration: none;}
@@ -469,7 +469,7 @@
                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color: #f1f2f7;width: 640px;">
                                             <tbody>
                                                 <tr>
-                                                    <td align="left" style="padding-top:20px;padding-bottom:20px;padding-left:20px;Margin:0;padding-bottom: 0;">
+                                                    <td align="left" style="padding-top: 30px; padding-bottom: 30px; padding-left: 20px; padding-right: 20px;Margin:0;padding-bottom: 0;">
                                                         <table cellpadding="0" cellspacing="0" width="100%"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tbody>
@@ -486,17 +486,16 @@
                                                                                         <img src="https://favoritewish.com/assets/images/site-image/logo1.png"
                                                                                             alt=""
                                                                                             style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
-                                                                                            width="180">
-                                                                                    </td>
+                                                                                            width="180"></td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td align="center"
                                                                                         class="es-m-txt-c"
-                                                                                        style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 10px;">
+                                                                                        style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 30px;">
                                                                                         <h1
-                                                                                            style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47; ">
-                                                                                            You have a message reply
-                                                                                            now</h1>
+                                                                                            style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47;">
+                                                                                            You have received a friend
+                                                                                            request</h1>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
@@ -510,45 +509,188 @@
                                                                                                     <td class="esdev-adapt-off"
                                                                                                         align="left"
                                                                                                         style="padding:20px;Margin:0">
-
                                                                                                         <table
                                                                                                             cellpadding="0"
                                                                                                             cellspacing="0"
                                                                                                             class="esdev-mso-table"
                                                                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;width:560px">
-
-                                                                                                            <tr>
-                                                                                                                <td align="center"
-                                                                                                                    style="padding:0;Margin:0;padding-top:10px">
-                                                                                                                    <p
-                                                                                                                        style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px; text-transform: capitalize;">
-                                                                                                                        Friend
-                                                                                                                        Name:
-                                                                                                                        <strong><?php echo $name ?></strong>
-                                                                                                                    </p>
-                                                                                                                </td>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <td
-                                                                                                                    height="40">
-                                                                                                                    &nbsp;
-                                                                                                                </td>
-                                                                                                            </tr>
-                                                                                                            <tr>
-                                                                                                                <td align="center"
-                                                                                                                    style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px">
-                                                                                                                    <span
-                                                                                                                        class="es-button-border msohide"
-                                                                                                                        style="display:inline-block;border-radius:6px;width:auto;mso-hide:all">
-                                                                                                                        <a href="<?php echo $link ?>"
-                                                                                                                            class="es-button"
-                                                                                                                            target="_blank"
-                                                                                                                            style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#C11E1A;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">Reply</a>
-                                                                                                                    </span>
-                                                                                                                    <!--<![endif]-->
-                                                                                                                </td>
-                                                                                                            </tr>
-
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <td class="esdev-mso-td"
+                                                                                                                        valign="top"
+                                                                                                                        style="padding:0;Margin:0">
+                                                                                                                        <table
+                                                                                                                            cellpadding="0"
+                                                                                                                            cellspacing="0"
+                                                                                                                            class="es-left"
+                                                                                                                            align="left"
+                                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
+                                                                                                                            <tbody>
+                                                                                                                                <tr
+                                                                                                                                    class="es-mobile-hidden">
+                                                                                                                                    <td align="left"
+                                                                                                                                        style="padding:0;Margin:0;width:146px">
+                                                                                                                                        <table
+                                                                                                                                            cellpadding="0"
+                                                                                                                                            cellspacing="0"
+                                                                                                                                            width="100%"
+                                                                                                                                            role="presentation"
+                                                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                                                                                                                                            <tbody>
+                                                                                                                                                <tr>
+                                                                                                                                                    <td align="center"
+                                                                                                                                                        height="40"
+                                                                                                                                                        style="padding:0;Margin:0">
+                                                                                                                                                    </td>
+                                                                                                                                                </tr>
+                                                                                                                                            </tbody>
+                                                                                                                                        </table>
+                                                                                                                                    </td>
+                                                                                                                                </tr>
+                                                                                                                            </tbody>
+                                                                                                                        </table>
+                                                                                                                    </td>
+                                                                                                                    <td class="esdev-mso-td"
+                                                                                                                        valign="top"
+                                                                                                                        style="padding:0;Margin:0">
+                                                                                                                        <table
+                                                                                                                            cellpadding="0"
+                                                                                                                            cellspacing="0"
+                                                                                                                            class="es-left"
+                                                                                                                            align="left"
+                                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
+                                                                                                                            <tbody>
+                                                                                                                                <tr>
+                                                                                                                                    <td align="left"
+                                                                                                                                        style="padding:0;Margin:0;width:121px">
+                                                                                                                                        <table
+                                                                                                                                            cellpadding="0"
+                                                                                                                                            cellspacing="0"
+                                                                                                                                            width="100%"
+                                                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;border-radius:10px 0 0 10px"
+                                                                                                                                            role="presentation">
+                                                                                                                                            <tbody>
+                                                                                                                                                <tr>
+                                                                                                                                                    <td align="right"
+                                                                                                                                                        style="padding:0;Margin:0;">
+                                                                                                                                                        <p
+                                                                                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
+                                                                                                                                                            Friend Name:
+                                                                                                                                                        </p>
+                                                                                                                                                    </td>
+                                                                                                                                                </tr>
+                                                                                                                                            </tbody>
+                                                                                                                                        </table>
+                                                                                                                                    </td>
+                                                                                                                                </tr>
+                                                                                                                            </tbody>
+                                                                                                                        </table>
+                                                                                                                    </td>
+                                                                                                                    <td class="esdev-mso-td"
+                                                                                                                        valign="top"
+                                                                                                                        style="padding:0;Margin:0">
+                                                                                                                        <table
+                                                                                                                            cellpadding="0"
+                                                                                                                            cellspacing="0"
+                                                                                                                            class="es-left"
+                                                                                                                            align="left"
+                                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:left">
+                                                                                                                            <tbody>
+                                                                                                                                <tr>
+                                                                                                                                    <td align="left"
+                                                                                                                                        style="padding:0;Margin:0;width:155px">
+                                                                                                                                        <table
+                                                                                                                                            cellpadding="0"
+                                                                                                                                            cellspacing="0"
+                                                                                                                                            width="100%"
+                                                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:separate;border-spacing:0px;border-radius:0 10px 10px 0"
+                                                                                                                                            role="presentation">
+                                                                                                                                            <tbody>
+                                                                                                                                                <tr>
+                                                                                                                                                    <td align="left"
+                                                                                                                                                        style="padding:0;Margin:0;padding-left:10px">
+                                                                                                                                                        <p
+                                                                                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
+                                                                                                                                                            <strong><?php echo $firstName.' '.$lastName ?></strong>
+                                                                                                                                                        </p>
+                                                                                                                                                    </td>
+                                                                                                                                                </tr>
+                                                                                                                                            </tbody>
+                                                                                                                                        </table>
+                                                                                                                                    </td>
+                                                                                                                                </tr>
+                                                                                                                            </tbody>
+                                                                                                                        </table>
+                                                                                                                    </td>
+                                                                                                                    <td class="esdev-mso-td"
+                                                                                                                        valign="top"
+                                                                                                                        style="padding:0;Margin:0">
+                                                                                                                        <table
+                                                                                                                            cellpadding="0"
+                                                                                                                            cellspacing="0"
+                                                                                                                            class="es-right"
+                                                                                                                            align="right"
+                                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;float:right">
+                                                                                                                            <tbody>
+                                                                                                                                <tr
+                                                                                                                                    class="es-mobile-hidden">
+                                                                                                                                    <td align="left"
+                                                                                                                                        style="padding:0;Margin:0;width:138px">
+                                                                                                                                        <table
+                                                                                                                                            cellpadding="0"
+                                                                                                                                            cellspacing="0"
+                                                                                                                                            width="100%"
+                                                                                                                                            role="presentation"
+                                                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                                                                                                                                            <tbody>
+                                                                                                                                                <tr>
+                                                                                                                                                    <td align="center"
+                                                                                                                                                        height="40"
+                                                                                                                                                        style="padding:0;Margin:0">
+                                                                                                                                                    </td>
+                                                                                                                                                </tr>
+                                                                                                                                            </tbody>
+                                                                                                                                        </table>
+                                                                                                                                    </td>
+                                                                                                                                </tr>
+                                                                                                                            </tbody>
+                                                                                                                        </table>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                                <tr>
+                                                                                                                    <td
+                                                                                                                        colspan="4">
+                                                                                                                        <table
+                                                                                                                            cellpadding="0"
+                                                                                                                            cellspacing="0"
+                                                                                                                            width="100%"
+                                                                                                                            style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;border-collapse: separate;border-spacing: 0px;border-radius: 0;padding: 0;">
+                                                                                                                            <tr>
+                                                                                                                                <td
+                                                                                                                                    height="15">
+                                                                                                                                    &nbsp;
+                                                                                                                                </td>
+                                                                                                                            </tr>
+                                                                                                                            <tr>
+                                                                                                                                <td align="center"
+                                                                                                                                    style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px">
+                                                                                                                                    <span
+                                                                                                                                        class="es-button-border msohide"
+                                                                                                                                        style="display:inline-block;border-radius:6px;width:auto;mso-hide:all">
+                                                                                                                                        <a href="<?php echo $url; ?>"
+                                                                                                                                            class="es-button"
+                                                                                                                                            target="_blank"
+                                                                                                                                            style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#C11E1A;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">Accept
+                                                                                                                                            Friend
+                                                                                                                                            Request</a>
+                                                                                                                                    </span>
+                                                                                                                                    <!--<![endif]-->
+                                                                                                                                </td>
+                                                                                                                            </tr>
+                                                                                                                        </table>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
                                                                                                         </table>
                                                                                                     </td>
                                                                                                 </tr>
@@ -565,7 +707,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" style="padding-top: 30px; padding-bottom: 30px; padding-left: 20px; padding-right: 20px;Margin:0;padding-top: 0;">
+                                                    <td align="left" style="padding: 30px;Margin:0;padding-top: 0;">
                                                         <table cellpadding="0" cellspacing="0" width="100%"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tbody>
@@ -597,17 +739,13 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table cellpadding="0" cellspacing="0" class="es-footer" align="center"
-                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;background-repeat:repeat;background-position:center top">
+                                        <table cellpadding="0" cellspacing="0" class="es-footer" align="center"
+                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
                             <tbody>
                                 <tr>
                                     <td align="center" style="padding:0;Margin:0">
                                         <table class="es-footer-body" align="center" cellpadding="0" cellspacing="0"
-                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;">
+                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:640px">
                                             <tbody>
                                                 <tr>
                                                     <td align="left" bgcolor="#c11e1a"
@@ -704,8 +842,7 @@
                         color: #fff;
                         text-decoration: none;
                         letter-spacing: 0.6px;
-                    ">info@favoritewish.com</a>
-                                                                                        </p>
+                    ">info@favoritewish.com</a></p>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>
@@ -723,8 +860,7 @@
                                                                                                         <a target="_blank"
                                                                                                             href="https://favoritewish.com"
                                                                                                             style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Visit
-                                                                                                            Us </a>
-                                                                                                    </td>
+                                                                                                            Us </a></td>
                                                                                                     <td align="center"
                                                                                                         valign="top"
                                                                                                         width="33.33%"
@@ -763,6 +899,11 @@
                                 </tr>
                             </tbody>
                         </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
                     </td>
                 </tr>
             </tbody>

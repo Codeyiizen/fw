@@ -495,7 +495,7 @@
                                                                                         style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 10px;">
                                                                                         <h1
                                                                                             style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47; ">
-                                                                                            You have a message reply
+                                                                                            You have a message reply him
                                                                                             now</h1>
                                                                                     </td>
                                                                                 </tr>
