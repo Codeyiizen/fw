@@ -1483,7 +1483,7 @@ class Favoritewish extends CI_Controller
 													'to_id' => $objUser['id'],
 													'from_id' => $user['user_id'],
 													'notification_type' =>'friend_request_send',
-													'notification_massage' =>''.$user['first_name'].' '.$user['last_name'].' had send you a friend request',
+													'notification_massage' =>''.$user['first_name'].' '.$user['last_name'].' had sent you a friend request',
 													'created_on'	    =>	date("Y-m-d H:i:s")
 												);
 					$this->db->insert('notification', $arrInsertNotification);
@@ -2024,7 +2024,7 @@ class Favoritewish extends CI_Controller
 				'to_id' => $checkUserLoginStatus->id,
 				'from_id' => $user['user_id'],
 				'notification_type' =>'inbox_massage',
-				'notification_massage' =>''.$user['first_name'].'  has send a message. Reply now',
+				'notification_massage' =>''.$user['first_name'].'  has sent a message. Reply now',
 				'created_on'	    =>	date("Y-m-d H:i:s")
 			);
         $this->db->insert('notification', $arrInsertNotification);
@@ -2032,7 +2032,7 @@ class Favoritewish extends CI_Controller
 				$userId = $user['user_id'];
 				$data = array(
 					'name'  => $user['user_name'].' '.'send you massage',
-					'link'  => base_url()."user/friends/$userId/massages",
+					'link'  => base_url()."user/friends/$userId/message",
 				);
 
 				$config = array(
@@ -2088,7 +2088,7 @@ class Favoritewish extends CI_Controller
 				);	
           // echo"<pre>"; var_dump($this->input->post('friend_id')); exit;
 		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data,$msgStatus);
-		  redirect('user/friends/'.$id.'/massages');
+		  redirect('massage/list?f_id='.$id.'');
 	}
    }else{
 	if(!empty($_FILES['msg_image']['name'])){
@@ -2100,7 +2100,7 @@ class Favoritewish extends CI_Controller
 		 if ( ! $this->upload->do_upload('msg_image'))
 		 {
 				 $error = array('error' => $this->upload->display_errors());
-				redirect('user-profile/edit',$this->session->set_flashdata("error_msg", $error));
+				redirect('massage/list?f_id='.$id.'',$this->session->set_flashdata("error_msg", $error));
 		 }
 		 else
 		 {
@@ -2118,7 +2118,7 @@ class Favoritewish extends CI_Controller
 			'created_on'	    =>	date("Y-m-d H:i:s")
 		);
 		$is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data,$msgStatus);
-		redirect('user/friends/'.$id.'/massages');
+		redirect('massage/list?f_id='.$id.'');
    }
  }
  public function familyRequest(){
