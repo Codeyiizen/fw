@@ -228,8 +228,8 @@
 	   });	 
 	 })
     
-	 $("body").on("click", ".deleteToNotify", function (){ 
-			var msgId = $('.deleteToNotify').attr('id'); 
+	 $("body").on("click", ".deleteToNotify", function (){  
+			var msgId = $(this).attr('id');   
 			if (confirm('Are you sure you want to delete this item?')){      
 			$.ajax({
 			url: BASE_URL + "/user/notification/delete",

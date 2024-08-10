@@ -245,6 +245,13 @@
                         </div>
                     </div>
                     <div class="col-12 col-lg-7 col-xl-8">
+                       <?php  
+                            if(!empty($_SESSION['error_msg'])){
+                                ?>
+                                <div class="alert alert-danger">
+                                 <?php echo ($_SESSION['error_msg']['error']); ?>
+                             </div>
+                        <?php  } ?>
                         <div class="card border-bottom">
                             <div class="card-header bg-white">
                                 <div class="d-flex align-items-center py-1">
