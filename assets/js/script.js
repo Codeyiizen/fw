@@ -135,11 +135,11 @@
 	});
 
 	$("body").on("click", ".addSrc", function () {    
-		$('#close').attr("src","https://www.youtube.com/embed/wb_jZlwcmdo")
+		$('#close').attr("src","https://www.youtube.com/embed/Dokm27umijE")
 	 });
 
 	$("body").on("click", ".acceptFriendRequest", function () {   
-		var tokenObj = $(this).data('token');
+		var tokenObj = $(this).data('token');   
 		var params = { "token": tokenObj };
 		$.ajax({
 			url: BASE_URL + "/user/friends/accept",

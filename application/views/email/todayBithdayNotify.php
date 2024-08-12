@@ -495,7 +495,7 @@
                                                                                         style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 30px;">
                                                                                         <h1
                                                                                             style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47;">
-                                                                                             Today Birthday Alert!
+                                                                                            Today Birthday Alert!
                                                                                         </h1>
                                                                                     </td>
                                                                                 </tr>
@@ -511,7 +511,8 @@
                                                                                                         style="padding: 0; margin: 0; padding-top: 0px">
                                                                                                         <p
                                                                                                             style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 20px;">
-                                                                                                            Hi <strong><?php echo $RecipientName; ?></strong>,
+                                                                                                            Hi
+                                                                                                            <strong><?php echo $RecipientName; ?></strong>,
                                                                                                         </p>
                                                                                                     </td>
                                                                                                 </tr>
@@ -524,10 +525,10 @@
                                                                                                             give you a
                                                                                                             heads-up
                                                                                                             that
-                                                                                                          <strong>
-                                                                                                            <?php echo $first_name; ?>
+                                                                                                            <strong>
+                                                                                                                <?php echo $first_name; ?>
 
-                                                                                                            <?php echo $last_name; ?>
+                                                                                                                <?php echo $last_name; ?>
 
                                                                                                             </strong>
                                                                                                             today
@@ -586,8 +587,9 @@
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">
                                                                                                                                             The
-                                                                                                                                            FavoriteWish
-                                                                                                                                            Team!
+                                                                                                                                            Favorite
+                                                                                                                                            Wish
+                                                                                                                                            Team
                                                                                                                                         </p>
                                                                                                                                     </td>
                                                                                                                                 </tr>
@@ -707,12 +709,7 @@
                                                                                                                                         style="padding:0;Margin:0;padding-bottom: 2rem;">
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
-                                                                                                                                            FavoriteWish
-                                                                                                                                            &copy;
-                                                                                                                                            2023
-                                                                                                                                            All
-                                                                                                                                            Right
-                                                                                                                                            Reserved.
+                                                                                                                                            Favorite Wish
                                                                                                                                         </p>
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
@@ -727,12 +724,12 @@
                                                                                                                                         </p>
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;">
-                                                                                                                                            <a href="mailto:info@favoritewish.com"
+                                                                                                                                            <a href="mailto:operations@favoritewish.com"
                                                                                                                                                 style="
                         color: #fff;
                         text-decoration: none;
                         letter-spacing: 0.6px;
-                    ">info@favoritewish.com</a>
+                    ">operations@favoritewish.com</a>
                                                                                                                                         </p>
                                                                                                                                     </td>
                                                                                                                                 </tr>

@@ -15,7 +15,7 @@
                
 
                
-                <li class="<?php echo checkMainMenuActive('user/friends/'.$data.'/massages'); ?>" ><a href="<?php echo base_url(); ?>massage/list?f_id=<?php echo $data ?>">Message</a></li>
+                <li class="<?php echo checkMainMenuActive('user/friends/'.$data.'/massages'); ?>" ><a href="<?php echo base_url(); ?>massage/list?f_id=<?php echo $data ?>">Messages</a></li>
                
             </ul>
         </div>

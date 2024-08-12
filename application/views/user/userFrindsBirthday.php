@@ -12,7 +12,7 @@
                     <?php if (!empty($toDayBirthday)) { ?>
                         <h4>Today's Birthday</h4>
                         <div class="row">
-                                <?php foreach ($toDayBirthday as $birthday) { ?>
+                                <?php foreach ($toDayBirthday as $birthday) {  ?>
                                     <div class="col-md-6">
                                         <div class="card mb-5 box-shadow2 card-birthday-today">
                                             <div class="card-body">
@@ -21,14 +21,18 @@
                                                         <h5 class="h5 card-title">
                                                             <?php echo $birthday->first_name . '  ' . $birthday->last_name ?>
                                                         </h5>
-                                                        <p>Let's surprise her with a birthday gift.</p>
-                                                        <a href="<?php echo base_url('user/friends/details/'.$birthday->id) ?>"
+                                                        <p>Let's surprise them with a birthday gift!</p>
+                                                        <a href="<?php echo base_url('user/friends/detail/'.$birthday->id.'/wish')  ?>"
                                                             class="theme-btn yellow-bg px-3 px-md-4">View Wish List</a>
                                                     </div>
                                                     <div class="col-sm-5 pl-md-4 text-md-right">
+                                                         <img src="<?php echo base_url() . 'assets/uploads/profile_photo/'.(!empty($birthday->profile_photo) ? $birthday->profile_photo :'avatar.png' .''); ?>"
+                                                                alt="" class="img-fluid" height="100px" ; width="100px">
+                                                    </div>
+                                                    <!-- <div class="col-sm-5 pl-md-4 text-md-right">
                                                             <img src="<?php echo base_url() . 'assets/uploads/profile_photo/no-birthday.png'; ?>"
                                                                 alt="" class="img-fluid" height="100px" ; width="100px">
-                                                        </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>

@@ -697,7 +697,7 @@ public function getFriendMessages($id,$userId){
     // }
     
     public function getUsersList($params){
-        $search = (!empty($params['q']))?$params['q']:'';
+        $search = (!empty($params['q'])) ? trim($params['q']) :'';
         $sql ='SELECT
         `users`.*,
         `friends`.`status` AS `friends_status`,
