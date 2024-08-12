@@ -726,7 +726,7 @@
                                                                                             Thanks,</p>
                                                                                         <p
                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">
-                                                                                            The FavoriteWish Team!</p>
+                                                                                            The Favorite Wish Team</p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -829,20 +829,19 @@
                                                                                         style="padding:0;Margin:0;padding-bottom: 2rem;">
                                                                                         <p
                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
-                                                                                            FavoriteWish &copy; 2023 All
-                                                                                            Right Reserved.</p>
+                                                                                            Favorite Wish</p>
                                                                                         <p
                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
                                                                                             6650 Rivers Ave STE 100
                                                                                             Charleston, SC 29406</p>
                                                                                         <p
                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;">
-                                                                                            <a href="mailto:info@favoritewish.com"
+                                                                                            <a href="mailto:operations@favoritewish.com"
                                                                                                 style="
                         color: #fff;
                         text-decoration: none;
                         letter-spacing: 0.6px;
-                    ">info@favoritewish.com</a></p>
+                    ">operations@favoritewish.com</a></p>
                                                                                     </td>
                                                                                 </tr>
                                                                                 <tr>

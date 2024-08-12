@@ -287,9 +287,9 @@
                                             <div class="dropdown-menu dropdown-menu-right"
                                                 aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item deleteForMeAllMsg" href="javascript:void(0)" data-id="<?php echo (!empty($friendName->id))?$friendName->id:'' ?>"  data-toggle="modal"
-                                                                        data-target="#delete-all-msg">Delete For me</a>
+                                                                        data-target="#delete-all-msg">Delete For Me</a>
                                                 <a class="dropdown-item deleteForBothAllMsg" href="javascript:void(0)" data-id="<?php echo (!empty($friendName->id))?$friendName->id:'' ?>"  data-toggle="modal"
-                                                data-target="#delete-both-all-msg">Delete For both</a>
+                                                data-target="#delete-both-all-msg">Delete For Both</a>
                                                 <!-- <a class="dropdown-item" href="#">Something else here</a> -->
                                             </div>
                                         <?php } ?>      

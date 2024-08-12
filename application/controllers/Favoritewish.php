@@ -1483,7 +1483,7 @@ class Favoritewish extends CI_Controller
 													'to_id' => $objUser['id'],
 													'from_id' => $user['user_id'],
 													'notification_type' =>'friend_request_send',
-													'notification_massage' =>''.$user['first_name'].' '.$user['last_name'].' had sent you a friend request',
+													'notification_massage' =>''.$user['first_name'].' '.$user['last_name'].' has sent you a friend request',
 													'created_on'	    =>	date("Y-m-d H:i:s")
 												);
 					$this->db->insert('notification', $arrInsertNotification);
