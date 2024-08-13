@@ -207,13 +207,17 @@
                                                 <h6 class="mb-0 text-capitalize">
                                                     <?php echo $showMassage->friend_first_name . ' ' . $showMassage->friend_last_name ?>
                                                 </h6>
-                                                <small
-                                                    class="time mt-1 ml-3"><?php echo $newDateTime = date('h:i A', strtotime($showMassage->created_on)); ?></small>
+                                                <?php  
+                                                  $latestMassage = $CI->Favoritewish_Model->getLatestMassage($showMassage->user_id,$showMassage->friend_user_id);
+                                                ?>
+                                                <?php  if(!empty($latestMassage->created_on)){ ?>
+                                                   <small class="time mt-1 ml-3"><?php echo $newDateTime = date('h:i A', strtotime($latestMassage->created_on)); ?></small>
+                                                <?php  } ?>  
                                             </div>
                                             <div class="d-flex justify-content-between">  
                                                 <p class="fs_14 lh_16 mb-0">
                                                     <?php  
-                                                      $latestMassage = $CI->Favoritewish_Model->getLatestMassage($showMassage->user_id,$showMassage->friend_user_id);
+                                                      
                                                      if(($showMassage->user_id == $showMassage->to_user) && (!empty($showMassage->seen_class))){
                                                         $addCClass= 'selected';
                                                         $addSeenClass= $showMassage->seen_class;
@@ -379,7 +383,14 @@ if (!empty($form_massage)) {
                                                             alt="" class="img-fluid"></span>
                                                 </div>
                                                 <div class="meta-info text-nowrap mt-2">
-                                                    <small><?php echo $newDateTime = date('h:i A', strtotime($object->created_on)); ?></small>
+                                                    <?php 
+                                                      $message_time = new DateTime($object->created_on);
+                                                      $date_format = 'd-M-Y'; 
+                                                      $exact_date = $message_time->format($date_format);
+                                                      $newDateTime = date('h:i A', strtotime($object->created_on));
+                                                      $display_text = $exact_date. ' on ' .$newDateTime;
+                                                    ?>
+                                                    <small><?php echo $display_text ?></small>
                                                 </div>
                                             </div>
                                         </div>
@@ -462,7 +473,14 @@ if (!empty($form_massage)) {
                                                             alt="" class="img-fluid"></span>
                                                 </div>
                                                 <div class="meta-info text-nowrap mt-2">
-                                                    <small><?php echo $newDateTime = date('h:i A', strtotime($object->created_on)); ?></small>
+                                                <?php 
+                                                      $message_time = new DateTime($object->created_on);
+                                                      $date_format = 'd-M-Y'; 
+                                                      $exact_date = $message_time->format($date_format);
+                                                      $newDateTime = date('h:i A', strtotime($object->created_on));
+                                                      $display_text = $exact_date. ' on ' .$newDateTime;
+                                                    ?>
+                                                    <small><?php echo $display_text ?></small>
                                                 </div>
                                             </div>
                                         </div> 

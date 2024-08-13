@@ -2896,6 +2896,50 @@ public function massageDeleteMe(){
 	}
  }
 
+ public function checkFriendBirthdayAfter(){ 
+	$date14 = date('Y-m-d', strtotime(date("Y-m-d"). ' + 14 days'));
+	$month = date("m",strtotime($date14));
+	$date = date("d",strtotime($date14));
+	$getUserAfter14dayDob = $this->Favoritewish_Model->getUserBasedOnDob($month,$date);
+	//echo"<pre>"; var_dump($getUserAfter14dayDob); exit;
+	foreach($getUserAfter14dayDob as $after14dayDob){
+		$getUserFriend = $this->Favoritewish_Model->getUserFriendById($after14dayDob->id);
+	  //	echo"<pre>"; var_dump($getUserFriend); exit;
+		 foreach($getUserFriend as $firends){   
+		   $data = array(
+			   'first_name' => $firends['user_first_name'],
+			   'last_name' => $firends['user_last_name'],
+			   'RecipientName' => $firends['friend_first_name'].' '.$firends['friend_last_name'],
+		   );
+		   if($firends['friend_upcoming_birthday_status'] == 1){
+			   $config = array(
+				   'protocol'  => 'smtp',
+				   'smtp_host' => 'smtp.gmail.com',
+				   'smtp_port' => 587, //if 80 dosenot work use 24 or 21
+				   'smtp_user'  => 'codeyiizen.test@gmail.com',  
+				   'smtp_pass'  => 'wdxdkwcbygukszqv',
+				   'smtp_crypto' => 'tls',
+				   'charset' => 'iso-8859-1',
+				   'wordwrap' => TRUE
+			   );
+			   $this->load->library('encryption');
+			   $this->load->library('email');
+			   $config['charset'] = 'iso-8859-1';
+			   $config['wordwrap'] = TRUE;
+			   $config['mailtype'] = 'html';
+			   $this->email->initialize($config);
+			   $this->email->to($firends['friend_email']);
+			   $this->email->from(MAIL_FROM, FROM_TEXT);
+			   $this->email->subject('FavoriteWish After 14 Day Birthday Notification');
+			   $this->email->set_newline("\r\n");
+			   $this->email->message($this->load->view('email/friend-birthday-after-14day',$data, true));
+			   $this->email->send();
+		   }
+	   }
+	}
+   //	echo"<pre>"; var_dump($getUserFriend); exit;
+}
+
 }
 
 

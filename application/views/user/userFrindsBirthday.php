@@ -26,13 +26,9 @@
                                                             class="theme-btn yellow-bg px-3 px-md-4">View Wish List</a>
                                                     </div>
                                                     <div class="col-sm-5 pl-md-4 text-md-right">
-                                                         <img src="<?php echo base_url() . 'assets/uploads/profile_photo/'.(!empty($birthday->profile_photo) ? $birthday->profile_photo :'avatar.png' .''); ?>"
+                                                            <img src="<?php echo base_url() . 'assets/uploads/profile_photo/today_birthday.jpg'; ?>"
                                                                 alt="" class="img-fluid" height="100px" ; width="100px">
                                                     </div>
-                                                    <!-- <div class="col-sm-5 pl-md-4 text-md-right">
-                                                            <img src="<?php echo base_url() . 'assets/uploads/profile_photo/no-birthday.png'; ?>"
-                                                                alt="" class="img-fluid" height="100px" ; width="100px">
-                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -51,7 +47,7 @@
                                                             class="theme-btn yellow-bg px-3 px-md-4">Search for friends</a>
                                                     </div>
                                                     <div class="col-sm-5 pl-md-4 text-md-right">
-                                                            <img src="<?php echo base_url('assets/uploads/profile_photo/no-birthday.png') ?>"
+                                                            <img src="<?php echo base_url() . 'assets/uploads/profile_photo/today_birthday.jpg'; ?>"
                                                                 alt="" class="No Birthday">
                                                     </div>
                                                 </div>
