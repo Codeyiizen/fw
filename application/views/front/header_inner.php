@@ -106,18 +106,15 @@
                                      $current_time = new DateTime();
                                      $interval = $current_time->diff($message_time);
                                      if ($interval->d >= 1) {
-                                          $time_ago = $interval->d . ' days ago';
-                                         } elseif ($interval->h >= 1) {
-                                             $time_ago = $interval->h . ' hours ago';
-                                         } else {
-                                             $time_ago = $interval->i . ' minutes ago';
-                                         }
-                                     $date_format = 'd-M-Y'; 
-                                     $exact_date = $message_time->format($date_format);
-                                     $display_text = $time_ago . ' on ' . $exact_date;
+                                         $day = $interval->d . ' days ago';
+                                     } elseif ($interval->h >= 1) {
+                                         $day = $interval->h . ' hours ago';
+                                     } else {
+                                         $day = $interval->i . ' minutes ago';
+                                     }
                                       $varFriendRequest ='
                                                                     <li>
-                                                                        <a class="dropdown-item d-flex align-items-start justify-content-between" href="#">
+                                                                        <a class="dropdown-item d-flex align-items-start justify-content-between" href="'.base_url().'user/friends/details/'.$Notify->from_id.'">
                                                                             <div class="d-flex align-items-start mr-2">
                                                                                 <span
                                                                                     class="mr-3 d-flex justify-content-center align-items-center w_35 h_35 rounded-circle bg-light box-shadow2">
@@ -125,7 +122,7 @@
                                                                                 </span>
                                                                                 <div class="message-content">  
                                                                                     <p class="fs_14 mb-0 lh_20 font-weight-semibold">'.$Notify->notification_massage.'</p>
-                                                                                    <small>'.$display_text.'</small>';
+                                                                                    <small>'.$day.'</small>';
                                                                                 if($Notify->req_accept == 0){    
                                                                                 $varFriendRequest .='<button type="button" class="btn btn-primary btn-sm acceptFriendRequest" data-token=' . $getObjtoken->token . '>Accept</button>
                                                                                     <button type="button" class="btn btn-danger btn-sm removeFriend" data-token='.$getObjtoken->token.'>Reject</button>';
@@ -146,19 +143,16 @@
                                     if($Notify->read_status == 0){
                                         $addClass = 'fa fa-circle icon';
                                     }
-                                $message_time = new DateTime($Notify->created_on);
-                                $current_time = new DateTime();
-                                $interval = $current_time->diff($message_time);
-                                if ($interval->d >= 1) {
-                                     $time_ago = $interval->d . ' days ago';
+                                    $message_time = new DateTime($Notify->created_on);
+                                    $current_time = new DateTime();
+                                    $interval = $current_time->diff($message_time);
+                                    if ($interval->d >= 1) {
+                                        $day = $interval->d . ' days ago';
                                     } elseif ($interval->h >= 1) {
-                                        $time_ago = $interval->h . ' hours ago';
+                                        $day = $interval->h . ' hours ago';
                                     } else {
-                                        $time_ago = $interval->i . ' minutes ago';
+                                        $day = $interval->i . ' minutes ago';
                                     }
-                                $date_format = 'd-M-Y'; 
-                                $exact_date = $message_time->format($date_format);
-                                $display_text = $time_ago . ' on ' . $exact_date;
                                  $varFriendRequestNotify[] ='
                                  <li>
                                      <a class="dropdown-item d-flex align-items-start justify-content-between" href="javacript:void()">
@@ -169,7 +163,7 @@
                                              </span>
                                              <div class="message-content">  
                                                  <p class="fs_14 mb-0 lh_20 font-weight-semibold">'.$Notify->notification_massage.'</p>
-                                                 <small>'.$display_text.'</small>
+                                                 <small>'.$day.'</small>
                                              </div>
                                          </div>
                                          <div>
@@ -189,15 +183,12 @@
                         $current_time = new DateTime();
                         $interval = $current_time->diff($message_time);
                         if ($interval->d >= 1) {
-                                $time_ago = $interval->d . ' days ago';
-                            } elseif ($interval->h >= 1) {
-                                $time_ago = $interval->h . ' hours ago';
-                            } else {
-                                $time_ago = $interval->i . ' minutes ago';
-                            }
-                        $date_format = 'd-M-Y'; 
-                        $exact_date = $message_time->format($date_format);
-                        $display_text = $time_ago . ' on ' . $exact_date;
+                            $day = $interval->d . ' days ago';
+                        } elseif ($interval->h >= 1) {
+                            $day = $interval->h . ' hours ago';
+                        } else {
+                            $day = $interval->i . ' minutes ago';
+                        }
                         $varFriendRequestNotify[] ='
                                  <li>
                                      <a class="dropdown-item d-flex align-items-start justify-content-between" href="javacript:void()">
@@ -208,7 +199,7 @@
                                              </span>
                                              <div class="message-content">  
                                                  <p class="fs_14 mb-0 lh_20 font-weight-semibold">'.$Notify->notification_massage.'</p>
-                                                 <small>'.$display_text.'</small>
+                                                 <small>'.$day.'</small>
                                              </div>
                                          </div>
                                          <div>
@@ -227,15 +218,12 @@
                         $current_time = new DateTime();
                         $interval = $current_time->diff($message_time);
                         if ($interval->d >= 1) {
-                                $time_ago = $interval->d . ' days ago';
-                            } elseif ($interval->h >= 1) {
-                                $time_ago = $interval->h . ' hours ago';
-                            } else {
-                                $time_ago = $interval->i . ' minutes ago';
-                            }
-                        $date_format = 'd-M-Y'; 
-                        $exact_date = $message_time->format($date_format);
-                        $display_text = $time_ago . ' on ' . $exact_date;
+                            $day = $interval->d . ' days ago';
+                        } elseif ($interval->h >= 1) {
+                            $day = $interval->h . ' hours ago';
+                        } else {
+                            $day = $interval->i . ' minutes ago';
+                        }
                         $varFriendRequestNotify[] ='
                                  <li>
                                      <a class="dropdown-item d-flex align-items-start justify-content-between" href="'.base_url().'massage/list?f_id='.$Notify->from_id.' ">
@@ -246,7 +234,7 @@
                                              </span>
                                              <div class="message-content">  
                                                  <p class="fs_14 mb-0 lh_20 font-weight-semibold">'.$Notify->notification_massage.'</p>
-                                                 <small>'.$display_text.'</small>
+                                                 <small>'.$day.'</small>
                                              </div>
                                          </div>
                                          <div>
@@ -342,16 +330,16 @@
         <div id="fs-menu" class="">
             <nav class="fs-main-nav">
                 <ul>
-                    <li><a href="<?php echo base_url(); ?>">Home</a></li>
+                    <li><a href="<?php echo base_url('home/page'); ?>">Home</a></li>
                     <li><a href="<?php echo base_url('/about-us'); ?>">About Us</a></li>
                     <li><a href="<?php echo base_url('/contact-us'); ?>">Contact Us</a></li>
                     <?php
-if ($this->session->userdata('ci_session_key_generate') == false) {
-    echo '<a href="' . base_url() . 'sign-in">Login/Register</a>';
-} else {
-    echo '<a href="' . base_url() . 'user-dashboard">My Account</a>';
-}
-?>
+                        if ($this->session->userdata('ci_session_key_generate') == false) {
+                            echo '<a href="' . base_url() . 'sign-in">Login/Register</a>';
+                        } else {
+                            echo '<a href="' . base_url() . 'user-dashboard">My Account</a>';
+                        }
+                    ?>
                 </ul>
             </nav>
             <!--<footer class="menu-footer">

@@ -521,8 +521,7 @@
                                                                                                                     style="padding:0;Margin:0;padding-top:10px">
                                                                                                                     <p
                                                                                                                         style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px; text-transform: capitalize;">
-                                                                                                                        Friend
-                                                                                                                        Name:
+                                                                                                                        
                                                                                                                         <strong><?php echo $name ?></strong>
                                                                                                                     </p>
                                                                                                                 </td>

@@ -1785,6 +1785,29 @@ public function getLatestMassage($f_id,$u_id){
     return $query->row();
 }
 
+public function getUserFriendById($user_id){
+    $user_id = $this->db->escape($user_id);
+    $this->db->select('
+        u1.id AS user_id, u1.first_name AS user_first_name, u1.last_name AS user_last_name, u1.user_name AS user_username, u1.email AS user_email,
+        u2.id AS friend_id, u2.first_name AS friend_first_name, u2.last_name AS friend_last_name, u2.user_name AS friend_username, u2.email AS friend_email,
+        u2.dob AS friend_dob, u2.upcoming_birthday AS friend_upcoming_birthday_status
+    ');
+    $this->db->from('friends f');
+    $this->db->join('users u1', 'u1.id = CASE WHEN f.from_friend = ' . $user_id . ' THEN f.from_friend ELSE f.to_friend END', 'left');
+    $this->db->join('users u2', 'u2.id = CASE WHEN f.from_friend = ' . $user_id . ' THEN f.to_friend ELSE f.from_friend END', 'left');
+    $this->db->where('(f.from_friend = ' . $user_id . ' OR f.to_friend = ' . $user_id . ')');
+    $this->db->where('f.status', 1); 
+    $query = $this->db->get();
+    return $query->result_array();
+}
+public function getUserBasedOnDob($month,$date){  
+    $this->db->select('*');
+    $this->db->from("users");
+    $this->db->where('MONTH(dob)', $month);
+    $this->db->where('DAY(dob)', $date);
+    $query = $this->db->get();
+    return $query->result();
+}
 
 
 }

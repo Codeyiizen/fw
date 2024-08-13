@@ -9,13 +9,13 @@
             </div>
             <div class="col-lg-9">
                 <div class="myaccountForm-inner">
-                    <h4>Notification Setting</h4>
+                    <h4>Notification Settings</h4>
                     <div class="card notification-setting">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4 mb-4 mb-md-0 pl-md-5">
-                                    <h5>Notification</h5>
-                                    <p>For important updates, certain notification cannot be disabled</p>
+                                    <h5>Notifications</h5>
+                                    <p>For important updates, certain notifications cannot be disabled</p>
                                 </div>
                                 <div class="offset-md-1 col-md-7">
                                     <div class="d-flex align-items-top justify-content-between" style="margin-right: 3px;">
