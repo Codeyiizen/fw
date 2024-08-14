@@ -5,9 +5,7 @@
             <div class="col-lg-8 col-sm-12">
                 <div class="hero-section-content">
                     <h1 class="position-relative">Discover the Joy of<br class="d-sm-none d-block"> Surprise Gifting</h1>
-                    <p>Favorite Wish is a gift giving platform that eliminates the guessing game, and provides
-                        specifics in regard to the size, color, brand, and style clothing that your family and friends
-                        actually want.</p>
+                    <p>Favorite Wish is a gift-giving platform that takes the guesswork out of shopping by letting you know exactly what sizes, colors, brands, and styles your friends and loved ones want.</p>
                     <!-- <div class="btn-box position-relative">
                         <a href="https://fw.kurieta.ca/sign-up" class="theme-btn yellow-bg mr-3">Join Us</a>
                         <a href="https://fw.kurieta.ca/sign-in" class="theme-btn outline-btn">Sign In</a>  

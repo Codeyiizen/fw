@@ -2904,13 +2904,18 @@ public function massageDeleteMe(){
 	//echo"<pre>"; var_dump($getUserAfter14dayDob); exit;
 	foreach($getUserAfter14dayDob as $after14dayDob){
 		$getUserFriend = $this->Favoritewish_Model->getUserFriendById($after14dayDob->id);
-	  //	echo"<pre>"; var_dump($getUserFriend); exit;
+	  	// echo"<pre>"; var_dump($getUserFriend); exit;
 		 foreach($getUserFriend as $firends){   
 		   $data = array(
 			   'first_name' => $firends['user_first_name'],
 			   'last_name' => $firends['user_last_name'],
-			   'RecipientName' => $firends['friend_first_name'].' '.$firends['friend_last_name'],
+			   'recipientName' => $firends['friend_first_name'].' '.$firends['friend_last_name'],
+			   'link' => base_url('user/friends/detail/'.$firends['user_id'].'/registry'),
+			   'dob'  => $firends['user_dob'], 
 		   );
+		   $friendName = $firends['user_first_name'].' '.$firends['user_last_name'];
+		   $img1 ='<img src="'.base_url('assets/uploads/profile_photo/birthday1.png').'" width="15px">'; 
+		   $img2 ='<img src="'.base_url('assets/uploads/profile_photo/birthday2.png').'" width="15px">'; 
 		   if($firends['friend_upcoming_birthday_status'] == 1){
 			   $config = array(
 				   'protocol'  => 'smtp',
@@ -2920,6 +2925,7 @@ public function massageDeleteMe(){
 				   'smtp_pass'  => 'wdxdkwcbygukszqv',
 				   'smtp_crypto' => 'tls',
 				   'charset' => 'iso-8859-1',
+				   'charset'  => 'utf-8', // Ensure UTF-8 encoding
 				   'wordwrap' => TRUE
 			   );
 			   $this->load->library('encryption');
@@ -2927,10 +2933,12 @@ public function massageDeleteMe(){
 			   $config['charset'] = 'iso-8859-1';
 			   $config['wordwrap'] = TRUE;
 			   $config['mailtype'] = 'html';
+			   $config['charset']  = 'utf-8'; // Ensure UTF-8 encoding
 			   $this->email->initialize($config);
 			   $this->email->to($firends['friend_email']);
 			   $this->email->from(MAIL_FROM, FROM_TEXT);
-			   $this->email->subject('FavoriteWish After 14 Day Birthday Notification');
+			   $this->email->subject('🎁 🎉 ['.$friendName.'] Birthday is Coming Up - Check Out Their Wish List!');
+			   
 			   $this->email->set_newline("\r\n");
 			   $this->email->message($this->load->view('email/friend-birthday-after-14day',$data, true));
 			   $this->email->send();
