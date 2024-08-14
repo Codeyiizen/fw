@@ -1788,7 +1788,7 @@ public function getLatestMassage($f_id,$u_id){
 public function getUserFriendById($user_id){
     $user_id = $this->db->escape($user_id);
     $this->db->select('
-        u1.id AS user_id, u1.first_name AS user_first_name, u1.last_name AS user_last_name, u1.user_name AS user_username, u1.email AS user_email,
+        u1.id AS user_id, u1.first_name AS user_first_name, u1.last_name AS user_last_name, u1.user_name AS user_username, u1.email AS user_email,u1.dob AS user_dob,
         u2.id AS friend_id, u2.first_name AS friend_first_name, u2.last_name AS friend_last_name, u2.user_name AS friend_username, u2.email AS friend_email,
         u2.dob AS friend_dob, u2.upcoming_birthday AS friend_upcoming_birthday_status
     ');

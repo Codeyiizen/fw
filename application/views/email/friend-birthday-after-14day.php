@@ -483,7 +483,7 @@
                                                                                 <tr>
                                                                                     <td align="center"
                                                                                         style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px">
-                                                                                        <img src="<?php echo base_url('assets') ?>/images/site-image/logo1.png"
+                                                                                        <img src="https://fw.kurieta.ca/assets/images/site-image/logo.png"
                                                                                             alt=""
                                                                                             style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
                                                                                             width="180">
@@ -494,8 +494,12 @@
                                                                                         class="es-m-txt-c"
                                                                                         style="padding:0;Margin:0;padding-top: 30px;padding-bottom: 30px;">
                                                                                         <h1
-                                                                                            style="Margin:0;line-height:55px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 36px;font-style:normal;font-weight:bold;color: #062E47;">
-                                                                                            After 14 Day Birthday Alert!
+                                                                                            style="Margin:0;line-height:40px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size: 26px;font-style:normal;font-weight:bold;color: #062E47;">
+                                                                                            [<?php echo $first_name.' '.$last_name  ?></php>]&acute;s birthday is on
+                                                                                            [<?php echo $dob  ?>]&cedil; and hopefully,
+                                                                                            they&acute;ve put together a wish
+                                                                                            list to make gift-giving
+                                                                                            easy!
                                                                                         </h1>
                                                                                     </td>
                                                                                 </tr>
@@ -510,30 +514,36 @@
                                                                                                     <td align="center"
                                                                                                         style="padding: 0; margin: 0; padding-top: 0px">
                                                                                                         <p
-                                                                                                            style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 20px;">
-                                                                                                            Hi
-                                                                                                            <strong><?php echo $RecipientName; ?></strong>,
+                                                                                                            style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 25px; color: #333333; font-size: 16px;">
+                                                                                                            If you&acute;d
+                                                                                                            like to
+                                                                                                            surprise
+                                                                                                            them, you
+                                                                                                            can choose
+                                                                                                            something
+                                                                                                            special from
+                                                                                                            their wish
+                                                                                                            list here:
                                                                                                         </p>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
+                                                                                                    <td height="15">
+                                                                                                        &nbsp;</td>
+                                                                                                </tr>
+
+                                                                                                <tr>
                                                                                                     <td align="center"
-                                                                                                        style="padding: 0; margin: 0; padding-top: 0px">
-                                                                                                        <p
-                                                                                                            style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px;">
-                                                                                                            We wanted to
-                                                                                                            give you a
-                                                                                                            heads-up
-                                                                                                            that
-                                                                                                            <strong>
-                                                                                                                <?php echo $first_name; ?>
-
-                                                                                                                <?php echo $last_name; ?>
-
-                                                                                                            </strong>
-                                                                                                            after 14 day
-                                                                                                            birthday!
-                                                                                                        </p>
+                                                                                                        style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px">
+                                                                                                        <span
+                                                                                                            class="es-button-border msohide"
+                                                                                                            style="display:inline-block;border-radius:6px;width:auto;mso-hide:all">
+                                                                                                            <a href="<?php echo $link  ?>"
+                                                                                                                class="es-button"
+                                                                                                                target="_blank"
+                                                                                                                style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:17px;padding:10px 30px 10px 30px;display:inline-block;background:#C11E1A;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:24px;width:auto;text-align:center;mso-padding-alt:0;mso-border-alt:10px solid #5C68E2;padding-left:35px;padding-right:35px;border-radius:60px;">Occasional Wishes</a>
+                                                                                                        </span>
+                                                                                                        <!--<![endif]-->
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -544,7 +554,7 @@
                                                                                                     <td align="center"
                                                                                                         style="padding: 0; margin: 0; padding-top: 0px">
                                                                                                         <p style="margin: 0; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; mso-line-height-rule: exactly; font-family: arial, 'helvetica neue', helvetica, sans-serif; line-height: 35px; color: #333333; font-size: 16px; "">
-                                                                                                        <p>Don't forget to send your best wishes and make their day extra special!</p>
+                                                                                                        <p>Help make [Name]&acute;s day special with a gift they&acute;ll truly enjoy!</p>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             </tbody>
@@ -579,7 +589,7 @@
                                                                                                                             <tbody>
                                                                                                                                 <tr>
                                                                                                                                     <td align="center"
-                                                                                                                                        style="padding:0;Margin:0;padding-top:20px">
+                                                                                                                                        style="padding:0;Margin:0;padding-top:0px">
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">
                                                                                                                                             <br>Thanks,
@@ -587,9 +597,8 @@
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">
                                                                                                                                             The
-                                                                                                                                            Favorite
-                                                                                                                                            Wish
-                                                                                                                                            Team
+                                                                                                                                            FavoriteWish
+                                                                                                                                            Team!
                                                                                                                                         </p>
                                                                                                                                     </td>
                                                                                                                                 </tr>
@@ -709,7 +718,12 @@
                                                                                                                                         style="padding:0;Margin:0;padding-bottom: 2rem;">
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
-                                                                                                                                            Favorite Wish
+                                                                                                                                            FavoriteWish
+                                                                                                                                            &copy;
+                                                                                                                                            2023
+                                                                                                                                            All
+                                                                                                                                            Right
+                                                                                                                                            Reserved.
                                                                                                                                         </p>
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
@@ -724,12 +738,12 @@
                                                                                                                                         </p>
                                                                                                                                         <p
                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;">
-                                                                                                                                            <a href="mailto:operations@favoritewish.com"
+                                                                                                                                            <a href="mailto:info@favoritewish.com"
                                                                                                                                                 style="
                         color: #fff;
                         text-decoration: none;
                         letter-spacing: 0.6px;
-                    ">operations@favoritewish.com</a>
+                    ">info@favoritewish.com</a>
                                                                                                                                         </p>
                                                                                                                                     </td>
                                                                                                                                 </tr>

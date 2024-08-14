@@ -135,7 +135,7 @@
 	});
 
 	$("body").on("click", ".addSrc", function () {    
-		$('#close').attr("src","https://www.youtube.com/embed/Dokm27umijE")
+		$('#close').attr("src","https://www.youtube.com/embed/B9JZHZrSUvM")
 	 });
 
 	$("body").on("click", ".acceptFriendRequest", function () {   
