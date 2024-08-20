@@ -124,8 +124,8 @@
                                                                                     <p class="fs_14 mb-0 lh_20 font-weight-semibold">'.$Notify->notification_massage.'</p>
                                                                                     <small>'.$day.'</small>';
                                                                                 if($Notify->req_accept == 0){    
-                                                                                $varFriendRequest .='<button type="button" class="btn btn-primary btn-sm acceptFriendRequest" data-token=' . $getObjtoken->token . '>Accept</button>
-                                                                                    <button type="button" class="btn btn-danger btn-sm removeFriend" data-token='.$getObjtoken->token.'>Reject</button>';
+                                                                                $varFriendRequest .='<button type="button" class="btn btn-primary btn-sm ml-2 acceptFriendRequest" data-token=' . $getObjtoken->token . '>Accept</button>
+                                                                                    <button type="button" class="btn btn-danger btn-sm font-weight-semibold removeFriend" data-token='.$getObjtoken->token.'>Reject</button>';
                                                                                 }    
                                                                                 $varFriendRequest .= '</div>
                                                                             </div>
@@ -297,13 +297,13 @@
                                 </li>
                             </ul>
                          <?php   } ?>
-
+  
                         <?php if(!empty($notifyAllData) && count($notifyAllData) > 5){ ?>  
 
                             <div class="dropdown-footer text-center">
                                 <button type="button" class="btn btn-link text-dark fs_14 p-0 showAllNotify">Read all</button>
                             </div>
-                            <?php } ?>
+                        <?php } ?>
                         </div>
                         </div>
                         <?php

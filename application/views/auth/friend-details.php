@@ -27,7 +27,7 @@
                     
 						<table class="responsive">
 							<table class="table table-sm">
-							    <?php if(!empty($is_friend)  && !empty($is_friend['status'])){ ?>
+							    <!-- <?php if(!empty($is_friend)  && !empty($is_friend['status'])){ ?>
                                 <tr>
                                     <th style="width:40%">User Bio</th>
                                     <td>
@@ -35,12 +35,12 @@
 									echo $data; ?>
                                     </td>
                                 </tr>
-								<?php }?>
+								<?php }?> -->
 								<tr>
 									<th>Full Name</th>
 									<td><?php print $userInfo['first_name']; ?>  <?php print $userInfo['last_name']; ?></td>
 								</tr>
-								<?php if (!empty($userInfo['email']) && !empty($is_friend)) { ?> 
+								<!-- <?php if (!empty($userInfo['email']) && !empty($is_friend)) { ?> 
 								<tr>
 									<th>Email</th>
 									<td><?php print $userInfo['email']; ?></td>
@@ -51,26 +51,26 @@
 									<th>Contact No</th>
 									<td><?php print $userInfo['contact_no']; ?></td>
 								</tr>
-								<?php } ?>
+								<?php } ?> -->
 								<?php if (!empty($userInfo['dob'])) { ?> 
 								<tr>
 									<th>Birthday</th>
 									<td><?php print $userInfo['dob']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['gender']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
+								<!-- <?php if (!empty($userInfo['gender']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>Gender</th>
 									<td><?php print $userInfo['gender']; ?></td>
 								</tr>
-								<?php } ?>  
+								<?php } ?>   -->
 								<?php if (!empty($userInfo['favorite_charity'])) { ?>
 								<tr>
 									<th>Favorite Charity</th>
 									<td><?php print $userInfo['favorite_charity']; ?></td>
 								</tr>
 								<?php } ?>
-								<?php if (!empty($userInfo['address']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
+								<!-- <?php if (!empty($userInfo['address']) && !empty($is_friend) && !empty($is_friend['status'])) { ?>
 								<tr>
 									<th>Address</th>
 									<td><?php print $userInfo['address']; ?></td>
@@ -117,7 +117,7 @@
 									<th>Favorite Jewelry</th>
 									<td><?php print $userInfo['favorite_music']; ?></td>
 								</tr>
-								<?php } ?>
+								<?php } ?> -->
 							</table>
 						</table>
 					</div>
