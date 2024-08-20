@@ -1680,7 +1680,7 @@ public function checkUserFriend($id){
     friend.profile_photo AS friend_profile_photo, 
     friend.last_name AS friend_last_name, 
     friend.user_name AS friend_user_name,
-    friend.id AS friend_user_id
+    friend.id AS friend_user_id,
 ');
 $this->db->from('users u');
 $this->db->join('friends f', 'u.id = f.from_friend OR u.id = f.to_friend');
@@ -1702,6 +1702,7 @@ $this->db->join('messages m', 'm.from_user = latest.friend_id AND m.to_user = '.
 
 $this->db->join('users friend', '(friend.id = f.from_friend AND friend.id != u.id) OR (friend.id = f.to_friend AND friend.id != u.id)', 'left');
 $this->db->where('u.id', $user_id);
+$this->db->where('f.status', 1);
 if (!empty($search_query)) {
     $this->db->group_start();  
         $this->db->like('friend.first_name', $search_query);
