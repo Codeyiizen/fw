@@ -25,7 +25,7 @@ date_default_timezone_set('US/Eastern');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/fw/';   
+$config['base_url'] = 'http://localhost/fw/';    
 
 /*
 |--------------------------------------------------------------------------
@@ -537,5 +537,3 @@ $config['proxy_ips'] = '';
 
 
 $config['mailtype'] = 'html';
-
-

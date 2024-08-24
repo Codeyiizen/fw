@@ -220,7 +220,7 @@ class Favoritewish extends CI_Controller
 	*/
 
 	public function register()
-	{  
+	{
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('register'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
@@ -443,7 +443,7 @@ class Favoritewish extends CI_Controller
 				$chkStatus = $this->email->send();
 
 				if ($chkStatus === TRUE) {
-					$this->session->set_flashdata('success', 'Please activate your account from the link that has been sent to you on your email');
+					$this->session->set_flashdata('success', " Complete one last action to enhance security and safeguard your identity. Please activate your account in the email message we've delivered to your inbox. If you don't see the email, make sure to check your spam or junk folder, as it might have been filtered there. We appreciate your decision to become part of Favorite Wish.");
 					redirect('sign-in');
 				} else {
 					echo 'Error';
@@ -532,7 +532,7 @@ class Favoritewish extends CI_Controller
 		
 	}
 	public function login() // Login Controller for users
-	{   
+	{  
 	   //	echo"<pre>"; var_dump($timeStamp = time();); exit;
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			if (!empty($this->input->get('usid'))) {
@@ -540,7 +540,7 @@ class Favoritewish extends CI_Controller
 				$this->Favoritewish_Model->setVerificationCode($verificationCode);
                 $this->Favoritewish_Model->setVerificationCode($verificationCode);
 				$this->Favoritewish_Model->activate();
-				$this->session->set_flashdata('successemail', 'Your email verified successfully!');
+				$this->session->set_flashdata('success', 'Your email verified successfully!');
 				redirect('sign-in');
 			}
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('login'); // Calling model function defined in Favoritewish_Model.php
@@ -589,13 +589,9 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setPassword($password);
 			//query the database
 			$result = $this->Favoritewish_Model->userLogin();
+
 			if (!empty($result) && count($result) > 0) {
-				foreach ($result as $row) {  
-					    $id = $row->user_id;
-						$updateMassageStatus = array(
-						'msg_notify_status' => 1,
-				   ); 
-			      $updateMassageStatus = $this->Favoritewish_Model->updateMsgStatus($id,$updateMassageStatus);   		
+				foreach ($result as $row) {
 					$authArray = array(
 						'user_id' => $row->user_id,
 						'user_name' => $row->user_name,
@@ -639,8 +635,7 @@ class Favoritewish extends CI_Controller
 			$data['wishInfo'] = $this->Favoritewish_Model->getWishInfo($get);
 			$data['get'] = $get;
 			$data['getObjFamilyDetails'] = $this->Favoritewish_Model->getObjFamilyDetailsByUserId($sessionArray['user_id']);
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
-	       //	echo"<pre>"; var_dump($data['friendRequestCount']); exit;
+	    	//echo"<pre>"; var_dump($data['getObjFamilyDetails']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/user-dashboard');
@@ -670,7 +665,6 @@ class Favoritewish extends CI_Controller
 		//	echo"<pre>"; var_dump($data['frienddetails']); exit;
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfo($get);
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			$data['get'] = $get;
 			$this->load->view('front/header_inner', $data);
 			$this->template->load('default_layout', 'contents', 'auth/user-registry');
@@ -696,7 +690,6 @@ class Favoritewish extends CI_Controller
 			$data['frienddetails'] = $this->Favoritewish_Model->getFriendDatails('');
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['wishInfo'] = $this->Favoritewish_Model->getFamilyWishInfo($get);
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			$data['get'] = $get;
 			$this->load->view('front/header_inner', $data);
 			$this->template->load('default_layout', 'contents', 'auth/family-wishes');
@@ -721,7 +714,6 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
           //  echo"<pre>"; var_dump($data['userInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
@@ -733,7 +725,7 @@ class Favoritewish extends CI_Controller
 
 	public function getUserFriendsDetails($id)
 	{
-		// die('ok');
+		// die($id);
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
@@ -755,7 +747,6 @@ class Favoritewish extends CI_Controller
 				$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
 				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/friend-details');
@@ -789,7 +780,6 @@ class Favoritewish extends CI_Controller
 				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/whish-list');
@@ -903,7 +893,6 @@ class Favoritewish extends CI_Controller
 				$data['code'] = 200;
 				$data['html'] = $arrayHtml;
 				$data['htmlRegistryType'] = $arrayHtmlType;
-				$data['htmlOtherAsseccores'] = $getObjWishData->other_accessories;
 				$data['htmlRegistryOccasionType'] =  $getObjWishData->occasion;
 				$data['htmlRegistryBrand'] = $getObjWishData->brand;
 				$data['htmlRegistryColor'] = $getObjWishData->color;
@@ -962,7 +951,6 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			$data['genderSelect'] = $this->Favoritewish_Model->getUserDetails();
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			// echo "<pre>";var_dump($data['userInfo']); exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
@@ -975,18 +963,18 @@ class Favoritewish extends CI_Controller
 	// action update user 
 	public function editUser()
 	{  
-		// echo"<pre>"; var_dump($this->input->post('friend_request_notify')); exit;
+		// echo"<pre>"; var_dump($this->input->post('gender')); exit;
 	    $sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 		$userInfo = $this->Favoritewish_Model->getUserDetails(); 
       //  echo"<pre>"; var_dump($userInfo['profile_photo']); exit; 
 		$this->form_validation->set_rules('first_name', 'First Name', 'required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-	 //	$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|numeric');
+	//	$this->form_validation->set_rules('contact_no', 'Phone Number', 'required|numeric');
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->edit();
-		} else {    
+		} else {
 			$firstName = $this->input->post('first_name');
 			$lastName = $this->input->post('last_name');
 			$contactNo = $this->input->post('contact_no');
@@ -995,16 +983,14 @@ class Favoritewish extends CI_Controller
 			$address = $this->input->post('address');
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
-			$user_bio = $this->input->post('user_bio');
 			$zip = $this->input->post('zip');
 			$favorite_country = $this->input->post('favorite_country');
 			$favorite_public_outfit_wear = $this->input->post('favorite_p_wear');
 			$favorite_s_team = $this->input->post('favorite_s_team');
 			$favorite_music = $this->input->post('favorite_music');
-			$dob = !empty($this->input->post('dob')) ? $this->input->post('dob') : NULL;
+			$dob = $this->input->post('dob');
 			$favorite_charity =   $this->input->post('favorite_charity');
 			$gender =   $this->input->post('gender');
-			$friendRequestNotify =   $this->input->post('friend_request_notify');
 			// Upload profile photo in folder
 			if(!empty($_FILES['profile_photo']['name'])){
 				$config['upload_path']          = './assets/uploads/profile_photo/';
@@ -1056,7 +1042,6 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setContactNo($contactNo);
 			$this->Favoritewish_Model->setUserType($userType);
 			$this->Favoritewish_Model->setCompany($company);
-			$this->Favoritewish_Model->setUserBio($user_bio);
 			$this->Favoritewish_Model->setAddress($address);
 			$this->Favoritewish_Model->setCity($city);
 			$this->Favoritewish_Model->setState($state);
@@ -1070,7 +1055,6 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setcover_photo($cover_photo);
 			$this->Favoritewish_Model->setfavorite_charity($favorite_charity);
 			$this->Favoritewish_Model->set_gender($gender);
-			$this->Favoritewish_Model->set_frienf_Request_Notify($friendRequestNotify);
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
 			$status = $this->Favoritewish_Model->update();
 			if ($status == TRUE) {
@@ -1082,7 +1066,7 @@ class Favoritewish extends CI_Controller
 
 	//forgot password method
 	public function forgotpassword()
-	{  
+	{
 		if ($this->session->userdata('ci_session_key_generate') == TRUE) {
 			redirect('user-dashboard'); // the user is logged in, redirect them!
 		} else {
@@ -1093,7 +1077,7 @@ class Favoritewish extends CI_Controller
 			$data['metaKeywords'] = 'Forgot Password';
 			$data['title'] = "Forgot Password";
 			$data['breadcrumbs'] = array('Forgot Password' => '#');
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
+
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/forgot-password');
@@ -1171,7 +1155,7 @@ class Favoritewish extends CI_Controller
 			$sessionArray = $this->session->userdata('ci_seesion_key');
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
+
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/change-password');
@@ -1216,12 +1200,6 @@ class Favoritewish extends CI_Controller
 	//logout method
 	public function logout()
 	{
-		$sessionArray = $this->session->userdata('ci_seesion_key');
-		$id = $sessionArray['user_id'];
-		 $updateMsgStatus = array(
-			'msg_notify_status' => 0,
-		); 
-		$this->Favoritewish_Model->updateMassageStatus($id,$updateMsgStatus);
 		$this->session->unset_userdata('ci_seesion_key');
 		$this->session->unset_userdata('ci_session_key_generate');
 		$this->session->sess_destroy();
@@ -1399,7 +1377,7 @@ class Favoritewish extends CI_Controller
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
+
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'user/profile');
@@ -1415,7 +1393,7 @@ class Favoritewish extends CI_Controller
 		} else {
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
-			$get = $this->input->get(); //echo"<pre>"; var_dump($get); exit;
+			$get = $this->input->get();
 			$data['metaDescription'] = 'User Friends';
 			$data['metaKeywords'] = 'User Friends';
 			$data['title'] = "User Friends";
@@ -1424,10 +1402,10 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['get'] = $get;
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['userData'] = $this->Favoritewish_Model->getUserFriendsList($get); 
+			$data['userData'] = $this->Favoritewish_Model->getUserFriendsList($get);
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
             $data['getObjFamilyMember'] = $this->Favoritewish_Model->getObjFamilyMemberDetails();
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
+			//echo "<pre>";var_dump($data['userData']);exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'user/friends');
@@ -1457,8 +1435,8 @@ class Favoritewish extends CI_Controller
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['get'] = $get;
 			$data['userData'] = $this->Favoritewish_Model->getUsersList($get);
-		//	echo"<pre>"; var_dump($data['userData']); exit;
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
+			//echo "<Pre>";
+			//var_dump($data['userData']);exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'user/search', $data);
@@ -1467,55 +1445,17 @@ class Favoritewish extends CI_Controller
 		}
 	}
 	public function sendFriendsRequest()
-	{  
+	{
 		$user = getUser();
-		$arrData = array();
 		$stream = $this->security->xss_clean($this->input->raw_input_stream);
 		if (!empty($stream)) {
 			$objPost = json_decode(trim($stream), true);
 			if (!empty($objPost['token'])) {
 				$objUser = $this->Favoritewish_Model->getUserByToken($objPost['token']);
-			//	echo"<pre>"; var_dump($objUser["email"]); exit;
 				if (!empty($objUser)) {
-					$arrInsert = array('to_friend' => $objUser['id'], 'from_friend' => $user['user_id'], 'status' => 0 , 'created_on' => date('Y-m-d H:i:s'));
+					$arrInsert = array('to_friend' => $objUser['id'], 'from_friend' => $user['user_id'], 'status' => 0);
 					$this->db->insert('friends', $arrInsert);
-					$arrInsertNotification = array(   
-													'to_id' => $objUser['id'],
-													'from_id' => $user['user_id'],
-													'notification_type' =>'friend_request_send',
-													'notification_massage' =>''.$user['first_name'].' '.$user['last_name'].' had send you a friend request',
-													'created_on'	    =>	date("Y-m-d H:i:s")
-												);
-					$this->db->insert('notification', $arrInsertNotification);
-					if($objUser['friend_request'] == 1){
-						$sessionArray = $this->session->userdata('ci_seesion_key');
-						$formUser = $this->Favoritewish_Model->getFromUser($sessionArray['user_id']);
-						$arrData['firstName'] =$formUser->first_name;
-						$arrData['lastName'] =$formUser->last_name;
-						$arrData['url'] = base_url('user/friends/requests');
-						$config = array(
-							'protocol'  => 'smtp',
-							'smtp_host' => 'smtp.gmail.com',
-							'smtp_port' => 587, //if 80 dosenot work use 24 or 21
-							'smtp_user'  => 'codeyiizen.test@gmail.com',  
-							'smtp_pass'  => 'wdxdkwcbygukszqv',
-							'smtp_crypto' => 'tls',
-							'charset' => 'iso-8859-1',
-							'wordwrap' => TRUE
-						);
-						$this->load->library('encryption');
-						$this->load->library('email');
-						$config['charset'] = 'iso-8859-1';
-						$config['wordwrap'] = TRUE;
-						$config['mailtype'] = 'html';
-						$this->email->initialize($config);
-						$this->email->to($objUser['email']);
-						$this->email->from(MAIL_FROM, FROM_TEXT);
-						$this->email->subject('FavoriteWish New Friend Request');
-						$this->email->set_newline("\r\n");
-						$this->email->message($this->load->view('email/friendRequestNotify',$arrData, true));
-						$this->email->send();
-				   }
+					
 					if(!empty($this->db->insert_id()) && $this->db->insert_id() > 0) {
 						echo returnSuccessResponse($arrInsert);
 					} else {
@@ -1536,26 +1476,8 @@ class Favoritewish extends CI_Controller
 			if (!empty($objPost['token'])) {
 				$objUser = $this->Favoritewish_Model->getUserByToken($objPost['token']);
 				if (!empty($objUser)) {
-					$arrCheck = array('to_id' => $user['user_id'], 'from_id' => $objUser['id']);
-					$arrUpdate = array('to_id' => $user['user_id'],'from_id' => $objUser['id'], 'req_accept' => 1);
-					$this->db->where($arrCheck);
-					$this->db->update('notification', $arrUpdate);
-				}
-				if (!empty($objUser)) {
-				$arrInsertNotification = array(   
-					'to_id' => $objUser['id'],
-					'from_id' =>$user['user_id'],
-					'notification_type' =>'friend_request_Accept',
-					'notification_massage' =>''.$user['first_name'].' '.$user['last_name'].' accepted your friend request',
-					'created_on'	    =>	date("Y-m-d H:i:s")
-				);
-                $this->db->insert('notification', $arrInsertNotification);
-			   }
-
-				if (!empty($objUser)) {
 					$arrCheck = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id']);
 					$arrUpdate = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id'], 'status' => 1);
-					$arrNotificationUpdate = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id'],'notyfy_status' => 1,'created_on' => date('Y-m-d H:i:s'));
 					$this->db->where($arrCheck);
 					if ($this->db->update('friends', $arrUpdate)) {
 						echo returnSuccessResponse($arrUpdate);
@@ -1570,54 +1492,26 @@ class Favoritewish extends CI_Controller
 	}
 	public function removeFriendsRequest()
 	{
-		$user = getUser(); 
+		$user = getUser();
 		$stream = $this->security->xss_clean($this->input->raw_input_stream);
 		if (!empty($stream)) {
 			$objPost = json_decode(trim($stream), true);
 			if (!empty($objPost['token'])) {
 				$objUser = $this->Favoritewish_Model->getUserByToken($objPost['token']);
 				if (!empty($objUser)) {
-					$arrCheck = array('to_id' => $user['user_id'], 'from_id' => $objUser['id']);
-					$arrUpdate = array('to_id' => $user['user_id'],'from_id' => $objUser['id'], 'req_accept' => 1);
-					$this->db->where($arrCheck);
-					$this->db->update('notification', $arrUpdate);
-				}
-				if (!empty($objUser)) {
-                   
-					// if (!empty($objPost['type']) && $objPost['type'] == 'cancel') {
-					// 	$arrCheck = array('from_id' => $user['user_id'], 'to_id' => $objUser['id']);
-					// 	$this->db->where($arrCheck);
-					// } else if (!empty($objPost['type']) && $objPost['type'] == 'decline') {
-					// 	$arrCheck = array('to_id' => $user['user_id'], 'from_friend' => $objUser['id']);
-					// 	$this->db->where($arrCheck);
-					// } else if (!empty($objPost['type']) && $objPost['type'] == 'remove') { 
-					// 	$arrCheck = array('from_id' => $user['user_id'], 'to_id' => $objUser['id']);  
-					// 	$arrCheckOr = array('to_id' => $user['user_id'], 'from_friend' => $objUser['id']);
-					// 	$this->db->group_start();
-					// 	$this->db->where($arrCheck);
-                    //     $this->db->group_end();
-					// 	$this->db->or_group_start();
-					// 	$this->db->where($arrCheckOr);
-					// 	$this->db->group_end();
-					// }
-					// $this->db->delete('notification');
-
 					if (!empty($objPost['type']) && $objPost['type'] == 'cancel') {
 						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
 						$this->db->where($arrCheck);
 					} else if (!empty($objPost['type']) && $objPost['type'] == 'decline') {
 						$arrCheck = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id']);
 						$this->db->where($arrCheck);
-					} else if (!empty($objPost['type']) && $objPost['type'] == 'remove') { 
-						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);  
+					} else if (!empty($objPost['type']) && $objPost['type'] == 'remove') {
+						$arrCheck = array('from_friend' => $user['user_id'], 'to_friend' => $objUser['id']);
 						$arrCheckOr = array('to_friend' => $user['user_id'], 'from_friend' => $objUser['id']);
-						$this->db->group_start();
 						$this->db->where($arrCheck);
-                        $this->db->group_end();
-						$this->db->or_group_start();
-						$this->db->where($arrCheckOr);
-						$this->db->group_end();
+						$this->db->or_where($arrCheckOr);
 					}
+					
 					if ($this->db->delete('friends')) {
 						echo returnSuccessResponse([]);
 					} else {
@@ -1630,7 +1524,7 @@ class Favoritewish extends CI_Controller
 		}
 	}
 	public function getUserPendingFriends()
-	{    
+	{
 		checkMenuActive(true);
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
@@ -1648,7 +1542,8 @@ class Favoritewish extends CI_Controller
 			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			$data['userData'] = $this->Favoritewish_Model->getUserPendingFriendsList($get);
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
-            $data['sessionData'] = $this->session->userdata('ci_seesion_key');
+
+
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'user/friends');
@@ -1758,7 +1653,6 @@ class Favoritewish extends CI_Controller
 						'id' => $this->input->post('registryId'),
 						'cat_id' => $this->input->post('registry_catId'),
 						'type' => $this->input->post('registry_typeId'),
-						'other_accessories' => !empty($this->input->post('accessories')) ? $this->input->post('accessories') :NULL,
 						'occasion' => $this->input->post('registry_occasion'),
 						'brand' => $this->input->post('registry_brand'),
 						'color' => $this->input->post('registry_color'),
@@ -1817,7 +1711,6 @@ class Favoritewish extends CI_Controller
 			$array = array(
 				'cat_id'     => $this->input->post('category'),
 				'type'  => $this->input->post('type'),
-				'other_accessories'  => $this->input->post('accessories'),
 				'occasion'   => $this->input->post('occasion'),
 				'brand'   => $this->input->post('brand'),
 				'color' => $this->input->post('color'),
@@ -1868,7 +1761,6 @@ class Favoritewish extends CI_Controller
 				'sex'     => $this->input->post('sex'),
 				'cat_id'     => $this->input->post('familyCategory'),
 				'type_id'  => $this->input->post('familyType'),
-				'other_accessories'  => $this->input->post('accessories'),
 				'brand'   => $this->input->post('familyBrand'),
 				'color'   => $this->input->post('familyColor'),
 				'size' => $this->input->post('familySize'),
@@ -1924,7 +1816,6 @@ class Favoritewish extends CI_Controller
 				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/registry-list');
@@ -1957,7 +1848,6 @@ class Favoritewish extends CI_Controller
 				// echo"<pre>"; var_dump($data['wishInfo']);exit;
 			}
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/familywish-list');
@@ -1966,17 +1856,15 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function getMessagelist($id){    
+	public function getMessagelist($id){  
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
-			$search_query = $this->input->get('q');  // Get the search query from GET parameter
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
 			$get = $this->input->get();
-			
 			$data['metaDescription'] = 'User Profile';
-			$data['metaKeywords'] = 'User Profile';
+			$data['metaKeywords'] = 'UUser Profile';
 			$data['title'] = "User Profile";
 			$data['breadcrumbs'] = array('User Profile' => '#');
 			$data['user_profile_id'] = $id;
@@ -1986,24 +1874,20 @@ class Favoritewish extends CI_Controller
 			$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
 			$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id, $sessionArray['user_id']);
 			$data['is_friend'] = $isFriend;
+			//	$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
 			if (!empty($id)) {
 				$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfoBtUser($id,$get);
+				// echo"<pre>"; var_dump($data['userInfo']);exit;
 			}
 			$data['categories'] = $this->Favoritewish_Model->getCategories();
 			$data['friend_id'] = $id;
-			if($id){  
+			if($id){
 			  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id,$sessionArray['user_id']);
-			  $sendMail = $this->Favoritewish_Model->sendMail($id,$sessionArray['user_id']);
-			  $data['showFriendMassage'] = $this->Favoritewish_Model->get_user_friends_messages($sessionArray['user_id'],$search_query);
-			  $data['friendName'] = $this->Favoritewish_Model->getObjFriendName($id);
-				$updateSeenStatus = array(
-				'seen_class' => '',
-				); 
-			$this->Favoritewish_Model->updateSeenStatus($id,$updateSeenStatus);
-			 // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
+			//   echo "<pre>";
+			//   var_dump($data['form_massage']);exit;
 			}
 			$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
-			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
+			 // echo"<pre>"; var_dump($data['user_massage']);exit;
 			$this->load->view('front/header_inner', $data);
 			//$this->load->view('front/bannerSection',$arr);
 			$this->template->load('default_layout', 'contents', 'auth/message-list');
@@ -2016,56 +1900,6 @@ class Favoritewish extends CI_Controller
 	public function messageFormSubmission(){ 
 		$msg_image = $this->input->post('msg_image'); 
         $id = $this->input->post('friend_id');
-		$checkUserLoginStatus = $this->Favoritewish_Model->checkUserLoginStatus($id);
-	//	echo"<pre>"; var_dump($checkUserLoginStatus->check_msg_status); exit;
-	    if($checkUserLoginStatus->check_msg_status == 0){
-			$user = getUser();
-			$arrInsertNotification = array(   
-				'to_id' => $checkUserLoginStatus->id,
-				'from_id' => $user['user_id'],
-				'notification_type' =>'inbox_massage',
-				'notification_massage' =>''.$user['user_name'].'  has send a message. Reply him now',
-				'created_on'	    =>	date("Y-m-d H:i:s")
-			);
-        $this->db->insert('notification', $arrInsertNotification);
-			if($checkUserLoginStatus->Inbox_message == 1){
-				$userId = $user['user_id'];
-				$data = array(
-					'name'  => $user['user_name'].' '.'send you massage',
-					'link'  => base_url()."user/friends/$userId/massages",
-				);
-
-				$config = array(
-					'protocol'  => 'smtp',
-					'smtp_host' => 'smtp.gmail.com',
-					'smtp_port' => 587, //if 80 dosenot work use 24 or 21
-					'smtp_user'  => 'codeyiizen.test@gmail.com',  
-					'smtp_pass'  => 'wdxdkwcbygukszqv',
-					'smtp_crypto' => 'tls',
-					'charset' => 'iso-8859-1',
-					'wordwrap' => TRUE
-				);
-				$this->load->library('encryption');
-				$this->load->library('email');
-				$config['charset'] = 'iso-8859-1';
-				$config['wordwrap'] = TRUE;
-				$config['mailtype'] = 'html';
-				$this->email->initialize($config);
-				$this->email->to($checkUserLoginStatus->email);
-				$this->email->from(MAIL_FROM, FROM_TEXT);
-				$this->email->subject('Inbox Massage Notification');
-				$this->email->set_newline("\r\n");
-				$this->email->message($this->load->view('email/inboxMassageNotify',$data, true));
-				$this->email->send();
-			} 
-		}
-		$msgStatus = $checkUserLoginStatus->msg_notify_status;
-		$id = $id;
-		$updatetMsgStatus = array(
-			'check_msg_status' => $checkUserLoginStatus->msg_notify_status,
-		); 
-		$this->Favoritewish_Model->UpdateMsgStatusById($id,$updatetMsgStatus); 
-
 		$mag = $this->input->post('message'); 
         $sessionArray = $this->session->userdata('ci_seesion_key');
 		if(!empty($mag)){
@@ -2075,19 +1909,18 @@ class Favoritewish extends CI_Controller
 			header("Location: {$_SERVER['HTTP_REFERER']}");
 			//exit();
 
-		}else{    
+		}else {    
 				$data = array(
 					'from_user'	        =>	$sessionArray['user_id'],
 					'to_user'	        =>	$this->input->post('friend_id'),
 					'message'	        =>	$this->input->post('message'),
-					'seen_class'	    =>	'fas fa-circle text-danger',
 					'msg_type'	        =>	'msg',
 					'seen'	            =>	'0',
 					'status'	        =>	'0',
 					'created_on'	    =>	date("Y-m-d H:i:s")
-				);	
-
-		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data,$msgStatus);
+				);
+				
+		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
 		  redirect('user/friends/'.$id.'/massages');
 	}
    }else{
@@ -2117,7 +1950,8 @@ class Favoritewish extends CI_Controller
 			'status'	        =>	'0',
 			'created_on'	    =>	date("Y-m-d H:i:s")
 		);
-		$is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data,$msgStatus);
+		
+		$is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
 		redirect('user/friends/'.$id.'/massages');
    }
  }
@@ -2390,7 +2224,6 @@ public function getCategorySucategory_familywish_id(){
 			$data['htmlSex'] = $arrayHtmlSex;
 			$data['html'] = $arrayHtml;
 			$data['htmlFamilyWishesType'] = $arrayHtmlType;
-			$data['otherAssecceries'] = $getObjWishData->other_accessories;
 			$data['htmlFamilyWishesBrand'] = $getObjWishData->brand;
 			$data['htmlFamilyWishesColor'] = $getObjWishData->color;
 			$data['htmlFamilyWishessize'] = $getObjWishData->size;
@@ -2424,7 +2257,6 @@ public function familyWishEditPost(){
 					'sex' => $this->input->post('familyWishSex'),
 					'cat_id' => $this->input->post('familyWishCatId'),
 					'type_id' => $this->input->post('familyWishTypeId'),
-					'other_accessories' => !empty($this->input->post('accessories')) ? $this->input->post('accessories') :NULL,
 					'brand' => $this->input->post('familyWishBrand'),
 					'color' => $this->input->post('familyWishColor'),
 					'size' => $this->input->post('familyWishSize'),
@@ -2541,304 +2373,6 @@ public function familyWishDelete(){
 		$this->load->view('front/template/template_footer');
 		$this->load->view('front/footer_main');
 	}
-
-	public function friendNotyfyRead(){
-		$sessionArray = $this->session->userdata('ci_seesion_key');
-		$id = $sessionArray['user_id'];
-		$updatetNotyfyData = array(
-			'read_status' => 1,
-		); 
-		$this->Favoritewish_Model->UpdateNotyfyData($id,$updatetNotyfyData);
-		redirect('user/notification/realall');
-	}
-
-	public function birthdayStateUpdate(){
-	    $id = $this->input->post('id'); 
-	    $updateFromFriendtBirthday = array(
-		'friend_birthday_notify' => 1,
-		); 
-		$this->Favoritewish_Model->UpdateBirthdayStatus($id,$updateFromFriendtBirthday);
-	}
-
-	public function birthdayTOStateUpdate(){
-		$id = $this->input->post('id');
-	    $updateToFriendtBirthday = array(
-		'to_friend_birthday_notify' => 1,
-		); 
-		$this->Favoritewish_Model->UpdateToBirthdayStatus($id,$updateToFriendtBirthday);
-		redirect('user/friends');
-	}
-
-	public function userFriendsBirthday(){
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			redirect('sign-in'); 
-		} else {
-			$get = $this->input->get();
-			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); 
-			$data = array();
-			$data['metaDescription'] = 'Search Friends';
-			$data['metaKeywords'] = 'Search Friends';
-			$data['title'] = "Search Friends";
-			$data['breadcrumbs'] = array('User Friends' => '#');
-			$sessionArray = $this->session->userdata('ci_seesion_key');
-			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
-			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['get'] = $get;$data['userData'] = $this->Favoritewish_Model->getUserFriendsList($get);
-			$data['toDayBirthday'] = $this->Favoritewish_Model->getTodayBirthday();
-			$firstMonth = date('m');
-			$data['firstMonthBirthday'] = $this->Favoritewish_Model->getFirstMonthFirthday($firstMonth);
-			$nextMonth = date('m', strtotime('+1 month')); 
-			$data['secoundMonthBirthday'] = $this->Favoritewish_Model->getSecoundMonthFirthday($nextMonth);
-		//	echo"<pre>"; var_dump($data['secoundMonthBirthday']); exit;
-			$this->load->view('front/header_inner', $data);
-			//$this->load->view('front/bannerSection',$arr);
-			$this->template->load('default_layout', 'contents', 'user/userFrindsBirthday', $data);
-			$this->load->view('front/template/template_footer');
-			$this->load->view('front/footer_main');
-		}
-	}
-
-	public function notification()
-	{
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			redirect('signin'); // the user is not logged in, redirect them!
-		} else {
-			$arr['data'] = $this->Favoritewish_Model->bannerSection('changepassword'); // Calling model function defined in Favoritewish_Model.php
-			$data = array();
-			$data['metaDescription'] = 'Notificartion Setting';
-			$data['metaKeywords'] = 'Notificartion Setting';
-			$data['title'] = "Notificartion Setting";
-			$data['breadcrumbs'] = array('Change Password' => '#');
-			$sessionArray = $this->session->userdata('ci_seesion_key');
-			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
-			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['userDataById'] = $this->Favoritewish_Model->getUserDataById($sessionArray['user_id']);
-		//	echo"<pre>"; var_dump($data['userDataById']); exit;
-			$this->load->view('front/header_inner', $data);
-			//$this->load->view('front/bannerSection',$arr);
-			$this->template->load('default_layout', 'contents', 'auth/notification-setting');
-			$this->load->view('front/template/template_footer');
-			$this->load->view('front/footer_main');
-		}
-	}
-
-	public function notificationSettingUpdate()
-	{   
-	    $sessionArray = $this->session->userdata('ci_seesion_key');
-		$inbox_massage = isset($_POST['inbox_massage']) ? 1 : 0;
-		$friend_request = isset($_POST['friend_request']) ? 1 : 0;
-		$upComming_birthday = isset($_POST['upcomming_birthday']) ? 1 : 0;
-		$id = $sessionArray['user_id'];
-		$updateInboxMassage = array(
-			'Inbox_message' => $inbox_massage,
-			); 
-		$updateFriendRequest = array(
-			'friend_request' => $friend_request,
-			);	
-		$updateBirthday = array(
-			'upcoming_birthday' => $upComming_birthday,
-			);	
-		$this->Favoritewish_Model->updateInBoxMassage($id,$updateInboxMassage);
-		$this->Favoritewish_Model->updateFriendRequest($id,$updateFriendRequest);
-		$this->Favoritewish_Model->updateUpcommingBirthday($id,$updateBirthday);
-	    redirect('notification');
-	}
-
-
-
-	public function updateMassageStatusById(){
-	   $msgId = $this->input->post('msgId');   // echo"<pre>"; var_dump($msgId); exit;
-	   $id = $this->input->post('id');
-	    $updateMassageUserId = array(
-		'check_msg_status' => 1,
-		); 
-		$updateMassageId = array(
-			'msg_status' => 1,
-	    );
-		$this->Favoritewish_Model->UpdateMassageUserId($id,$updateMassageUserId);
-		$this->Favoritewish_Model->UpdateMassgeById($msgId,$updateMassageId);
-	}
-
-	public function userNotifiReadAll(){
-		if ($this->session->userdata('ci_session_key_generate') == FALSE){
-			redirect('signin');
-		} else {
-			$arr['data'] = $this->Favoritewish_Model->bannerSection('changepassword'); 
-			$data = array();
-			$data['metaDescription'] = 'All Notification';
-			$data['metaKeywords'] = 'All Notification';
-			$data['title'] = "All Notification";
-			$data['breadcrumbs'] = array('Change Password' => '#');
-			$sessionArray = $this->session->userdata('ci_seesion_key');
-			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
-			$data['userInfo'] = $this->Favoritewish_Model->getUserDetails();
-			$data['userDataById'] = $this->Favoritewish_Model->getUserDataById($sessionArray['user_id']);
-			$this->load->view('front/header_inner', $data);
-			//$this->load->view('front/bannerSection',$arr);
-			$this->template->load('default_layout', 'contents', 'user/notificationReadAll');
-			$this->load->view('front/template/template_footer');
-			$this->load->view('front/footer_main');
-		}
-	}
-
-	public function userNotifyRead(){
-		$id = $this->input->post('userId'); 
-	    $updateReadStatus = array(
-		'read_status' => 1,
-		); 
-		$this->Favoritewish_Model->updateReadStatus($id,$updateReadStatus);
-	}
-
-	public function userNotifyDelete(){
-		$id = $this->input->post('msgId');
-		$this->Favoritewish_Model->userNotifyDelete($id);
-	}
-
-	public function checkFriendBirthday(){
-	    checkMenuActive(true);
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			redirect('sign-in'); // the user is not logged in, redirect them!
-		} else {
-			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
-			$data = array();
-			$get = $this->input->get(); 
-			$data['breadcrumbs'] = array('User Friends' => '#');
-			$sessionArray = $this->session->userdata('ci_seesion_key');
-			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
-			$data['get'] = $get;
-			$user = getUser();
-			$getAllUser = $this->Favoritewish_Model->get_friends_with_birthday_today();
-		   //	echo"<pre>"; var_dump($getAllUser); exit;
-			foreach($getAllUser as $friendBirthday){ 
-			   $getObjBirthdayData = $this->Favoritewish_Model->getfriendDataById($friendBirthday["friend_id"]);	 
-			//	echo"<pre>"; var_dump($getObjBirthdayData->email); exit;
-
-			  $arrInsertNotification = array(   
-				'to_id' =>$friendBirthday["friend_id"],
-				'from_id' => $friendBirthday["id"],
-				'notification_type' =>'birthday_notification',
-				'notification_massage' =>''.$friendBirthday["first_name"].' '.$friendBirthday["last_name"].' a happy birthday, it’s his birthday today',
-				'created_on'	    =>	date("Y-m-d H:i:s")
-			);
-            $this->db->insert('notification', $arrInsertNotification);
-            $data = array(
-				'first_name' => $friendBirthday["first_name"],
-				'last_name' => $friendBirthday["last_name"],
-				'RecipientName' => $getObjBirthdayData->first_name.' '.$getObjBirthdayData->last_name,
-			);
-            if($getObjBirthdayData->upcoming_birthday == 1){
-				$sessionArray = $this->session->userdata('ci_seesion_key');
-				$config = array(
-					'protocol'  => 'smtp',
-					'smtp_host' => 'smtp.gmail.com',
-					'smtp_port' => 587, //if 80 dosenot work use 24 or 21
-					'smtp_user'  => 'codeyiizen.test@gmail.com',  
-					'smtp_pass'  => 'wdxdkwcbygukszqv',
-					'smtp_crypto' => 'tls',
-					'charset' => 'iso-8859-1',
-					'wordwrap' => TRUE
-				);
-				$this->load->library('encryption');
-				$this->load->library('email');
-				$config['charset'] = 'iso-8859-1';
-				$config['wordwrap'] = TRUE;
-				$config['mailtype'] = 'html';
-				$this->email->initialize($config);
-				$this->email->to($getObjBirthdayData->email);
-				$this->email->from(MAIL_FROM, FROM_TEXT);
-				$this->email->subject('FavoriteWish Today Birthday Notification');
-				$this->email->set_newline("\r\n");
-				$this->email->message($this->load->view('email/todayBithdayNotify',$data, true));
-				$this->email->send();
-			}
-
-			}
-           die('ok');
-
-	}
-}
-
-public function massageUpdate(){
-	$id = $this->input->post('id');
-	$msg = $this->input->post('msg'); 
-	$updatemassage = array(
-	'message' => $msg,
-	); 
-	$this->Favoritewish_Model->updateMassage($id,$updatemassage);
-}
-
-public function massageDeleteBoth(){
-	$id = $this->input->post('id');
-	$this->Favoritewish_Model->massageDelete($id);
-}
-
-public function massageDeleteMe(){  
-	$id = $this->input->post('id');
-	$deleteme = array(
-	'delete_status' => 1,
-	); 
-	$this->Favoritewish_Model->deleteMe($id,$deleteme);
-}
-
- public function massageList(){  
-	if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-		redirect('sign-in'); // the user is not logged in, redirect them!
-	} else {
-		$search_query = $this->input->get('q');  // Get the search query from GET parameter
-		$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
-		$data = array();
-		$get = $this->input->get();
-		$sessionArray = $this->session->userdata('ci_seesion_key');
-		$id = $sessionArray['user_id'];
-		$data['metaDescription'] = 'User Profile';
-		$data['metaKeywords'] = 'User Profile';
-		$data['title'] = "User Profile";
-		$data['breadcrumbs'] = array('User Profile' => '#');
-		$data['user_profile_id'] = $id;
-		$this->Favoritewish_Model->setUserID($id);
-		$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
-		$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
-		$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id, $sessionArray['user_id']);
-		$data['is_friend'] = $isFriend;
-		if (!empty($id)) {
-			$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfoBtUser($id,$get);
-		}
-		$data['categories'] = $this->Favoritewish_Model->getCategories();
-		$data['friend_id'] = $id;
-		if($id){  
-		  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id,$sessionArray['user_id']);
-		  $sendMail = $this->Favoritewish_Model->sendMail($id,$sessionArray['user_id']);
-		  $data['showFriendMassage'] = $this->Favoritewish_Model->get_user_friends_messages($sessionArray['user_id'],$search_query);
-		  // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
-		  $data['friendName'] = $this->Favoritewish_Model->getObjFriendName($id);
-			$updateSeenStatus = array(
-			'seen_class' => '',
-			); 
-		$this->Favoritewish_Model->updateSeenStatus($id,$updateSeenStatus);
-		 // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
-		}
-		$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
-		$data['sessionData'] = $this->session->userdata('ci_seesion_key');
-		$this->load->view('front/header_inner', $data);
-		//$this->load->view('front/bannerSection',$arr);
-		$this->template->load('default_layout', 'contents', 'auth/message-list');
-		$this->load->view('front/template/template_footer');
-		$this->load->view('front/footer_main');
-	}	
- }
- 
- public function deleteMeAllMsg(){
-	$id = $this->input->post('id'); 
-	$deletemeallmsg = array(
-	'delete_status' => 1,
-	); 
-	$this->Favoritewish_Model->deleteMeAllMsg($id,$deletemeallmsg);
- }
-
- public function deleteBothAllMsg(){
-	$ids = $this->input->post('ids');
-	$this->Favoritewish_Model->deleteBothAllMsg($ids);
- }
 
 }
 

@@ -74,34 +74,16 @@ class Favoritewish_Model extends CI_Model {
     
    } 
    
-   public function getMessage($id,$userId){  
-        // $this->db->select("messages.*,CONCAT(from.first_name,' ',from.last_name) as from_name,CONCAT(to.first_name,' ',to.last_name) as to_name,from.profile_photo as from_photo,to.profile_photo as to_photo");
-        // $this->db->from("messages");
-        // $this->db->join('users as from','from.id=messages.from_user','left');
-        // $this->db->join('users as to','to.id=messages.to_user','left');
-
-        // $this->db->where('(to_user='.$id." and from_user=".$userId.')');
-        // $this->db->where('(delete_form !='.$userId." and delete_to !=".$userId.')');
-        // $this->db->or_where('(to_user ='.$userId." and from_user=".$id.')');
-        // $this->db->where('(delete_form !='.$userId." and delete_to !=".$userId.')');
-        // $query = $this->db->get();
-        // return $query->result();
-
-        $this->db->select("messages.*, CONCAT(from.first_name,' ',from.last_name) as from_name, CONCAT(to.first_name,' ',to.last_name) as to_name, from.profile_photo as from_photo, to.profile_photo as to_photo");
+   public function getMessage($id,$userId){
+        $this->db->select("messages.*,CONCAT(from.first_name,' ',from.last_name) as from_name,CONCAT(to.first_name,' ',to.last_name) as to_name,from.profile_photo as from_photo,to.profile_photo as to_photo");
         $this->db->from("messages");
-        $this->db->join('users as from', 'from.id=messages.from_user', 'left');
-        $this->db->join('users as to', 'to.id=messages.to_user', 'left');
-    
-        $where = "(
-            (to_user = $id AND from_user = $userId AND (delete_form IS NULL OR delete_form != $userId) AND (delete_to IS NULL OR delete_to != $userId))
-            OR 
-            (to_user = $userId AND from_user = $id AND (delete_form IS NULL OR delete_form != $userId) AND (delete_to IS NULL OR delete_to != $userId))
-        )";
-    
-        $this->db->where($where);
-        
+        $this->db->join('users as from','from.id=messages.from_user','left');
+        $this->db->join('users as to','to.id=messages.to_user','left');
+        $this->db->where('(to_user='.$id." and from_user=".$userId.')');
+        $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
         $query = $this->db->get();
         return $query->result();
+        
    }
    public function getUserMessage($userId){
     $this->db->select("*");
@@ -1353,7 +1335,7 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->where("friends.status",1);
         $this->db->where("users.id!=",$this->_userID);
         $this->db->where('MONTH(users.dob)', $firstMonth);
-        $this->db->where('YE(users.dob)', date('Y'));
+        $this->db->where('day(users.dob)!=', date('d'));
         $this->db->group_by('users.id'); 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -1372,7 +1354,6 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->where("friends.status",1);
         $this->db->where("users.id!=",$this->_userID);
         $this->db->where("day(users.dob)",date("d"));
-        $this->db->where("month(users.dob)",date("m"));
         $this->db->group_by('users.id'); 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -1701,11 +1682,9 @@ public function updateSeenStatus($id,$updateSeenStatus){
     $this->db->update('messages',$updateSeenStatus); 
 }
 
-public function deleteMeAllMsg($formId,$toId,$deletemeallmsg){  
-    // $this->db->where('(to_user='.$formId." and from_user=".$toId.')');
-    // $this->db->or_where('(to_user='.$toId." and from_user=".$formId.')');
-    $this->db->where('from_user', $formId);
-    $this->db->where('to_user', $toId);
+public function deleteMeAllMsg($id,$deletemeallmsg){  
+    $this->db->where('to_user', $id);
+   // $this->db->or_where('from_user', $id);
     $this->db->update('messages',$deletemeallmsg);  
 }
 
