@@ -1479,11 +1479,12 @@ class Favoritewish extends CI_Controller
 				if (!empty($objUser)) {
 					$arrInsert = array('to_friend' => $objUser['id'], 'from_friend' => $user['user_id'], 'status' => 0 , 'created_on' => date('Y-m-d H:i:s'));
 					$this->db->insert('friends', $arrInsert);
+					
 					$arrInsertNotification = array(   
 													'to_id' => $objUser['id'],
 													'from_id' => $user['user_id'],
 													'notification_type' =>'friend_request_send',
-													'notification_massage' =>''.$user['first_name'].' '.$user['last_name'].' had send you a friend request',
+													'notification_massage' =>''.$user['user_name'].' '.$user['last_name'].' had send you a friend request',
 													'created_on'	    =>	date("Y-m-d H:i:s")
 												);
 					$this->db->insert('notification', $arrInsertNotification);
@@ -1546,7 +1547,7 @@ class Favoritewish extends CI_Controller
 					'to_id' => $objUser['id'],
 					'from_id' =>$user['user_id'],
 					'notification_type' =>'friend_request_Accept',
-					'notification_massage' =>''.$user['first_name'].' '.$user['last_name'].' accepted your friend request',
+					'notification_massage' =>''.$user['user_name'].' '.$user['last_name'].' accepted your friend request',
 					'created_on'	    =>	date("Y-m-d H:i:s")
 				);
                 $this->db->insert('notification', $arrInsertNotification);
@@ -1966,17 +1967,15 @@ class Favoritewish extends CI_Controller
 		}
 	}
 
-	public function getMessagelist($id){    
+	public function getMessagelist($id){   
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			redirect('sign-in'); // the user is not logged in, redirect them!
 		} else {
-			$search_query = $this->input->get('q');  // Get the search query from GET parameter
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
 			$get = $this->input->get();
-			
 			$data['metaDescription'] = 'User Profile';
-			$data['metaKeywords'] = 'User Profile';
+			$data['metaKeywords'] = 'UUser Profile';
 			$data['title'] = "User Profile";
 			$data['breadcrumbs'] = array('User Profile' => '#');
 			$data['user_profile_id'] = $id;
@@ -1994,13 +1993,6 @@ class Favoritewish extends CI_Controller
 			if($id){  
 			  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id,$sessionArray['user_id']);
 			  $sendMail = $this->Favoritewish_Model->sendMail($id,$sessionArray['user_id']);
-			  $data['showFriendMassage'] = $this->Favoritewish_Model->get_user_friends_messages($sessionArray['user_id'],$search_query);
-			  $data['friendName'] = $this->Favoritewish_Model->getObjFriendName($id);
-				$updateSeenStatus = array(
-				'seen_class' => '',
-				); 
-			$this->Favoritewish_Model->updateSeenStatus($id,$updateSeenStatus);
-			 // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
 			}
 			$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
 			$data['sessionData'] = $this->session->userdata('ci_seesion_key');
@@ -2028,8 +2020,8 @@ class Favoritewish extends CI_Controller
 				'created_on'	    =>	date("Y-m-d H:i:s")
 			);
         $this->db->insert('notification', $arrInsertNotification);
+            $userId = $user['user_id'];
 			if($checkUserLoginStatus->Inbox_message == 1){
-				$userId = $user['user_id'];
 				$data = array(
 					'name'  => $user['user_name'].' '.'send you massage',
 					'link'  => base_url()."user/friends/$userId/massages",
@@ -2080,14 +2072,13 @@ class Favoritewish extends CI_Controller
 					'from_user'	        =>	$sessionArray['user_id'],
 					'to_user'	        =>	$this->input->post('friend_id'),
 					'message'	        =>	$this->input->post('message'),
-					'seen_class'	    =>	'fas fa-circle text-danger',
 					'msg_type'	        =>	'msg',
 					'seen'	            =>	'0',
 					'status'	        =>	'0',
 					'created_on'	    =>	date("Y-m-d H:i:s")
 				);	
 
-		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data,$msgStatus);
+		  $is_cf_submitted = $this->Favoritewish_Model->messageFrmSubmit($data);
 		  redirect('user/friends/'.$id.'/massages');
 	}
    }else{
@@ -2656,7 +2647,7 @@ public function familyWishDelete(){
 			'msg_status' => 1,
 	    );
 		$this->Favoritewish_Model->UpdateMassageUserId($id,$updateMassageUserId);
-		$this->Favoritewish_Model->UpdateMassgeById($msgId,$updateMassageId);
+	//	$this->Favoritewish_Model->UpdateMassgeById($msgId,$updateMassageId);
 	}
 
 	public function userNotifiReadAll(){
@@ -2756,89 +2747,7 @@ public function familyWishDelete(){
            die('ok');
 
 	}
-}
-
-public function massageUpdate(){
-	$id = $this->input->post('id');
-	$msg = $this->input->post('msg'); 
-	$updatemassage = array(
-	'message' => $msg,
-	); 
-	$this->Favoritewish_Model->updateMassage($id,$updatemassage);
-}
-
-public function massageDeleteBoth(){
-	$id = $this->input->post('id');
-	$this->Favoritewish_Model->massageDelete($id);
-}
-
-public function massageDeleteMe(){  
-	$id = $this->input->post('id');
-	$deleteme = array(
-	'delete_status' => 1,
-	); 
-	$this->Favoritewish_Model->deleteMe($id,$deleteme);
-}
-
- public function massageList(){  
-	if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-		redirect('sign-in'); // the user is not logged in, redirect them!
-	} else {
-		$search_query = $this->input->get('q');  // Get the search query from GET parameter
-		$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
-		$data = array();
-		$get = $this->input->get();
-		$sessionArray = $this->session->userdata('ci_seesion_key');
-		$id = $sessionArray['user_id'];
-		$data['metaDescription'] = 'User Profile';
-		$data['metaKeywords'] = 'User Profile';
-		$data['title'] = "User Profile";
-		$data['breadcrumbs'] = array('User Profile' => '#');
-		$data['user_profile_id'] = $id;
-		$this->Favoritewish_Model->setUserID($id);
-		$data['userInfo'] = $this->Favoritewish_Model->getFriendDetails($id);
-		$data['userLoginInfo'] = $this->Favoritewish_Model->getFriendDetails($sessionArray['user_id']);
-		$isFriend = $this->Favoritewish_Model->checkIfUserIsFriend($id, $sessionArray['user_id']);
-		$data['is_friend'] = $isFriend;
-		if (!empty($id)) {
-			$data['wishInfo'] = $this->Favoritewish_Model->getRegistryInfoBtUser($id,$get);
-		}
-		$data['categories'] = $this->Favoritewish_Model->getCategories();
-		$data['friend_id'] = $id;
-		if($id){  
-		  $data['form_massage'] = $this->Favoritewish_Model->getMessage($id,$sessionArray['user_id']);
-		  $sendMail = $this->Favoritewish_Model->sendMail($id,$sessionArray['user_id']);
-		  $data['showFriendMassage'] = $this->Favoritewish_Model->get_user_friends_messages($sessionArray['user_id'],$search_query);
-		  // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
-		  $data['friendName'] = $this->Favoritewish_Model->getObjFriendName($id);
-			$updateSeenStatus = array(
-			'seen_class' => '',
-			); 
-		$this->Favoritewish_Model->updateSeenStatus($id,$updateSeenStatus);
-		 // echo"<pre>"; var_dump($data['showFriendMassage']); exit;
-		}
-		$data['user_massage'] = $this->Favoritewish_Model->getUserMessage($sessionArray['user_id']);
-		$data['sessionData'] = $this->session->userdata('ci_seesion_key');
-		$this->load->view('front/header_inner', $data);
-		//$this->load->view('front/bannerSection',$arr);
-		$this->template->load('default_layout', 'contents', 'auth/message-list');
-		$this->load->view('front/template/template_footer');
-		$this->load->view('front/footer_main');
-	}	
- }
- 
- public function deleteMeAllMsg(){
-	$id = $this->input->post('id'); 
-	$deletemeallmsg = array(
-	'delete_status' => 1,
-	); 
-	$this->Favoritewish_Model->deleteMeAllMsg($id,$deletemeallmsg);
- }
-
- public function deleteBothAllMsg(){
-	$ids = $this->input->post('ids');
-	$this->Favoritewish_Model->deleteBothAllMsg($ids);
- }
+  }
 
 }
 

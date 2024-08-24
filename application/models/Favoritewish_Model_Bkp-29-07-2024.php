@@ -71,83 +71,19 @@ class Favoritewish_Model extends CI_Model {
     }
    public function messageFrmSubmit($data){  
     $this->db->insert('messages', $data);
-    
    } 
    
    public function getMessage($id,$userId){
-        // $this->db->select("messages.*,CONCAT(from.first_name,' ',from.last_name) as from_name,CONCAT(to.first_name,' ',to.last_name) as to_name,from.profile_photo as from_photo,to.profile_photo as to_photo");
-        // $this->db->from("messages");
-        // $this->db->join('users as from','from.id=messages.from_user','left');
-        // $this->db->join('users as to','to.id=messages.to_user','left');
-        // $this->db->where('(to_user='.$id." and from_user=".$userId.')');
-        // $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
-        // $query = $this->db->get();
-        // return $query->result();
-
-        $this->db->select("messages.*, CONCAT(from.first_name,' ',from.last_name) as from_name, CONCAT(to.first_name,' ',to.last_name) as to_name, from.profile_photo as from_photo, to.profile_photo as to_photo");
+        $this->db->select("messages.*,CONCAT(from.first_name,' ',from.last_name) as from_name,CONCAT(to.first_name,' ',to.last_name) as to_name,from.profile_photo as from_photo,to.profile_photo as to_photo");
         $this->db->from("messages");
-        $this->db->join('users as from', 'from.id=messages.from_user', 'left');
-        $this->db->join('users as to', 'to.id=messages.to_user', 'left');
-    
-        $where = "(
-            (to_user = $id AND from_user = $userId AND (delete_form IS NULL OR delete_form != $userId) AND (delete_to IS NULL OR delete_to != $userId))
-            OR 
-            (to_user = $userId AND from_user = $id AND (delete_form IS NULL OR delete_form != $userId) AND (delete_to IS NULL OR delete_to != $userId))
-        )";
-    
-        $this->db->where($where);
-        
+        $this->db->join('users as from','from.id=messages.from_user','left');
+        $this->db->join('users as to','to.id=messages.to_user','left');
+        $this->db->where('(to_user='.$id." and from_user=".$userId.')');
+        $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
         $query = $this->db->get();
         return $query->result();
         
    }
-   public function getMyMessages($id,$userId){
-    // $this->db->select("messages.*,CONCAT(from.first_name,' ',from.last_name) as from_name,CONCAT(to.first_name,' ',to.last_name) as to_name,from.profile_photo as from_photo,to.profile_photo as to_photo");
-    // $this->db->from("messages");
-    // $this->db->join('users as from','from.id=messages.from_user','left');
-    // $this->db->join('users as to','to.id=messages.to_user','left');
-    // $this->db->where('(to_user='.$id." and from_user=".$userId.')');
-    // $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
-    // $query = $this->db->get();
-    // return $query->result();
-
-    $this->db->select("messages.*, CONCAT(from.first_name,' ',from.last_name) as from_name, CONCAT(to.first_name,' ',to.last_name) as to_name, from.profile_photo as from_photo, to.profile_photo as to_photo");
-    $this->db->from("messages");
-    $this->db->join('users as from', 'from.id=messages.from_user', 'left');
-    $this->db->join('users as to', 'to.id=messages.to_user', 'left');
-
-    $where = "(to_user = $id AND from_user = $userId)";
-
-    $this->db->where($where);
-    
-    $query = $this->db->get();
-    return $query->result();
-    
-}
-public function getFriendMessages($id,$userId){
-    // $this->db->select("messages.*,CONCAT(from.first_name,' ',from.last_name) as from_name,CONCAT(to.first_name,' ',to.last_name) as to_name,from.profile_photo as from_photo,to.profile_photo as to_photo");
-    // $this->db->from("messages");
-    // $this->db->join('users as from','from.id=messages.from_user','left');
-    // $this->db->join('users as to','to.id=messages.to_user','left');
-    // $this->db->where('(to_user='.$id." and from_user=".$userId.')');
-    // $this->db->or_where('(to_user='.$userId." and from_user=".$id.')');
-    // $query = $this->db->get();
-    // return $query->result();
-
-    $this->db->select("messages.*, CONCAT(from.first_name,' ',from.last_name) as from_name, CONCAT(to.first_name,' ',to.last_name) as to_name, from.profile_photo as from_photo, to.profile_photo as to_photo");
-    $this->db->from("messages");
-    $this->db->join('users as from', 'from.id=messages.from_user', 'left');
-    $this->db->join('users as to', 'to.id=messages.to_user', 'left');
-
-    $where = "
-        (from_user = $id AND to_user = $userId)";
-
-    $this->db->where($where);
-    
-    $query = $this->db->get();
-    return $query->result();
-    
-}
    public function getUserMessage($userId){
     $this->db->select("*");
     $this->db->from("messages");
@@ -697,7 +633,7 @@ public function getFriendMessages($id,$userId){
     // }
     
     public function getUsersList($params){
-        $search = (!empty($params['q'])) ? trim($params['q']) :'';
+        $search = (!empty($params['q']))?$params['q']:'';
         $sql ='SELECT
         `users`.*,
         `friends`.`status` AS `friends_status`,
@@ -1297,7 +1233,7 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->from('notification');
         $this->db->where('to_id', $id);
         $this->db->order_by('id','desc');
-        $this->db->limit(15);
+        $this->db->limit(5);
         $query = $this->db->get();
         return  $query->result();
     } 
@@ -1398,7 +1334,7 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->where("friends.status",1);
         $this->db->where("users.id!=",$this->_userID);
         $this->db->where('MONTH(users.dob)', $firstMonth);
-        $this->db->where('day(users.dob)!=', date('d'));
+        $this->db->where('YEAR(users.dob)', date('Y'));
         $this->db->group_by('users.id'); 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -1416,8 +1352,7 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->where("(friends.from_friend=".$this->_userID." OR friends.to_friend=".$this->_userID.")");
         $this->db->where("friends.status",1);
         $this->db->where("users.id!=",$this->_userID);
-        $this->db->where("day(users.dob)",date("d"));
-        $this->db->where("month(users.dob)",date("m"));
+        $this->db->where("date(users.dob)",date("Y-m-d"));
         $this->db->group_by('users.id'); 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -1658,158 +1593,6 @@ public function checkUserFriend($id){
     $query = $this->db->get();
     return  $query->row();
  } 
-
- public function get_user_friends_messages($user_id,$search_query){ 
-    $this->db->select('
-    u.id AS user_id, 
-    u.first_name AS user_first_name, 
-    u.last_name AS user_last_name, 
-    u.user_name AS user_user_name, 
-    f.to_friend, 
-    f.from_friend, 
-    m.id AS message_id, 
-    m.message, 
-    m.created_on, 
-    m.read_status, 
-    m.seen_class,
-    m.from_user,
-    m.to_user,
-    m.display_to_status,
-    m.display_form_status,
-    m.delete_status,
-    friend.first_name AS friend_first_name,
-    friend.profile_photo AS friend_profile_photo, 
-    friend.last_name AS friend_last_name, 
-    friend.user_name AS friend_user_name,
-    friend.id AS friend_user_id
-');
-$this->db->from('users u');
-$this->db->join('friends f', 'u.id = f.from_friend OR u.id = f.to_friend');
-$this->db->join('(SELECT 
-                    CASE 
-                      WHEN from_user = '.$user_id.' THEN to_user 
-                      ELSE from_user 
-                    END AS friend_id,
-                    MAX(created_on) AS max_created_on
-                  FROM messages
-                  WHERE from_user = '.$user_id.' OR to_user = '.$user_id.'
-                  GROUP BY friend_id) latest',
-    '((f.from_friend = latest.friend_id AND f.to_friend = '.$user_id.') OR (f.to_friend = latest.friend_id AND f.from_friend = '.$user_id.'))', 
-    'left');
-
-
-$this->db->join('messages m', 'm.from_user = latest.friend_id AND m.to_user = '.$user_id.' AND m.created_on = latest.max_created_on OR
-                           m.from_user = '.$user_id.' AND m.to_user = latest.friend_id AND m.created_on = latest.max_created_on', 'left');
-
-$this->db->join('users friend', '(friend.id = f.from_friend AND friend.id != u.id) OR (friend.id = f.to_friend AND friend.id != u.id)', 'left');
-$this->db->where('u.id', $user_id);
-$this->db->where('f.status', 1);
-if (!empty($search_query)) {
-    $this->db->group_start();  
-        $this->db->like('friend.first_name', $search_query);
-        $this->db->or_like('friend.last_name', $search_query);
-        $this->db->or_like('friend.user_name', $search_query);
-        $this->db->or_like('m.message', $search_query);
-        $this->db->group_end();  
-}
-
-$this->db->order_by('m.created_on', 'DESC'); 
-$query = $this->db->get();
-return $query->result();
- }
-
-public function getObjFriendName($friendId){
-    $this->db->select('*');
-    $this->db->from('users');
-    $this->db->where('id',$friendId);
-    $query = $this->db->get();
-    return  $query->row(); 
-}
-
-public function updateMassage($id,$updatemassage){
-    $this->db->where('id', $id);
-    $this->db->update('messages',$updatemassage); 
-}
-
-public function massageDelete($id){
-    $this->db->where('id', $id);
-    $this->db->delete('messages'); 
-}
-
-public function deleteMe($id,$deleteme){
-    $this->db->where('id', $id);
-    $this->db->update('messages',$deleteme);  
-}
-
-public function updateSeenStatus($id,$updateSeenStatus){
-    $this->db->where('from_user', $id);
-    $this->db->update('messages',$updateSeenStatus); 
-}
-
-public function deleteMeAllMsg($formId,$toId,$deletemeallmsg){  
-    // $this->db->where('(to_user='.$formId." and from_user=".$toId.')');
-    // $this->db->or_where('(to_user='.$toId." and from_user=".$formId.')');
-    $this->db->where('from_user', $formId);
-    $this->db->where('to_user', $toId);
-    $this->db->update('messages',$deletemeallmsg); 
-}
-
-// public function deleteMeAllMsgform($user_id,$deletemeallmsgform){  
-//     $this->db->where('from_user', $user_id);
-//     $this->db->update('messages',$deletemeallmsgform);  
-// }
-
-public function deleteBothAllMsg($formId,$toId,$deletemeallmsg){
-    // $this->db->where_in('id', $ids);
-    // $this->db->delete('messages'); 
-
-    $this->db->where('from_user', $formId);
-    $this->db->where('to_user', $toId);
-    $this->db->update('messages',$deletemeallmsg);
-}
-
-public function getMsgForMe($id){  
-    $this->db->select('*');
-    $this->db->from("messages");
-    $this->db->where('to_user', $id);
-   // $this->db->or_where('from_user');
-    $query = $this->db->get();
-    return $query->result();
-   // echo"<pre>"; var_dump($query->result()); exit;
-}
-
-public function getLatestMassage($f_id,$u_id){ 
-    $this->db->from("messages");
-    $this->db->where('(delete_form!='.$f_id.' AND delete_to!='.$f_id.')');
-    $this->db->where('((to_user='.$f_id." and from_user=".$u_id.') OR (to_user='.$u_id." and from_user=".$f_id.'))');
-    $this->db->order_by('created_on','DESC');
-    $query = $this->db->get();
-    return $query->row();
-}
-
-public function getUserFriendById($user_id){
-    $user_id = $this->db->escape($user_id);
-    $this->db->select('
-        u1.id AS user_id, u1.first_name AS user_first_name, u1.last_name AS user_last_name, u1.user_name AS user_username, u1.email AS user_email,u1.dob AS user_dob,
-        u2.id AS friend_id, u2.first_name AS friend_first_name, u2.last_name AS friend_last_name, u2.user_name AS friend_username, u2.email AS friend_email,
-        u2.dob AS friend_dob, u2.upcoming_birthday AS friend_upcoming_birthday_status
-    ');
-    $this->db->from('friends f');
-    $this->db->join('users u1', 'u1.id = CASE WHEN f.from_friend = ' . $user_id . ' THEN f.from_friend ELSE f.to_friend END', 'left');
-    $this->db->join('users u2', 'u2.id = CASE WHEN f.from_friend = ' . $user_id . ' THEN f.to_friend ELSE f.from_friend END', 'left');
-    $this->db->where('(f.from_friend = ' . $user_id . ' OR f.to_friend = ' . $user_id . ')');
-    $this->db->where('f.status', 1); 
-    $query = $this->db->get();
-    return $query->result_array();
-}
-public function getUserBasedOnDob($month,$date){  
-    $this->db->select('*');
-    $this->db->from("users");
-    $this->db->where('MONTH(dob)', $month);
-    $this->db->where('DAY(dob)', $date);
-    $query = $this->db->get();
-    return $query->result();
-}
 
 
 }

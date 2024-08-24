@@ -57,7 +57,7 @@
                                     <!--    <button type="button" class="close" data-dismiss="modal">&times;</button>-->
                                     <!--</div>-->
                                     <div class="modal-body">
-                                    <iframe width="460" height="315" id="close" src="https://www.youtube.com/embed/0uXfgwrDu_s" frameborder="0" allowfullscreen></iframe>
+                                    <iframe width="460" height="315" id="close" src="https://www.youtube.com/embed/wb_jZlwcmdo" frameborder="0" allowfullscreen></iframe>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default closeButton" data-dismiss="modal">Close</button>

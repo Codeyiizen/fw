@@ -103,10 +103,11 @@ define('MAILING_SERVICE_PROVIDER',  'sendinblue');
 
 
 
-define('MAIL_FROM', 'no-reply@fw.kurieta.ca');
-define('MAIL_TO', 'info@fw.kurieta.ca');
+//define('MAIL_FROM', 'tgbtg@favoritewish.com');
+define('MAIL_FROM', 'no-reply@favoritewish.com');
+define('MAIL_TO', 'info@favoritewish');
 define('FROM_TEXT', 'Favorite Wish');
 
 define('GOOGLE_CLIENT_ID', '303746168371-f4hvqsag3pvam7v2m5m60r8hq9kcd9hu.apps.googleusercontent.com');
 define('GOOGLE_CLIENT_SECRET', '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');
-define('GOOGLE_REDITECT_URL', 'http://localhost/fw/google/sign-in');
+define('GOOGLE_REDITECT_URL', 'https://favoritewish.com/google/sign-in');
