@@ -1435,7 +1435,6 @@ public function UpdateHomeContent($id,$updatetData){
         $this->db->where("friends.status",1);
         $this->db->where("users.id!=",$this->_userID);
         $this->db->where('MONTH(users.dob)', $nextMonth);
-        $this->db->where('YEAR(users.dob)', date('Y'));
         $this->db->group_by('users.id'); 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {

@@ -1493,24 +1493,14 @@ class Favoritewish extends CI_Controller
 						$arrData['firstName'] =$formUser->first_name;
 						$arrData['lastName'] =$formUser->last_name;
 						$arrData['url'] = base_url('user/friends/requests');
-						$config = array(
-							'protocol'  => 'smtp',
-							'smtp_host' => 'smtp.gmail.com',
-							'smtp_port' => 587, //if 80 dosenot work use 24 or 21
-							'smtp_user'  => 'codeyiizen.test@gmail.com',  
-							'smtp_pass'  => 'wdxdkwcbygukszqv',
-							'smtp_crypto' => 'tls',
-							'charset' => 'iso-8859-1',
-							'wordwrap' => TRUE
-						);
 						$this->load->library('encryption');
-						$this->load->library('email');
-						$config['charset'] = 'iso-8859-1';
-						$config['wordwrap'] = TRUE;
-						$config['mailtype'] = 'html';
-						$this->email->initialize($config);
-						$this->email->to($objUser['email']);
-						$this->email->from(MAIL_FROM, FROM_TEXT);
+				        $this->load->library('email');
+				        $config['charset'] = 'iso-8859-1';
+        				$config['wordwrap'] = TRUE;
+        				$config['mailtype'] = 'html';
+        				$this->email->initialize($config);
+        				$this->email->to($objUser['email']);
+        				$this->email->from(MAIL_FROM, FROM_TEXT);
 						$this->email->subject('FavoriteWish New Friend Request');
 						$this->email->set_newline("\r\n");
 						$this->email->message($this->load->view('email/friendRequestNotify',$arrData, true));
@@ -2031,23 +2021,12 @@ class Favoritewish extends CI_Controller
 			if($checkUserLoginStatus->Inbox_message == 1){
 				$userId = $user['user_id'];
 				$data = array(
-					'name'  => $user['user_name'].' '.'send you massage',
+					'name'  => $user['first_name'].' '.$user['last_name'].' '.'send you massage',
 					'link'  => base_url()."user/friends/$userId/message",
 				);
-
-				$config = array(
-					'protocol'  => 'smtp',
-					'smtp_host' => 'smtp.gmail.com',
-					'smtp_port' => 587, //if 80 dosenot work use 24 or 21
-					'smtp_user'  => 'codeyiizen.test@gmail.com',  
-					'smtp_pass'  => 'wdxdkwcbygukszqv',
-					'smtp_crypto' => 'tls',
-					'charset' => 'iso-8859-1',
-					'wordwrap' => TRUE
-				);
 				$this->load->library('encryption');
-				$this->load->library('email');
-				$config['charset'] = 'iso-8859-1';
+		        $this->load->library('email');
+		        $config['charset'] = 'iso-8859-1';
 				$config['wordwrap'] = TRUE;
 				$config['mailtype'] = 'html';
 				$this->email->initialize($config);
@@ -2587,7 +2566,7 @@ public function familyWishDelete(){
 			$data['toDayBirthday'] = $this->Favoritewish_Model->getTodayBirthday();
 			$firstMonth = date('m');
 			$data['firstMonthBirthday'] = $this->Favoritewish_Model->getFirstMonthFirthday($firstMonth);
-			$nextMonth = date('m', strtotime('+1 month')); 
+			$nextMonth = date('m', strtotime('+1 month'));
 			$data['secoundMonthBirthday'] = $this->Favoritewish_Model->getSecoundMonthFirthday($nextMonth);
 		//	echo"<pre>"; var_dump($data['secoundMonthBirthday']); exit;
 			$this->load->view('front/header_inner', $data);
@@ -2728,21 +2707,14 @@ public function familyWishDelete(){
 			);
             if($getObjBirthdayData->upcoming_birthday == 1){
 				$sessionArray = $this->session->userdata('ci_seesion_key');
-				$config = array(
-					'protocol'  => 'smtp',
-					'smtp_host' => 'smtp.gmail.com',
-					'smtp_port' => 587, //if 80 dosenot work use 24 or 21
-					'smtp_user'  => 'codeyiizen.test@gmail.com',  
-					'smtp_pass'  => 'wdxdkwcbygukszqv',
-					'smtp_crypto' => 'tls',
-					'charset' => 'iso-8859-1',
-					'wordwrap' => TRUE
-				);
-				$this->load->library('encryption');
-				$this->load->library('email');
+				
+				
 				$config['charset'] = 'iso-8859-1';
 				$config['wordwrap'] = TRUE;
 				$config['mailtype'] = 'html';
+				$this->load->library('encryption');
+				$this->load->library('email');
+
 				$this->email->initialize($config);
 				$this->email->to($getObjBirthdayData->email);
 				$this->email->from(MAIL_FROM, FROM_TEXT);
@@ -2895,7 +2867,7 @@ public function massageDeleteMe(){
 		$this->Favoritewish_Model->deleteBothAllMsg($formId,$toId,$deletemeallmsg);
 	}
  }
-
+ 
  public function checkFriendBirthdayAfter(){ 
 	$date14 = date('Y-m-d', strtotime(date("Y-m-d"). ' + 14 days'));
 	$month = date("m",strtotime($date14));
@@ -2904,7 +2876,7 @@ public function massageDeleteMe(){
 	//echo"<pre>"; var_dump($getUserAfter14dayDob); exit;
 	foreach($getUserAfter14dayDob as $after14dayDob){
 		$getUserFriend = $this->Favoritewish_Model->getUserFriendById($after14dayDob->id);
-	  	// echo"<pre>"; var_dump($getUserFriend); exit;
+	  //	echo"<pre>"; var_dump($getUserFriend); exit;
 		 foreach($getUserFriend as $firends){   
 		   $data = array(
 			   'first_name' => $firends['user_first_name'],
@@ -2914,31 +2886,17 @@ public function massageDeleteMe(){
 			   'dob'  => $firends['user_dob'], 
 		   );
 		   $friendName = $firends['user_first_name'].' '.$firends['user_last_name'];
-		   $img1 ='<img src="'.base_url('assets/uploads/profile_photo/birthday1.png').'" width="15px">'; 
-		   $img2 ='<img src="'.base_url('assets/uploads/profile_photo/birthday2.png').'" width="15px">'; 
 		   if($firends['friend_upcoming_birthday_status'] == 1){
-			   $config = array(
-				   'protocol'  => 'smtp',
-				   'smtp_host' => 'smtp.gmail.com',
-				   'smtp_port' => 587, //if 80 dosenot work use 24 or 21
-				   'smtp_user'  => 'codeyiizen.test@gmail.com',  
-				   'smtp_pass'  => 'wdxdkwcbygukszqv',
-				   'smtp_crypto' => 'tls',
-				   'charset' => 'iso-8859-1',
-				   'charset'  => 'utf-8', // Ensure UTF-8 encoding
-				   'wordwrap' => TRUE
-			   );
-			   $this->load->library('encryption');
-			   $this->load->library('email');
 			   $config['charset'] = 'iso-8859-1';
-			   $config['wordwrap'] = TRUE;
-			   $config['mailtype'] = 'html';
-			   $config['charset']  = 'utf-8'; // Ensure UTF-8 encoding
+				$config['wordwrap'] = TRUE;
+				$config['mailtype'] = 'html';
+				$config['charset']  = 'utf-8'; // Ensure UTF-8 encoding
+				$this->load->library('encryption');
+				$this->load->library('email');
 			   $this->email->initialize($config);
 			   $this->email->to($firends['friend_email']);
 			   $this->email->from(MAIL_FROM, FROM_TEXT);
 			   $this->email->subject('🎁 🎉 ['.$friendName.'] Birthday is Coming Up - Check Out Their Wish List!');
-			   
 			   $this->email->set_newline("\r\n");
 			   $this->email->message($this->load->view('email/friend-birthday-after-14day',$data, true));
 			   $this->email->send();
