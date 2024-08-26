@@ -2021,7 +2021,7 @@ class Favoritewish extends CI_Controller
 			if($checkUserLoginStatus->Inbox_message == 1){
 				$userId = $user['user_id'];
 				$data = array(
-					'name'  => $user['first_name'].' '.$user['last_name'].' '.'send you massage',
+					'name'  => $user['first_name'].' '.$user['last_name'].' '.'sent you a message',
 					'link'  => base_url()."user/friends/$userId/message",
 				);
 				$this->load->library('encryption');

@@ -4,9 +4,9 @@
         if(file_exists(FCPATH.'assets/uploads/cover_photo/'.$userInfo['cover_photo']) && !empty($userInfo['cover_photo'])){  ?>
             <img class="user-banner" src="<?php echo base_url().'assets/uploads/cover_photo/'.$coverImage;?>" alt="" class="img-fluid" >
             <?php }else{  ?>
-                <img class="user-banner" src="<?php echo base_url(); ?>assets/images/site-image/profile-banner-1.jpg" alt="" class="img-fluid">
+                <img class="user-banner" src="<?php echo base_url(); ?>assets/images/site-image/profile-banner-1.png" alt="" class="img-fluid">
         <?php  } ?>
-    </div>
+</div>
 <div class="hero-title-banner">
     <div class="container">
         <div class="row align-items-center">
