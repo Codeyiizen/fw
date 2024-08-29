@@ -38,6 +38,9 @@
     </div>
 </div>
 <script>
+ CKEDITOR.replace('contactpagetext', {
+    allowedContent: true,
+  });
 CKEDITOR.replace( 'contactpagetext', {
 toolbar: [
 { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },

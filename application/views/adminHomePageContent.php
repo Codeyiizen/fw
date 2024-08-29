@@ -38,6 +38,9 @@
     </div>
 </div>
 <script>
+  CKEDITOR.replace('homepagetext', {
+    allowedContent: true,
+  });
 CKEDITOR.replace( 'homepagetext', {
 toolbar: [
 { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
@@ -56,4 +59,7 @@ toolbar: [
 { name: 'others', items: [ '-' ] },
 ]
 });
+
+
+
 </script>

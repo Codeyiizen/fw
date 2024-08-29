@@ -35,7 +35,8 @@
     </div>
 </section>
 <?php
-    $data = html_entity_decode(!empty($hometext->homepage_content) ? $hometext->homepage_content : '' );
+   // $data = html_entity_decode(!empty($hometext->homepage_content) ? $hometext->homepage_content : '' );
+   $data = html_entity_decode($hometext->homepage_content, ENT_QUOTES, 'UTF-8');
     echo $data;
 ?>
 
