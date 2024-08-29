@@ -38,6 +38,9 @@
     </div>
 </div>
 <script>
+  CKEDITOR.replace('aboutuspagetext', {
+    allowedContent: true,
+  });
 CKEDITOR.replace( 'aboutuspagetext', {
 toolbar: [
 { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },

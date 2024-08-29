@@ -262,7 +262,7 @@
                                     <div class="position-relative">  
                                     <?php  if(!empty($friendName->id)){ ?>  
                                         <img src="<?php echo base_url(); ?>assets/uploads/profile_photo/<?php echo !empty($friendName->profile_photo) ? $friendName->profile_photo :'avatar.png'?>"
-                                            class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
+                                            class="rounded-circle mr-1 w_40 h_40" alt="Sharon Lessman" width="40" height="40">
                                             <?php } ?>
                                     </div>
                                     <div class="flex-grow-1 pl-3">

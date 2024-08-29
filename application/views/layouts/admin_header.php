@@ -22,7 +22,11 @@ if (isset($this->session->userdata['logged_in'])) {
     var BASE_URL = "<?php echo base_url() ?>"
     </script>
     <script src="//cdn.ckeditor.com/4.10.0/full-all/ckeditor.js"></script>
-    
+    <script>
+        CKEDITOR.replace('homepagetext', {
+            contentsCss: '<?php echo base_url(); ?>assets/admin/css/style.css">'
+        });
+    </script>
 
 </head>
 
