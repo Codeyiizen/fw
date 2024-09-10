@@ -14,30 +14,39 @@ if (isset($this->session->userdata['logged_in'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title><?php echo $title; ?></title>
+    <link rel="icon" href="<?php echo base_url(); ?>assets/images/site-image/favicon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/style.css">
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/admin/images/favicon.ico" />
-    <script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/richtexteditor/rte_theme_default.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendor/dropify/dist/css/dropify.min.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendor/taginput/bootstrap-tagsinput.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome-all.css">
+    
+    
+    
+</head>
+<script>
     var BASE_URL = "<?php echo base_url() ?>"
-    </script>
-    <script src="//cdn.ckeditor.com/4.10.0/full-all/ckeditor.js"></script>
+</script>
+
+<script src="//cdn.ckeditor.com/4.10.0/full-all/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('homepagetext', {
             contentsCss: '<?php echo base_url(); ?>assets/admin/css/style.css">'
         });
     </script>
-
-</head>
-
+    <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 <body>
     <div class="container-scroller">
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
                 <a class="navbar-brand brand-logo" href="<?php echo base_url(); ?>administrator"><img
-                        src="<?php echo base_url(); ?>assets/admin/images/logo.svg" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="<?php echo base_url(); ?>administrator"><img
-                        src="<?php echo base_url(); ?>assets/admin/images/logo-mini.svg" alt="logo" /></a>
+                        src="<?php echo base_url(); ?>assets/images/site-image/logo1.png" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="<?php echo base_url(); ?>administrator">
+                    <img src="<?php echo base_url(); ?>assets/images/site-image/logo1.png" alt="logos" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-stretch">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -57,7 +66,7 @@ if (isset($this->session->userdata['logged_in'])) {
                         </a>
                         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                             
-                            <a class="dropdown-item" href="<?php echo base_url(); ?>admin_signout">
+                            <a class="dropdown-item text-dark" href="<?php echo base_url(); ?>admin_signout">
                                 <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
                         </div>
                     </li>
@@ -87,7 +96,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
                                 <span class="font-weight-bold mb-2"><?php echo $name; ?></span>
-                                <span class="text-secondary text-small">Project Manager</span>
+                                <span class="text-secondary text-small">Admin</span>
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
                         </a>
@@ -122,7 +131,18 @@ if (isset($this->session->userdata['logged_in'])) {
                             <i class="mdi mdi-medical-bag menu-icon"></i>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url(); ?>admin/blog/category">
+                            <span class="menu-title">Blog Categories</span>
+                            <i class="mdi mdi-medical-bag menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url(); ?>admin/blog">
+                            <span class="menu-title">Blog</span>
+                            <i class="mdi mdi-medical-bag menu-icon"></i>
+                        </a>
+                    </li>
 
                     <!--    <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
