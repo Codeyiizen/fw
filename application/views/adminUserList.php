@@ -113,7 +113,7 @@ if (!empty($allUserList)) {
                                             id="switch<?php echo $userList->id; ?>"
                                             data-id="<?php echo $userList->id; ?>"
                                             data-status="<?php echo $userList->user_active_status; ?>" <?php if ($userList->user_active_status == '1') {
-            echo 'checked="checked"';
+                                             echo 'checked="checked"';
         }
         ?>>
                                         <label for="switch<?php echo $userList->id; ?>"></label>

@@ -15,17 +15,27 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-   
-    <script src="<?php echo base_url(); ?>assets/admin/vendors/js/vendor.bundle.base.js"></script>
+     
+    <script src="<?php echo base_url(); ?>assets/admin/dist/sweetalert2.all.min.js"></script>
+    <!--<script src="<?php echo base_url(); ?>assets/admin/vendors/js/vendor.bundle.base.js"></script>-->
     <script src="<?php echo base_url(); ?>assets/admin/vendors/chart.js/Chart.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/jquery.cookie.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/off-canvas.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/hoverable-collapse.js"></script>
-    <script src="<?php echo base_url(); ?>assets/admin/js/misc.js"></script>
+    <!--<script src="<?php echo base_url(); ?>assets/admin/js/misc.js"></script>-->
     <script src="<?php echo base_url(); ?>assets/admin/js/dashboard.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/todolist.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/richtexteditor/rte.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/richtexteditor/plugins/all_plugins.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/richtexteditor/res/patch.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/vendor/dropify/dist/js/dropify.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/admin/vendor/taginput/bootstrap-tagsinput.js"></script>
     <script src="<?php echo base_url(); ?>assets/admin/js/common.js"></script>
     
+    <script>
+        var editor1 = new RichTextEditor("#div_editor1");
+        
+    </script>
    
 
   </body>

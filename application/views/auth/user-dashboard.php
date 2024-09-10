@@ -6,8 +6,8 @@
         <?php $this->load->view('user/Common/mainHeader') ?>
         <div class="row">
             <div class="col-lg-3">
-                <div class="profile-sidebar right">
-                    <!-- <div class="sidebar-about sidebar-widget sidebar-bg">
+                <!-- <div class="profile-sidebar right">
+                    <div class="sidebar-about sidebar-widget sidebar-bg">
                         <h3>Family</h3>
                         <div class="friends-list mb-4">
                             <?php
@@ -31,9 +31,20 @@
                         <div class="text-center common-link">
                             <a href="<?php echo base_url(); ?>user/friends">See All</a>
                         </div>
-                    </div> -->
+                    </div>
+                </div> -->
+                <div class="profile-sidebar right">
+                    <div class="sidebar-about sidebar-widget sidebar-bg">
+                        <h3>Discount Codes</h3>
+                        <div class="friends-list mb-4">
+                        Click <a href="https://thegoodfruitgiftshop.com/" target="_blank" style="font-weight: bolder; font-family: Gilroy-bold;"><b>FWTGF15</b></a> for discounts at The Good Fruit Gift Shop
+                          <div class="mt-4" style=" font-size: 14px;">Come back for more discount codes.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        
+
             <div class="col-lg-6">
                 <div class="profile-content-inner">
                     <div class="create-wish d-block d-md-flex mb-4">
@@ -175,6 +186,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-md-7"></div>
                         <div class="col-md-5">
@@ -191,6 +203,7 @@
                             </select>
                         </div>
                     </div>
+                    
                     <div class="added-wishes">
                         <span id="success_message_delete"></span>
                         <div class="row">
@@ -245,6 +258,8 @@
                     </div>
                 </div>
             </div>
+           
+
             <!-- Edit Model Start -->
             <div class="modal" id="editWish">
                 <div class="modal-dialog">

@@ -71,6 +71,7 @@ $route['admin/contact/page/dynamic'] = 'favoritewish/adminContactPageDynamic';
 $route['admin/contact/page/dynamic/post'] = 'favoritewish/adminContactPageDynamicPost';
 $route['admin/contact/page/dynamic/post/(:num)'] = 'favoritewish/adminContactPageDynamicPost';
 
+
 $route['sign-up'] = 'favoritewish/register';
 $route['sign-in'] = 'favoritewish/login';
 $route['user-dashboard'] = 'favoritewish/user_dashboard';
@@ -144,6 +145,28 @@ $route['delete/me/allmsg'] = 'favoritewish/deleteMeAllMsg';
 $route['delete/both/allmsg'] = 'favoritewish/deleteBothAllMsg';
 $route['check/birthday/after'] = 'favoritewish/checkFriendBirthdayAfter';
 
+// Blog Route Start
+$route['admin/blog'] = 'BlogController/adminBlog';
+$route['admin/blog/add'] = 'BlogController/adminBlogAdd';
+$route['admin/blog/add/post'] = 'BlogController/adminBlogAddPost';
+$route['admin/blog/edit/(:num)'] = 'BlogController/adminBlogEdit';
+$route['admin/blog/edit/post/(:num)'] = 'BlogController/adminBlogEditPost';
+$route['admin/blog/delete'] = 'BlogController/adminBlogDelete';
+$route['admin/blog/status/update'] = 'BlogController/adminBlogStatusUpdate';
+$route['admin/blog/show/(:num)'] = 'BlogController/adminBlogShow';
+$route['admin/blog/category'] = 'BlogController/adminBlogCategory';
+$route['admin/blog/category/add'] = 'BlogController/adminBlogCategoryAdd';
+$route['admin/blog/category/add/post'] = 'BlogController/adminBlogCategoryAddPost';
+$route['admin/blog/category/edit/(:num)'] = 'BlogController/adminBlogCategoryEdit';
+$route['admin/blog/category/edit/post/(:num)'] = 'BlogController/adminBlogCategoryEditpost';
+$route['admin/blog/category/delete'] = 'BlogController/adminBlogCategoryDelete';
+$route['admin/blog/category/status/update'] = 'BlogController/adminBlogCategoryStatusUpdate';
+$route['admin/blog/slug/check/unique'] = 'BlogController/adminBlogSlugUnique';
+
+
+$route['front/blog/show'] = 'BlogController/frontBlogShow';
+$route['front/blog/show/details/(:any)'] = 'BlogController/frontBlogShowDetails/$1';
+// Blog Route End
 
 /*
 

@@ -18544,7 +18544,7 @@ dl li {
 .navbar .navbar-brand-wrapper .navbar-brand img {
 	width: calc(260px - 120px);
 	max-width: 100%;
-	height: 28px;
+	height: 66px;
 	margin: auto;
 	vertical-align: middle;
 }
@@ -19810,3 +19810,5 @@ dl li {
 .toggle-switch input[disabled] ~ label {
 	background-color: #e9ecef;
 }
+
+

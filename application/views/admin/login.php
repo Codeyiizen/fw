@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/css/style.css">
-    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/admin/images/favicon.ico" />
+    <link rel="icon" href="<?php echo base_url(); ?>assets/images/site-image/favicon.jpg" type="image/x-icon">
 	
 	<style>
 		.form-group {
@@ -36,8 +36,8 @@
 				<div class="row flex-grow">
 					<div class="col-lg-4 mx-auto">
 						<div class="auth-form-light text-left p-5">
-						<div class="brand-logo">
-							<img src="<?php echo base_url(); ?>assets/admin/images/logo.svg">
+						<div class="brand-logo text-center">
+						  <img src="<?php echo base_url(); ?>assets/images/site-image/logo1.png" width="200" height="100">
 						</div>
 						<h4>Hello! Admin</h4>
 						<h6 class="font-weight-light">Sign in to continue.</h6>
