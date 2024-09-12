@@ -23,22 +23,23 @@ if (isset($this->session->userdata['logged_in'])) {
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/vendor/taginput/bootstrap-tagsinput.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/admin/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/font-awesome-all.css">
-    
-    
-    
+
+
+
 </head>
 <script>
-    var BASE_URL = "<?php echo base_url() ?>"
+var BASE_URL = "<?php echo base_url() ?>"
 </script>
 
 <script src="//cdn.ckeditor.com/4.10.0/full-all/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('homepagetext', {
-            contentsCss: '<?php echo base_url(); ?>assets/admin/css/style.css">'
-        });
-    </script>
-    <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+<script>
+CKEDITOR.replace('homepagetext', {
+    contentsCss: '<?php echo base_url(); ?>assets/admin/css/style.css">'
+});
+</script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+
 <body>
     <div class="container-scroller">
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -54,8 +55,8 @@ if (isset($this->session->userdata['logged_in'])) {
                 </button>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             <div class="nav-profile-img">
                                 <img src="<?php echo base_url(); ?>assets/admin/images/faces/face1.jpg" alt="image">
                                 <span class="availability-status online"></span>
@@ -65,7 +66,7 @@ if (isset($this->session->userdata['logged_in'])) {
                             </div>
                         </a>
                         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                            
+
                             <a class="dropdown-item text-dark" href="<?php echo base_url(); ?>admin_signout">
                                 <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
                         </div>
@@ -104,43 +105,43 @@ if (isset($this->session->userdata['logged_in'])) {
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>administrator">
                             <span class="menu-title">Dashboard</span>
-                            <i class="mdi mdi-home menu-icon"></i>
+                            <i class="mdi mdi-home-outline menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>admin/user/list">
                             <span class="menu-title">Users List</span>
-                            <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+                            <i class="mdi mdi-account-group-outline menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>admin/home/page/dynamic">
                             <span class="menu-title">Home Page Content</span>
-                            <i class="mdi mdi-contacts menu-icon"></i>
+                            <i class="mdi mdi-home-account menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>admin/aboutus/page/dynamic">
-                            <span class="menu-title">AboutUs Page Content</span>
-                            <i class="mdi mdi-medical-bag menu-icon"></i>
+                            <span class="menu-title">About Us Page Content</span>
+                            <i class="mdi mdi-gift-outline menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>admin/contact/page/dynamic">
                             <span class="menu-title">Contact Page Content</span>
-                            <i class="mdi mdi-medical-bag menu-icon"></i>
+                            <i class="mdi mdi-account-box-outline menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>admin/blog/category">
                             <span class="menu-title">Blog Categories</span>
-                            <i class="mdi mdi-medical-bag menu-icon"></i>
+                            <i class="mdi mdi-format-list-bulleted-square menu-icon"></i>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url(); ?>admin/blog">
                             <span class="menu-title">Blog</span>
-                            <i class="mdi mdi-medical-bag menu-icon"></i>
+                            <i class="mdi mdi-blogger menu-icon"></i>
                         </a>
                     </li>
 

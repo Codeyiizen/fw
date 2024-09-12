@@ -35,8 +35,10 @@
 <div class="row">
     <div class="col-12 grid-margin">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Blog Edit</h4>
+            <div class="card-header bg-white border-0 p-3">
+                <h4 class="card-title mb-0">Blog Edit</h4>
+            </div>
+            <div class="card-body pt-0 p-3">
                 <?php if (isset($error_msg)) { ?>
                 <div class="alert alert-danger">
                     <?php echo $error_msg; ?>
@@ -50,7 +52,8 @@
                             value="<?php echo set_value('title', $editBlog->title); ?>">
                         <?php echo form_error('title', '<div class="alert alert-danger mt-2">', '</div>'); ?>
                     </div>
-                    <input type="hidden" name="hid_title" value="<?php echo set_value('title', !empty($editBlog->title) ? $editBlog->title:'' ); ?>" > 
+                    <input type="hidden" name="hid_title"
+                        value="<?php echo set_value('title', !empty($editBlog->title) ? $editBlog->title:'' ); ?>">
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Categories</label>
                         <select class="form-select" name="cat_id" aria-label="Default select example">
@@ -102,7 +105,7 @@
                             <h4 class="card-title">Uploading Feature Images</h4>
                             <input type="file" name="blog_image" id="input-file-now" class="dropify"
                                 data-default-file="<?php echo base_url('/assets/uploads/blog_images/' . $editBlog->image); ?>" />
-                                <input type="hidden" name="remove_image" id="remove_image" value="0" />
+                            <input type="hidden" name="remove_image" id="remove_image" value="0" />
                             <?php echo form_error('blog_image', '<div class="alert alert-danger mt-2">', '</div>'); ?>
                         </div>
                     </div>
@@ -124,14 +127,14 @@ $(document).ready(function() {
 
     $('#input-file-now').dropify();
 
-// Detect when the user removes the image
-$('#input-file-now').on('dropify.afterClear', function(event, element) {
-    $('#remove_image').val('1'); // Set hidden field to '1' when image is removed
-});
+    // Detect when the user removes the image
+    $('#input-file-now').on('dropify.afterClear', function(event, element) {
+        $('#remove_image').val('1'); // Set hidden field to '1' when image is removed
+    });
 
-// Reset the hidden input if the image is re-selected
-$('#input-file-now').on('dropify.beforeClear', function(event, element) {
-    $('#remove_image').val('0'); // Reset to '0' if not removing the image
-});
+    // Reset the hidden input if the image is re-selected
+    $('#input-file-now').on('dropify.beforeClear', function(event, element) {
+        $('#remove_image').val('0'); // Reset to '0' if not removing the image
+    });
 });
 </script>

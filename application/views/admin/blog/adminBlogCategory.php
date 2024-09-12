@@ -1,14 +1,14 @@
 <div class="page-header">
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white me-2">
-            <i class="mdi mdi-home"></i>
+            <i class="mdi mdi-format-list-bulleted-square menu-icon"></i>
         </span>Blog Categories List Page
     </h3>
     <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <div class="d-flex align-items-center py-2">
-                <a href="<?php echo base_url(); ?>admin/blog/category/add" class="btn btn-primary btn-sm">
-                    <i class="fa fa-plus"></i>Add Categories
+                <a href="<?php echo base_url(); ?>admin/blog/category/add" class="btn btn-gradient-success px-3">
+                    <i class="fa fa-plus me-2"></i>Add Categories
                 </a>
             </div>
         </ul>
@@ -21,21 +21,22 @@
 <?php } ?>
 <div class="row">
     <div class="col-12 grid-margin">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Blog Categories List Page</h4>
+    <div class="card">
+            <div class="card-header bg-white border-0 p-3">
+                <h4 class="card-title mb-0">Blog Categories List Page</h4>
             </div>
+            <div class="card-body p-0">
             <?php if($this->session->flashdata('success')){?>
-                <div class="alert alert-danger">
-                    <?php echo $this->session->flashdata('success')?>
-                </div>
+            <div class="alert alert-danger">
+                <?php echo $this->session->flashdata('success')?>
+            </div>
             <?php } ?>
             <div class="col-sm-12">
-            <?php if($this->session->flashdata('update')){?>
+                <?php if($this->session->flashdata('update')){?>
                 <div class="alert alert-danger">
                     <?php echo $this->session->flashdata('update')?>
                 </div>
-            <?php } ?>
+                <?php } ?>
             </div>
             <table class="table">
                 <thead>
@@ -54,11 +55,10 @@
                     <tr></tr>
                     <th scope="row"><?php  echo $index++;  ?></th>
                     <td><?php  echo  $cat->title ?></td>
-                    <td><?php  echo  $cat->categories ?></td>  
+                    <td><?php  echo  $cat->categories ?></td>
                     <td>
                         <div class="toggle-switch">
-                            <input type="checkbox"
-                                class="switch_status updateCatStatus switch-<?php echo $cat->id; ?>"
+                            <input type="checkbox" class="switch_status updateCatStatus switch-<?php echo $cat->id; ?>"
                                 id="switch<?php echo $cat->id; ?>" data-id="<?php echo $cat->id; ?>"
                                 data-status="<?php echo $cat->status; ?>" <?php if ($cat->status == '1') {
                                              echo 'checked="checked"';
@@ -68,9 +68,11 @@
                         </div>
                     </td>
                     <td>
-                        <a class="test-danger" href="<?php echo base_url('admin/blog/category/edit/'.$cat->id.'')  ?>"><i class="fa fa-edit" style="font-size:20px"></i></a>
-                        <a class="test-danger deleteCat" href="javascript:void(0)"  data-toggle="modal"
-                        data-target="#delete" data-id="<?php echo $cat->id ?>"><i class="fa fa-trash" style="font-size:20px;color:red"></i></a> 
+                        <a class="text-success mx-1 fs-6"
+                            href="<?php echo base_url('admin/blog/category/edit/'.$cat->id.'')  ?>"><i
+                                class="fa fa-edit"></i></a>
+                        <a class="text-danger mx-1 fs-6 deleteCat" href="javascript:void(0)" data-toggle="modal"
+                            data-target="#delete" data-id="<?php echo $cat->id ?>"><i class="fa fa-trash"></i></a>
                     </td>
                     </tr>
                     <?php } ?>
@@ -82,7 +84,7 @@
 </div>
 <script>
 $("body").on("click", ".deleteCat", function() {
-    var id = $(this).attr('data-id'); 
+    var id = $(this).attr('data-id');
     Swal.fire({
         title: "Are you sure?",
         text: "You will not be able to recover this category!",
@@ -111,7 +113,8 @@ $("body").on("click", ".deleteCat", function() {
                     });
                 },
                 error: function(xhr, status, error) {
-                    Swal.fire("Error!", "There was an issue deleting the category.", "error");
+                    Swal.fire("Error!", "There was an issue deleting the category.",
+                        "error");
                 }
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -119,5 +122,4 @@ $("body").on("click", ".deleteCat", function() {
         }
     });
 });
-
 </script>
