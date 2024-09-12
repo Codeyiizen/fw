@@ -66,7 +66,7 @@ class BlogController extends CI_Controller
         $data['title'] = 'Blog Categories Add Page';
 		$this->load->view('layouts/admin_header', $data);
         $data['getCat'] = '';
-		$this->template->load('default_layout', 'contents', 'admin/blog/CategoriesAdd', $data);
+		$this->template->load('default_layout', 'contents', 'admin/blog/categoriesAdd', $data);
 		$this->load->view('layouts/admin_footer'); 
     }
 

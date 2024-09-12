@@ -28,15 +28,17 @@
 <div class="page-header">
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white me-2">
-            <i class="mdi mdi-home"></i>
+            <i class="mdi mdi-blogger menu-icon"></i>
         </span>Blog Add
     </h3>
 </div>
 <div class="row">
     <div class="col-12 grid-margin">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Blog Add</h4>
+            <div class="card-header bg-white border-0 p-3">
+                <h4 class="card-title mb-0">Blog Add</h4>
+            </div>
+            <div class="card-body pt-0 p-3">
                 <?php echo form_open_multipart('admin/blog/add/post'); ?>
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -106,9 +108,9 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('.dropify').dropify();
-    });
+$(document).ready(function() {
+    $('.dropify').dropify();
+});
 </script>
 Copy code
 <script>
@@ -116,4 +118,3 @@ $(document).ready(function() {
     $('input[data-role="tagsinput"]').tagsinput();
 });
 </script>
-

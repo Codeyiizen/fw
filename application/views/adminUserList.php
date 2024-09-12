@@ -15,13 +15,13 @@
 }
 
 .pagination.style2 a:first-child,
-.pagination.style2>strong:first-child{
+.pagination.style2>strong:first-child {
     border-top-left-radius: .2rem;
     border-bottom-left-radius: .2rem;
 }
 
 .pagination.style2 a:last-child,
-.pagination.style2>strong:last-child{
+.pagination.style2>strong:last-child {
     border-top-right-radius: .2rem;
     border-bottom-right-radius: .2rem;
 }
@@ -39,7 +39,7 @@
 <div class="page-header">
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white me-2">
-            <i class="mdi mdi-home"></i>
+            <i class="mdi mdi-account-group-outline menu-icon"></i>
         </span>User List
     </h3>
     <nav aria-label="breadcrumb">
@@ -53,8 +53,10 @@
 <div class="row">
     <div class="col-12 grid-margin">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">User List</h4>
+            <div class="card-header bg-white border-0 p-3">
+                <h4 class="card-title mb-0">User List</h4>
+            </div>
+            <div class="card-body pt-0 p-3">
                 <div class="table-responsive">
                     <table class="table mb-3">
                         <thead>
@@ -81,7 +83,7 @@
                         <tbody>
                             <?php
 if (!empty($allUserList)) {
-    foreach ($allUserList as $userList) {?> 
+    foreach ($allUserList as $userList) {?>
                             <tr>
                                 <td><?php echo $userList->first_name; ?></td>
                                 <td><?php echo $userList->last_name; ?></td>

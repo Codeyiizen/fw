@@ -11,14 +11,14 @@ toastr.options= {
 <div class="page-header">
     <h3 class="page-title">
         <span class="page-title-icon bg-gradient-primary text-white me-2">
-            <i class="mdi mdi-home"></i>
+            <i class="mdi mdi-blogger menu-icon"></i>
         </span>Blog List Page
     </h3>
     <nav aria-label="breadcrumb">
         <ul class="breadcrumb">
             <div class="d-flex align-items-center py-2">
-                <a href="<?php echo base_url(); ?>admin/blog/add" class="btn btn-primary btn-sm">
-                    <i class="fa fa-plus"></i>Add Blog
+                <a href="<?php echo base_url(); ?>admin/blog/add" class="btn btn-gradient-success px-3">
+                    <i class="fa fa-plus me-2"></i>Add Blog
                 </a>
             </div>
         </ul>
@@ -32,69 +32,74 @@ toastr.options= {
 <div class="row">
     <div class="col-12 grid-margin">
         <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Blog Page List</h4>
+            <div class="card-header bg-white border-0 p-3">
+                <h4 class="card-title mb-0">Blog Page List</h4>
             </div>
-            <?php if($this->session->flashdata('success')){?>
+            <div class="card-body p-0">
+                <?php if($this->session->flashdata('success')){?>
                 <div class="alert alert-danger">
                     <?php echo $this->session->flashdata('success')?>
                 </div>
-            <?php } ?>
-            <?php if($this->session->flashdata('Successupdate')){?>
+                <?php } ?>
+                <?php if($this->session->flashdata('Successupdate')){?>
                 <div class="alert alert-danger">
                     <?php echo $this->session->flashdata('Successupdate')?>
                 </div>
-            <?php } ?>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Tag</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
+                <?php } ?>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Tag</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
                     $index = 1;
                     foreach($blog as $blogs){  ?>
-                    <tr></tr>
-                    <th scope="row"><?php  echo $index++;  ?></th>
-                    <td><?php  echo  $blogs->title ?></td>
-                    <?php  
+                        <tr></tr>
+                        <th scope="row"><?php  echo $index++;  ?></th>
+                        <td><?php  echo  $blogs->title ?></td>
+                        <?php  
                            $explodeBlogtag = explode(',',$blogs->tag);
                         ?>
-                    <td scope="col">
-                        <?php if(!empty($explodeBlogtag[0])){ ?>
-                        <?php foreach($explodeBlogtag as $tag){  ?>
-                        <span class="bg-secondary text-white"><?php echo $tag  ?></span>
-                        <?php } } ?>
-                    </td>
-                    <td>
-                        <div class="toggle-switch">
-                            <input type="checkbox" class="switch_status updateStatus switch-<?php echo $blogs->id; ?>"
-                                id="switch<?php echo $blogs->id; ?>" data-id="<?php echo $blogs->id; ?>"
-                                data-status="<?php echo $blogs->status; ?>" <?php if ($blogs->status == '1') {
+                        <td scope="col">
+                            <?php if(!empty($explodeBlogtag[0])){ ?>
+                            <?php foreach($explodeBlogtag as $tag){  ?>
+                            <span class="badge badge-dark"><?php echo $tag  ?></span>
+                            <?php } } ?>
+                        </td>
+                        <td>
+                            <div class="toggle-switch">
+                                <input type="checkbox"
+                                    class="switch_status updateStatus switch-<?php echo $blogs->id; ?>"
+                                    id="switch<?php echo $blogs->id; ?>" data-id="<?php echo $blogs->id; ?>"
+                                    data-status="<?php echo $blogs->status; ?>" <?php if ($blogs->status == '1') {
                                              echo 'checked="checked"';
                                 }
                                 ?>>
-                            <label for="switch<?php echo $blogs->id; ?>"></label>
-                        </div>
-                    </td>
-                    <td>
-                        <a class="text-secondary" href="<?php echo base_url('admin/blog/show/'.$blogs->id.'')  ?>"><i
-                                class="fa fa-eye" style="font-size:20px"></i></a>
-                        <a class="test-danger" href="<?php echo base_url('admin/blog/edit/'.$blogs->id.'')  ?>"><i
-                                class="fa fa-edit" style="font-size:20px"></i></a>
-                        <a class="test-danger deleteBlog" href="javascript:void(0)" data-toggle="modal"
-                            data-target="#deleteBlog" data-id="<?php echo $blogs->id ?>"><i class="fa fa-trash"
-                                style="font-size:20px;color:red"></i></a>
-                    </td>
-                    </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                                <label for="switch<?php echo $blogs->id; ?>"></label>
+                            </div>
+                        </td>
+                        <td>
+                            <a class="text-primary mx-1 fs-6"
+                                href="<?php echo base_url('admin/blog/show/'.$blogs->id.'')  ?>"><i
+                                    class="fa fa-eye"></i></a>
+                            <a class="text-success mx-1 fs-6"
+                                href="<?php echo base_url('admin/blog/edit/'.$blogs->id.'')  ?>"><i
+                                    class="fa fa-edit"></i></a>
+                            <a class="text-danger mx-1 fs-6" href="javascript:void(0)" data-toggle="modal"
+                                data-target="#deleteBlog" data-id="<?php echo $blogs->id ?>"><i
+                                    class="fa fa-trash"></i></a>
+                        </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -140,12 +145,14 @@ $("body").on("click", ".deleteBlog", function() {
                     id: id
                 },
                 success: function(response) {
-                    Swal.fire("Deleted!", "The blog post has been deleted.", "success").then(() => {
-                        window.location.reload();
-                    });
+                    Swal.fire("Deleted!", "The blog post has been deleted.", "success")
+                        .then(() => {
+                            window.location.reload();
+                        });
                 },
                 error: function(xhr, status, error) {
-                    Swal.fire("Error!", "There was an issue deleting the blog post.", "error");
+                    Swal.fire("Error!", "There was an issue deleting the blog post.",
+                        "error");
                 }
             });
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -153,5 +160,4 @@ $("body").on("click", ".deleteBlog", function() {
         }
     });
 });
-
 </script>
