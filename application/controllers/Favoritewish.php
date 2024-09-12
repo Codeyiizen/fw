@@ -219,33 +219,46 @@ class Favoritewish extends CI_Controller
 	User Login Functionlity
 	*/
 
-	public function register()
-	{  
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			$arr['data'] = $this->Favoritewish_Model->bannerSection('register'); // Calling model function defined in Favoritewish_Model.php
-			$data = array();
-			$data['metaDescription'] = 'New User Registration';
-			$data['metaKeywords'] = 'New User Registration';
-			$data['title'] = "Registration";
-			$data['breadcrumbs'] = array('Registration' => '#');
-			$this->load->view('front/header_inner', $data);
-			//$this->load->view('front/bannerSection',$arr);
-			$google_client = new Google_Client();
-		    $google_client->setClientId(GOOGLE_CLIENT_ID); //Define your ClientID
-	        $google_client->setClientSecret(GOOGLE_CLIENT_SECRET); //Define your Client Secret Key
-	        $google_client->setRedirectUri(GOOGLE_REDITECT_URL); //Define your Redirect Uri
-			$google_client->addScope('email');
-			$google_client->addScope('profile');
-			$google_client->setApprovalPrompt('force');
-			$google_client->setPrompt('consent');
-			$login_button = '<a href="'.$google_client->createAuthUrl().'" class="social-login-btn" ><img src="'.base_url().'assets/images/site-image/google.png" />Sign up with Google</a>';	
-			$data['login_button'] = $login_button;
-			$this->template->load('default_layout', 'contents', 'auth/sign-up',$data);
-			$this->load->view('front/footer_main');
-		} else {
-			redirect('user-dashboard');
-		}
-	}
+	public function register($referral_code = null){	
+    if ($this->session->userdata('ci_session_key_generate') == FALSE) {
+        $arr['data'] = $this->Favoritewish_Model->bannerSection('register'); // Calling model function defined in Favoritewish_Model.php
+        $data = array();
+        $data['metaDescription'] = 'New User Registration';
+        $data['metaKeywords'] = 'New User Registration';
+        $data['title'] = "Registration";
+        $data['breadcrumbs'] = array('Registration' => '#');
+        if(!empty($referral_code)) {  
+			$data['referalCode'] = $this->uri->segment(2);
+			$getReferalCode = !empty($_COOKIE['referalCode']) ? $_COOKIE['referalCode'] :'';
+            $cookie_name = "referalCode";
+			$cookie_value = $referral_code;
+			if(empty($getReferalCode)){
+			 setcookie($cookie_name, $cookie_value, time() + (86400 * 3), "/"); 
+			}else{
+			  $this->session->set_flashdata('referalCode', 'Referal Code All Ready Exit');
+			}
+			
+        }
+        $this->load->view('front/header_inner', $data);
+        $google_client = new Google_Client();
+        $google_client->setClientId(GOOGLE_CLIENT_ID); 
+        $google_client->setClientSecret(GOOGLE_CLIENT_SECRET); 
+        $google_client->setRedirectUri(GOOGLE_REDITECT_URL); 
+        $google_client->addScope('email');
+        $google_client->addScope('profile');
+        $google_client->setApprovalPrompt('force');
+        $google_client->setPrompt('consent');
+        
+        $login_button = '<a href="' . $google_client->createAuthUrl() . '" class="social-login-btn" ><img src="' . base_url() . 'assets/images/site-image/google.png" />Sign up with Google</a>';	
+        $data['login_button'] = $login_button;
+
+        $this->template->load('default_layout', 'contents', 'auth/sign-up', $data);
+        $this->load->view('front/footer_main');
+    } else {
+        redirect('user-dashboard');
+    }
+}
+
     
 	public function googleSignUp(){
 		include_once "vendor/autoload.php";
@@ -376,6 +389,12 @@ class Favoritewish extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->register();
 		} else {
+			$getReferalCode = $this->input->post('referal_code');
+			if(!empty($getReferalCode)){
+				$decodeReferalCode = base64_decode($getReferalCode);
+				$userIdByReferalCode = $this->Favoritewish_Model->getUserIdByReferalCode($decodeReferalCode);
+				$referalBy = $userIdByReferalCode->id;
+			}
 			$firstName = $this->input->post('first_name');
 			$lastName = $this->input->post('last_name');
 			$email = $this->input->post('email');
@@ -387,6 +406,7 @@ class Favoritewish extends CI_Controller
 			$city = $this->input->post('city');
 			$state = $this->input->post('state');
 			$zip = $this->input->post('zip');
+			$referalCode = random_int(100000, 999999);
 			$timeStamp = time();
 			$status = 0;
 			$termsAccepted = 1;
@@ -407,6 +427,8 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setCity($city);
 			$this->Favoritewish_Model->setState($state);
 			$this->Favoritewish_Model->setZip($zip);
+			$this->Favoritewish_Model->referalBy(!empty($referalBy) ? $referalBy :'');
+			$this->Favoritewish_Model->referalCode($referalCode);
 			$this->Favoritewish_Model->setVerificationCode($verificationCode);
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
 			$this->Favoritewish_Model->setStatus($status);
@@ -415,7 +437,11 @@ class Favoritewish extends CI_Controller
 			$chk = $this->Favoritewish_Model->createUser();
 			//print_r($chk);
 			//exit();
-			if ($chk === TRUE) {
+			if ($chk === TRUE) {  
+				if(isset($_COOKIE['referalCode'])) {
+					unset($_COOKIE['referalCode']); 
+					setcookie('referalCode', '', -1, '/'); 
+				 }
 				$this->load->library('encryption');
 				$this->load->library('email');
 
@@ -429,11 +455,27 @@ class Favoritewish extends CI_Controller
 					'varificationlink' => $verificationLink
 				);
 
+				// $config['charset'] = 'iso-8859-1';
+				// $config['wordwrap'] = TRUE;
+				// $config['mailtype'] = 'html';
+				// $this->email->initialize($config);
+
+				$config = array(
+					'protocol'  => 'smtp',
+					'smtp_host' => 'smtp.gmail.com',
+					'smtp_port' => 587, //if 80 dosenot work use 24 or 21
+					'smtp_user'  => 'codeyiizen.test@gmail.com',  
+					'smtp_pass'  => 'wdxdkwcbygukszqv',
+					'smtp_crypto' => 'tls',
+					'charset' => 'iso-8859-1',
+					'wordwrap' => TRUE
+				);
+				$this->load->library('encryption');
+				$this->load->library('email');
 				$config['charset'] = 'iso-8859-1';
 				$config['wordwrap'] = TRUE;
 				$config['mailtype'] = 'html';
-				$this->email->initialize($config);
-
+                $this->email->initialize($config);
 				$this->email->to($email);
 				$this->email->from(MAIL_FROM, FROM_TEXT);
 				$this->email->subject('Favorite Wish User Registration!');
@@ -532,7 +574,7 @@ class Favoritewish extends CI_Controller
 		
 	}
 	public function login() // Login Controller for users
-	{   
+	{     
 	   //	echo"<pre>"; var_dump($timeStamp = time();); exit;
 		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
 			if (!empty($this->input->get('usid'))) {
@@ -570,7 +612,7 @@ class Favoritewish extends CI_Controller
 
 	// action login method
 	function loginSubmit()
-	{   
+	{    
 		// Check form  validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('user_name', 'User Name/Email', 'trim|required');
@@ -1649,7 +1691,6 @@ class Favoritewish extends CI_Controller
 
 	public function addYourWish()
 	{   
-		
 		$sessionArray = $this->session->userdata('ci_seesion_key');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('category', 'category', 'required');
@@ -1670,8 +1711,24 @@ class Favoritewish extends CI_Controller
 				'user_id' => $sessionArray['user_id'],
 				'created_on' => date('Y-m-d H:i:s')
 			);
-			//	echo"<pre>"; var_dump($array); exit;
-			$this->db->insert(' user_wish', $array);
+			$this->db->insert('user_wish', $array);
+			$insertId = $this->db->insert_id();
+			 $checkIfReferalExit = $this->Favoritewish_Model->getUserReferalData($sessionArray['user_id']);
+			 if($checkIfReferalExit->referral_by != 0){
+				$checkFirstReferalIntery = $this->Favoritewish_Model->checkFirstReferal($sessionArray['user_id']);
+				if(!empty($checkFirstReferalIntery) && $checkFirstReferalIntery == 1){
+					$getReferalData = $this->Favoritewish_Model->getUserReferalData($sessionArray['user_id']);
+					$arrayReferalTracking = array(
+						'referred_by'    => $getReferalData->referral_by,
+						'user_id'        => $sessionArray['user_id'],
+						'wish_id'        => $insertId,
+						'status'         => 1,
+						'create_date'    => date('Y-m-d'),
+						'created_on'     => date('Y-m-d H:i:s')
+					);
+					$this->db->insert('referral_tracking', $arrayReferalTracking);
+				}
+			}
 			$array = array(
 				'success' => '<div class="alert alert-warning">Wish Added Successfully</div>'
 			);
@@ -2904,6 +2961,22 @@ public function massageDeleteMe(){
 	   }
 	}
    //	echo"<pre>"; var_dump($getUserFriend); exit;
+}
+
+public function userReferalCodeInsert() {
+    $userAll = $this->Favoritewish_Model->getAllUser();
+    foreach ($userAll as $users) {
+        $randacode = random_int(100000, 999999);
+        $updateReferCode = array(
+            'referral_code' => $randacode,
+        );
+        $this->Favoritewish_Model->saveRandomNumberAllUser($users->id,$updateReferCode);
+    }
+}
+
+
+public function userReferSignupLink(){    die('ok');
+	
 }
 
 }

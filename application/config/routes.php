@@ -73,6 +73,8 @@ $route['admin/contact/page/dynamic/post/(:num)'] = 'favoritewish/adminContactPag
 
 
 $route['sign-up'] = 'favoritewish/register';
+$route['sign-up/(:any)'] = 'favoritewish/register/$1';
+
 $route['sign-in'] = 'favoritewish/login';
 $route['user-dashboard'] = 'favoritewish/user_dashboard';
 $route['user-profile'] = 'favoritewish/user_profile';
@@ -144,6 +146,14 @@ $route['massage/list'] = 'favoritewish/massageList';
 $route['delete/me/allmsg'] = 'favoritewish/deleteMeAllMsg';
 $route['delete/both/allmsg'] = 'favoritewish/deleteBothAllMsg';
 $route['check/birthday/after'] = 'favoritewish/checkFriendBirthdayAfter';
+
+// Referal functionility route Start
+$route['user/referal/code/insert'] = 'favoritewish/userReferalCodeInsert';
+//$route['sign-up/(:any)'] = 'favoritewish/userReferSignupLink';
+
+
+//Referal functionility route End
+
 
 // Blog Route Start
 $route['admin/blog'] = 'BlogController/adminBlog';
