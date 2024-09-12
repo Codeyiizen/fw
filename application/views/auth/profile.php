@@ -7,22 +7,137 @@
     width: 52%;
 }
 
+.copy-notification {
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    margin-top: -30px;
+    margin-left: -85px;
+    display: none;
+    text-align: center;
+}
+
+/* Social media container styling */
+#socialMediaLinks {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#socialMediaLinks a {
+    display: inline-block;
+    margin: 5px 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#socialMediaLinks a:hover {
+    background-color: #0056b3;
+}
+
+/* Styling individual social media buttons */
+.facebook {
+    background-color: #3b5998;
+}
+
+.twitter {
+    background-color: #1da1f2;
+}
+
+.instagram {
+    background-color: #e1306c;
+}
+
+.linkedin {
+    background-color: #0077b5;
+}
+
+/* Button styling */
+.toggle-btn {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-btn:hover {
+    background-color: #0056b3;
+}
 </style>
+
 <section class="fav-profile-section pb-0 pb-md-5">
-<?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
+    <?php $this->load->view('user/Common/banner', array('userInfo' => $userInfo)) ?>
 </section>
+
 <section class="section-padding profile-content pt-0 pt-md-5">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <?php $this->load->view('front/template/template_profile_sidebar'); ?>
             </div>
+
             <div class="col-lg-9">
                 <div class="myaccountForm-inner">
                     <div class="card bg-light border-0 user-profile">
                         <div class="card-body">
-                            <h2>Overview</h2>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h2>Overview</h2>
+                            </div>
+                            <?php  
+                              $referalLink = base64_encode($userInfo['referral_code']); 
+                            ?>
                             <ul class="list-unstyled">
+                                <li>
+                                    <div class="row">
+                                        <span>Referal Link</span>
+                                        <span class="font-weight-normal mr-0">
+                                            <button class="referlUrl theme-btn outline-btn mb-3 mb-lg-0"
+                                                id="click-to-copy"
+                                                data-url="<?php echo base_url('sign-up/'.$referalLink.''); ?>">Copy
+                                                Referal
+                                                Link</button>
+
+                                            <button id="toggleSocialLinks"
+                                                class="theme-btn outline-btn mb-3 mb-lg-0">Share Links</button>
+                                        </span>
+
+                                    </div>
+                                    <?php  
+                                    $whatsapp_message = base_url('sign-up/'.$referalLink.''); 
+                                    $whatsapp_link = "https://api.whatsapp.com/send?text=" . $whatsapp_message;
+                                    $linkedin_link = "https://www.linkedin.com/shareArticle?mini=true&url=" . $whatsapp_message;
+                                    $facebook_link = "https://www.facebook.com/sharer.php?u=" . $whatsapp_message;
+                                    $twitter_link = "https://twitter.com/share?text=[TITLE]&url=" . $whatsapp_message;
+                                ?>
+
+                                    <div id="socialMediaLinks">
+                                        <a href="<?php echo $facebook_link  ?>" target="_blank"
+                                            class="facebook">Facebook</a>
+                                        <a href="https://www.twitter.com" target="_blank" class="twitter">Twitter</a>
+                                        <a href="<?php echo $linkedin_link  ?>" target="_blank"
+                                            class="linkedin">LinkedIn</a>
+                                        <a href="<?php echo $whatsapp_link ?>" target="_blank"
+                                            class="linkedin">WhatsApp</a>
+                                    </div>
+
+                                </li>
                                 <li>
                                     <span>User Bio</span>
                                     <span class="font-weight-normal mr-0">
@@ -31,45 +146,33 @@
                                     </span>
                                 </li>
                                 <?php if(!empty($userInfo['first_name'])) { ?>
-                                <li><span>Full Name</span> <span class="font-weight-normal mr-0"><?php print $userInfo['first_name']; ?>
-								<?php print $userInfo['last_name']; ?></span></li>
+                                <li><span>Full Name</span> <span
+                                        class="font-weight-normal mr-0"><?php print $userInfo['first_name']; ?>
+                                        <?php print $userInfo['last_name']; ?></span></li>
                                 <?php } ?>
                                 <?php if(!empty($userInfo['email'])){ ?>
-                                <li><span>Email Address</span> <span class="font-weight-normal mr-0"><?php print $userInfo['email']; ?></span></li>
+                                <li><span>Email Address</span> <span
+                                        class="font-weight-normal mr-0"><?php print $userInfo['email']; ?></span></li>
                                 <?php } ?>
                                 <?php if(!empty($userInfo['contact_no'])) { ?>
-                                <li><span>Phone:</span> <span class="font-weight-normal mr-0"><?php print $userInfo['contact_no']; ?></span></li>
+                                <li><span>Phone:</span> <span
+                                        class="font-weight-normal mr-0"><?php print $userInfo['contact_no']; ?></span>
+                                </li>
                                 <?php } ?>
                                 <?php if(!empty($userInfo['dob'])) { ?>
-                                <li><span>Birthday </span> <span class="font-weight-normal mr-0"><?php print $userInfo['dob']; ?></span></li>
+                                <li><span>Birthday </span> <span
+                                        class="font-weight-normal mr-0"><?php print $userInfo['dob']; ?></span></li>
                                 <?php } ?>
                                 <?php if(!empty($userInfo['gender'])) { ?>
-                                <li><span>Sex</span> <span class="font-weight-normal mr-0"><?php print $userInfo['gender']; ?></span></li>
+                                <li><span>Sex</span> <span
+                                        class="font-weight-normal mr-0"><?php print $userInfo['gender']; ?></span></li>
                                 <?php } ?>
                                 <?php if(!empty($userInfo['favorite_charity'])) { ?>
-                                <li><span>Favorite Charity</span><span class="font-weight-normal mr-0"><?php print $userInfo['favorite_charity']; ?></span></li>
+                                <li><span>Favorite Charity</span><span
+                                        class="font-weight-normal mr-0"><?php print $userInfo['favorite_charity']; ?></span>
+                                </li>
                                 <?php } ?>
-
-                                <?php if(!empty($userInfo['address'] && $userInfo['city'] &&  $userInfo['state'])){ ?>
-                                <li><span>Address</span> <span class="font-weight-normal mr-0"><?php print $userInfo['address']; ?>,
-                                    <?php print $userInfo['city']; ?>,
-                                    <?php print $userInfo['state']; ?>, <?php print $userInfo['zip']; ?></span></li>
-                                <?php } ?>
-
-                                <?php if(!empty($userInfo['favorite_country'])) { ?>
-                                <li><span>Favorite Gift Cards</span><span class="font-weight-normal mr-0"><?php print $userInfo['favorite_country']; ?></span></li>
-                                <?php } ?>
-                                <?php if(!empty($userInfo['favoripublic_outfit_wear'])){ ?>
-                                <li><span>Favorite Public Outfit
-                                        Wear</span><span class="font-weight-normal mr-0"><?php print $userInfo['favoripublic_outfit_wear']; ?></span></li>
-                                <?php } ?>
-                                <?php if(!empty($userInfo['favorite_sports_teams'])) {  ?>
-                                <li><span>Favorite Sports Teams</span>
-								<span class="font-weight-normal mr-0"><?php print $userInfo['favorite_sports_teams']; ?></span></li>
-                                <?php  } ?>
-                                <?php if(!empty($userInfo['favorite_music'])) {  ?>
-                                <li><span>Favorite Music</span><span class="font-weight-normal mr-0"><?php print $userInfo['favorite_music']; ?></span></li>
-                                <?php  } ?>
+                                <!-- Add other profile fields here -->
                             </ul>
                         </div>
                     </div>
@@ -78,3 +181,16 @@
         </div>
     </div>
 </section>
+
+<script>
+document.getElementById('toggleSocialLinks').addEventListener('click', function() {
+    var socialLinks = document.getElementById('socialMediaLinks');
+    if (socialLinks.style.display === "none" || socialLinks.style.display === "") {
+        socialLinks.style.display = "block";
+        this.textContent = "Share Links";
+    } else {
+        socialLinks.style.display = "none";
+        this.textContent = "Share Links";
+    }
+});
+</script>
