@@ -234,10 +234,18 @@ public function getFriendMessages($id,$userId){
         $this->_state = $state;
     }
  
+    public function  referalBy($referalBy) {
+        $this->_referal = $referalBy;
+    }
+
+    public function  referalCode($referalCode) {
+        $this->_referalcode = $referalCode;
+    }
+    
     public function setZip($zip) {
         $this->_zip = $zip;
     }
-    
+
     public function setfavorite_country($favorite_country) {     
         $this->_favorite_country = $favorite_country;  
     }
@@ -322,10 +330,12 @@ public function getFriendMessages($id,$userId){
             'user_type' => $this->_userType,
 			'company' => $this->_company,
             'address' => $this->_address,
-            'user_bio' => $this->_user_bio,
+           // 'user_bio' => $this->_user_bio,
 			'city' => $this->_city,
 			'state' => $this->_state,
 			'zip' => $this->_zip,
+            'referral_by' => $this->_referal,
+            'referral_code'=>$this->_referalcode,
             'verification_code' => $this->_verificationCode,
             'created_date' => $this->_timeStamp,
             'modified_date' => $this->_timeStamp,
@@ -448,7 +458,7 @@ public function getFriendMessages($id,$userId){
 	
 	// get User Detail
     public function getUserDetails() {
-        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.profile_photo','m.cover_photo','m.dob','m.favorite_charity','m.gender','m.friend_request_notify'));
+        $this->db->select(array('m.id as user_id', 'CONCAT(m.first_name, " ", m.last_name) as full_name', 'm.first_name', 'm.last_name', 'm.email', 'm.contact_no', 'm.user_type', 'm.company', 'm.user_bio', 'm.address', 'm.city', 'm.state', 'm.zip','m.favorite_country','m.favoripublic_outfit_wear','m.favorite_sports_teams','m.favorite_music','m.profile_photo','m.cover_photo','m.dob','m.favorite_charity','m.gender','m.friend_request_notify','m.referral_code','m.referral_by'));
         $this->db->from('users as m');
         $this->db->where('m.id', $this->_userID);
         $query = $this->db->get();
@@ -1810,5 +1820,33 @@ public function getUserBasedOnDob($month,$date){
     return $query->result();
 }
 
+public function saveRandomNumberAllUser($userId, $data) {
+    $this->db->where('id', $userId); 
+    $this->db->update('users', $data); 
+}
+
+public function getUserIdByReferalCode($getReferalCode){ 
+    $this->db->select('id');
+    $this->db->from("users");
+    $this->db->where('referral_code', $getReferalCode);
+    $query = $this->db->get();
+    return $query->row();
+}
+
+public function getUserReferalData($userId){
+    $this->db->select('*');
+    $this->db->from('users');
+    $this->db->where('id',$userId);
+    $query = $this->db->get();
+    return  $query->row(); 
+}
+
+public function checkFirstReferal($userId){
+    $this->db->select('*');
+    $this->db->from('user_wish');
+    $this->db->where('user_id',$userId);
+    $query = $this->db->count_all_results();
+    return  $query;
+}
 
 }
