@@ -228,47 +228,83 @@
 	   });	 
 	 })
     
+
+	 $(document).ready(function () {
+        $("#click-to-copy").click(function (event) {
+            event.preventDefault();
+            var url = $("#referalLinkInput").val();
+            CopyToClipboard(url, true, "Link copied");
+        });
+    });
+
+    function CopyToClipboard(value, showNotification, notificationText) {
+        var $temp = $("<input>");  
+        $("body").append($temp);
+        $temp.val(value).select();
+        document.execCommand("copy");
+        $temp.remove();
+
+        if (typeof showNotification === 'undefined') {
+            showNotification = true;
+        }
+        if (typeof notificationText === 'undefined') {
+            notificationText = "Copied to clipboard";
+        }
+
+        var notificationTag = $("div.copy-notification");
+        if (showNotification && notificationTag.length == 0) {
+            notificationTag = $("<div/>", { "class": "copy-notification", text: notificationText });
+            $("body").append(notificationTag);
+            notificationTag.fadeIn("slow", function () {
+                setTimeout(function () {
+                    notificationTag.fadeOut("slow", function () {
+                        notificationTag.remove();
+                    });
+                }, 1000);
+            });
+        }
+    }
 	 
 	
     
-	 $(document).ready(function (){
-		$("#click-to-copy").click(function (event) {   
-			event.preventDefault();  
-			var url =  $(this).attr('data-url');
-			CopyToClipboard(url, true, "Link copied");
+	//  $(document).ready(function (){
+	// 	$("#click-to-copy").click(function (event) {   
+	// 		event.preventDefault();  
+	// 		var url =  $(this).attr('data-url');
+	// 		CopyToClipboard(url, true, "Link copied");
 			
-		});
-	});
+	// 	});
+	// });
 	
-	function CopyToClipboard(value, showNotification, notificationText){   
-		var $temp = $("<input>");   
-		$("body").append($temp);
-		$temp.val(value).select();
-		document.execCommand("copy");
-		$temp.remove();
+	// function CopyToClipboard(value, showNotification, notificationText){   
+	// 	var $temp = $("<input>");   
+	// 	$("body").append($temp);
+	// 	$temp.val(value).select();
+	// 	document.execCommand("copy");
+	// 	$temp.remove();
 	
-		if (typeof showNotification === 'undefined') {
-			showNotification = true;
-		}
-		if (typeof notificationText === 'undefined') {
-			notificationText = "Copied to clipboard";
-		}
+	// 	if (typeof showNotification === 'undefined') {
+	// 		showNotification = true;
+	// 	}
+	// 	if (typeof notificationText === 'undefined') {
+	// 		notificationText = "Copied to clipboard";
+	// 	}
 	
-		var notificationTag = $("div.copy-notification");
-		if (showNotification && notificationTag.length == 0) {  
-			notificationTag = $("<div/>", { "class": "copy-notification", text: notificationText });
+	// 	var notificationTag = $("div.copy-notification");
+	// 	if (showNotification && notificationTag.length == 0) {  
+	// 		notificationTag = $("<div/>", { "class": "copy-notification", text: notificationText });
 			
-			$("body").append(notificationTag);
-	        console.log(notificationTag); 
-			notificationTag.fadeIn("slow", function () {   
-				setTimeout(function () {
-					notificationTag.fadeOut("slow", function () {
-						notificationTag.remove();
-					});
-				}, 1000);
-			});
-		}
-	}
+	// 		$("body").append(notificationTag);
+	//         console.log(notificationTag); 
+	// 		notificationTag.fadeIn("slow", function () {   
+	// 			setTimeout(function () {
+	// 				notificationTag.fadeOut("slow", function () {
+	// 					notificationTag.remove();
+	// 				});
+	// 			}, 1000);
+	// 		});
+	// 	}
+	// }
 
 
 

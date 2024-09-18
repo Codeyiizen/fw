@@ -336,6 +336,7 @@ class BlogController extends CI_Controller
         }
     
         $data['categories'] = $this->Blog_Model->getCategories();
+       // echo"<pre>"; var_dump($data['categories']); exit;
         $data['getTag'] = $this->Blog_Model->getAllTag(); 
     
         $this->load->view('front/header_main', $data);

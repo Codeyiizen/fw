@@ -22,11 +22,11 @@
                                 <div class="social-login text-md-left text-center mb-4">
                                     <h1>Sign Up</h1>
                                 </div>
-                                <!-- <?php if($this->session->flashdata('referalCode')){?>
+                                <?php if($this->session->flashdata('referalCode')){?>
                                     <div class="alert alert-danger">
                                         <?php echo $this->session->flashdata('referalCode')?>
                                     </div>
-                                <?php } ?> -->
+                                <?php } ?>
                             </div>
                             <?php if (validation_errors()) { ?>
                             <div class="alert alert-danger">
@@ -43,7 +43,6 @@
                                             aria-describedby="emailHelp" placeholder="Username or email address">
                                     </div>
                                 </div>
-                                <input type="hidden" name="referal_code" value="<?php echo !empty($referalCode) ? $referalCode :'' ;  ?>" >
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="First name">First name</label>

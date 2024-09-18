@@ -1849,4 +1849,12 @@ public function checkFirstReferal($userId){
     return  $query;
 }
 
+public function checkCodeExit($getReferalCode){
+    $this->db->select('*');
+    $this->db->from("users");
+    $this->db->where('referral_code', $getReferalCode);
+    $query = $this->db->get();
+    return $query->row();
+}
+
 }

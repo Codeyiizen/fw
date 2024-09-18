@@ -108,12 +108,14 @@
                                     <div class="row">
                                         <span>Referal Link</span>
                                         <span class="font-weight-normal mr-0">
-                                            <button class="referlUrl theme-btn outline-btn mb-3 mb-lg-0"
+                                            <input type="text" class="form-control" id="referalLinkInput" value="<?php echo base_url('sign-up/'.$referalLink.''); ?>" readonly>
+                                            <button class="referlUrl theme-btn outline-btn mb-3 mb-lg-0" data-url="<?php echo base_url('sign-up/'.$referalLink.''); ?>" id="click-to-copy">Copy Referral Link</button>
+                                            
+                                            <!-- <button class="referlUrl theme-btn outline-btn mb-3 mb-lg-0"
                                                 id="click-to-copy"
                                                 data-url="<?php echo base_url('sign-up/'.$referalLink.''); ?>">Copy
                                                 Referal
-                                                Link</button>
-
+                                                Link</button> -->
                                             <button id="toggleSocialLinks"
                                                 class="theme-btn outline-btn mb-3 mb-lg-0">Share Links</button>
                                         </span>
@@ -121,20 +123,27 @@
                                     </div>
                                     <?php  
                                     $whatsapp_message = base_url('sign-up/'.$referalLink.''); 
-                                    $whatsapp_link = "https://api.whatsapp.com/send?text=" . $whatsapp_message;
+                                    $share_text = "Share Referral";
+                                    // $whatsapp_link = "https://api.whatsapp.com/send?text=" . $whatsapp_message;
+                                    $email_link = "mailto:?subject=" . urlencode($share_text) . "&body=" . urlencode($whatsapp_message);
+                                    $instagram_link = "https://www.instagram.com/sharer.php?u=". urlencode($whatsapp_message);
                                     $linkedin_link = "https://www.linkedin.com/shareArticle?mini=true&url=" . $whatsapp_message;
-                                    $facebook_link = "https://www.facebook.com/sharer.php?u=" . $whatsapp_message;
-                                    $twitter_link = "https://twitter.com/share?text=[TITLE]&url=" . $whatsapp_message;
+                                    $facebook_link = "https://www.facebook.com/sharer/sharer.php?u=" . urlencode($whatsapp_message);
+                                    $twitter_link = "https://twitter.com/intent/tweet?text=" . urlencode($share_text) . "&url=" . urlencode( $whatsapp_message);
                                 ?>
 
                                     <div id="socialMediaLinks">
                                         <a href="<?php echo $facebook_link  ?>" target="_blank"
                                             class="facebook">Facebook</a>
-                                        <a href="https://www.twitter.com" target="_blank" class="twitter">Twitter</a>
+                                        <a href="<?php echo $twitter_link  ?>" target="_blank" class="twitter">Twitter</a>
                                         <a href="<?php echo $linkedin_link  ?>" target="_blank"
                                             class="linkedin">LinkedIn</a>
-                                        <a href="<?php echo $whatsapp_link ?>" target="_blank"
-                                            class="linkedin">WhatsApp</a>
+                                        <a href="<?php echo $email_link ?>" target="_blank"
+                                            class="linkedin">Email</a>
+                                        <a href="<?php echo $instagram_link ?>" target="_blank"
+                                            class="linkedin">Instagram</a>     
+                                        <!-- <a href="<?php echo $whatsapp_link ?>" target="_blank"
+                                            class="linkedin">WhatsApp</a> -->
                                     </div>
 
                                 </li>

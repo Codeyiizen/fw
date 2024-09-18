@@ -195,6 +195,11 @@ class Blog_Model extends CI_Model {
         return $query->result();
     }
     
+    public function countBlogByCatId($cat_id){
+        $this->db->where('cat_id', $cat_id);
+        $count = $this->db->count_all_results('blog');
+        return $count;
+    }
     
      
 }
