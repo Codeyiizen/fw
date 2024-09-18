@@ -71,6 +71,8 @@ $route['admin/contact/page/dynamic'] = 'favoritewish/adminContactPageDynamic';
 $route['admin/contact/page/dynamic/post'] = 'favoritewish/adminContactPageDynamicPost';
 $route['admin/contact/page/dynamic/post/(:num)'] = 'favoritewish/adminContactPageDynamicPost';
 
+$route['email/testing'] = 'favoritewish/emailtesting';
+
 
 $route['sign-up'] = 'favoritewish/register';
 $route['sign-up/(:any)'] = 'favoritewish/register/$1';

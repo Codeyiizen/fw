@@ -55,7 +55,7 @@
                                         <h5><a
                                                 href="<?php echo base_url('front/blog/show/details/'.$blog->slug); ?>"><?php echo $blog->title ?></a>
                                         </h5>
-                                        <p><small><?php echo date('d M Y', strtotime($blogDetails->created_on)); ?></small>
+                                        <p><small><?php echo date('d M Y', strtotime($blog->created_on)); ?></small>
                                         </p>
                                     </div>
                                 </article>

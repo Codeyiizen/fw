@@ -665,7 +665,8 @@
                                                                                             reminders. If you no longer
                                                                                             wish to receive these
                                                                                             reminders, please
-                                                                                            click the &quot;unsubscribe&quot;
+                                                                                            click the
+                                                                                            &quot;unsubscribe&quot;
                                                                                             link. By doing so, you
                                                                                             acknowledge that you will be
                                                                                             removed from our
@@ -679,6 +680,7 @@
                                                                                             regulations and respecting
                                                                                             your privacy choices.
                                                                                         </p>
+                                                                                        <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p>
                                                                                     </td>
                                                                                 </tr>
                                                                             </tbody>
@@ -816,7 +818,15 @@
                                                                                                             style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Visit
                                                                                                             Us </a>
                                                                                                     </td>
-                                                                                                    <td align="center" valign="top" width="33.33%" style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff"><a target="_blank" href="<?php echo base_url(); ?>privacy/Policy" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Privacy Policy</a></td>
+                                                                                                    <td align="center"
+                                                                                                        valign="top"
+                                                                                                        width="33.33%"
+                                                                                                        style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff">
+                                                                                                        <a target="_blank"
+                                                                                                            href="<?php echo base_url(); ?>privacy/Policy"
+                                                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Privacy
+                                                                                                            Policy</a>
+                                                                                                    </td>
                                                                                                     <td align="center"
                                                                                                         valign="top"
                                                                                                         width="33.33%"

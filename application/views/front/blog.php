@@ -14,11 +14,19 @@
                 <div class="card border-0">
                     <div class="card-body p-3">
                         <h4 class="card-title">Search Blog By Categories</h4>
+                        <?php   
+                          $CI =& get_instance();
+                          $CI->load->model('Blog_Model');
+                        ?>
                         <?php if (!empty($categories)) { ?>
                         <ul class="list-unstyled category-list">
                             <?php foreach ($categories as $cat) { ?>
                             <li><a href="<?php echo base_url('front/blog/show?cat_id=' . $cat->id); ?>">
-                                    <?php echo $cat->title; ?> <span class="badge badge-warning text-white">5</span>
+                                    <?php echo $cat->title; ?> 
+                                    <?php  
+                                      $blogCount = $CI->Blog_Model->countBlogByCatId($cat->id); 
+                                    ?>
+                                    <span class="badge badge-warning text-white"><?php echo !empty($blogCount) ? $blogCount :'0'; ?></span>
                                 </a>
                             </li>
                             <?php } ?>

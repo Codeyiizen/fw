@@ -227,18 +227,19 @@ class Favoritewish extends CI_Controller
         $data['metaKeywords'] = 'New User Registration';
         $data['title'] = "Registration";
         $data['breadcrumbs'] = array('Registration' => '#');
-        if(!empty($referral_code)) {  
-			$data['referalCode'] = $this->uri->segment(2);
-			$getReferalCode = !empty($_COOKIE['referalCode']) ? $_COOKIE['referalCode'] :'';
-            $cookie_name = "referalCode";
-			$cookie_value = $referral_code;
-			if(empty($getReferalCode)){
-			 setcookie($cookie_name, $cookie_value, time() + (86400 * 3), "/"); 
+		$getUriCode = !empty($this->uri->segment(2)) ? $this->uri->segment(2) :'';
+		 if(!empty($getUriCode)){
+			$code = base64_decode($getUriCode);
+			$checkCodeExit =  $this->Favoritewish_Model->checkCodeExit($code);
+			if(!empty($checkCodeExit)){
+				$cookie_name = "referalCode";
+				$cookie_value = $getUriCode;
+				setcookie($cookie_name, $cookie_value, time() + (86400 * 3), "/"); 
 			}else{
-			  $this->session->set_flashdata('referalCode', 'Referal Code All Ready Exit');
+				$this->session->set_flashdata('referalCoded', 'Referal Code Not Match');
 			}
-			
-        }
+		}
+		
         $this->load->view('front/header_inner', $data);
         $google_client = new Google_Client();
         $google_client->setClientId(GOOGLE_CLIENT_ID); 
@@ -389,11 +390,13 @@ class Favoritewish extends CI_Controller
 		if ($this->form_validation->run() == FALSE) {
 			$this->register();
 		} else {
-			$getReferalCode = $this->input->post('referal_code');
+			$getReferalCode = !empty($_COOKIE['referalCode']) ? $_COOKIE['referalCode'] :'';
 			if(!empty($getReferalCode)){
 				$decodeReferalCode = base64_decode($getReferalCode);
 				$userIdByReferalCode = $this->Favoritewish_Model->getUserIdByReferalCode($decodeReferalCode);
 				$referalBy = $userIdByReferalCode->id;
+			}else{
+				$referalBy = NULL;
 			}
 			$firstName = $this->input->post('first_name');
 			$lastName = $this->input->post('last_name');
@@ -427,7 +430,7 @@ class Favoritewish extends CI_Controller
 			$this->Favoritewish_Model->setCity($city);
 			$this->Favoritewish_Model->setState($state);
 			$this->Favoritewish_Model->setZip($zip);
-			$this->Favoritewish_Model->referalBy(!empty($referalBy) ? $referalBy :'');
+			$this->Favoritewish_Model->referalBy($referalBy);
 			$this->Favoritewish_Model->referalCode($referalCode);
 			$this->Favoritewish_Model->setVerificationCode($verificationCode);
 			$this->Favoritewish_Model->setTimeStamp($timeStamp);
@@ -464,8 +467,8 @@ class Favoritewish extends CI_Controller
 					'protocol'  => 'smtp',
 					'smtp_host' => 'smtp.gmail.com',
 					'smtp_port' => 587, //if 80 dosenot work use 24 or 21
-					'smtp_user'  => 'codeyiizen.test@gmail.com',  
-					'smtp_pass'  => 'wdxdkwcbygukszqv',
+					'smtp_user'  => 'mahendrakumar19u@gmail.com',  
+					'smtp_pass'  => 'getjqfgdoylfrdku',
 					'smtp_crypto' => 'tls',
 					'charset' => 'iso-8859-1',
 					'wordwrap' => TRUE
@@ -483,7 +486,6 @@ class Favoritewish extends CI_Controller
 				$this->email->set_newline("\r\n");
 				$this->email->message($this->load->view('email/user_registration', $data, true));
 				$chkStatus = $this->email->send();
-
 				if ($chkStatus === TRUE) {
 					$this->session->set_flashdata('success', 'Please activate your account from the link that has been sent to you on your email');
 					redirect('sign-in');
@@ -2523,32 +2525,39 @@ public function familyWishDelete(){
 	}
 
 	public function sendEmail(){ 
-	//	$this->load->view('email/quarterly_email');
-		$login = base_url() . 'send/email/unsubscribe';  
-		$allUserEmail = $this->Favoritewish_Model->getFirstUser();
-	//	echo"<pre>"; var_dump($allUserEmail); exit;
-		foreach($allUserEmail as $email){ 
-		  $userEmail = $email->email;
-			if ($email->isSubscribe == '1'){
-				$this->load->library('encryption');
-				$this->load->library('email');
-				$data = array(
-					'loginlink' => $login,
-					'id'        => $email->id
-				);
-				$config['charset'] = 'iso-8859-1';
-				$config['wordwrap'] = TRUE;
-				$config['mailtype'] = 'html';
-				$this->email->initialize($config);
-				$this->email->to($userEmail);
-				$this->email->from(MAIL_FROM, FROM_TEXT);
-				$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
-				$this->email->set_newline("\r\n");
-				$this->email->message($this->load->view('email/quarterly_email', $data, true));
-				$this->email->send();
+		$currentDay = date('d');
+		$currentMonth = date('m');
+		if($currentDay == '01' && in_array($currentMonth, ['01', '04', '07', '10'])){
+			$login = base_url() . 'send/email/unsubscribe';  
+			$allUserEmail = $this->Favoritewish_Model->getFirstUser();
+			foreach($allUserEmail as $email){ 
+				$userEmail = $email->email;
+				if ($email->isSubscribe == '1'){
+					$this->load->library('encryption');
+					$this->load->library('email');
+					$data = array(
+						'loginlink' => $login,
+						'id'        => $email->id
+					);
+					$config['charset'] = 'iso-8859-1';
+					$config['wordwrap'] = TRUE;
+					$config['mailtype'] = 'html';
+					$this->email->initialize($config);
+					$this->email->to('mahendra@codeyiizen.com');
+					$this->email->from(MAIL_FROM, FROM_TEXT);
+					$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
+					$this->email->set_newline("\r\n");
+					$this->email->message($this->load->view('email/quarterly_email', $data, true));
+					if($this->email->send()){
+						echo 'Email sent';
+					}else{
+						echo 'Failed to send email';
+					}
+				}
 			}
+		}else{
+			echo 'Today is not the 01th of a quarterly month!';
 		}
-		echo 'Email sent!';
 	}
 
 	public function sendEmailStatusChange(){
@@ -2974,10 +2983,51 @@ public function userReferalCodeInsert() {
     }
 }
 
-
-public function userReferSignupLink(){    die('ok');
-	
+public function emailtesting(){ 
+	$currentDay = date('d');
+	$currentMonth = date('m');
+	if($currentDay == '01' && in_array($currentMonth, ['01', '04', '07', '10'])){
+		$login = base_url() . 'send/email/unsubscribe';  
+		$allUserEmail = $this->Favoritewish_Model->getFirstUser();
+		foreach($allUserEmail as $email){ 
+			$userEmail = $email->email;
+			if ($email->isSubscribe == '1'){
+				$this->load->library('encryption');
+				$this->load->library('email');
+				$data = array(
+					'loginlink' => $login,
+					'id'        => $email->id
+				);
+				$config = array(
+					'protocol'  => 'smtp',
+					'smtp_host' => 'smtp.gmail.com',
+					'smtp_port' => 587, 
+					'smtp_user' => 'mahendrakumar19u@gmail.com',  
+					'smtp_pass' => 'getjqfgdoylfrdku',
+					'smtp_crypto' => 'tls',
+					'charset' => 'iso-8859-1',
+					'wordwrap' => TRUE,
+					'mailtype' => 'html'
+				);
+				$this->email->initialize($config);
+				$this->email->to('mahendra@codeyiizen.com');
+				$this->email->from(MAIL_FROM, FROM_TEXT);
+				$this->email->subject('Keep Your Favorite Wish List Fresh: Quarterly Update Reminder!');
+				$this->email->set_newline("\r\n");
+				$this->email->message($this->load->view('email/quarterly_email', $data, true));
+				if($this->email->send()){
+					echo 'Email sent';
+				}else{
+					echo 'Failed to send email';
+				}
+			}
+		}
+	}else{
+		echo 'Today is not the 01th of a quarterly month!';
+	}
 }
+
+
 
 }
 

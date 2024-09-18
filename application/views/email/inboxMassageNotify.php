@@ -469,7 +469,8 @@
                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color: #f1f2f7;width: 640px;">
                                             <tbody>
                                                 <tr>
-                                                    <td align="left" style="padding-top:20px;padding-bottom:20px;padding-left:20px;Margin:0;padding-bottom: 0;">
+                                                    <td align="left"
+                                                        style="padding-top:20px;padding-bottom:20px;padding-left:20px;Margin:0;padding-bottom: 0;">
                                                         <table cellpadding="0" cellspacing="0" width="100%"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tbody>
@@ -521,7 +522,7 @@
                                                                                                                     style="padding:0;Margin:0;padding-top:10px">
                                                                                                                     <p
                                                                                                                         style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px;">
-                                                                                                                        
+
                                                                                                                         <strong><?php echo $name ?></strong>
                                                                                                                     </p>
                                                                                                                 </td>
@@ -563,7 +564,8 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" style="padding-top: 30px; padding-bottom: 30px; padding-left: 20px; padding-right: 20px;Margin:0;padding-top: 0;">
+                                                    <td align="left"
+                                                        style="padding-top: 30px; padding-bottom: 30px; padding-left: 20px; padding-right: 20px;Margin:0;padding-top: 0;">
                                                         <table cellpadding="0" cellspacing="0" width="100%"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tbody>
@@ -577,6 +579,7 @@
                                                                                 <tr>
                                                                                     <td align="left"
                                                                                         style="padding:0;Margin:0;">
+                                                                                        <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p>
                                                                                         <p
                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">
                                                                                             Thanks,</p>

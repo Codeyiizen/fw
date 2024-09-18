@@ -469,7 +469,8 @@
                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color: #f1f2f7;width: 640px;">
                                             <tbody>
                                                 <tr>
-                                                    <td align="left" style="padding-top: 30px; padding-bottom: 30px; padding-left: 20px; padding-right: 20px;Margin:0;padding-bottom: 0;">
+                                                    <td align="left"
+                                                        style="padding-top: 30px; padding-bottom: 30px; padding-left: 20px; padding-right: 20px;Margin:0;padding-bottom: 0;">
                                                         <table cellpadding="0" cellspacing="0" width="100%"
                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                             <tbody>
@@ -486,7 +487,8 @@
                                                                                         <img src="https://favoritewish.com/assets/images/site-image/logo1.png"
                                                                                             alt=""
                                                                                             style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
-                                                                                            width="180"></td>
+                                                                                            width="180">
+                                                                                    </td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td align="center"
@@ -575,7 +577,8 @@
                                                                                                                                                         style="padding:0;Margin:0;">
                                                                                                                                                         <p
                                                                                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
-                                                                                                                                                            Friend Name:
+                                                                                                                                                            Friend
+                                                                                                                                                            Name:
                                                                                                                                                         </p>
                                                                                                                                                     </td>
                                                                                                                                                 </tr>
@@ -721,6 +724,7 @@
                                                                                 <tr>
                                                                                     <td align="left"
                                                                                         style="padding:0;Margin:0;">
+                                                                                        <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p>
                                                                                         <p
                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">
                                                                                             Thanks,</p>
@@ -740,144 +744,161 @@
                                             </tbody>
                                         </table>
                                         <table cellpadding="0" cellspacing="0" class="es-footer" align="center"
-                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
-                            <tbody>
-                                <tr>
-                                    <td align="center" style="padding:0;Margin:0">
-                                        <table class="es-footer-body" align="center" cellpadding="0" cellspacing="0"
-                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:640px">
+                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%;background-color:transparent;background-repeat:repeat;background-position:center top">
                                             <tbody>
                                                 <tr>
-                                                    <td align="left" bgcolor="#c11e1a"
-                                                        style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px;background-color: #062E47;">
-                                                        <table cellpadding="0" cellspacing="0" width="100%"
-                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                                                    <td align="center" style="padding:0;Margin:0">
+                                                        <table class="es-footer-body" align="center" cellpadding="0"
+                                                            cellspacing="0"
+                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:640px">
                                                             <tbody>
                                                                 <tr>
-                                                                    <td align="left"
-                                                                        style="padding:0;Margin:0;width:600px">
+                                                                    <td align="left" bgcolor="#c11e1a"
+                                                                        style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px;background-color: #062E47;">
                                                                         <table cellpadding="0" cellspacing="0"
                                                                             width="100%"
                                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                                             <tbody>
                                                                                 <tr>
-                                                                                    <td align="center"
-                                                                                        style="padding:0;Margin:0;padding-top:15px;padding-bottom: 1.5rem;font-size:0px;">
+                                                                                    <td align="left"
+                                                                                        style="padding:0;Margin:0;width:600px">
                                                                                         <table cellpadding="0"
-                                                                                            cellspacing="0"
-                                                                                            class="es-table-not-adapt es-social"
+                                                                                            cellspacing="0" width="100%"
                                                                                             style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                                                                             <tbody>
                                                                                                 <tr>
-                                                                                                    <!-- <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Facebook" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/facebook-rounded-white.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                                                                                                    <td align="center"
+                                                                                                        style="padding:0;Margin:0;padding-top:15px;padding-bottom: 1.5rem;font-size:0px;">
+                                                                                                        <table
+                                                                                                            cellpadding="0"
+                                                                                                            cellspacing="0"
+                                                                                                            class="es-table-not-adapt es-social"
+                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                                                                                                            <tbody>
+                                                                                                                <tr>
+                                                                                                                    <!-- <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Facebook" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/facebook-rounded-white.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
                           <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Instagram" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/instagram-rounded-white.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
                           <td align="center" valign="top" style="padding:0;Margin:0;padding-right:20px"><img title="Youtube" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/youtube-rounded-white.png" alt="Yt" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
                           <td align="center" valign="top" width="null" style="padding:0;Margin:0"><img title="X.com" src="https://srnehd.stripocdn.email/content/assets/img/social-icons/rounded-white/x-rounded-white.png" alt="X" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td> -->
-                                                                                                    <!-- <td align="center" valign="top" style="padding:0;Margin:0;padding-right:40px"><img title="IG,X,Threads" src="http://localhost/fw/assets/images/x-social-media-round-icon.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td> -->
-                                                                                                    <td align="center"
-                                                                                                        valign="top"
-                                                                                                        style="padding:0;Margin:0;padding-right:40px">
-                                                                                                        <a
-                                                                                                            href="https://twitter.com/favoritewishltd"><img
-                                                                                                                title="Twitter"
-                                                                                                                src="<?php echo base_url(); ?>assets/images/x-social-media-round-icon.png"
-                                                                                                                alt=""
-                                                                                                                alt="Fb"
-                                                                                                                width="32"
-                                                                                                                style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a>
-                                                                                                    </td>
-                                                                                                    <td align="center"
-                                                                                                        valign="top"
-                                                                                                        style="padding:0;Margin:0;padding-right:40px; filter: invert(1) !important;">
-                                                                                                        <a
-                                                                                                            href="https://www.instagram.com/favoritewishltd?igsh=ZW5ocmRxcHY2bnRk&utm_source=qr"><img
-                                                                                                                title="Instagram"
-                                                                                                                src="https://fw.kurieta.ca/assets/images/ig-instagram-icon.png"
-                                                                                                                alt="Inst"
-                                                                                                                width="32"
-                                                                                                                style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a>
-                                                                                                    </td>
-                                                                                                    <td align="center"
-                                                                                                        valign="top"
-                                                                                                        style="padding:0;Margin:0;padding-right:40px;">
-                                                                                                        <a
-                                                                                                            href="https://www.clubhouse.com/@favoritewish?utm_medium=ch_profile&utm_campaign=Dyi26k477x_bI9VN65Qdbg-1123563"><img
-                                                                                                                title="Clubhouse"
-                                                                                                                src="https://fw.kurieta.ca/assets/images/clubhouse-icon-1.png"
-                                                                                                                alt="Inst"
-                                                                                                                width="32"
-                                                                                                                style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a>
-                                                                                                    </td>
-                                                                                                    <td align="center"
-                                                                                                        valign="top"
-                                                                                                        style="padding:0;Margin:0">
-                                                                                                        <a
-                                                                                                            href="https://www.threads.net/@favoritewishltd"><img
-                                                                                                                title="Threads"
-                                                                                                                src="<?php echo base_url(); ?>assets/images/threads-app-icon.png"
-                                                                                                                alt="Yt"
-                                                                                                                width="32"
-                                                                                                                style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a>
+                                                                                                                    <!-- <td align="center" valign="top" style="padding:0;Margin:0;padding-right:40px"><img title="IG,X,Threads" src="http://localhost/fw/assets/images/x-social-media-round-icon.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td> -->
+                                                                                                                    <td align="center"
+                                                                                                                        valign="top"
+                                                                                                                        style="padding:0;Margin:0;padding-right:40px">
+                                                                                                                        <a
+                                                                                                                            href="https://twitter.com/favoritewishltd"><img
+                                                                                                                                title="Twitter"
+                                                                                                                                src="<?php echo base_url(); ?>assets/images/x-social-media-round-icon.png"
+                                                                                                                                alt=""
+                                                                                                                                alt="Fb"
+                                                                                                                                width="32"
+                                                                                                                                style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a>
+                                                                                                                    </td>
+                                                                                                                    <td align="center"
+                                                                                                                        valign="top"
+                                                                                                                        style="padding:0;Margin:0;padding-right:40px; filter: invert(1) !important;">
+                                                                                                                        <a
+                                                                                                                            href="https://www.instagram.com/favoritewishltd?igsh=ZW5ocmRxcHY2bnRk&utm_source=qr"><img
+                                                                                                                                title="Instagram"
+                                                                                                                                src="https://fw.kurieta.ca/assets/images/ig-instagram-icon.png"
+                                                                                                                                alt="Inst"
+                                                                                                                                width="32"
+                                                                                                                                style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a>
+                                                                                                                    </td>
+                                                                                                                    <td align="center"
+                                                                                                                        valign="top"
+                                                                                                                        style="padding:0;Margin:0;padding-right:40px;">
+                                                                                                                        <a
+                                                                                                                            href="https://www.clubhouse.com/@favoritewish?utm_medium=ch_profile&utm_campaign=Dyi26k477x_bI9VN65Qdbg-1123563"><img
+                                                                                                                                title="Clubhouse"
+                                                                                                                                src="https://fw.kurieta.ca/assets/images/clubhouse-icon-1.png"
+                                                                                                                                alt="Inst"
+                                                                                                                                width="32"
+                                                                                                                                style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a>
+                                                                                                                    </td>
+                                                                                                                    <td align="center"
+                                                                                                                        valign="top"
+                                                                                                                        style="padding:0;Margin:0">
+                                                                                                                        <a
+                                                                                                                            href="https://www.threads.net/@favoritewishltd"><img
+                                                                                                                                title="Threads"
+                                                                                                                                src="<?php echo base_url(); ?>assets/images/threads-app-icon.png"
+                                                                                                                                alt="Yt"
+                                                                                                                                width="32"
+                                                                                                                                style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
                                                                                                     </td>
                                                                                                 </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td align="center"
-                                                                                        style="padding:0;Margin:0;padding-bottom: 2rem;">
-                                                                                        <p
-                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
-                                                                                            Favorite Wish</p>
-                                                                                        <p
-                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
-                                                                                            6650 Rivers Ave STE 100
-                                                                                            Charleston, SC 29406</p>
-                                                                                        <p
-                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;">
-                                                                                            <a href="mailto:operations@favoritewish.com"
-                                                                                                style="
+                                                                                                <tr>
+                                                                                                    <td align="center"
+                                                                                                        style="padding:0;Margin:0;padding-bottom: 2rem;">
+                                                                                                        <p
+                                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
+                                                                                                            Favorite
+                                                                                                            Wish</p>
+                                                                                                        <p
+                                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;margin-bottom: 1rem;">
+                                                                                                            6650 Rivers
+                                                                                                            Ave STE 100
+                                                                                                            Charleston,
+                                                                                                            SC 29406</p>
+                                                                                                        <p
+                                                                                                            style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#f4f2f2;font-size: 15px;">
+                                                                                                            <a href="mailto:operations@favoritewish.com"
+                                                                                                                style="
                         color: #fff;
                         text-decoration: none;
                         letter-spacing: 0.6px;
-                    ">operations@favoritewish.com</a></p>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td style="padding:0;Margin:0">
-                                                                                        <table cellpadding="0"
-                                                                                            cellspacing="0" width="100%"
-                                                                                            class="es-menu"
-                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                                                                                            <tbody>
-                                                                                                <tr class="links">
-                                                                                                    <td align="center"
-                                                                                                        valign="top"
-                                                                                                        width="33.33%"
-                                                                                                        style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0">
-                                                                                                        <a target="_blank"
-                                                                                                            href="https://favoritewish.com"
-                                                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Visit
-                                                                                                            Us </a></td>
-                                                                                                    <td align="center"
-                                                                                                        valign="top"
-                                                                                                        width="33.33%"
-                                                                                                        style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff">
-                                                                                                        <a target="_blank"
-                                                                                                            href="<?php echo base_url(); ?>privacy/Policy"
-                                                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Privacy
-                                                                                                            Policy</a>
+                    ">operations@favoritewish.com</a>
+                                                                                                        </p>
                                                                                                     </td>
-                                                                                                    <td align="center"
-                                                                                                        valign="top"
-                                                                                                        width="33.33%"
-                                                                                                        style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff">
-                                                                                                        <a target="_blank"
-                                                                                                            href="<?php echo base_url(); ?>terms-and-conditions"
-                                                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Terms
-                                                                                                            and
-                                                                                                            Conditions</a>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td
+                                                                                                        style="padding:0;Margin:0">
+                                                                                                        <table
+                                                                                                            cellpadding="0"
+                                                                                                            cellspacing="0"
+                                                                                                            width="100%"
+                                                                                                            class="es-menu"
+                                                                                                            style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                                                                                                            <tbody>
+                                                                                                                <tr
+                                                                                                                    class="links">
+                                                                                                                    <td align="center"
+                                                                                                                        valign="top"
+                                                                                                                        width="33.33%"
+                                                                                                                        style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0">
+                                                                                                                        <a target="_blank"
+                                                                                                                            href="https://favoritewish.com"
+                                                                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Visit
+                                                                                                                            Us
+                                                                                                                        </a>
+                                                                                                                    </td>
+                                                                                                                    <td align="center"
+                                                                                                                        valign="top"
+                                                                                                                        width="33.33%"
+                                                                                                                        style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff">
+                                                                                                                        <a target="_blank"
+                                                                                                                            href="<?php echo base_url(); ?>privacy/Policy"
+                                                                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Privacy
+                                                                                                                            Policy</a>
+                                                                                                                    </td>
+                                                                                                                    <td align="center"
+                                                                                                                        valign="top"
+                                                                                                                        width="33.33%"
+                                                                                                                        style="Margin:0;padding-left:5px;padding-right:5px;padding-top:5px;padding-bottom:5px;border:0;border-left:1px solid #ffffff">
+                                                                                                                        <a target="_blank"
+                                                                                                                            href="<?php echo base_url(); ?>terms-and-conditions"
+                                                                                                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size: 15px;">Terms
+                                                                                                                            and
+                                                                                                                            Conditions</a>
+                                                                                                                    </td>
+                                                                                                                </tr>
+                                                                                                            </tbody>
+                                                                                                        </table>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             </tbody>
@@ -898,11 +919,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
+
                     </td>
                 </tr>
             </tbody>
