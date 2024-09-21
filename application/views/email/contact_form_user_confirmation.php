@@ -500,7 +500,7 @@
                                         <tr>
                                           <td align="left" style="padding:0;Margin:0;padding-top:20px">
                                             <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">Stay connected with FavoriteWish. If there is any doubt or anything to ask, do not hasitate to reach out to us.</p>
-                                            <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p>
+                                            <!-- <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p> -->
                                             <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;"><br>Thanks,</p>
                                             <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">The FavoriteWish Team!</p>
                                           </td>

@@ -110,6 +110,17 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+$(document).ready(function(){
+
+    $.ajax({
+        url: "<?php echo base_url(); ?>update/massage/notification/time",
+        type: "POST",
+        success: function(data) {
+            
+        }
+    });
+});
 </script>
 </body>
 
