@@ -113,7 +113,7 @@ a[x-apple-data-detectors] {
                      <tbody><tr>
                       
                       <td align="left" style="padding:0;Margin:0;padding-top:10px">
-                      <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p>
+                      <!-- <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p> -->
                       <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 15px;color:#333333;font-size: 16px;"><br>Thanks,</p>
                       <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height: 28px;color:#333333;font-size: 16px;">The FavoriteWish Team!</p>
                     </td>

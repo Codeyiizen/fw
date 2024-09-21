@@ -703,7 +703,7 @@
                                                                                                 href="mailto:operations@favoritewish.com"
                                                                                                 style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#5C68E2;font-size:14px">operations@favoritewish.com</a>.
                                                                                         </p>
-                                                                                        <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p>
+                                                                                        <!-- <p>(If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition) </p> -->
                                                                                         <p
                                                                                             style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
                                                                                             <br>Thanks,</p>

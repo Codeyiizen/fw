@@ -190,7 +190,8 @@
                                     </form>
                                 </div>
                                 
-                                <?php if (!empty($showFriendMassage)) { ?>
+                                <?php if (!empty($showFriendMassage)) {  ?>
+                                    
                                  <?php
                                    $CI = &get_instance();
                                    $CI->load->model('Favoritewish_Model');

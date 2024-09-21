@@ -16,6 +16,8 @@
                                 <div class="col-md-4 mb-4 mb-md-0 pl-md-5">
                                     <h5>Notifications</h5>
                                     <p>For important updates, certain notifications cannot be disabled</p>
+                                    <p>
+                                    (If our notifications end up in your spam or junk folder, please move them to your inbox to improve future delivery and recognition)</p>
                                 </div>
                                 <div class="offset-md-1 col-md-7">
                                     <div class="d-flex align-items-top justify-content-between" style="margin-right: 3px;">

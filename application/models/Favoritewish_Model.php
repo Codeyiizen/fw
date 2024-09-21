@@ -1825,6 +1825,11 @@ public function saveRandomNumberAllUser($userId, $data) {
     $this->db->update('users', $data); 
 }
 
+public function updateMsgNotificationTime($userId, $data) {
+    $this->db->where('id', $userId); 
+    $this->db->update('users', $data); 
+}
+
 public function getUserIdByReferalCode($getReferalCode){ 
     $this->db->select('id');
     $this->db->from("users");

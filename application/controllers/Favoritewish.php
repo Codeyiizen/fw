@@ -2066,8 +2066,11 @@ class Favoritewish extends CI_Controller
 		$msg_image = $this->input->post('msg_image'); 
         $id = $this->input->post('friend_id');
 		$checkUserLoginStatus = $this->Favoritewish_Model->checkUserLoginStatus($id);
-	//	echo"<pre>"; var_dump($checkUserLoginStatus->check_msg_status); exit;
-	    if($checkUserLoginStatus->check_msg_status == 0){
+		$msgNotificationTime = strtotime($checkUserLoginStatus->msg_notification_time); 
+		$currentTime = time(); 
+		$timeDifference = ($currentTime - $msgNotificationTime) / 60; 
+		//echo"<pre>"; var_dump($timeDifference); exit;
+	    if($timeDifference > 5){
 			$user = getUser();
 			$arrInsertNotification = array(   
 				'to_id' => $checkUserLoginStatus->id,
@@ -2076,18 +2079,31 @@ class Favoritewish extends CI_Controller
 				'notification_massage' =>''.$user['first_name'].'  has sent a message. Reply now',
 				'created_on'	    =>	date("Y-m-d H:i:s")
 			);
-        $this->db->insert('notification', $arrInsertNotification);
-			if($checkUserLoginStatus->Inbox_message == 1){
+            $this->db->insert('notification', $arrInsertNotification);
+			if($checkUserLoginStatus->Inbox_message == 1){  
 				$userId = $user['user_id'];
 				$data = array(
 					'name'  => $user['first_name'].' '.$user['last_name'].' '.'sent you a message',
 					'link'  => base_url()."user/friends/$userId/message",
 				);
-				$this->load->library('encryption');
-		        $this->load->library('email');
-		        $config['charset'] = 'iso-8859-1';
-				$config['wordwrap'] = TRUE;
-				$config['mailtype'] = 'html';
+				// $this->load->library('encryption');
+		        // $this->load->library('email');
+		        // $config['charset'] = 'iso-8859-1';
+				// $config['wordwrap'] = TRUE;
+				// $config['mailtype'] = 'html';
+                $this->load->library('encryption');
+				$this->load->library('email');
+				$config = array(
+					'protocol'  => 'smtp',
+					'smtp_host' => 'smtp.gmail.com',
+					'smtp_port' => 587, //if 80 dosenot work use 24 or 21
+					'smtp_user'  => 'mahendrakumar19u@gmail.com',  
+					'smtp_pass'  => 'getjqfgdoylfrdku',
+					'smtp_crypto' => 'tls',
+					'charset' => 'iso-8859-1',
+					'wordwrap' => TRUE
+				);
+				
 				$this->email->initialize($config);
 				$this->email->to($checkUserLoginStatus->email);
 				$this->email->from(MAIL_FROM, FROM_TEXT);
@@ -2739,17 +2755,12 @@ public function familyWishDelete(){
 		$this->Favoritewish_Model->userNotifyDelete($id);
 	}
 
-	public function checkFriendBirthday(){
-	    checkMenuActive(true);
-		if ($this->session->userdata('ci_session_key_generate') == FALSE) {
-			redirect('sign-in'); // the user is not logged in, redirect them!
-		} else {
+	public function checkFriendBirthday(){ 
+	        checkMenuActive(true);
 			$arr['data'] = $this->Favoritewish_Model->bannerSection('profile'); // Calling model function defined in Favoritewish_Model.php
 			$data = array();
 			$get = $this->input->get(); 
 			$data['breadcrumbs'] = array('User Friends' => '#');
-			$sessionArray = $this->session->userdata('ci_seesion_key');
-			$this->Favoritewish_Model->setUserID($sessionArray['user_id']);
 			$data['get'] = $get;
 			$user = getUser();
 			$getAllUser = $this->Favoritewish_Model->get_friends_with_birthday_today();
@@ -2757,7 +2768,6 @@ public function familyWishDelete(){
 			foreach($getAllUser as $friendBirthday){ 
 			   $getObjBirthdayData = $this->Favoritewish_Model->getfriendDataById($friendBirthday["friend_id"]);	 
 			//	echo"<pre>"; var_dump($getObjBirthdayData->email); exit;
-
 			  $arrInsertNotification = array(   
 				'to_id' =>$friendBirthday["friend_id"],
 				'from_id' => $friendBirthday["id"],
@@ -2772,28 +2782,21 @@ public function familyWishDelete(){
 				'RecipientName' => $getObjBirthdayData->first_name.' '.$getObjBirthdayData->last_name,
 			);
             if($getObjBirthdayData->upcoming_birthday == 1){
-				$sessionArray = $this->session->userdata('ci_seesion_key');
-				
-				
 				$config['charset'] = 'iso-8859-1';
 				$config['wordwrap'] = TRUE;
 				$config['mailtype'] = 'html';
 				$this->load->library('encryption');
 				$this->load->library('email');
-
 				$this->email->initialize($config);
-				$this->email->to($getObjBirthdayData->email);
+				$this->email->to('$getObjBirthdayData->email');
 				$this->email->from(MAIL_FROM, FROM_TEXT);
 				$this->email->subject('FavoriteWish Today Birthday Notification');
 				$this->email->set_newline("\r\n");
 				$this->email->message($this->load->view('email/todayBithdayNotify',$data, true));
 				$this->email->send();
 			}
-
-			}
-           die('ok');
-
-	}
+		}
+    die('EmailSent');
 }
 
 public function massageUpdate(){
@@ -2981,6 +2984,14 @@ public function userReferalCodeInsert() {
         );
         $this->Favoritewish_Model->saveRandomNumberAllUser($users->id,$updateReferCode);
     }
+}
+
+public function updateMsgNotificationTime(){
+	$sessionArray = $this->session->userdata('ci_seesion_key');
+	$updateMsgNotifyTime = array(
+		'msg_notification_time' => date("Y-m-d H:i:s"),
+	);
+	$this->Favoritewish_Model->updateMsgNotificationTime($sessionArray['user_id'],$updateMsgNotifyTime);
 }
 
 public function emailtesting(){ 
