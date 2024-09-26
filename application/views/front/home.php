@@ -610,8 +610,20 @@ html {
     }
 
 }
+.testimonial .carousel-indicators{
+    bottom: -2.5rem;
+}
 
+.carousel-indicators li {
+    background-color: #ddd;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
 
+.carousel-indicators li.active {
+    background-color: #ffc629;
+}
 </style>
 <section class="hero-section background-image section-padding"
     data-background="https://fw.kurieta.ca/assets/images/site-image/banner-bg.png"
@@ -703,158 +715,120 @@ html {
     </div>
 </section>
 <h4 class="text-center mt-4">Testimonials</h4>
-<section class="third-section mt-5 theme-bg alt " style="padding: 120px 100px;">
-    <div class="container">
+<section class="third-section mt-5 theme-bg alt testimonial">
+    <div class="container text-center">
         <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <section id="testim" class="testim">
-                    <div class="wrap">
-                        <span id="right-arrow" class="arrow right fa fa-chevron-right"></span>
-                        <span id="left-arrow" class="arrow left fa fa-chevron-left "></span>
-                        <ul id="testim-dots" class="dots ">
-                            <li class="dot active"></li>
-                            <!--
-                    -->
-                            <li class="dot"></li>
-                            <!--
-                    -->
-                            <li class="dot"></li>
-                            <!--
-                    -->
-                            <li class="dot"></li>
-                            <!--
-                    -->
-                            <li class="dot"></li>
-                            <!--
-                    -->
-                             <li class="dot"></li>
-                            <!--
-                    -->
-                            <li class="dot"></li>
-                            <!--
-                    -->
-                            <li class="dot"></li>
-                            <!--
-                    -->
-                            <li class="dot"></li>
-                                 <!--
-                    -->
-                    <li class="dot"></li>  
-                            
-                        </ul>
-                        <div id="testim-content" class="cont">
-
-                            <div class="active">
-                                <div class="img"></div>
-                                <h2>John M.</h2>
-                                <p>“Favorite Wish has completely transformed how I approach gift-giving! I no longer
-                                    have to guess
-                                    sizes or worry about returns. Everything I need is listed, from favorite brands to
-                                    colors and
-                                    styles. It’s saved me so much time, and I’ve never seen my family happier with their
-                                    surprise
-                                    gifts. The mobile view is seamless, too! I highly recommend signing up—you won’t
-                                    regret it!”</p>
-                            </div>
-
-                            <div>
-                                <div class="img"></div>
-                                <h2>Sarah T.</h2>
-                                <p>“As a busy mom, Favorite Wish has been a lifesaver! I use it to keep track of my
-                                    kids’ growing
-                                    sizes, so buying clothes that fit has never been easier. No more exchanges! Plus, I
-                                    recently won
-                                    a prize through their referral program—such a fun bonus. 5 stars all the way!”</p>
-                            </div>
-
-                            <div>
-                                <div class="img"></div>
-                                <h2> Michael R.</h2>
-                                <p>“Gift-giving used to stress me out, but now it’s a breeze with Favorite Wish. I know
-                                    exactly what
-                                    my friends and family love, and the surprise factor is still there! The referral
-                                    program is
-                                    awesome, too. I got lucky in one of their monthly drawings and received a great
-                                    gift! I can’t
-                                    recommend this site enough!”</p>
-                            </div>
-
-                            <div>
-                                <div class="img"></div>
-                                <h2>Amanda C.</h2>
-                                <p>“Favorite Wish has brought back the joy of giving gifts. I love how easy it is to
-                                    check my loved
-                                    ones’ sizes and favorite styles—it’s all right there. Plus, it works great on my
-                                    phone, so I can use
-                                    it anywhere. It’s made gift shopping for holidays and birthdays way more fun!”</p>
-                            </div>
-
-                            <div>
-                                <div class="img"></div>
-                                <h2>Brian L.</h2>
-                                <p>“I used Favorite Wish to help me get the perfect gifts for my wife and kids. No more
-                                    returns! The
-                                    platform is super convenient, and having all the information in one place saves so
-                                    much time. I
-                                    even won a referral prize this month, which was such a nice surprise. Highly
-                                    recommend this
-                                    site to anyone!”</p>
-                            </div>
-                            <div>
-                                <div class="img"></div>
-                                <h2>Jessica P.</h2>
-                                <p>“I never realized how much easier gift shopping could be until I found Favorite Wish.
-                                    Having
-                                    everyone’s size and preferences at my fingertips is a game changer. It’s saved me
-                                    from so
-                                    many returns and exchanges, and the mobile version works perfectly on my phone. Love
-                                    it!”</p>
-                            </div>
-                            <div>
-                                <div class="img"></div>
-                                <h2>David H.</h2>
-                                <p>“Favorite Wish has made gifting so much simpler! I used to struggle with finding the
-                                    right sizes,
-                                    but now I just check their profiles, and it’s all there. I even won a prize through
-                                    their referral
-                                    program, which was such a fun bonus. This site is 5 stars for sure!”</p>
-                            </div>
-                            <div>
-                                <div class="img"></div>
-                                <h2>Emily G.</h2>
-                                <p>“As someone who loves to give gifts, Favorite Wish has been a dream! I no longer
-                                    stress over
-                                    whether the gift will fit. It’s all listed in their profile, and the surprise
-                                    element is still there. Plus, I
-                                    love the convenience of using the site on my phone. It’s a must-have for any
-                                    gift-giver!”</p>
-                            </div>
-                            <div>
-                                <div class="img"></div>
-                                <h2>Chris S.</h2>
-                                <p>“Favorite Wish has made birthdays, holidays, and special occasions so much better. I
-                                    don’t
-                                    have to guess sizes or preferences anymore—it’s all right there. And I recently won
-                                    a referral
-                                    drawing, which was a great surprise! This site is incredibly easy to use and so
-                                    worth it.”</p>
-                            </div>
-                            <div>
-                                <div class="img"></div>
-                                <h2>Laura D.</h2>
-                                <p>“I can’t believe how much easier Favorite Wish has made my life. I keep my kids’
-                                    sizes updated,
-                                    so buying clothes is hassle-free, and I know the gifts will fit. I even got a
-                                    referral prize for
-                                    recommending the site to friends. Gift-giving has never been this exciting!”</p>
-                            </div>
+            <div class="col-md-9">
+                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators m-0 p-0">
+                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <h2>John M.</h2>
+                            <p>“Favorite Wish has completely transformed how I approach gift-giving! I no longer
+                                have to guess
+                                sizes or worry about returns. Everything I need is listed, from favorite brands to
+                                colors and
+                                styles. It’s saved me so much time, and I’ve never seen my family happier with their
+                                surprise
+                                gifts. The mobile view is seamless, too! I highly recommend signing up—you won’t
+                                regret it!”</p>
                         </div>
+                        <div class="carousel-item">
 
+                            <h2>Sarah T.</h2>
+                            <p>“As a busy mom, Favorite Wish has been a lifesaver! I use it to keep track of my
+                                kids’ growing
+                                sizes, so buying clothes that fit has never been easier. No more exchanges! Plus, I
+                                recently won
+                                a prize through their referral program—such a fun bonus. 5 stars all the way!”</p>
+                        </div>
+                        <div class="carousel-item">
+
+                            <h2> Michael R.</h2>
+                            <p>“Gift-giving used to stress me out, but now it’s a breeze with Favorite Wish. I know
+                                exactly what
+                                my friends and family love, and the surprise factor is still there! The referral
+                                program is
+                                awesome, too. I got lucky in one of their monthly drawings and received a great
+                                gift! I can’t
+                                recommend this site enough!”</p>
+                        </div>
+                        <div class="carousel-item">
+
+                            <h2>Amanda C.</h2>
+                            <p>“Favorite Wish has brought back the joy of giving gifts. I love how easy it is to
+                                check my loved
+                                ones’ sizes and favorite styles—it’s all right there. Plus, it works great on my
+                                phone, so I can use
+                                it anywhere. It’s made gift shopping for holidays and birthdays way more fun!”</p>
+                        </div>
+                        <div class="carousel-item">
+
+                            <h2>Brian L.</h2>
+                            <p>“I used Favorite Wish to help me get the perfect gifts for my wife and kids. No more
+                                returns! The
+                                platform is super convenient, and having all the information in one place saves so
+                                much time. I
+                                even won a referral prize this month, which was such a nice surprise. Highly
+                                recommend this
+                                site to anyone!”</p>
+                        </div>
+                        <div class="carousel-item">
+
+                            <h2>Jessica P.</h2>
+                            <p>“I never realized how much easier gift shopping could be until I found Favorite Wish.
+                                Having
+                                everyone’s size and preferences at my fingertips is a game changer. It’s saved me
+                                from so
+                                many returns and exchanges, and the mobile version works perfectly on my phone. Love
+                                it!”</p>
+                        </div>
+                        <div class="carousel-item">
+
+                            <h2>David H.</h2>
+                            <p>“Favorite Wish has made gifting so much simpler! I used to struggle with finding the
+                                right sizes,
+                                but now I just check their profiles, and it’s all there. I even won a prize through
+                                their referral
+                                program, which was such a fun bonus. This site is 5 stars for sure!”</p>
+                        </div>
+                        <div class="carousel-item">
+
+                            <h2>Emily G.</h2>
+                            <p>“As someone who loves to give gifts, Favorite Wish has been a dream! I no longer
+                                stress over
+                                whether the gift will fit. It’s all listed in their profile, and the surprise
+                                element is still there. Plus, I
+                                love the convenience of using the site on my phone. It’s a must-have for any
+                                gift-giver!”</p>
+                        </div>
+                        <div class="carousel-item">
+
+                            <h2>Chris S.</h2>
+                            <p>“Favorite Wish has made birthdays, holidays, and special occasions so much better. I
+                                don’t
+                                have to guess sizes or preferences anymore—it’s all right there. And I recently won
+                                a referral
+                                drawing, which was a great surprise! This site is incredibly easy to use and so
+                                worth it.”</p>
+                        </div>
+                        <div class="carousel-item">
+
+                            <h2>Laura D.</h2>
+                            <p>“I can’t believe how much easier Favorite Wish has made my life. I keep my kids’
+                                sizes updated,
+                                so buying clothes is hassle-free, and I know the gifts will fit. I even got a
+                                referral prize for
+                                recommending the site to friends. Gift-giving has never been this exciting!”</p>
+                        </div>
                     </div>
-
-                </section>
+                </div>
             </div>
-    </div>
+        </div>
 </section>
 </div>
 <script>
