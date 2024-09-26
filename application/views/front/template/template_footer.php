@@ -22,13 +22,14 @@
 	<div class="bottom-footer background-image p-3" data-background="<?php echo base_url(); ?>assets/images/site-image/footer-bg.png">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 col-sm-12 text-center text-md-left">
+				<div class="col-md-9 col-sm-12 text-center text-md-left">
 					<div class="footer-menu-list">
 						<a href="<?php echo base_url('/terms-and-conditions'); ?>">Terms and Conditions</a>
 						<a href="<?php echo base_url(); ?>privacy/Policy">Privacy Policy</a>
+						<a href="<?php echo base_url('/front/company/policy'); ?>">Company Relations</a>
 					</div>
 				</div>
-				<div class="col-md-6 col-sm-12 text-center text-md-right">
+				<div class="col-md-3 col-sm-12 text-center text-md-right">
 					<p>Designed by <a href="https://www.kurieta.com">Kurieta.com</a></p>
 				</div>
 			</div>

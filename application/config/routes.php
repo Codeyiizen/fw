@@ -150,6 +150,9 @@ $route['delete/both/allmsg'] = 'favoritewish/deleteBothAllMsg';
 $route['check/birthday/after'] = 'favoritewish/checkFriendBirthdayAfter';
 $route['update/massage/notification/time'] = 'favoritewish/updateMsgNotificationTime';
 
+$route['front/faq'] = 'favoritewish/frontFaq';
+$route['front/company/policy'] = 'favoritewish/companyPolicy';
+
 // Referal functionility route Start
 $route['user/referal/code/insert'] = 'favoritewish/userReferalCodeInsert';
 //$route['sign-up/(:any)'] = 'favoritewish/userReferSignupLink';

@@ -229,6 +229,10 @@
 	 })
     
 
+
+	 
+
+
 	 $(document).ready(function () {
         $("#click-to-copy").click(function (event) {
             event.preventDefault();
