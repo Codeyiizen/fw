@@ -68,6 +68,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 								<li class="about"><a href="<?php echo base_url('/about-us'); ?>">About Us</a></li>                           
 								<li class="contact"><a href="<?php echo base_url('/contact-us'); ?>">Contact Us</a></li>
 								<li class="contact"><a href="<?php echo base_url('/front/blog/show'); ?>">Blog</a></li>
+								<li class="contact"><a href="<?php echo base_url('/front/faq'); ?>">FAQ</a></li>
 							</ul>
 						</nav>
 						<div class="header-btn d-none d-xl-block">

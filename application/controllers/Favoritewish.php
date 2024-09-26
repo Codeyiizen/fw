@@ -2788,7 +2788,7 @@ public function familyWishDelete(){
 				$this->load->library('encryption');
 				$this->load->library('email');
 				$this->email->initialize($config);
-				$this->email->to('$getObjBirthdayData->email');
+				$this->email->to($getObjBirthdayData->email);
 				$this->email->from(MAIL_FROM, FROM_TEXT);
 				$this->email->subject('FavoriteWish Today Birthday Notification');
 				$this->email->set_newline("\r\n");
@@ -2992,6 +2992,30 @@ public function updateMsgNotificationTime(){
 		'msg_notification_time' => date("Y-m-d H:i:s"),
 	);
 	$this->Favoritewish_Model->updateMsgNotificationTime($sessionArray['user_id'],$updateMsgNotifyTime);
+}
+
+public function frontFaq(){ 
+	    $data = array();
+        $data['metaDescription'] = 'Faq Meta Description';
+        $data['metaKeywords'] = 'Faq Page meta KeyWords';
+        $data['title'] = "Faq";
+        $data['breadcrumbs'] = array('Blog' => '#');
+        $this->load->view('front/header_main', $data);
+        $this->load->view('front/faq', $data);
+        $this->load->view('front/template/template_footer');
+        $this->load->view('front/footer_main');
+}
+
+public function companyPolicy(){
+	    $data = array();
+        $data['metaDescription'] = 'Compnay Policy Meta Description';
+        $data['metaKeywords'] = 'Compnay Policy Page meta KeyWords';
+        $data['title'] = "Compnay Policy";
+        $data['breadcrumbs'] = array('Blog' => '#');
+        $this->load->view('front/header_main', $data);
+        $this->load->view('front/company-policy', $data);
+        $this->load->view('front/template/template_footer');
+        $this->load->view('front/footer_main');
 }
 
 public function emailtesting(){ 
