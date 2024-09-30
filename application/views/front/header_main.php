@@ -101,6 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<li><a href="<?php echo base_url('home/page'); ?>">Home</a></li>
 					<li><a href="<?php echo base_url('/about-us'); ?>">About Us</a></li>
 					<li><a href="<?php echo base_url('/contact-us'); ?>">Contact Us</a></li>
+					<li class="contact"><a href="<?php echo base_url('/front/faq'); ?>">FAQ</a></li>
 					<?php
 					if ($this->session->userdata('ci_session_key_generate') == FALSE) {								
 						echo '<a href="'.base_url().'sign-in">Login/Register</a>';
